@@ -53,6 +53,11 @@ jobs:
         if: github.event.inputs.test != 'false'
         # But not the build script, as semantic-release will crash if this command fails so it makes sense to test it early
       - run: npm run prepublishOnly
+        # The build output is needed for the other tests to run
+      - uses: actions/upload-artifact@83fd05a356d7e2593de66fc9913b3002723633cb # tag=v3
+        with:
+          name: build-output
+          path: dist/
 
   test:
     needs: build
@@ -88,6 +93,10 @@ jobs:
           cache: npm
           node-version: ${{ matrix.node }}
       - run: npm ci
+        # Downloads the build output in `dist/`, so we don't have to re-run `npm run prepublishOnly` on each test
+      - uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # tag=v3
+        with:
+          name: build-output
       - run: npm test
 
   release:
