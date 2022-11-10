@@ -1,7 +1,5 @@
 import 'bulma/css/bulma.min.css'
 
-import Container from './Container'
-
 export default function RootLayout({
   children,
 }: {
@@ -10,9 +8,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body>
-        <Container>{children}</Container>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

@@ -5,6 +5,8 @@ const links = [
   ['Next 12 - token', '/next12-token'],
   ['Next 13 - cookie', '/next13-cookie'],
   ['Next 13 - token', '/next13-token'],
+  ['Edge - cookie', '/next13-cookie-edge'],
+  ['Edge - token', '/next13-token-edge'],
 ]
 
 export default function IndexPage() {
@@ -20,3 +22,6 @@ export default function IndexPage() {
     </div>
   )
 }
+
+// @TODO remove this after testing
+export const runtime = 'experimental-edge'
