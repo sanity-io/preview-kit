@@ -7,6 +7,7 @@ export default {
 
   experimental: {
     appDir: true,
+    runtime: 'experimental-edge',
   },
 
   // We run these checks in the CI pipeline, so we don't need to run them on Vercel
