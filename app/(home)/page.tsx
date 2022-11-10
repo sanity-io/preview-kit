@@ -5,9 +5,14 @@ const links = [
   ['Next 12 - token', '/next12-token'],
   ['Next 13 - cookie', '/next13-cookie'],
   ['Next 13 - token', '/next13-token'],
-  ['Edge - cookie', '/next13-cookie-edge'],
-  ['Edge - token', '/next13-token-edge'],
 ]
+// @TODO investigate why the Edge runtime routes fail in production
+if (process.env.VERCEL_ENV !== 'production') {
+  links.push(
+    ['Edge - cookie', '/next13-cookie-edge'],
+    ['Edge - token', '/next13-token-edge']
+  )
+}
 
 export default function IndexPage() {
   return (
