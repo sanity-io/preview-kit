@@ -31,7 +31,7 @@ Explain when to provide it, its implications, pros and cons and how to secure it
 
 # Development
 
-If you have access to the [test studio]() and our Vercel Team, then:
+If you have access to the [test studio](https://preview-kit-test-studio.sanity.build) and our Vercel Team, then:
 
 1. `npx vercel link && npx vercel env pull`
 2. `npm run dev` which gives you the test Next app running on `http://localhost:3000`.
