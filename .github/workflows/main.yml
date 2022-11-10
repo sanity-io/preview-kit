@@ -97,6 +97,11 @@ jobs:
       - uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # tag=v3
       - run: ls -R
       - run: npm test
+        # Only node 16 and later supports `assert {type: json}` used in the test.mjs unit
+        if: matrix.node != 'lts/-2'
+        # So on that version we only test the CJS unit
+      - run: node test.cjs
+        if: matrix.node == 'lts/-2'
 
   release:
     needs: [build, test]
