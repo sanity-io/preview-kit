@@ -4,8 +4,8 @@ export default function PreviewButton({
   stop,
 }: {
   preview: boolean
-  stop: `/api/exit-preview-${string}`
-  start: `/api/preview-${string}`
+  stop: `/api/exit-preview-next${12 | 13}-${'cookie' | 'token'}`
+  start: `/api/preview-next${12 | 13}-${'cookie' | 'token'}`
 }) {
   return (
     <section className="section">

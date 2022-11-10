@@ -1,26 +1,32 @@
 import Container from 'app/Container'
+import PreviewButton from 'app/PreviewButton'
 import type { GetStaticProps } from 'next'
 
 export default function Next12CookiePage({
   preview,
-  token,
+  ...props
 }: {
   preview?: boolean
-  token?: string
 }) {
   // eslint-disable-next-line no-console
-  console.log('Next12CookiePage', { preview, token })
-  return <Container>TODO</Container>
+  console.log('Next12CookiePage', { preview, props })
+  return (
+    <Container>
+      <PreviewButton
+        preview={!!preview}
+        start="/api/preview-next12-cookie"
+        stop="/api/exit-preview-next12-cookie"
+      />
+    </Container>
+  )
 }
 
 export const getStaticProps: GetStaticProps<any, any, any> = ({
   preview = false,
-  previewData = {},
 }) => {
   return {
     props: {
       preview,
-      token: previewData?.token || null,
     },
     revalidate: 60,
   }

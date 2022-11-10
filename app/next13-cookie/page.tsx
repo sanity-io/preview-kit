@@ -4,5 +4,5 @@ export default function Next13CookiePage(props: any) {
   return <>TODO</>
 }
 
-export const runtime = 'experimental-edge'
+// export const runtime = 'experimental-edge'
 export const revalidate = 60
