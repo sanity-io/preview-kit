@@ -64,12 +64,13 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@sanity/groq-store": "^1.0.3",
+    "@sanity/groq-store": "^1.0.4",
     "@types/event-source-polyfill": "^1.0.0",
     "event-source-polyfill": "^1.0.31",
     "suspend-react": "^0.0.8"
   },
   "devDependencies": {
+    "@sanity/client": "^3.4.1",
     "@sanity/eslint-config-studio": "^2.0.1",
     "@sanity/pkg-utils": "^1.18.0",
     "@sanity/semantic-release-preset": "^2.0.2",
@@ -84,6 +85,7 @@
     "eslint-gitignore": "^0.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^8.0.0",
+    "groqd": "^0.0.4",
     "next": "13.0.3-canary.3",
     "prettier": "^2.7.1",
     "prettier-plugin-packagejson": "^2.3.0",

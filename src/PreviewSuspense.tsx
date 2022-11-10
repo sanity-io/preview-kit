@@ -1,9 +1,9 @@
-import { Suspense, useEffect, useReducer } from 'react'
+import { type ReactNode, Suspense, useEffect, useReducer } from 'react'
 
 /** @public */
 export type PreviewSuspenseProps = {
-  children: React.ReactNode
-  fallback: React.ReactNode
+  children: ReactNode
+  fallback: ReactNode
 }
 
 /**
