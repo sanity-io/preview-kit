@@ -95,7 +95,6 @@ jobs:
       - run: npm ci
         # Downloads the build output in `dist/`, so we don't have to re-run `npm run prepublishOnly` on each test
       - uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # tag=v3
-      - run: ls -R
       - run: npm test
         # Only node 16 and later supports `assert {type: json}` used in the test.mjs unit
         if: matrix.node != 'lts/-2'
