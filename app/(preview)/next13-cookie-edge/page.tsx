@@ -5,4 +5,3 @@ export default function Next13CookieEdgePage(props: any) {
 }
 
 export const runtime = 'experimental-edge'
-export const revalidate = 60
