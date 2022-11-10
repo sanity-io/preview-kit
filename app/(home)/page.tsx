@@ -22,6 +22,3 @@ export default function IndexPage() {
     </div>
   )
 }
-
-// @TODO remove this after testing
-export const runtime = 'experimental-edge'
