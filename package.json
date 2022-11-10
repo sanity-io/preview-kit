@@ -52,7 +52,7 @@
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "npm run build",
     "prettier": "npx prettier --ignore-path .gitignore --cache --write .",
-    "test": "jest",
+    "test": "node test.mjs && node test.cjs",
     "type-check": "tsc --noEmit"
   },
   "browserslist": [
@@ -73,6 +73,7 @@
     "@sanity/eslint-config-studio": "^2.0.1",
     "@sanity/pkg-utils": "^1.18.0",
     "@sanity/semantic-release-preset": "^2.0.2",
+    "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "eslint": "^8.27.0",
