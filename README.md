@@ -15,19 +15,148 @@ npm i @sanity/preview-kit
 yarn add @sanity/preview-kit
 ```
 
-# Caveats
+## Usage
 
-## Server-only
+### Next 12 Preview Mode, cookie auth only
 
-Explain why we're not implementing something equivalent to `useSyncExternalStore getServerSnapshot`, or `initialData`. Explain why we've decided not to support SSR hydration and go client-only with a Suspense fallback UI on startup.
+```tsx
+// pages/index.js
+import { PreviewSuspense } from '@sanity/preview-kit'
+import sanityClient from '@sanity/client'
+import DataTable from 'components/DataTable'
+import { lazy } from 'react'
 
-## documentLimit
+const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
 
-Explain the hard limit, how to set it correctly, and our current plans.
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 
-## token
+export const getStaticProps = async ({ preview = false }) => {
+  if (preview) {
+    return { props: { preview } }
+  }
 
-Explain when to provide it, its implications, pros and cons and how to secure it.
+  const client = sanityClient({
+    projectId,
+    dataset,
+    useCdn: false,
+    apiVersion: '2022-11-10',
+  })
+  const data = await client.fetch(`*[]`)
+
+  return { props: { preview, data } }
+}
+
+export default function IndexPage({ preview, data }) {
+  if (preview) {
+    return (
+      <PreviewSuspense fallback="Loading...">
+        <PreviewDataTable />
+      </PreviewSuspense>
+    )
+  }
+
+  return <DataTable data={data} />
+}
+```
+
+```tsx
+// components/PreviewDataTable.js
+import { definePreview } from '@sanity/preview-kit'
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+const usePreview = definePreview({ projectId, dataset })
+
+export default function PreviewDataTable() {
+  const data = usePreview(null, `*[]`)
+
+  return <DataTable data={data} />
+}
+```
+
+### Next 12 Preview Mode, with a viewer token
+
+This example have the added benefit that it works in non-chromium browsers like Safari. And without needing a Sanity authenticated session to exist on the origin.
+This also means you need to protect your `pages/api/preview` handler with a secret, since the `token` can be used to query _any_ data in your dataset. Only share preview links with people that you're ok with being able to see everything in your dataset.
+
+```tsx
+// pages/index.js
+import { PreviewSuspense } from '@sanity/preview-kit'
+import sanityClient from '@sanity/client'
+import DataTable from 'components/DataTable'
+import { lazy } from 'react'
+
+const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+export const getStaticProps = async ({ preview = false, previewData = {} }) => {
+  if (preview) {
+    return { props: { preview, token: previewData.token } }
+  }
+
+  const client = sanityClient({
+    projectId,
+    dataset,
+    useCdn: false,
+    apiVersion: '2022-11-10',
+  })
+  const data = await client.fetch(`*[]`)
+
+  return { props: { preview, data } }
+}
+
+export default function IndexPage({ preview, data, token }) {
+  if (preview) {
+    return (
+      <PreviewSuspense fallback="Loading...">
+        <PreviewDataTable token={token} />
+      </PreviewSuspense>
+    )
+  }
+
+  return <DataTable data={data} />
+}
+```
+
+```tsx
+// components/PreviewDataTable.js
+import { definePreview } from '@sanity/preview-kit'
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+const usePreview = definePreview({ projectId, dataset })
+
+export default function PreviewDataTable({ token }) {
+  const data = usePreview(token, `*[]`)
+
+  return <DataTable data={data} />
+}
+```
+
+```js
+// pages/api/preview.js
+export default function preview(req, res) {
+  const secret = process.env.PREVIEW_SECRET
+  // Check the secret if it's provided, enables running preview mode locally before the env var is setup
+  if (secret && req.query.secret !== secret) {
+    return res.status(401).json({ message: 'Invalid secret' })
+  }
+  // This token should only have `viewer` access rights in https://manage.sanity.io
+  const token = process.env.SANITY_API_READ_TOKEN
+  if (!token) {
+    throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
+  }
+
+  res.setPreviewData({ token })
+  res.writeHead(307, { Location: '/' })
+  res.end()
+}
+```
 
 # Development
 
