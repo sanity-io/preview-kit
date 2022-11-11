@@ -11,7 +11,7 @@ import { createClient } from 'app/utils'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { lazy } from 'react'
 
-const PreviewTable = lazy(() => import('./_PreviewTable'))
+const PreviewTable = lazy(() => import('pages-extra/PreviewTable'))
 
 export const getStaticProps: GetStaticProps<{
   preview: boolean

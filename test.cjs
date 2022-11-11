@@ -3,10 +3,11 @@
 const { strict: assert } = require('node:assert')
 
 const previewKit = require('@sanity/preview-kit')
-const { PreviewSuspense } = previewKit
+const { PreviewSuspense, definePreview } = previewKit
 
 // Testing pkg.exports[.]
 assert.equal(typeof PreviewSuspense, 'function')
+assert.equal(typeof definePreview, 'function')
 
 // Ensure it's possible to check what version of @sanity/preview-kity is being used
 const pkg = require('@sanity/preview-kit/package.json')

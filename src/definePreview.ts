@@ -198,12 +198,13 @@ export interface PreviewConfig
    * If `token` is set it'll set `headers: {Authorization: "Bearer ${token}"}` instead.
    * But if you're already setting `token` you can skip defining this function to run startup faster, if the `token` is invalid it'll throw while exporting the dataset anyway.
    */
-  onPublicAccessOnly: () => void
+  onPublicAccessOnly?: () => void
 }
 
-export const definePreview = (
-  config: PreviewConfig
-): ReturnType<typeof _definePreview> =>
+/**
+ * @public
+ */
+export const definePreview = (config: PreviewConfig): UsePreview =>
   _definePreview({
     ...config,
     importEventSourcePolyfill: () =>
