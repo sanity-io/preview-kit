@@ -237,7 +237,12 @@ export const definePreview = (config: PreviewConfig): UsePreview =>
         // eslint-disable-next-line no-warning-comments
         // @todo: fix the casting to any here
         () => store.query<any>(query, params),
-        ['@sanity/preview-kit', 'preload', query, params]
+        [
+          '@sanity/preview-kit',
+          'preload',
+          query,
+          JSON.stringify(params ?? null),
+        ]
       ),
     checkAuth: (projectId, token) =>
       suspend(
