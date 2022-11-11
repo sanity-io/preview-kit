@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/sanity-io/preview-kit/compare/v1.1.2...v1.1.3) (2022-11-11)
+
+### Bug Fixes
+
+- infinite render loop when providing `params` ([232cf61](https://github.com/sanity-io/preview-kit/commit/232cf61a4cc185f3861d1640e9666beec35f8ee4))
+
 ## [1.1.2](https://github.com/sanity-io/preview-kit/compare/v1.1.1...v1.1.2) (2022-11-11)
 
 ### Bug Fixes
