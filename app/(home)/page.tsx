@@ -6,7 +6,9 @@ const links = [
   ['Next 13 - cookie', '/next13-cookie'],
   ['Next 13 - token', '/next13-token'],
 ]
+// eslint-disable-next-line no-warning-comments
 // @TODO investigate why the Edge runtime routes fail in production
+// eslint-disable-next-line no-process-env
 if (process.env.VERCEL_ENV !== 'production') {
   links.push(
     ['Edge - cookie', '/next13-cookie-edge'],

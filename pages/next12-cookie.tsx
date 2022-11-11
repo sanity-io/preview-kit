@@ -63,7 +63,7 @@ export default function Next12CookiePage({
             </>
           }
         >
-          <PreviewTable />
+          <PreviewTable token={null} />
         </PreviewSuspense>
       ) : (
         <>

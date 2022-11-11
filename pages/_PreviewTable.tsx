@@ -1,6 +1,11 @@
-import { type TableProps, query as tableQuery, Table } from 'app/Table'
+import { type UsePreview } from '@sanity/preview-kit'
+import { type TableProps, query, Table } from 'app/Table'
 
-export default function PreviewTableProps({ token }: { token?: string }) {
-  const data: any[] = []
+import { usePreview as _usePreview } from './_utils'
+
+const usePreview: UsePreview<TableProps['data']> = _usePreview
+
+export default function PreviewTableProps({ token }: { token: string | null }) {
+  const data = usePreview(token, query) || []
   return <Table data={data} />
 }
