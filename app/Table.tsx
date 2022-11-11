@@ -33,7 +33,7 @@ const thead = (
 export const Table = memo(function Table(props: TableProps) {
   const data = schema.parse(props.data)
   return (
-    <div className="table-container">
+    <div className="table-container is-flex-shrink-0">
       <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         {thead}
         <tbody>
@@ -67,7 +67,7 @@ export const TableFallback = memo(function TableFallback({
   const trs = Array(rows).fill('')
 
   return (
-    <div className="table-container">
+    <div className="table-container is-flex-shrink-0">
       <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         {thead}
         <tbody>

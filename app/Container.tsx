@@ -13,10 +13,10 @@ export default function Container({
         style={{
           display: 'flex',
           alignItems: 'center',
-          height: '100vh',
-          maxHeight: '100dvh',
+          minHeight: '100svh',
           justifyContent: 'center',
           flexDirection: 'column',
+          overflow: 'auto',
         }}
       >
         {children}
