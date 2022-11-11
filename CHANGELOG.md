@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/sanity-io/preview-kit/compare/v1.1.0...v1.1.1) (2022-11-11)
+
+### Bug Fixes
+
+- publish `checkAuth` fixes ([5e6d270](https://github.com/sanity-io/preview-kit/commit/5e6d270ed8faf41d77551c66815d151de59c37c1))
+
 ## [1.1.0](https://github.com/sanity-io/preview-kit/compare/v1.0.0...v1.1.0) (2022-11-11)
 
 ### Features
