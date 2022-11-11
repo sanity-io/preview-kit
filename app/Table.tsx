@@ -32,19 +32,29 @@ const thead = (
 export const Table = memo(function Table(props: TableProps) {
   const data = schema.parse(props.data)
   return (
-    <table className="table is-fullwidth">
-      {thead}
-      <tbody>
-        {data.map((type) => (
-          <tr key={type._id}>
-            <td>{type.title}</td>
-            <td width={400}>{type._id}</td>
-            <td width={300}>{type._createdAt?.toJSON()}</td>
-            <td width={300}>{type._updatedAt?.toJSON()}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="table-container">
+      <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        {thead}
+        <tbody>
+          {data.map((type) => (
+            <tr key={type._id}>
+              <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                {type.title}
+              </td>
+              <td style={{ whiteSpace: 'nowrap' }} width={400}>
+                {type._id}
+              </td>
+              <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                {type._createdAt?.toJSON()}
+              </td>
+              <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                {type._updatedAt?.toJSON()}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 })
 
@@ -56,19 +66,29 @@ export const TableFallback = memo(function TableFallback({
   const trs = Array(rows).fill('')
 
   return (
-    <table className="table is-fullwidth">
-      {thead}
-      <tbody>
-        {trs.map((_, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <tr key={`${i}`}>
-            <td>Loading…</td>
-            <td width={400}>&nbsp;</td>
-            <td width={300}>&nbsp;</td>
-            <td width={300}>&nbsp;</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="table-container">
+      <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        {thead}
+        <tbody>
+          {trs.map((_, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <tr key={`${i}`}>
+              <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                Loading…
+              </td>
+              <td style={{ whiteSpace: 'nowrap' }} width={400}>
+                &nbsp;
+              </td>
+              <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                &nbsp;
+              </td>
+              <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                &nbsp;
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 })

@@ -4,6 +4,7 @@ import { useMemo, useSyncExternalStore } from 'react'
 import { suspend } from 'suspend-react'
 
 import { _lazyEventSourcePolyfill, _lazyGroqStore } from './lazy'
+import { _checkAuth } from './auth'
 
 /**
  * The params type used both in `@sanity/client`:
@@ -44,14 +45,20 @@ export interface _PreviewConfig extends PreviewConfig {
    */
   importEventSourcePolyfill: () => EventSourcePolyfill
   /**
-   * Lazy load `event-source-polyfille` either using Suspense or `React.use` and `React.cache`.
-   * This happens if `token` is specified.
+   * Suspend render until the dataset is done loading. Either using Suspense or `React.use` and `React.cache`
    */
   preload: <R = any, P extends Params = Params, Q extends string = string>(
     store: GroqStore,
     query: Q,
+    /**
+     * Must wrap in `useMemo` to avoid infinite loop
+     */
     params?: P
   ) => R | null
+  /**
+   * If `onPublicAccessOnly` is defined this wrapper implements either Suspense or `React.use` and `React.cache` to suspend render until the auth check is complete
+   */
+  checkAuth: (options: { projectId: string; token: string | null }) => boolean
 }
 
 /**
@@ -65,6 +72,8 @@ export const _definePreview = ({
   importEventSourcePolyfill,
   importGroqStore,
   preload,
+  onPublicAccessOnly,
+  checkAuth,
 }: _PreviewConfig): UsePreview => {
   if (!projectId) {
     console.warn(`No projectId set for createPreviewHook, returning dummy hook`)
@@ -98,6 +107,12 @@ export const _definePreview = ({
     // if token === "" or otherwise falsy it should throw
 
     if (!store) {
+      if (onPublicAccessOnly) {
+        const hasAuth = checkAuth({ projectId, token })
+        if (!hasAuth) {
+          onPublicAccessOnly()
+        }
+      }
       /*
       const EventSourcePolyfill = suspend(
         () => lazyEventSourcePolyfill(),
@@ -223,5 +238,10 @@ export const definePreview = (config: PreviewConfig): UsePreview =>
         // @todo: fix the casting to any here
         () => store.query<any>(query, params),
         ['@sanity/preview-kit', 'preload', query, params]
+      ),
+    checkAuth: ({ projectId, token }) =>
+      suspend(
+        () => _checkAuth({ projectId, token }),
+        ['@sanity/preview-kit', 'checkAuth', projectId, token]
       ),
   })
