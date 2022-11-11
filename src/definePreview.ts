@@ -58,7 +58,7 @@ export interface _PreviewConfig extends PreviewConfig {
   /**
    * If `onPublicAccessOnly` is defined this wrapper implements either Suspense or `React.use` and `React.cache` to suspend render until the auth check is complete
    */
-  checkAuth: (options: { projectId: string; token: string | null }) => boolean
+  checkAuth: (projectId: string, token: string | null) => boolean
 }
 
 /**
@@ -108,7 +108,7 @@ export const _definePreview = ({
 
     if (!store) {
       if (onPublicAccessOnly) {
-        const hasAuth = checkAuth({ projectId, token })
+        const hasAuth = checkAuth(projectId, token)
         if (!hasAuth) {
           onPublicAccessOnly()
         }
@@ -239,9 +239,9 @@ export const definePreview = (config: PreviewConfig): UsePreview =>
         () => store.query<any>(query, params),
         ['@sanity/preview-kit', 'preload', query, params]
       ),
-    checkAuth: ({ projectId, token }) =>
+    checkAuth: (projectId, token) =>
       suspend(
-        () => _checkAuth({ projectId, token }),
+        () => _checkAuth(projectId, token),
         ['@sanity/preview-kit', 'checkAuth', projectId, token]
       ),
   })
