@@ -1,4 +1,3 @@
-import Container from 'app/Container'
 import { type FooterProps, Footer, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
 import PreviewFooter from 'app/PreviewFooter'
@@ -11,13 +10,14 @@ import {
   TableFallback,
 } from 'app/Table'
 import { createClient } from 'app/utils'
+import { previewData } from 'next/headers'
 
 export default async function Next13CookieEdgePage() {
-  const preview = false
+  const preview = !!previewData()
 
   const button = (
     <PreviewButton
-      preview={!!preview}
+      preview={preview}
       start="/api/preview-next13-cookie-edge"
       stop="/api/exit-preview-next13-cookie-edge"
     />
@@ -29,7 +29,7 @@ export default async function Next13CookieEdgePage() {
     const footerData = await client.fetch<FooterProps['data']>(footerQuery)
 
     return (
-      <Container>
+      <>
         {button}
         <PreviewSuspense
           fallback={
@@ -42,7 +42,7 @@ export default async function Next13CookieEdgePage() {
           <PreviewTable token={null} />
           <PreviewFooter token={null} />
         </PreviewSuspense>
-      </Container>
+      </>
     )
   }
 
@@ -50,11 +50,11 @@ export default async function Next13CookieEdgePage() {
   const tablePromise = client.fetch<TableProps['data']>(tableQuery)
   const footerPromise = client.fetch<FooterProps['data']>(footerQuery)
   return (
-    <Container>
+    <>
       {button}
       <Table data={await tablePromise} />
       <Footer data={await footerPromise} />
-    </Container>
+    </>
   )
 }
 

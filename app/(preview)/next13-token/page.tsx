@@ -1,4 +1,3 @@
-import Container from 'app/Container'
 import { type FooterProps, Footer, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
 import PreviewFooter from 'app/PreviewFooter'
@@ -11,9 +10,10 @@ import {
   TableFallback,
 } from 'app/Table'
 import { createClient } from 'app/utils'
+import { previewData } from 'next/headers'
 
 export default async function Next13TokenPage() {
-  const token = null
+  const token = previewData()?.token
 
   const button = (
     <PreviewButton
@@ -28,7 +28,7 @@ export default async function Next13TokenPage() {
     const footerData = await client.fetch<FooterProps['data']>(footerQuery)
 
     return (
-      <Container>
+      <>
         {button}
         <PreviewSuspense
           fallback={
@@ -41,7 +41,7 @@ export default async function Next13TokenPage() {
           <PreviewTable token={token} />
           <PreviewFooter token={token} />
         </PreviewSuspense>
-      </Container>
+      </>
     )
   }
 
@@ -49,11 +49,11 @@ export default async function Next13TokenPage() {
   const tablePromise = client.fetch<TableProps['data']>(tableQuery)
   const footerPromise = client.fetch<FooterProps['data']>(footerQuery)
   return (
-    <Container>
+    <>
       {button}
       <Table data={await tablePromise} />
       <Footer data={await footerPromise} />
-    </Container>
+    </>
   )
 }
 
