@@ -3,8 +3,8 @@ import type { EventSourcePolyfill } from 'event-source-polyfill'
 import { useMemo, useSyncExternalStore } from 'react'
 import { suspend } from 'suspend-react'
 
-import { _lazyEventSourcePolyfill, _lazyGroqStore } from './lazy'
 import { _checkAuth } from './auth'
+import { _lazyEventSourcePolyfill, _lazyGroqStore } from './lazy'
 
 /**
  * The params type used both in `@sanity/client`:
