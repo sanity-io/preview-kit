@@ -52,8 +52,7 @@
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "npm run build",
     "prettier": "npx prettier --ignore-path .gitignore --cache --write .",
-    "test": "node test.mjs && node test.cjs",
-    "type-check": "tsc --noEmit"
+    "test": "node test.mjs && node test.cjs"
   },
   "browserslist": [
     "> 0.2% and supports es6-module and supports es6-module-dynamic-import and not dead and not IE 11",
