@@ -172,3 +172,14 @@ If you don't have access then you need to:
 2. Open the Studio [codesandbox](https://codesandbox.io/s/github/sanity-io/preview-kit/tree/main/studio) and edit `src/App.tsx` to update `projectId` and `dataset`.
 3. You can now run `npm run dev` and test things on `http://localhost:3000`.
 4. As you edit things in the codesandbox studio you'll see them streamed to the next app.
+
+## Release new version
+
+Run ["CI & Release" workflow](https://github.com/sanity-io/preview-kit/actions/workflows/main.yml).
+Make sure to select the main branch and check "Release new version".
+
+Semantic release will only release on configured branches, so it is safe to run release on any branch.
+
+## License
+
+MIT-licensed. See [LICENSE](LICENSE).
