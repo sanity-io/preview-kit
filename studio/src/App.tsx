@@ -1,10 +1,11 @@
+import { visionTool } from '@sanity/vision'
 import { defineConfig, defineField, defineType, Studio } from 'sanity'
 import { deskTool } from 'sanity/desk'
 
 const config = defineConfig({
   projectId: 'pv8y60vp',
   dataset: 'production',
-  plugins: [deskTool()],
+  plugins: [deskTool(), visionTool()],
   schema: {
     types: [
       defineType({

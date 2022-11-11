@@ -1,5 +1,6 @@
 import { PreviewSuspense } from '@sanity/preview-kit'
 import Container from 'app/Container'
+import { type FooterProps, Footer, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
 import {
   type TableProps,
@@ -12,22 +13,26 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { lazy } from 'react'
 
 const PreviewTable = lazy(() => import('pages-extra/PreviewTable'))
+const PreviewFooter = lazy(() => import('pages-extra/PreviewFooter'))
 
 export const getStaticProps: GetStaticProps<{
   preview: boolean
   token?: string
   tableData: TableProps['data']
-  footerData: unknown
+  footerData: FooterProps['data']
 }> = async ({ preview = false, previewData = {} }) => {
   const revalidate = 60
 
   if (preview) {
+    const token = (previewData as any)?.token
+    const client = createClient(token)
+
     return {
       props: {
         preview,
-        token: (previewData as any)?.token,
+        token,
         tableData: [],
-        footerData: null,
+        footerData: await client.fetch(footerQuery),
       },
       revalidate,
     }
@@ -35,12 +40,13 @@ export const getStaticProps: GetStaticProps<{
 
   const client = createClient()
   const tablePromise = client.fetch(tableQuery)
+  const footerPromise = client.fetch(footerQuery)
 
   return {
     props: {
       preview,
       tableData: await tablePromise,
-      footerData: null,
+      footerData: await footerPromise,
     },
     revalidate,
   }
@@ -52,8 +58,6 @@ export default function Next12TokenPage({
   tableData,
   footerData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // eslint-disable-next-line no-console
-  console.log('Next12TokenPage', { preview, token, footerData })
   return (
     <Container>
       <PreviewButton
@@ -65,15 +69,18 @@ export default function Next12TokenPage({
         <PreviewSuspense
           fallback={
             <>
-              <TableFallback />
+              <TableFallback rows={footerData} />
+              <Footer data={footerData} />
             </>
           }
         >
           <PreviewTable token={token} />
+          <PreviewFooter token={token} />
         </PreviewSuspense>
       ) : (
         <>
           <Table data={tableData} />
+          <Footer data={footerData} />
         </>
       )}
     </Container>

@@ -4,7 +4,7 @@ import { usePreview as _usePreview } from 'pages-extra/utils'
 
 const usePreview: UsePreview<TableProps['data']> = _usePreview
 
-export default function PreviewTableProps({ token }: { token: string | null }) {
+export default function PreviewTable({ token }: { token: string | null }) {
   const data = usePreview(token, query) || []
   return <Table data={data} />
 }

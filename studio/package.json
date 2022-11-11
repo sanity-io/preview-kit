@@ -3,7 +3,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "start": "react-scripts start"
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start"
   },
   "browserslist": {
     "production": [
@@ -18,10 +18,12 @@
     ]
   },
   "dependencies": {
+    "@sanity/vision": "3.0.0-rc.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "sanity": "3.0.0-rc.2"
+    "sanity": "3.0.0-rc.2",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.25",
