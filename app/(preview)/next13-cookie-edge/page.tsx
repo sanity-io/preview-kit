@@ -3,13 +3,13 @@ import PreviewButton from 'app/PreviewButton'
 import PreviewFooter from 'app/PreviewFooter'
 import { PreviewSuspense } from 'app/PreviewSuspense'
 import PreviewTable from 'app/PreviewTable'
+import { createClient } from 'app/sanity.client'
 import {
   type TableProps,
   query as tableQuery,
   Table,
   TableFallback,
 } from 'app/Table'
-import { createClient } from 'app/utils'
 import { previewData } from 'next/headers'
 
 export default async function Next13CookieEdgePage() {
@@ -24,8 +24,10 @@ export default async function Next13CookieEdgePage() {
   )
 
   if (preview) {
-    // eslint-disable-next-line no-process-env
-    const client = createClient(process.env.SANITY_API_READ_TOKEN)
+    const client = createClient().withConfig({
+      // eslint-disable-next-line no-process-env
+      token: process.env.SANITY_API_READ_TOKEN,
+    })
     const footerData = await client.fetch<FooterProps['data']>(footerQuery)
 
     return (

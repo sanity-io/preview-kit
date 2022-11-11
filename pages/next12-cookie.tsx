@@ -2,13 +2,13 @@ import { PreviewSuspense } from '@sanity/preview-kit'
 import Container from 'app/Container'
 import { Footer, FooterProps, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
+import { createClient } from 'app/sanity.client'
 import {
   type TableProps,
   query as tableQuery,
   Table,
   TableFallback,
 } from 'app/Table'
-import { createClient } from 'app/utils'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import PreviewFooter from 'pages-extra/PreviewFooter'
 import { lazy } from 'react'
@@ -23,8 +23,10 @@ export const getStaticProps: GetStaticProps<{
   const revalidate = 60
 
   if (preview) {
-    // eslint-disable-next-line no-process-env
-    const client = createClient(process.env.SANITY_API_READ_TOKEN)
+    const client = createClient().withConfig({
+      // eslint-disable-next-line no-process-env
+      token: process.env.SANITY_API_READ_TOKEN,
+    })
 
     return {
       props: {

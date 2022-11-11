@@ -3,13 +3,13 @@ import PreviewButton from 'app/PreviewButton'
 import PreviewFooter from 'app/PreviewFooter'
 import { PreviewSuspense } from 'app/PreviewSuspense'
 import PreviewTable from 'app/PreviewTable'
+import { createClient } from 'app/sanity.client'
 import {
   type TableProps,
   query as tableQuery,
   Table,
   TableFallback,
 } from 'app/Table'
-import { createClient } from 'app/utils'
 import { previewData } from 'next/headers'
 
 export default async function Next13TokenPage() {
@@ -24,7 +24,7 @@ export default async function Next13TokenPage() {
   )
 
   if (token) {
-    const client = createClient(token)
+    const client = createClient().withConfig({ token })
     const footerData = await client.fetch<FooterProps['data']>(footerQuery)
 
     return (

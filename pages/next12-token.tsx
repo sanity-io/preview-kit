@@ -2,13 +2,13 @@ import { PreviewSuspense } from '@sanity/preview-kit'
 import Container from 'app/Container'
 import { type FooterProps, Footer, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
+import { createClient } from 'app/sanity.client'
 import {
   type TableProps,
   query as tableQuery,
   Table,
   TableFallback,
 } from 'app/Table'
-import { createClient } from 'app/utils'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { lazy } from 'react'
 
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<{
 
   if (preview) {
     const token = (previewData as any)?.token
-    const client = createClient(token)
+    const client = createClient().withConfig({ token })
 
     return {
       props: {
