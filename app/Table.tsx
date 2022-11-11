@@ -9,7 +9,8 @@ const { query, schema } = q(
     _createdAt: q.date().optional(),
     _updatedAt: q.date().optional(),
     title: q.string().optional(),
-  })
+  }),
+  q.order('_updatedAt desc')
 )
 
 export { query }
