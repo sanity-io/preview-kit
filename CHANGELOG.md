@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/sanity-io/preview-kit/compare/v1.0.0...v1.1.0) (2022-11-11)
+
+### Features
+
+- add `onPublicAccessOnly` event ([242f5b2](https://github.com/sanity-io/preview-kit/commit/242f5b2cb51401472c388752ed18876d6b10bc0a))
+
 ## 1.0.0 (2022-11-11)
 
 ### Features
