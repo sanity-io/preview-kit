@@ -16,6 +16,7 @@ import { dataset, projectId } from './config'
 export const usePreview: UsePreview = _definePreview({
   projectId,
   dataset,
+  allowTypes: ['page'],
   importEventSourcePolyfill: () => use(lazyEventSourcePolyfill()),
   importGroqStore: () => use(lazyGroqStore()),
   checkAuth: (_projectId, token) => use(checkAuth(_projectId, token)),

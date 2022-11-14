@@ -74,6 +74,7 @@ export const _definePreview = ({
   preload,
   onPublicAccessOnly,
   checkAuth,
+  allowTypes,
 }: _PreviewConfig): UsePreview => {
   if (!projectId) {
     console.warn(`No projectId set for createPreviewHook, returning dummy hook`)
@@ -131,6 +132,7 @@ export const _definePreview = ({
         dataset,
         documentLimit,
         subscriptionThrottleMs,
+        allowTypes,
         token: token === null ? undefined : token,
         // Lazy load the huge `event-source-polyfill`, but only if a token is specified
         EventSource: token === null ? undefined : importEventSourcePolyfill(),
