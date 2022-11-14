@@ -18,8 +18,8 @@ export default async function Next13CookieEdgePage() {
   const button = (
     <PreviewButton
       preview={preview}
-      start="/api/preview-next13-cookie-edge"
-      stop="/api/exit-preview-next13-cookie-edge"
+      start="/api/preview?slug=next13-cookie-edge"
+      stop="/api/exit-preview?slug=next13-cookie-edge"
     />
   )
 

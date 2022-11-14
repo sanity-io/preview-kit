@@ -10,10 +10,10 @@ import {
   TableFallback,
 } from 'app/Table'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import PreviewFooter from 'pages-extra/PreviewFooter'
 import { lazy } from 'react'
 
 const PreviewTable = lazy(() => import('pages-extra/PreviewTable'))
+const PreviewFooter = lazy(() => import('pages-extra/PreviewFooter'))
 
 export const getStaticProps: GetStaticProps<{
   preview: boolean
@@ -61,8 +61,8 @@ export default function Next12CookiePage({
     <Container>
       <PreviewButton
         preview={!!preview}
-        start="/api/preview-next12-cookie"
-        stop="/api/exit-preview-next12-cookie"
+        start="/api/preview?slug=next12-cookie"
+        stop="/api/exit-preview?slug=next12-cookie"
       />
       {preview ? (
         <PreviewSuspense

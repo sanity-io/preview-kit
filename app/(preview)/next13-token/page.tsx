@@ -18,8 +18,8 @@ export default async function Next13TokenPage() {
   const button = (
     <PreviewButton
       preview={!!token}
-      start="/api/preview-next13-token"
-      stop="/api/exit-preview-next13-token"
+      start="/api/preview?slug=next13-token"
+      stop="/api/exit-preview?slug=next13-token"
     />
   )
 

@@ -1,7 +1,8 @@
+import { previewSlug } from 'app/config'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default function preview(
-  _req: NextApiRequest,
+  req: NextApiRequest,
   res: NextApiResponse
 ): void {
   // eslint-disable-next-line no-process-env
@@ -10,7 +11,8 @@ export default function preview(
     throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
   }
 
-  res.setPreviewData({ token }, { path: '/next13-cookie' })
-  res.writeHead(307, { Location: '/next13-cookie' })
+  const slug = previewSlug(req.query.slug as any)
+  res.setPreviewData({ token }, { path: `/${slug}` })
+  res.writeHead(307, { Location: `/${slug}` })
   res.end()
 }

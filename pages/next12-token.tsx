@@ -62,8 +62,8 @@ export default function Next12TokenPage({
     <Container>
       <PreviewButton
         preview={!!preview && !!token}
-        start="/api/preview-next12-token"
-        stop="/api/exit-preview-next12-token"
+        start="/api/preview?slug=next12-token"
+        stop="/api/exit-preview?slug=next12-token"
       />
       {preview && token ? (
         <PreviewSuspense
