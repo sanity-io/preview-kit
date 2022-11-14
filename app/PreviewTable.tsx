@@ -1,5 +1,3 @@
-'use client'
-
 import { type UsePreview } from '@sanity/preview-kit'
 import { usePreview as _usePreview } from 'app/sanity.preview'
 import { type TableProps, query, Table } from 'app/Table'

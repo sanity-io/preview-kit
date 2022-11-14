@@ -1,5 +1,3 @@
-'use client'
-
 import { type UsePreview } from '@sanity/preview-kit'
 import { type FooterProps, Footer, workaroundQuery } from 'app/Footer'
 import { usePreview as _usePreview } from 'app/sanity.preview'

@@ -1,15 +1,11 @@
 import { type FooterProps, Footer, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
 import PreviewFooter from 'app/PreviewFooter'
-import { PreviewSuspense } from 'app/PreviewSuspense'
 import PreviewTable from 'app/PreviewTable'
+import PreviewTemplate from 'app/PreviewTemplate'
+import ProductionTemplate from 'app/ProductionTemplate'
 import { createClient } from 'app/sanity.client'
-import {
-  type TableProps,
-  query as tableQuery,
-  Table,
-  TableFallback,
-} from 'app/Table'
+import { type TableProps, query as tableQuery } from 'app/Table'
 import { previewData } from 'next/headers'
 
 export default async function Next13TokenPage() {
@@ -30,17 +26,7 @@ export default async function Next13TokenPage() {
     return (
       <>
         {button}
-        <PreviewSuspense
-          fallback={
-            <>
-              <TableFallback rows={footerData} />
-              <Footer data={footerData} />
-            </>
-          }
-        >
-          <PreviewTable token={token} />
-          <PreviewFooter token={token} />
-        </PreviewSuspense>
+        <PreviewTemplate token={token} footerData={footerData} />
       </>
     )
   }
@@ -51,8 +37,10 @@ export default async function Next13TokenPage() {
   return (
     <>
       {button}
-      <Table data={await tablePromise} />
-      <Footer data={await footerPromise} />
+      <ProductionTemplate
+        tableData={await tablePromise}
+        footerData={await footerPromise}
+      />
     </>
   )
 }
