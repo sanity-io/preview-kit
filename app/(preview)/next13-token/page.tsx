@@ -1,7 +1,5 @@
-import { type FooterProps, Footer, query as footerQuery } from 'app/Footer'
+import { type FooterProps, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
-import PreviewFooter from 'app/PreviewFooter'
-import PreviewTable from 'app/PreviewTable'
 import PreviewTemplate from 'app/PreviewTemplate'
 import ProductionTemplate from 'app/ProductionTemplate'
 import { createClient } from 'app/sanity.client'
