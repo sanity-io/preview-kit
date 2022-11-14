@@ -188,7 +188,11 @@ export type UsePreview<R = any, P = Params, Q = string> = (
 export interface PreviewConfig
   extends Pick<
     Config,
-    'projectId' | 'dataset' | 'documentLimit' | 'subscriptionThrottleMs'
+    | 'projectId'
+    | 'dataset'
+    | 'documentLimit'
+    | 'subscriptionThrottleMs'
+    | 'allowTypes'
   > {
   /**
    * You want to throw an error in this function if it's considered a failure if draft documents can't be queried.
