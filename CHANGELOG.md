@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0-add-type-allowlist.1](https://github.com/sanity-io/preview-kit/compare/v1.1.3...v1.2.0-add-type-allowlist.1) (2022-11-14)
+
+### Features
+
+- add support for fetching subset of dataset by type ([768a6da](https://github.com/sanity-io/preview-kit/commit/768a6dab73a8cfd2e5e8f23b4f7bbeac09cc16b3))
+
 ## [1.1.3](https://github.com/sanity-io/preview-kit/compare/v1.1.2...v1.1.3) (2022-11-11)
 
 ### Bug Fixes
