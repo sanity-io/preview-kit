@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "lint": "eslint . --fix"
+  },
+  "dependencies": {
+    "@remix-run/node": "^1.7.0",
+    "@remix-run/react": "^1.7.0",
+    "@remix-run/serve": "^1.7.0",
+    "@sanity/preview-kit": "^1.2.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "groq": "^2.33.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remix-utils": "^4.1.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.7.0",
+    "@remix-run/eslint-config": "^1.7.0",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "eslint": "^8.20.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-packagejson": "^2.3.0",
+    "typescript": "^4.7.4"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
