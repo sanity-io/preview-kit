@@ -1,5 +1,5 @@
 import type { Config, GroqStore } from '@sanity/groq-store'
-import type { EventSourcePolyfill } from 'event-source-polyfill'
+import type { EventSourcePolyfill as EventSourcePolyfillType } from 'event-source-polyfill'
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
@@ -28,7 +28,8 @@ import type { EventSourcePolyfill } from 'event-source-polyfill'
  * @internal
  */
 export const _lazyGroqStore = async () => {
-  const { groqStore } = await import('@sanity/groq-store')
+  const pkg = await import('@sanity/groq-store')
+  const { groqStore } = 'default' in pkg ? pkg.default : pkg
   return groqStore as (config: Config) => GroqStore
 }
 
@@ -37,6 +38,7 @@ export const _lazyGroqStore = async () => {
  * @internal
  */
 export const _lazyEventSourcePolyfill = async () => {
-  const polyfill = await import('event-source-polyfill')
-  return polyfill.EventSourcePolyfill as unknown as EventSourcePolyfill
+  const pkg = await import('event-source-polyfill')
+  const { EventSourcePolyfill } = 'default' in pkg ? pkg.default : pkg
+  return EventSourcePolyfill as unknown as EventSourcePolyfillType
 }
