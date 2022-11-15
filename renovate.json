@@ -11,8 +11,18 @@
       "packageNames": ["next", "eslint-config-next"],
       "depTypeList": ["devDependencies"],
       "rangeStrategy": "pin",
-      "ignoreUnstable": false,
+      "followTag": "canary",
       "schedule": ["at any time"]
+    },
+    {
+      "packageNames": ["@sanity/preview-kit"],
+      "rangeStrategy": "pin",
+      "schedule": ["at any time"]
+    },
+    {
+      "description": "Dependency updates to other package jsons than the root should always use the chore scope as they aren't published to npm",
+      "matchFiles": ["remix/package.json", "studio/package.json"],
+      "extends": [":semanticCommitTypeAll(chore)"]
     }
   ]
 }
