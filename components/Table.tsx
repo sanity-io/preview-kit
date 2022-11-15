@@ -31,7 +31,6 @@ const thead = (
 )
 
 export const Table = memo(function Table(props: TableProps) {
-  console.count('Table')
   const data = schema.parse(props.data)
   return (
     <div className="table-container is-flex-shrink-0">
