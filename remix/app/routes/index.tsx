@@ -3,6 +3,10 @@ import { Link } from '@remix-run/react'
 import Container from 'components/Container'
 
 const links = [
+  ['Next 12 - cookie', 'https://preview-kit.sanity.build/next12-cookie'],
+  ['Next 12 - token', 'https://preview-kit.sanity.build/next12-token'],
+  ['Next 13 - cookie', 'https://preview-kit.sanity.build/next13-cookie'],
+  ['Next 13 - token', 'https://preview-kit.sanity.build/next13-token'],
   ['Remix - cookie', '/remix-cookie'],
   ['Remix - token', '/remix-token'],
 ]
@@ -330,13 +334,19 @@ export default function Index() {
       <div className="columns">
         {links.map(([label, href]) => (
           <div className="column" key={href}>
-            <Link
-              prefetch="intent"
-              to={href}
-              className="button is-link is-light"
-            >
-              {label}
-            </Link>
+            {href.startsWith('http') ? (
+              <a href={href} className="button is-link is-light">
+                {label}
+              </a>
+            ) : (
+              <Link
+                prefetch="intent"
+                to={href}
+                className="button is-link is-light"
+              >
+                {label}
+              </Link>
+            )}
           </div>
         ))}
       </div>

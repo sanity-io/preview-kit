@@ -1,3 +1,5 @@
+import { Link } from '@remix-run/react'
+
 export default function Container({
   children,
   back = true,
@@ -20,9 +22,9 @@ export default function Container({
         {children}
         {back && (
           <section className="section">
-            <a href="/" className="button is-light is-link">
+            <Link prefetch="intent" to="/" className="button is-light is-link">
               Go back
-            </a>
+            </Link>
           </section>
         )}
       </div>
