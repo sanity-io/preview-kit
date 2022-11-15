@@ -59,6 +59,21 @@ export interface _PreviewConfig extends PreviewConfig {
    * If `onPublicAccessOnly` is defined this wrapper implements either Suspense or `React.use` and `React.cache` to suspend render until the auth check is complete
    */
   checkAuth: (projectId: string, token: string | null) => boolean
+  /**
+   * Specify a
+   */
+}
+
+/**
+ * Return params that are stable with deep equal as long as the key order is the same
+ * @internal
+ */
+function useParams<P extends Params = Params>(params?: P): P {
+  const stringifiedParams = useMemo(
+    () => JSON.stringify(params || null),
+    [params]
+  )
+  return useMemo(() => JSON.parse(stringifiedParams), [stringifiedParams])
 }
 
 /**
@@ -93,12 +108,13 @@ export const _definePreview = ({
     R = any,
     P extends Params = Params,
     Q extends string = string
-  >(token: string | null, query: Q, params?: P): R | null {
+  >(token: string | null, query: Q, _params?: P): R | null {
     if (!token && token !== null) {
       throw new Error(
         'No `token` given to usePreview hook, if this is intentional then set it to `null`'
       )
     }
+    const params = useParams<P>(_params)
 
     // eslint-disable-next-line no-warning-comments
     // @TODO do a getCurrentUser auth check here with the provided token
@@ -223,6 +239,15 @@ export interface PreviewConfig
 }
 
 /**
+ * Return params that are stable with deep equal as long as the key order is the same
+ * @internal
+ */
+const _preloadQuery = (store: GroqStore, query: string, params?: Params) =>
+  // eslint-disable-next-line no-warning-comments
+  // @todo: fix the casting to any here
+  store.query<any>(query, params)
+
+/**
  * @public
  */
 export const definePreview = (config: PreviewConfig): UsePreview =>
@@ -240,9 +265,7 @@ export const definePreview = (config: PreviewConfig): UsePreview =>
       ),
     preload: (store, query, params) =>
       suspend(
-        // eslint-disable-next-line no-warning-comments
-        // @todo: fix the casting to any here
-        () => store.query<any>(query, params),
+        () => _preloadQuery(store, query, params),
         [
           '@sanity/preview-kit',
           'preload',
