@@ -92,7 +92,7 @@ jobs:
         with:
           cache: npm
           node-version: ${{ matrix.node }}
-      - run: npm ci
+      - run: npm i
         # Downloads the build output in `dist/`, so we don't have to re-run `npm run prepublishOnly` on each test
       - uses: actions/download-artifact@9782bd6a9848b53b110e712e20e42d89988822b7 # tag=v3
       - run: npm test
