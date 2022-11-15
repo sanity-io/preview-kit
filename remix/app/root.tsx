@@ -9,6 +9,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
+import styles from 'bulma/css/bulma.min.css'
 
 import * as projectDetails from '~/sanity/config'
 
@@ -17,8 +18,6 @@ export const meta: MetaFunction = () => ({
   title: '@sanity/preview-kit + remix',
   viewport: 'width=device-width,initial-scale=1',
 })
-
-import styles from 'bulma/css/bulma.min.css'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
