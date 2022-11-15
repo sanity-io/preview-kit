@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function Container({
   children,
   back = true,
@@ -22,9 +20,9 @@ export default function Container({
         {children}
         {back && (
           <section className="section">
-            <Link href="/" className="button is-light is-link">
+            <a href="/" className="button is-light is-link">
               Go back
-            </Link>
+            </a>
           </section>
         )}
       </div>

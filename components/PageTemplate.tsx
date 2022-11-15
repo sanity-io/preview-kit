@@ -1,7 +1,7 @@
-import { type FooterProps, Footer } from 'app/Footer'
-import { type TableProps, Table } from 'app/Table'
+import { type FooterProps, Footer } from './Footer'
+import { type TableProps, Table } from './Table'
 
-export default function ProductionTemplate({
+export default function PageTemplate({
   tableData,
   footerData,
 }: {

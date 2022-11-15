@@ -1,10 +1,9 @@
 'use client'
 
 import { PreviewSuspense } from '@sanity/preview-kit'
-import { type FooterProps, Footer } from 'app/Footer'
+import FallbackTemplate from 'components/FallbackTemplate'
+import type { FooterProps } from 'components/Footer'
 import { lazy } from 'react'
-
-import { TableFallback } from './Table'
 
 const PreviewTable = lazy(() => import('app/PreviewTable'))
 const PreviewFooter = lazy(() => import('app/PreviewFooter'))
@@ -17,14 +16,7 @@ export default function PreviewTemplate({
   footerData: FooterProps['data']
 }) {
   return (
-    <PreviewSuspense
-      fallback={
-        <>
-          <TableFallback rows={footerData} />
-          <Footer data={footerData} />
-        </>
-      }
-    >
+    <PreviewSuspense fallback={<FallbackTemplate footerData={footerData} />}>
       <PreviewTable token={token} />
       <PreviewFooter token={token} />
     </PreviewSuspense>

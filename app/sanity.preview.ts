@@ -1,31 +1,20 @@
 'use client'
 
-import type { GroqStore } from '@sanity/groq-store'
-import {
-  type Params,
-  type UsePreview,
-  _checkAuth,
-  _definePreview,
-  _lazyEventSourcePolyfill,
-  _lazyGroqStore,
-} from '@sanity/preview-kit'
-import { cache, use } from 'react'
+import { type UsePreview, definePreview } from '@sanity/preview-kit'
 
 import { dataset, projectId } from './config'
 
-export const usePreview: UsePreview = _definePreview({
+let alerted = false
+
+export const usePreview: UsePreview = definePreview({
   projectId,
   dataset,
   includeTypes: ['page'],
-  importEventSourcePolyfill: () => use(lazyEventSourcePolyfill()),
-  importGroqStore: () => use(lazyGroqStore()),
-  checkAuth: (_projectId, token) => use(checkAuth(_projectId, token)),
-  preload: (store, query, params) => use(preload(store, query, params)),
+  onPublicAccessOnly: () => {
+    if (!alerted) {
+      // eslint-disable-next-line no-alert
+      alert('You are not logged in. You will only see public data.')
+      alerted = true
+    }
+  },
 })
-
-const lazyEventSourcePolyfill = cache(_lazyEventSourcePolyfill)
-const lazyGroqStore = cache(_lazyGroqStore)
-const checkAuth = cache(_checkAuth)
-const preload = cache((store: GroqStore, query: string, params?: Params) =>
-  store.query<any>(query, params)
-)

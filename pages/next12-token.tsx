@@ -1,19 +1,11 @@
-import { PreviewSuspense } from '@sanity/preview-kit'
-import Container from 'app/Container'
-import { type FooterProps, Footer, query as footerQuery } from 'app/Footer'
 import PreviewButton from 'app/PreviewButton'
+import PreviewTemplate from 'app/PreviewTemplate'
 import { createClient } from 'app/sanity.client'
-import {
-  type TableProps,
-  query as tableQuery,
-  Table,
-  TableFallback,
-} from 'app/Table'
+import Container from 'components/Container'
+import { type FooterProps, query as footerQuery } from 'components/Footer'
+import PageTemplate from 'components/PageTemplate'
+import { type TableProps, query as tableQuery } from 'components/Table'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { lazy } from 'react'
-
-const PreviewTable = lazy(() => import('pages-extra/PreviewTable'))
-const PreviewFooter = lazy(() => import('pages-extra/PreviewFooter'))
 
 export const getStaticProps: GetStaticProps<{
   preview: boolean
@@ -66,22 +58,9 @@ export default function Next12TokenPage({
         stop="/api/exit-preview?slug=next12-token"
       />
       {preview && token ? (
-        <PreviewSuspense
-          fallback={
-            <>
-              <TableFallback rows={footerData} />
-              <Footer data={footerData} />
-            </>
-          }
-        >
-          <PreviewTable token={token} />
-          <PreviewFooter token={token} />
-        </PreviewSuspense>
+        <PreviewTemplate token={token} footerData={footerData} />
       ) : (
-        <>
-          <Table data={tableData} />
-          <Footer data={footerData} />
-        </>
+        <PageTemplate tableData={tableData} footerData={footerData} />
       )}
     </Container>
   )
