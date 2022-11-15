@@ -1,6 +1,6 @@
 import type { UsePreview } from '@sanity/preview-kit'
 import { usePreview as _usePreview } from '~/sanity/preview'
-import { type FooterProps, Footer, workaroundQuery } from 'components/Footer'
+import { type FooterProps, Footer, workaroundQuery } from './Footer'
 
 const usePreview: UsePreview<FooterProps['data']> = _usePreview
 

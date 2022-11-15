@@ -1,6 +1,6 @@
 import type { UsePreview } from '@sanity/preview-kit'
 import { usePreview as _usePreview } from '~/sanity/preview'
-import { type TableProps, query, Table } from 'components/Table'
+import { type TableProps, query, Table } from './Table'
 
 const usePreview: UsePreview<TableProps['data']> = _usePreview
 

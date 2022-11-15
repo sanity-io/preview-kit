@@ -10,7 +10,7 @@ import Container from 'components/Container'
 import { previewSlug } from '~/sanity/config'
 import { getSession } from '~/sessions'
 import PageTemplate from 'components/PageTemplate'
-import PreviewTemplate from '../../components/PreviewTemplate'
+import PreviewTemplate from 'components/PreviewTemplate'
 
 export const loader = async ({ params, request }: LoaderArgs) => {
   const session = await getSession(request.headers.get('Cookie'))
