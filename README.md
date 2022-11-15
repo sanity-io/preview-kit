@@ -75,6 +75,7 @@ const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
 
 export const getStaticProps = async ({ preview = false }) => {
   if (preview) {
@@ -84,8 +85,8 @@ export const getStaticProps = async ({ preview = false }) => {
   const client = sanityClient({
     projectId,
     dataset,
+    apiVersion,
     useCdn: false,
-    apiVersion: '2022-11-10',
   })
   const data = await client.fetch(`*[]`)
 
@@ -137,6 +138,7 @@ const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
 
 export const getStaticProps = async ({ preview = false, previewData = {} }) => {
   if (preview) {
@@ -146,8 +148,8 @@ export const getStaticProps = async ({ preview = false, previewData = {} }) => {
   const client = sanityClient({
     projectId,
     dataset,
+    apiVersion,
     useCdn: false,
-    apiVersion: '2022-11-10',
   })
   const data = await client.fetch(`*[]`)
 
