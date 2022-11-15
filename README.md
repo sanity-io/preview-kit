@@ -17,6 +17,51 @@ yarn add @sanity/preview-kit
 
 ## Usage
 
+You create a `usePreview` hook using `definePreview`
+
+```tsx
+import { definePreview } from '@sanity/preview-kit'
+
+const usePreview = definePreview({ projectId, dataset })
+```
+
+If you want to declare the config in a separate file, and have full typings, you can import `PreviewConfig`:
+
+```tsx
+import type { PreviewConfig } from '@sanity/preview-kit'
+export const previewConfig: PreviewConfig = {
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  // The limit on number of documents, to prevent using too much memory unexpectedly
+  // It's 3000 by default, increase or decrease as needed and use `includeTypes` to further optimize the performance
+  documentLimit: 10000,
+  // Optional allow list filter for document types. You can use this to limit the amount of documents by declaring the types you want to sync. Note that since you're fetching a subset of your dataset, queries that works against your Content Lake might not work against the local groq-store.
+  includeTypes: ['post', 'page', 'product', 'sanity.imageAsset'],
+}
+```
+
+The component that calls `usePreview` needs to be wrapped in a `Suspense` boundary as it will ["suspend"](https://reactjs.org/docs/react-api.html#reactsuspense) until the `@sanity/groq-store` is done loading your dataset and ready to resolve your queries. This component should also only be rendered in the browser and not on the server. If you use `PreviewSuspense` then both gotchas are covered for you:
+
+```tsx
+import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
+
+const usePreview = definePreview({ projectId, dataset })
+
+function PreviewComponent() {
+  const data = usePreview(null, `*[]`)
+}
+
+export default function Page() {
+  if (preview) {
+    return (
+      <PreviewSuspense fallback="Loading...">
+        <PreviewComponent />
+      </PreviewSuspense>
+    )
+  }
+}
+```
+
 ### Next 12 Preview Mode, cookie auth only
 
 ```tsx
