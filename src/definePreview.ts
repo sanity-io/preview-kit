@@ -119,14 +119,8 @@ export const _definePreview = ({
         'No `token` given to usePreview hook, if this is intentional then set it to `null`'
       )
     }
+
     const params = useParams<P>(_params)
-
-    // eslint-disable-next-line no-warning-comments
-    // @TODO do a getCurrentUser auth check here with the provided token
-
-    // eslint-disable-next-line no-warning-comments
-    // @TODO if token === null it means skip loading event-source-polyfill and rely on cookie auth
-    // if token === "" or otherwise falsy it should throw
 
     if (!store) {
       if (onPublicAccessOnly) {
@@ -135,16 +129,7 @@ export const _definePreview = ({
           onPublicAccessOnly()
         }
       }
-      /*
-      const EventSourcePolyfill = suspend(
-        () => lazyEventSourcePolyfill(),
-        ['next-sanity/preview', 'import', 'event-source-polyfill']
-      )
-      const groqStore = suspend(
-        () => lazyGroqStore(),
-        ['next-sanity/preview', 'import', '@sanity/groq-store']
-      )
-      // */
+
       // Lazy load `@sanity/groq-store` as it's quite a big chunk of JS`
       const groqStore = importGroqStore()
 
