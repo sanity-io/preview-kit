@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/sanity-io/preview-kit/compare/v1.2.1...v1.2.2) (2022-11-15)
+
+### Bug Fixes
+
+- issue preventing remix from lazy loading `event-source-polyfill` ([e44483f](https://github.com/sanity-io/preview-kit/commit/e44483fa967bc7e572cf0c3897ebf444366d3290))
+- validate `usePreview` is only called clientside ([0aeaa76](https://github.com/sanity-io/preview-kit/commit/0aeaa76ddcaa5798fd1d6eca3062127828acadf0))
+
 ## [1.2.1](https://github.com/sanity-io/preview-kit/compare/v1.2.0...v1.2.1) (2022-11-15)
 
 ### Bug Fixes
