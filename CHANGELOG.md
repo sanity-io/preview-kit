@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/sanity-io/preview-kit/compare/v1.2.0...v1.2.1) (2022-11-15)
+
+### Bug Fixes
+
+- add 'use client' directive ([00d3758](https://github.com/sanity-io/preview-kit/commit/00d375886c9acdec86b1fa0a19d484731a3b368c))
+- no longer require `useMemo` on `params` ([f8fdf5b](https://github.com/sanity-io/preview-kit/commit/f8fdf5ba48e368fc178ba4c0fe0fd7005284134f))
+
 ## [1.2.0](https://github.com/sanity-io/preview-kit/compare/v1.1.3...v1.2.0) (2022-11-15)
 
 ### Features
