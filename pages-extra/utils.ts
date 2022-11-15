@@ -6,7 +6,7 @@ let alerted = false
 export const usePreview: UsePreview = definePreview({
   projectId,
   dataset,
-  allowTypes: ['page'],
+  includeTypes: ['page'],
   onPublicAccessOnly: () => {
     if (!alerted) {
       // eslint-disable-next-line no-alert

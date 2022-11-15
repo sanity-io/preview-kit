@@ -9,26 +9,6 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- add support for fetching subset of dataset by type ([c4e9b83](https://github.com/sanity-io/preview-kit/commit/c4e9b8375bcd0fcc5d23734881b318a5847f18dd))
-
-### Bug Fixes
-
-- forward `allowTypes` to `@sanity/groq-store` ([37930d0](https://github.com/sanity-io/preview-kit/commit/37930d000ead44e34be97953345a0a58bfd25aec))
-
-## [1.2.0-add-type-allowlist.1](https://github.com/sanity-io/preview-kit/compare/v1.1.3...v1.2.0-add-type-allowlist.1) (2022-11-14)
-
-### Features
-
-- add support for fetching subset of dataset by type ([c4e9b83](https://github.com/sanity-io/preview-kit/commit/c4e9b8375bcd0fcc5d23734881b318a5847f18dd))
-
-### Bug Fixes
-
-- forward `allowTypes` to `@sanity/groq-store` ([37930d0](https://github.com/sanity-io/preview-kit/commit/37930d000ead44e34be97953345a0a58bfd25aec))
-
-## [1.2.0-add-type-allowlist.1](https://github.com/sanity-io/preview-kit/compare/v1.1.3...v1.2.0-add-type-allowlist.1) (2022-11-14)
-
-### Features
-
 - add support for fetching subset of dataset by type ([768a6da](https://github.com/sanity-io/preview-kit/commit/768a6dab73a8cfd2e5e8f23b4f7bbeac09cc16b3))
 
 ## [1.1.3](https://github.com/sanity-io/preview-kit/compare/v1.1.2...v1.1.3) (2022-11-11)
