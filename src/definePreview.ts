@@ -109,6 +109,11 @@ export const _definePreview = ({
     P extends Params = Params,
     Q extends string = string
   >(token: string | null, query: Q, _params?: P): R | null {
+    if (typeof document === 'undefined') {
+      throw new Error(
+        `Calling usePreview outside a browser environment isn't supported. Ensure the component using the hook is only rendering on the client. For example by wrapping it in PreviewSuspense.`
+      )
+    }
     if (!token && token !== null) {
       throw new Error(
         'No `token` given to usePreview hook, if this is intentional then set it to `null`'
