@@ -74,6 +74,7 @@ export const _definePreview = ({
   preload,
   onPublicAccessOnly,
   checkAuth,
+  includeTypes,
 }: _PreviewConfig): UsePreview => {
   if (!projectId) {
     console.warn(`No projectId set for createPreviewHook, returning dummy hook`)
@@ -131,6 +132,7 @@ export const _definePreview = ({
         dataset,
         documentLimit,
         subscriptionThrottleMs,
+        includeTypes,
         token: token === null ? undefined : token,
         // Lazy load the huge `event-source-polyfill`, but only if a token is specified
         EventSource: token === null ? undefined : importEventSourcePolyfill(),
@@ -188,7 +190,11 @@ export type UsePreview<R = any, P = Params, Q = string> = (
 export interface PreviewConfig
   extends Pick<
     Config,
-    'projectId' | 'dataset' | 'documentLimit' | 'subscriptionThrottleMs'
+    | 'projectId'
+    | 'dataset'
+    | 'documentLimit'
+    | 'subscriptionThrottleMs'
+    | 'includeTypes'
   > {
   /**
    * You want to throw an error in this function if it's considered a failure if draft documents can't be queried.
