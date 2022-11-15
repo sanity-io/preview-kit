@@ -21,8 +21,9 @@
     },
     {
       "description": "Dependency updates to other package jsons than the root should always use the chore scope as they aren't published to npm",
-      "matchFiles": ["remix/package.json", "studio/package.json"],
-      "extends": [":semanticCommitTypeAll(chore)"]
+      "matchFiles": ["cra/package.json", "remix/package.json", "studio/package.json"],
+      "extends": [":semanticCommitTypeAll(chore)"],
+      "groupSlug": "demos"
     }
   ]
 }
