@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/sanity-io/preview-kit/compare/v1.2.4...v1.2.5) (2022-11-16)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/groq-store to ^1.1.2 ([#20](https://github.com/sanity-io/preview-kit/issues/20)) ([7c95b10](https://github.com/sanity-io/preview-kit/commit/7c95b105c678b931136137b526536d35cf744ceb))
+- set `documentLimit` to 3000, like `next-sanity` ([b4dcbe2](https://github.com/sanity-io/preview-kit/commit/b4dcbe2264afb29a35562529f0de4ff7f6ff2f01))
+
 ## [1.2.4](https://github.com/sanity-io/preview-kit/compare/v1.2.3...v1.2.4) (2022-11-16)
 
 ### Bug Fixes
