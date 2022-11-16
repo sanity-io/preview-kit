@@ -19,6 +19,8 @@ if (process.env.VERCEL_ENV !== 'production') {
   )
 }
 
+links.sort((a, b) => a[0].localeCompare(b[0]))
+
 export default function IndexPage() {
   return (
     <div className="columns">
