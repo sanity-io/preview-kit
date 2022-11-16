@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/sanity-io/preview-kit/compare/v1.2.3...v1.2.4) (2022-11-16)
+
+### Bug Fixes
+
+- **README:** add create-react-app examples ([3b6d705](https://github.com/sanity-io/preview-kit/commit/3b6d7057bbaae946407578cdbfc339a4c7721971))
+- **README:** add remix example ([9e3a262](https://github.com/sanity-io/preview-kit/commit/9e3a2628d0110e349c0c67f289ddf2b64d9f586d))
+
 ## [1.2.3](https://github.com/sanity-io/preview-kit/compare/v1.2.2...v1.2.3) (2022-11-15)
 
 ### Bug Fixes
