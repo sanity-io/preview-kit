@@ -2,7 +2,7 @@
 import 'bulma/css/bulma.min.css'
 
 import createClient from '@sanity/client'
-import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
+import { definePreview } from '@sanity/preview-kit'
 import groq from 'groq'
 import { Suspense, useReducer } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -68,9 +68,9 @@ function App() {
     return (
       <>
         {button}
-        <PreviewSuspense fallback={<Count data={data!} />}>
+        <Suspense fallback={<Count data={data!} />}>
           <PreviewCount />
-        </PreviewSuspense>
+        </Suspense>
       </>
     )
   }
