@@ -38,7 +38,7 @@ export interface _PreviewConfig extends PreviewConfig {
   /**
    * The maximum number of documents, to prevent using too much memory unexpectedly
    * Throws on the first operation (query, retrieval, subscription) if reaching this limit.
-   * @default 3000
+   * @defaultValue 3000
    */
   documentLimit?: number
 
