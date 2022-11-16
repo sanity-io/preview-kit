@@ -3,7 +3,7 @@
 [Sanity.io](https://www.sanity.io/?utm_source=github&utm_medium=readme&utm_campaign=preview-kit) toolkit for building live-as-you-type content preview experiences.
 Write GROQ queries like [@sanity/client](https://github.com/sanity-io/client) and have them resolve in-memory, locally. Updates from Content Lake are streamed in real-time with sub-second latency.
 
-Requires React 18, support for other libraries like Preact, Solid, Svelte, Vue etc is planned. For vanilla JS subscriptions you can use [@sanity/groq-store](https://github.com/sanity-io/groq-store) [directly](https://github.com/sanity-io/groq-store/blob/main/example/example.ts).
+Requires React 18, support for other libraries like Solid, Svelte, Vue etc are planned. For now you can use [@sanity/groq-store](https://github.com/sanity-io/groq-store) [directly](https://github.com/sanity-io/groq-store/blob/main/example/example.ts).
 
 ## Installation
 
@@ -30,8 +30,8 @@ If you want to declare the config in a separate file, and have full typings, you
 ```tsx
 import type { PreviewConfig } from '@sanity/preview-kit'
 export const previewConfig: PreviewConfig = {
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: process.env.SANITY_DATASET,
   // The limit on number of documents, to prevent using too much memory unexpectedly
   // It's 3000 by default, increase or decrease as needed and use `includeTypes` to further optimize the performance
   documentLimit: 10000,
@@ -40,25 +40,128 @@ export const previewConfig: PreviewConfig = {
 }
 ```
 
-The component that calls `usePreview` needs to be wrapped in a `Suspense` boundary as it will ["suspend"](https://reactjs.org/docs/react-api.html#reactsuspense) until the `@sanity/groq-store` is done loading your dataset and ready to resolve your queries. This component should also only be rendered in the browser and not on the server. If you use `PreviewSuspense` then both gotchas are covered for you:
+The component that calls `usePreview` needs to be wrapped in a `Suspense` boundary as it will ["suspend"](https://reactjs.org/docs/react-api.html#reactsuspense) until the `@sanity/groq-store` is done loading your dataset and ready to resolve your queries.
 
-```tsx
-import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
+### Create React App, cookie auth only
 
-const usePreview = definePreview({ projectId, dataset })
+If you're hosting Sanity Studio on the same domain as you're doing previews, you may use `cookie` based auth:
 
-function PreviewComponent() {
-  const data = usePreview(null, `*[]`)
+```jsx
+import createClient from '@sanity/client'
+import { definePreview } from '@sanity/preview-kit'
+import groq from 'groq'
+import { Suspense, useReducer } from 'react'
+import { createRoot } from 'react-dom/client'
+import useSWR from 'swr/immutable'
+
+const root = createRoot(document.getElementById('root'))
+root.render(
+  <Suspense fallback="Loading...">
+    <App />
+  </Suspense>
+)
+
+const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
+const dataset = process.env.REACT_APP_SANITY_DATASET
+const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
+const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
+
+const query = groq`count(*[])`
+
+function App() {
+  const [preview, toggle] = useReducer((state) => !state, false)
+  const { data } = useSWR(query, (query) => client.fetch(query), {
+    suspense: true,
+  })
+
+  return (
+    <>
+      <button type="button" onClick={toggle}>
+        {preview ? 'Stop preview' : 'Start preview'}
+      </button>
+      {preview ? <PreviewCount /> : <Count data={data} />}
+    </>
+  )
 }
 
-export default function Page() {
-  if (preview) {
-    return (
-      <PreviewSuspense fallback="Loading...">
-        <PreviewComponent />
-      </PreviewSuspense>
-    )
-  }
+const Count = ({ data }) => (
+  <>
+    Documents: <strong>{data}</strong>
+  </>
+)
+
+const usePreview = definePreview({
+  projectId,
+  dataset,
+  onPublicAccessOnly: () =>
+    alert('You are not logged in. You will only see public data.'),
+})
+const PreviewCount = () => {
+  const data = usePreview(null, query)
+
+  return <Count data={data} />
+}
+```
+
+### Create React App, custom token auth
+
+If you're not hosting Sanity Studio on the same domain as your previews, or if you need to support browsers that don't work with cookie auth (iOS Safari or browser incognito modes), you may use the `token` option to provide a Sanity Viewer token:
+
+```jsx
+import createClient from '@sanity/client'
+import { definePreview } from '@sanity/preview-kit'
+import groq from 'groq'
+import { Suspense, useReducer } from 'react'
+import { createRoot } from 'react-dom/client'
+import useSWR from 'swr/immutable'
+
+const root = createRoot(document.getElementById('root'))
+root.render(
+  <Suspense fallback="Loading...">
+    <App />
+  </Suspense>
+)
+
+const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
+const dataset = process.env.REACT_APP_SANITY_DATASET
+const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
+const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
+
+const query = groq`count(*[])`
+
+function App() {
+  const [preview, toggle] = useReducer((state) => !state, false)
+  const { data } = useSWR(query, (query) => client.fetch(query), {
+    suspense: true,
+  })
+
+  return (
+    <>
+      <button type="button" onClick={toggle}>
+        {preview ? 'Stop preview' : 'Start preview'}
+      </button>
+      {preview ? <PreviewCount /> : <Count data={data} />}
+    </>
+  )
+}
+
+const Count = ({ data }) => (
+  <>
+    Documents: <strong>{data}</strong>
+  </>
+)
+
+const usePreview = definePreview({ projectId, dataset })
+const PreviewCount = () => {
+  // Call custom authenticated backend to fetch the Sanity Viewer token
+  const { data: token } = useSWR(
+    'https://example.com/preview/token',
+    (url) => fetch(url, { credentials: 'include' }).then((res) => res.text()),
+    { suspense: true }
+  )
+  const data = usePreview(token, query)
+
+  return <Count data={data} />
 }
 ```
 
