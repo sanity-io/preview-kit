@@ -36,6 +36,13 @@ export type Params = Record<string, unknown>
  */
 export interface _PreviewConfig extends PreviewConfig {
   /**
+   * The maximum number of documents, to prevent using too much memory unexpectedly
+   * Throws on the first operation (query, retrieval, subscription) if reaching this limit.
+   * @default 3000
+   */
+  documentLimit?: number
+
+  /**
    * Lazy load `@sanity/groq-store` either using Suspense or `React.use` and `React.cache`.
    */
   importGroqStore: () => (config: Config) => GroqStore
@@ -59,9 +66,6 @@ export interface _PreviewConfig extends PreviewConfig {
    * If `onPublicAccessOnly` is defined this wrapper implements either Suspense or `React.use` and `React.cache` to suspend render until the auth check is complete
    */
   checkAuth: (projectId: string, token: string | null) => boolean
-  /**
-   * Specify a
-   */
 }
 
 /**
@@ -82,7 +86,7 @@ function useParams<P extends Params = Params>(params?: P): P {
 export const _definePreview = ({
   projectId,
   dataset,
-  documentLimit,
+  documentLimit = 3000,
   subscriptionThrottleMs,
   importEventSourcePolyfill,
   importGroqStore,
@@ -196,11 +200,7 @@ export type UsePreview<R = any, P = Params, Q = string> = (
 export interface PreviewConfig
   extends Pick<
     Config,
-    | 'projectId'
-    | 'dataset'
-    | 'documentLimit'
-    | 'subscriptionThrottleMs'
-    | 'includeTypes'
+    'projectId' | 'dataset' | 'subscriptionThrottleMs' | 'includeTypes'
   > {
   /**
    * You want to throw an error in this function if it's considered a failure if draft documents can't be queried.
