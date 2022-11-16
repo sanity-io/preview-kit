@@ -36,16 +36,16 @@ export type Params = Record<string, unknown>
  */
 export interface _PreviewConfig extends PreviewConfig {
   /**
-   * Lazy load `@sanity/groq-store` either using Suspense or `React.use` and `React.cache`.
+   * Lazy load `@sanity/groq-store`.
    */
   importGroqStore: () => (config: Config) => GroqStore
   /**
-   * Lazy load `event-source-polyfille` either using Suspense or `React.use` and `React.cache`.
+   * Lazy load `event-source-polyfille`.
    * This happens if `token` is specified.
    */
   importEventSourcePolyfill: () => EventSourcePolyfill
   /**
-   * Suspend render until the dataset is done loading. Either using Suspense or `React.use` and `React.cache`
+   * Suspend render until the dataset is done loading.
    */
   preload: <R = any, P extends Params = Params, Q extends string = string>(
     store: GroqStore,
@@ -56,7 +56,7 @@ export interface _PreviewConfig extends PreviewConfig {
     params?: P
   ) => R | null
   /**
-   * If `onPublicAccessOnly` is defined this wrapper implements either Suspense or `React.use` and `React.cache` to suspend render until the auth check is complete
+   * Only called if `onPublicAccessOnly` is defined. Render is suspended until this Promise resolves to a boolean.
    */
   checkAuth: (projectId: string, token: string | null) => boolean
 }
