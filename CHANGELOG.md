@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/sanity-io/preview-kit/compare/v1.2.5...v1.2.6) (2022-11-16)
+
+### Bug Fixes
+
+- add `documentLimit` to the `PreviewConfig` public type ([7fe1e9c](https://github.com/sanity-io/preview-kit/commit/7fe1e9c2799e53300476e264c5f57c185403bad6))
+
 ## [1.2.5](https://github.com/sanity-io/preview-kit/compare/v1.2.4...v1.2.5) (2022-11-16)
 
 ### Bug Fixes
