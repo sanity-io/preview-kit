@@ -1,11 +1,23 @@
-# @sanity/preview-kit
+# @sanity/preview-kit<!-- omit in toc -->
 
 [Sanity.io](https://www.sanity.io/?utm_source=github&utm_medium=readme&utm_campaign=preview-kit) toolkit for building live-as-you-type content preview experiences.
 Write GROQ queries like [@sanity/client](https://github.com/sanity-io/client) and have them resolve in-memory, locally. Updates from Content Lake are streamed in real-time with sub-second latency.
 
 Requires React 18, support for other libraries like Solid, Svelte, Vue etc are planned. For now you can use [@sanity/groq-store](https://github.com/sanity-io/groq-store) [directly](https://github.com/sanity-io/groq-store/blob/main/example/example.ts).
 
-## Installation
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Demos & Starters](#demos--starters)
+  - [Create React App, cookie auth only](#create-react-app-cookie-auth-only)
+  - [Create React App, custom token auth](#create-react-app-custom-token-auth)
+  - [Remix, cookie auth only](#remix-cookie-auth-only)
+  - [Next 12 Preview Mode, cookie auth only](#next-12-preview-mode-cookie-auth-only)
+  - [Next 12 Preview Mode, with a viewer token](#next-12-preview-mode-with-a-viewer-token)
+- [Development](#development)
+  - [Release new version](#release-new-version)
+- [License](#license)
+
+# Installation
 
 ```bash
 npm i @sanity/preview-kit
@@ -15,7 +27,7 @@ npm i @sanity/preview-kit
 yarn add @sanity/preview-kit
 ```
 
-## Usage
+# Usage
 
 You create a `usePreview` hook using `definePreview`
 
@@ -42,7 +54,12 @@ export const previewConfig: PreviewConfig = {
 
 The component that calls `usePreview` needs to be wrapped in a `Suspense` boundary as it will ["suspend"](https://reactjs.org/docs/react-api.html#reactsuspense) until the `@sanity/groq-store` is done loading your dataset and ready to resolve your queries.
 
-### Create React App, cookie auth only
+## Demos & Starters
+
+- [Sanity Studio v3 + Remix](https://github.com/SimeonGriggs/remix-sanity-studio-v3)
+- [A Next.js Blog with a Native Authoring Experience](https://github.com/sanity-io/nextjs-blog-cms-sanity-v3)
+
+## Create React App, cookie auth only
 
 If you're hosting Sanity Studio on the same domain as you're doing previews, you may use `cookie` based auth:
 
@@ -103,7 +120,7 @@ const PreviewCount = () => {
 }
 ```
 
-### Create React App, custom token auth
+## Create React App, custom token auth
 
 If you're not hosting Sanity Studio on the same domain as your previews, or if you need to support browsers that don't work with cookie auth (iOS Safari or browser incognito modes), you may use the `token` option to provide a Sanity Viewer token:
 
@@ -165,7 +182,7 @@ const PreviewCount = () => {
 }
 ```
 
-### Remix, cookie auth only
+## Remix, cookie auth only
 
 ```tsx
 import { json } from '@remix-run/node'
@@ -230,7 +247,7 @@ const PreviewCount = () => {
 }
 ```
 
-### Next 12 Preview Mode, cookie auth only
+## Next 12 Preview Mode, cookie auth only
 
 ```tsx
 // pages/index.js
@@ -290,7 +307,7 @@ export default function PreviewDataTable() {
 }
 ```
 
-### Next 12 Preview Mode, with a viewer token
+## Next 12 Preview Mode, with a viewer token
 
 This example have the added benefit that it works in non-chromium browsers like Safari. And without needing a Sanity authenticated session to exist on the origin.
 This also means you need to protect your `pages/api/preview` handler with a secret, since the `token` can be used to query _any_ data in your dataset. Only share preview links with people that you're ok with being able to see everything in your dataset.
@@ -395,6 +412,6 @@ Make sure to select the main branch and check "Release new version".
 
 Semantic release will only release on configured branches, so it is safe to run release on any branch.
 
-## License
+# License
 
 MIT-licensed. See [LICENSE](LICENSE).
