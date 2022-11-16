@@ -36,7 +36,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   })
 }
 
-export default function ProductPage() {
+export default function Page() {
   const { slug, tableData, footerData, preview, token } =
     useLoaderData<typeof loader>()
 
