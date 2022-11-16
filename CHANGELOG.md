@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/sanity-io/preview-kit/compare/v1.2.6...v1.2.7) (2022-11-16)
+
+### Bug Fixes
+
+- set `subscriptionThrottleMs` to `10` by default ([43f60ad](https://github.com/sanity-io/preview-kit/commit/43f60ad1c4fbe254a320c90c92ae165ef926f5f8))
+
 ## [1.2.6](https://github.com/sanity-io/preview-kit/compare/v1.2.5...v1.2.6) (2022-11-16)
 
 ### Bug Fixes
