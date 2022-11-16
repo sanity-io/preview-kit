@@ -80,7 +80,7 @@ export const _definePreview = ({
   projectId,
   dataset,
   documentLimit = 3000,
-  subscriptionThrottleMs,
+  subscriptionThrottleMs = 10,
   importEventSourcePolyfill,
   importGroqStore,
   preload,
@@ -191,16 +191,18 @@ export type UsePreview<R = any, P = Params, Q = string> = (
  * @public
  */
 export interface PreviewConfig
-  extends Pick<
-    Config,
-    'projectId' | 'dataset' | 'subscriptionThrottleMs' | 'includeTypes'
-  > {
+  extends Pick<Config, 'projectId' | 'dataset' | 'includeTypes'> {
   /**
    * The maximum number of documents, to prevent using too much memory unexpectedly
    * Throws on the first operation (query, retrieval, subscription) if reaching this limit.
    * @defaultValue 3000
    */
   documentLimit?: number
+  /**
+   * Throttle the event emits to batch updates. If you have a lot of editors changing content at the same time it might help to increase this value to reduce the amount of rerenders React have to perform.
+   * @defaultValue 10
+   */
+  subscriptionThrottleMs?: number
   /**
    * You want to throw an error in this function if it's considered a failure if draft documents can't be queried.
    *
