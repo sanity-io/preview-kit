@@ -36,13 +36,6 @@ export type Params = Record<string, unknown>
  */
 export interface _PreviewConfig extends PreviewConfig {
   /**
-   * The maximum number of documents, to prevent using too much memory unexpectedly
-   * Throws on the first operation (query, retrieval, subscription) if reaching this limit.
-   * @defaultValue 3000
-   */
-  documentLimit?: number
-
-  /**
    * Lazy load `@sanity/groq-store` either using Suspense or `React.use` and `React.cache`.
    */
   importGroqStore: () => (config: Config) => GroqStore
@@ -202,6 +195,12 @@ export interface PreviewConfig
     Config,
     'projectId' | 'dataset' | 'subscriptionThrottleMs' | 'includeTypes'
   > {
+  /**
+   * The maximum number of documents, to prevent using too much memory unexpectedly
+   * Throws on the first operation (query, retrieval, subscription) if reaching this limit.
+   * @defaultValue 3000
+   */
+  documentLimit?: number
   /**
    * You want to throw an error in this function if it's considered a failure if draft documents can't be queried.
    *
