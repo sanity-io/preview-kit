@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/sanity-io/preview-kit/compare/v1.2.7...v1.2.8) (2022-11-18)
+
+### Bug Fixes
+
+- support `swcMinify` in NextJS 13 ([#29](https://github.com/sanity-io/preview-kit/issues/29)) ([0c3ecec](https://github.com/sanity-io/preview-kit/commit/0c3ecec4f300c239cc3814ab5364bbb68194964e))
+
 ## [1.2.7](https://github.com/sanity-io/preview-kit/compare/v1.2.6...v1.2.7) (2022-11-16)
 
 ### Bug Fixes
