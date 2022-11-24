@@ -5,7 +5,7 @@ export const projectId =
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'pv8y60vp'
 export const apiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2022-11-15'
-export const useCdn = false
+export const useCdn = true
 
 type PreviewVariant = 'cookie' | 'token'
 export type PreviewSlug = `next${12 | 13}-${PreviewVariant}`
