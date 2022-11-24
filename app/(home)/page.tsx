@@ -9,15 +9,6 @@ const links = [
   ['Remix - cookie', 'https://preview-kit-remix.sanity.build/remix-cookie'],
   ['Remix - token', 'https://preview-kit-remix.sanity.build/remix-token'],
 ]
-// eslint-disable-next-line no-warning-comments
-// @TODO investigate why the Edge runtime routes fail in production
-// eslint-disable-next-line no-process-env
-if (process.env.VERCEL_ENV !== 'production') {
-  links.push(
-    ['Edge - cookie', '/next13-cookie-edge'],
-    ['Edge - token', '/next13-token-edge']
-  )
-}
 
 links.sort((a, b) => a[0].localeCompare(b[0]))
 

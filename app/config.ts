@@ -7,7 +7,7 @@ export const apiVersion =
   process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2022-11-15'
 export const useCdn = false
 
-type PreviewVariant = 'cookie' | 'token' | 'token-edge' | 'cookie-edge'
+type PreviewVariant = 'cookie' | 'token'
 export type PreviewSlug = `next${12 | 13}-${PreviewVariant}`
 export const previewSlug = (slug: PreviewSlug): PreviewSlug => {
   switch (slug) {
@@ -15,8 +15,6 @@ export const previewSlug = (slug: PreviewSlug): PreviewSlug => {
     case 'next12-token':
     case 'next13-cookie':
     case 'next13-token':
-    case 'next13-cookie-edge':
-    case 'next13-token-edge':
       return slug
 
     default:
