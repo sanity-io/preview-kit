@@ -1,19 +1,20 @@
 import PreviewButton from 'app/PreviewButton'
 import PreviewTemplate from 'app/PreviewTemplate'
 import { createClient } from 'app/sanity.client'
+import Container from 'components/Container'
 import { type FooterProps, query as footerQuery } from 'components/Footer'
 import PageTemplate from 'components/PageTemplate'
 import { type TableProps, query as tableQuery } from 'components/Table'
 import { previewData } from 'next/headers'
 
-export default async function Next13TokenEdgePage() {
+export default async function Next13TokenPage() {
   const token = previewData()?.token
 
   const button = (
     <PreviewButton
       preview={!!token}
-      start="/api/preview?slug=next13-token-edge"
-      stop="/api/exit-preview?slug=next13-token-edge"
+      start="/api/preview?slug=next13-token"
+      stop="/api/exit-preview?slug=next13-token"
     />
   )
 
@@ -22,10 +23,10 @@ export default async function Next13TokenEdgePage() {
     const footerData = await client.fetch<FooterProps['data']>(footerQuery)
 
     return (
-      <>
+      <Container>
         {button}
         <PreviewTemplate token={token} footerData={footerData} />
-      </>
+      </Container>
     )
   }
 
@@ -33,14 +34,14 @@ export default async function Next13TokenEdgePage() {
   const tablePromise = client.fetch<TableProps['data']>(tableQuery)
   const footerPromise = client.fetch<FooterProps['data']>(footerQuery)
   return (
-    <>
+    <Container>
       {button}
       <PageTemplate
         tableData={await tablePromise}
         footerData={await footerPromise}
       />
-    </>
+    </Container>
   )
 }
 
-export const runtime = 'experimental-edge'
+export const revalidate = 60

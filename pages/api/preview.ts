@@ -1,6 +1,8 @@
 import { previewSlug } from 'app/config'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+export const config = { runtime: 'nodejs' }
+
 export default function preview(
   req: NextApiRequest,
   res: NextApiResponse
