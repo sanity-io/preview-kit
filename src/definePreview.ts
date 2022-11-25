@@ -1,6 +1,6 @@
 import type { Config, GroqStore } from '@sanity/groq-store'
 import type { EventSourcePolyfill } from 'event-source-polyfill'
-import { useMemo, useSyncExternalStore } from 'react'
+import { useEffect, useMemo, useSyncExternalStore } from 'react'
 import { suspend } from 'suspend-react'
 
 import { _checkAuth } from './auth'
@@ -173,6 +173,14 @@ export const _definePreview = ({
         },
       }
     }, [initial, params, query])
+
+    useEffect(() => {
+      const callback = () => {
+        store.close()
+      }
+      window.addEventListener('beforeunload', callback)
+      return () => window.removeEventListener('beforeunload', callback)
+    }, [])
 
     return useSyncExternalStore(syncStore.subscribe, syncStore.getSnapshot)
   }
