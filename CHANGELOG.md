@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/sanity-io/preview-kit/compare/v1.2.10...v1.2.11) (2022-12-18)
+
+### Bug Fixes
+
+- **deps:** update dependency suspend-react to ^0.0.9 ([#95](https://github.com/sanity-io/preview-kit/issues/95)) ([e08db7c](https://github.com/sanity-io/preview-kit/commit/e08db7c832c2c0fbc075aa4058f2f8881ddc0751))
+
 ## [1.2.10](https://github.com/sanity-io/preview-kit/compare/v1.2.9...v1.2.10) (2022-12-06)
 
 ### Bug Fixes
