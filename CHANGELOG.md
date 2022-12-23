@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.14](https://github.com/sanity-io/preview-kit/compare/v1.2.13...v1.2.14) (2022-12-23)
+
+### Bug Fixes
+
+- **deps:** lock file maintenance ([#112](https://github.com/sanity-io/preview-kit/issues/112)) ([09101a3](https://github.com/sanity-io/preview-kit/commit/09101a3d1ceb1dd3abc153586ba23084cc653654))
+
 ## [1.2.13](https://github.com/sanity-io/preview-kit/compare/v1.2.12...v1.2.13) (2022-12-23)
 
 ### Bug Fixes
