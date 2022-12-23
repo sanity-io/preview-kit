@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.12](https://github.com/sanity-io/preview-kit/compare/v1.2.11...v1.2.12) (2022-12-23)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/pkg-utils to v2 ([#107](https://github.com/sanity-io/preview-kit/issues/107)) ([8cbf92c](https://github.com/sanity-io/preview-kit/commit/8cbf92c7c6d005ac2c87c74872da874482028f85))
+
 ## [1.2.11](https://github.com/sanity-io/preview-kit/compare/v1.2.10...v1.2.11) (2022-12-18)
 
 ### Bug Fixes
