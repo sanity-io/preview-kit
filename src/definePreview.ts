@@ -238,7 +238,6 @@ export interface PreviewConfig
 }
 
 /**
- * Return params that are stable with deep equal as long as the key order is the same
  * @internal
  */
 const _preloadQuery = (store: GroqStore, query: string, params?: Params) =>

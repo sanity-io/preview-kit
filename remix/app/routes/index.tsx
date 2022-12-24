@@ -332,18 +332,18 @@ export default function Index() {
           </defs>
         </svg>
       </a>
-      <div className="columns">
+      <div className="columns is-multiline is-mobile">
         {links.map(([label, href]) => (
           <div className="column" key={href}>
             {href.startsWith('http') ? (
-              <a href={href} className="button is-link is-light">
+              <a href={href} className="button is-block is-link is-light">
                 {label}
               </a>
             ) : (
               <Link
                 prefetch="intent"
                 to={href}
-                className="button is-link is-light"
+                className="button is-block is-link is-light"
               >
                 {label}
               </Link>
