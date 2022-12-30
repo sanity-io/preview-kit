@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.15](https://github.com/sanity-io/preview-kit/compare/v1.2.14...v1.2.15) (2022-12-30)
+
+### Bug Fixes
+
+- **deps:** update devdependencies (non-major) ([#120](https://github.com/sanity-io/preview-kit/issues/120)) ([ab892a0](https://github.com/sanity-io/preview-kit/commit/ab892a0b43f4ed8667b1e4f38e9256c040518465))
+
 ## [1.2.14](https://github.com/sanity-io/preview-kit/compare/v1.2.13...v1.2.14) (2022-12-23)
 
 ### Bug Fixes
