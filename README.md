@@ -252,7 +252,9 @@ const PreviewCount = () => {
 }
 ```
 
-## Next 12 Preview Mode, cookie auth only
+## Next `/pages` Preview Mode, cookie auth only
+
+For NextJS with `appDir`, see the [next-sanity](https://github.com/sanity-io/next-sanity) docs.
 
 ```tsx
 // pages/index.js
@@ -313,7 +315,7 @@ export default function PreviewDataTable() {
 }
 ```
 
-## Next 12 Preview Mode, with a viewer token
+## Next `/pages` Preview Mode, with a viewer token
 
 This example have the added benefit that it works in non-chromium browsers like Safari. And without needing a Sanity authenticated session to exist on the origin.
 This also means you need to protect your `pages/api/preview` handler with a secret, since the `token` can be used to query _any_ data in your dataset. Only share preview links with people that you're ok with being able to see everything in your dataset.
@@ -394,6 +396,78 @@ export default function preview(req, res) {
   res.setPreviewData({ token })
   res.writeHead(307, { Location: '/' })
   res.end()
+}
+```
+
+## Next `/pages` Preview Mode, with fast SSR hydration
+
+This example extends the `preview token` version to use fast SSR hydration.
+The way it works is by providing the data use for Server Side Rendering (SSR) as the 4th argument to `usePreview`. This will cause `usePreview` to no longer suspend while it does the initial dataset export, instead it'll return your provided snapshot until it's ready to run GROQ in-memory.
+
+```tsx
+// pages/index.js
+import { PreviewSuspense } from '@sanity/preview-kit'
+import createClient from '@sanity/client'
+import DataTable from 'components/DataTable'
+import { lazy } from 'react'
+
+const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
+
+const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+})
+
+export const getStaticProps = async ({ preview = false, previewData = {} }) => {
+  if (preview) {
+    const previewClient = client.withConfig({ token: previewData.token })
+    // Query altered to include drafts, and all documents that don't have a draft
+    const data = await client.fetch(`*[!(_id in path("drafts.**"))]`)
+    return { props: { preview, token: previewData.token } }
+  }
+
+  const data = await client.fetch(`*[]`)
+
+  return { props: { preview, data } }
+}
+
+export default function IndexPage({ preview, data, token }) {
+  if (preview) {
+    // We render DataTable with the preview data, and PreviewDataTable will stream updates that might happen after the initial SSR hydration and the client takes over rendering
+    return (
+      <PreviewSuspense fallback={<DataTable data={data} />}>
+        <PreviewDataTable token={token} />
+      </PreviewSuspense>
+    )
+  }
+
+  return <DataTable data={data} />
+}
+```
+
+```tsx
+// components/PreviewDataTable.js
+import { definePreview } from '@sanity/preview-kit'
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+// We turn off `overlayDrafts` since the GROQ queries that run in preview mode is updated to overlay drafts instead, this lets us
+// reuse the same query during preview mode, with @sanity/client when rendering
+// preview data on the server, with `@sanity/groq-store` taking over in the browser
+const usePreview = definePreview({ projectId, dataset, overlayDrafts: false })
+
+export default function PreviewDataTable({ token }) {
+  // Query altered to include drafts, and all documents that don't have a draft
+  const data = usePreview(token, `*[!(_id in path("drafts.**"))]`)
+
+  return <DataTable data={data} />
 }
 ```
 
