@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.17](https://github.com/sanity-io/preview-kit/compare/v1.2.16...v1.2.17) (2023-01-02)
+
+### Bug Fixes
+
+- **build:** include `node` directory ([#127](https://github.com/sanity-io/preview-kit/issues/127)) ([b9268b0](https://github.com/sanity-io/preview-kit/commit/b9268b0ba3312d3575f531f57554fa542b891bb7))
+
 ## [1.2.16](https://github.com/sanity-io/preview-kit/compare/v1.2.15...v1.2.16) (2023-01-02)
 
 ### Bug Fixes
