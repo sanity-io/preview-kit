@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.16](https://github.com/sanity-io/preview-kit/compare/v1.2.15...v1.2.16) (2023-01-02)
+
+### Bug Fixes
+
+- improve Node.js ESM runtime support ([5392720](https://github.com/sanity-io/preview-kit/commit/53927208ce6025ab2a1378166822d20c0b1bf500))
+
 ## [1.2.15](https://github.com/sanity-io/preview-kit/compare/v1.2.14...v1.2.15) (2022-12-30)
 
 ### Bug Fixes
