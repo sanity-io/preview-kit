@@ -27,13 +27,13 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "node": {
-        "import": "./node/index.js",
-        "require": "./dist/index.cjs"
-      },
       "source": "./src/index.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
+      "node": {
+        "import": "./dist/index.cjs.js",
+        "require": "./dist/index.cjs"
+      },
       "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
@@ -45,12 +45,11 @@
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
-    "node",
     "src"
   ],
   "scripts": {
     "prebuild": "npm run clean",
-    "build": "pkg build --tsconfig tsconfig.build.json --strict",
+    "build": "pkg build --strict && pkg --strict",
     "clean": "rimraf dist",
     "dev": "next",
     "format": "npm run prettier && eslint --cache --fix .",
