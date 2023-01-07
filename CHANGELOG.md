@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.18](https://github.com/sanity-io/preview-kit/compare/v1.2.17...v1.2.18) (2023-01-07)
+
+### Bug Fixes
+
+- **build:** auto-generate Node ESM wrapper ([#128](https://github.com/sanity-io/preview-kit/issues/128)) ([98a8ece](https://github.com/sanity-io/preview-kit/commit/98a8eced1613300fd629d50a6c37ab8bb681a888))
+- **deps:** update dependency @sanity/pkg-utils to ^2.1.1 ([#135](https://github.com/sanity-io/preview-kit/issues/135)) ([4a06b58](https://github.com/sanity-io/preview-kit/commit/4a06b585c0bfdb104cb9484a9ed6f60955bb5261))
+
 ## [1.2.17](https://github.com/sanity-io/preview-kit/compare/v1.2.16...v1.2.17) (2023-01-02)
 
 ### Bug Fixes
