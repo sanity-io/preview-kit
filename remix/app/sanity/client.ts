@@ -1,8 +1,8 @@
-import SanityClient from '@sanity/client'
+import { createClient } from '@sanity/client'
 
 import { projectId, dataset, apiVersion, useCdn } from './config'
 
-export const client = new SanityClient({
+export const client = createClient({
   projectId,
   dataset,
   apiVersion,

@@ -1,6 +1,6 @@
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import createClient from '@sanity/client'
+import { createClient } from '@sanity/client'
 import type { UsePreview } from '@sanity/preview-kit'
 import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
 import groq from 'groq'

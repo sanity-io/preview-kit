@@ -1,7 +1,7 @@
 /* eslint-disable no-process-env */
 import 'bulma/css/bulma.min.css'
 
-import createClient from '@sanity/client'
+import { createClient } from '@sanity/client'
 import { definePreview } from '@sanity/preview-kit'
 import groq from 'groq'
 import { Suspense, useReducer } from 'react'
