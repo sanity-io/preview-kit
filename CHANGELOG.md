@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.21](https://github.com/sanity-io/preview-kit/compare/v1.2.20...v1.2.21) (2023-01-12)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/groq-store to v2 ([#160](https://github.com/sanity-io/preview-kit/issues/160)) ([aab6ca4](https://github.com/sanity-io/preview-kit/commit/aab6ca44775ec40f43a2969f2eadd9936cfae546))
+
 ## [1.2.20](https://github.com/sanity-io/preview-kit/compare/v1.2.19...v1.2.20) (2023-01-12)
 
 ### Bug Fixes
