@@ -1,17 +1,15 @@
 import { q } from 'groqd'
 import { memo } from 'react'
 
-const { query, schema } = q(
-  '*',
-  q.filter("_type == 'page'"),
-  q.grab({
+const { query, schema } = q('*')
+  .filter("_type == 'page'")
+  .grab({
     _id: q.string(),
     _createdAt: q.date().optional(),
     _updatedAt: q.date().optional(),
     title: q.string().optional(),
-  }),
-  q.order('_updatedAt desc')
-)
+  })
+  .order('_updatedAt desc')
 
 export { query }
 
