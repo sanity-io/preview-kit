@@ -9,9 +9,9 @@ import { _lazyEventSourcePolyfill, _lazyGroqStore } from './lazy'
 /**
  * The params type used both in `@sanity/client`:
  * ```tsx
- * import sanityClient from '@sanity/client'
+ * import {createClient} from '@sanity/client'
  *
- * const client = sanityClient()
+ * const client = createClient()
  * await client.fetch(
  *   '*[_type == "post"]',
  *   params // <-- this is the type

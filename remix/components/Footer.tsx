@@ -9,13 +9,6 @@ export const query = groq`count(array::unique(
 ))
 `
 
-// eslint-disable-next-line no-warning-comments
-// @TODO remove this workaround once https://github.com/sanity-io/groq-js/pull/78 is resolved
-export const workaroundQuery = groq`*[_type == 'page']{"_id": select(
-  _id in path("drafts.**") => _id,
-  "drafts." + _id
-)}._id`
-
 export type FooterProps = {
   data: number
 }
