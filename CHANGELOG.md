@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.24](https://github.com/sanity-io/preview-kit/compare/v1.2.23...v1.2.24) (2023-01-18)
+
+### Bug Fixes
+
+- export \_preloadQuery for easier customization ([f3f5743](https://github.com/sanity-io/preview-kit/commit/f3f574352faa7d2eedf0379c0321ad3eced75cf2)), closes [#63](https://github.com/sanity-io/preview-kit/issues/63)
+- make `overlayDrafts` configurable ([87de43d](https://github.com/sanity-io/preview-kit/commit/87de43d2be2dd05650bb60db14b0c6ccfc8a811b))
+
 ## [1.2.23](https://github.com/sanity-io/preview-kit/compare/v1.2.22...v1.2.23) (2023-01-14)
 
 ### Bug Fixes
