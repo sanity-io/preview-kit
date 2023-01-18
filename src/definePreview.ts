@@ -240,10 +240,14 @@ export interface PreviewConfig
 /**
  * @internal
  */
-const _preloadQuery = (store: GroqStore, query: string, params?: Params) =>
+export const _preloadQuery = <R = any>(
+  store: GroqStore,
+  query: string,
+  params?: Params
+): Promise<R> =>
   // eslint-disable-next-line no-warning-comments
   // @todo: fix the casting to any here
-  store.query<any>(query, params)
+  store.query<R>(query, params)
 
 /**
  * @public
@@ -263,7 +267,7 @@ export const definePreview = (config: PreviewConfig): UsePreview =>
       ),
     preload: (store, query, params) =>
       suspend(
-        () => _preloadQuery(store, query, params),
+        () => _preloadQuery<any>(store, query, params),
         [
           '@sanity/preview-kit',
           'preload',
