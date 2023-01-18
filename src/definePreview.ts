@@ -81,6 +81,7 @@ export const _definePreview = ({
   dataset,
   documentLimit = 3000,
   subscriptionThrottleMs = 10,
+  overlayDrafts = true,
   importEventSourcePolyfill,
   importGroqStore,
   preload,
@@ -140,7 +141,7 @@ export const _definePreview = ({
         // Lazy load the huge `event-source-polyfill`, but only if a token is specified
         EventSource: token === null ? undefined : importEventSourcePolyfill(),
         listen: true,
-        overlayDrafts: true,
+        overlayDrafts,
       })
     }
 
@@ -199,7 +200,10 @@ export type UsePreview<R = any, P = Params, Q = string> = (
  * @public
  */
 export interface PreviewConfig
-  extends Pick<Config, 'projectId' | 'dataset' | 'includeTypes'> {
+  extends Pick<
+    Config,
+    'projectId' | 'dataset' | 'includeTypes' | 'overlayDrafts'
+  > {
   /**
    * The maximum number of documents, to prevent using too much memory unexpectedly
    * Throws on the first operation (query, retrieval, subscription) if reaching this limit.
@@ -235,6 +239,10 @@ export interface PreviewConfig
    * But if you're already setting `token` you can skip defining this function to run startup faster, if the `token` is invalid it'll throw while exporting the dataset anyway.
    */
   onPublicAccessOnly?: () => void
+  /**
+   * @defaultValue true
+   */
+  overlayDrafts?: boolean
 }
 
 /**
