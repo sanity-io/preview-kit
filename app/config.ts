@@ -25,7 +25,6 @@ export const previewSlug = (slug: PreviewSlug): PreviewSlug => {
     case 'next13-hydration':
     case 'next13-cookie-edge':
     case 'next13-token-edge':
-    case 'next13-hydration-edge':
       return slug
 
     default:

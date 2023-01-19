@@ -157,7 +157,8 @@ export const _definePreview = ({
       let snapshot = initial
 
       return {
-        getServerSnapshot: () => serverSnapshot ?? null,
+        getServerSnapshot:
+          serverSnapshot === undefined ? undefined : () => serverSnapshot,
         getSnapshot: () => snapshot,
         subscribe: (onStoreChange: () => void) => {
           const subscription = store.subscribe(

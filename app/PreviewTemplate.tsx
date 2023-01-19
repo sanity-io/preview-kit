@@ -1,3 +1,5 @@
+'use client'
+
 import { PreviewSuspense } from '@sanity/preview-kit'
 import PreviewFooter from 'app/PreviewFooter'
 import PreviewTable from 'app/PreviewTable'

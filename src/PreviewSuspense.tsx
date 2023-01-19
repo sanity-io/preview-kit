@@ -1,4 +1,4 @@
-import { type ReactNode, Suspense, useSyncExternalStore } from 'react'
+import { type ReactNode, Suspense, useEffect, useReducer } from 'react'
 
 /** @public */
 export type PreviewSuspenseProps = {
@@ -9,7 +9,7 @@ export type PreviewSuspenseProps = {
 /**
  * Preview Mode really needs to only load as client-only, as it uses EventSource to stream data from Content Lake.
  * We don't want to run anything on the server but the fallback until it's loaded.
- * It's used in the same way as `React.Suspense`, it just defers render to client only and always render a fallback on the server:
+ * It's used in the same way as `React.Suspense`, it just also defers render until the component is mounted:
  * ```tsx
  * import {PreviewSuspense} from '@sanity/preview-kit'
  *
@@ -24,23 +24,10 @@ export type PreviewSuspenseProps = {
  * @public
  */
 export function PreviewSuspense({ children, fallback }: PreviewSuspenseProps) {
-  const ready = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+  const [mounted, mount] = useReducer(() => true, false)
+  useEffect(mount, [mount])
 
-  return <Suspense fallback={fallback}>{ready ? children : fallback}</Suspense>
-}
-
-function subscribe() {
-  // We're not actually listening to any events, we just need to know if the client is ready
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  return () => {}
-}
-
-function getSnapshot() {
-  // Just a check if we're in the browser or nah
-  return typeof document !== 'undefined'
-}
-
-function getServerSnapshot() {
-  // Never render on the server
-  return false
+  return (
+    <Suspense fallback={fallback}>{mounted ? children : fallback}</Suspense>
+  )
 }

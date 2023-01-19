@@ -1,10 +1,11 @@
-import { PreviewSuspense } from '@sanity/preview-kit'
 import { type CountProps, Count, query } from 'app/Count'
 import PreviewButton from 'app/PreviewButton'
 import PreviewCount from 'app/PreviewCount'
 import { createClient } from 'app/sanity.client'
 import { previewData } from 'next/headers'
 import { cache } from 'react'
+
+import { PreviewSuspense } from './PreviewSuspense'
 
 const client = createClient()
 const cachedFetch = cache(client.fetch.bind(client))

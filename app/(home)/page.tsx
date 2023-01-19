@@ -21,8 +21,7 @@ const links = [
 if (process.env.VERCEL_ENV !== 'production') {
   links.push(
     ['Edge - cookie', '/next13-cookie-edge'],
-    ['Edge - token', '/next13-token-edge'],
-    ['Edge - hydration', '/next13-hydration-edge']
+    ['Edge - token', '/next13-token-edge']
   )
 }
 
