@@ -1,6 +1,6 @@
 import type { Config, GroqStore } from '@sanity/groq-store'
 import type { EventSourcePolyfill } from 'event-source-polyfill'
-import { useEffect, useMemo, useSyncExternalStore } from 'react'
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import { suspend } from 'suspend-react'
 
 import { _checkAuth } from './auth'
@@ -54,7 +54,7 @@ export interface _PreviewConfig extends PreviewConfig {
      * Must wrap in `useMemo` to avoid infinite loop
      */
     params?: P
-  ) => R | null
+  ) => R
   /**
    * Only called if `onPublicAccessOnly` is defined. Render is suspended until this Promise resolves to a boolean.
    */
@@ -67,7 +67,7 @@ export interface _PreviewConfig extends PreviewConfig {
  */
 function useParams<P extends Params = Params>(params?: P): P {
   const stringifiedParams = useMemo(
-    () => JSON.stringify(params || null),
+    () => JSON.stringify(params || {}),
     [params]
   )
   return useMemo(() => JSON.parse(stringifiedParams), [stringifiedParams])
@@ -106,7 +106,12 @@ export const _definePreview = ({
     R = any,
     P extends Params = Params,
     Q extends string = string
-  >(token: string | null, query: Q, _params?: P): R | null {
+  >(
+    token: string | null,
+    query: Q,
+    _params?: P,
+    _serverSnapshot?: R
+  ): R | null {
     if (typeof document === 'undefined') {
       throw new Error(
         `Calling usePreview outside a browser environment isn't supported. Ensure the component using the hook is only rendering on the client. For example by wrapping it in PreviewSuspense.`
@@ -117,6 +122,7 @@ export const _definePreview = ({
         'No `token` given to usePreview hook, if this is intentional then set it to `null`'
       )
     }
+    const [serverSnapshot] = useState<R | undefined>(() => _serverSnapshot)
 
     const params = useParams<P>(_params)
 
@@ -145,12 +151,13 @@ export const _definePreview = ({
       })
     }
 
-    const initial = preload<R, P, Q>(store, query, params)
+    const initial = serverSnapshot ?? preload<R, P, Q>(store, query, params)
     const syncStore = useMemo(() => {
       // Make sure that React suspends the component until the groq store is finished loading the dataset and able to execute the query
       let snapshot = initial
 
       return {
+        getServerSnapshot: () => serverSnapshot ?? null,
         getSnapshot: () => snapshot,
         subscribe: (onStoreChange: () => void) => {
           const subscription = store.subscribe(
@@ -173,7 +180,7 @@ export const _definePreview = ({
           return () => subscription.unsubscribe()
         },
       }
-    }, [initial, params, query])
+    }, [initial, params, query, serverSnapshot])
 
     useEffect(() => {
       const callback = () => {
@@ -183,7 +190,11 @@ export const _definePreview = ({
       return () => window.removeEventListener('beforeunload', callback)
     }, [])
 
-    return useSyncExternalStore(syncStore.subscribe, syncStore.getSnapshot)
+    return useSyncExternalStore(
+      syncStore.subscribe,
+      syncStore.getSnapshot,
+      syncStore.getServerSnapshot
+    )
   }
 }
 
@@ -193,8 +204,12 @@ export const _definePreview = ({
 export type UsePreview<R = any, P = Params, Q = string> = (
   token: string | null,
   query: Q,
-  params?: P
-) => R | null
+  params?: P,
+  /**
+   * Providing a serverSnapshot significantly speeds up hydration time and lets you opt-in to not show loading UI
+   */
+  serverSnapshot?: R
+) => R
 
 /**
  * @public
@@ -276,12 +291,7 @@ export const definePreview = (config: PreviewConfig): UsePreview =>
     preload: (store, query, params) =>
       suspend(
         () => _preloadQuery<any>(store, query, params),
-        [
-          '@sanity/preview-kit',
-          'preload',
-          query,
-          JSON.stringify(params ?? null),
-        ]
+        ['@sanity/preview-kit', 'preload', query, JSON.stringify(params ?? {})]
       ),
     checkAuth: (projectId, token) =>
       suspend(

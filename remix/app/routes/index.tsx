@@ -6,10 +6,13 @@ const links = [
   ['Create React App', 'https://preview-kit-cra.sanity.build'],
   ['Next 12 - cookie', 'https://preview-kit.sanity.build/next12-cookie'],
   ['Next 12 - token', 'https://preview-kit.sanity.build/next12-token'],
+  ['Next 12 - hydration', 'https://preview-kit.sanity.build/next12-hydration'],
   ['Next 13 - cookie', 'https://preview-kit.sanity.build/next13-cookie'],
   ['Next 13 - token', 'https://preview-kit.sanity.build/next13-token'],
+  ['Next 13 - hydration', 'https://preview-kit.sanity.build/next13-hydration'],
   ['Remix - cookie', '/remix-cookie'],
   ['Remix - token', '/remix-token'],
+  ['Remix - hydration', '/remix-hydration'],
 ]
 
 export default function Index() {

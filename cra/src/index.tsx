@@ -4,7 +4,7 @@ import 'bulma/css/bulma.min.css'
 import { createClient } from '@sanity/client'
 import { definePreview } from '@sanity/preview-kit'
 import groq from 'groq'
-import { Suspense, useReducer } from 'react'
+import { Suspense, useCallback, useReducer, useTransition } from 'react'
 import { createRoot } from 'react-dom/client'
 import useSWR from 'swr/immutable'
 
@@ -46,14 +46,18 @@ const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
 const query = groq`count(*[_type == 'page'])`
 
 function App() {
-  const [preview, toggle] = useReducer((state) => !state, false)
+  const [preview, _toggle] = useReducer((state) => !state, false)
+  const [isPending, startTransition] = useTransition()
+  const toggle = useCallback(() => startTransition(_toggle), [])
 
   const button = (
     <section className="section">
       <button
         type="button"
         onClick={toggle}
-        className={`button is-light ${preview ? 'is-danger' : 'is-success'}`}
+        className={`button ${isPending ? 'is-loading' : 'is-light'} ${
+          preview ? 'is-danger' : 'is-success'
+        }`}
       >
         {preview ? 'Stop preview' : 'Start preview'}
       </button>
@@ -64,21 +68,10 @@ function App() {
     suspense: true,
   })
 
-  if (preview) {
-    return (
-      <>
-        {button}
-        <Suspense fallback={<Count data={data!} />}>
-          <PreviewCount />
-        </Suspense>
-      </>
-    )
-  }
-
   return (
     <>
       {button}
-      <Count data={data!} />
+      {preview ? <PreviewCount initialData={data} /> : <Count data={data!} />}
     </>
   )
 }
@@ -101,8 +94,8 @@ const usePreview = definePreview({
     }
   },
 })
-const PreviewCount = () => {
-  const data = usePreview(null, query)
+const PreviewCount = ({ initialData }: { initialData: any }) => {
+  const data = usePreview(null, query, {}, initialData)
 
   return <Count data={data} />
 }

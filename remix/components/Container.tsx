@@ -17,6 +17,7 @@ export default function Container({
           justifyContent: 'center',
           flexDirection: 'column',
           overflow: 'auto',
+          padding: '20px',
         }}
       >
         {children}
