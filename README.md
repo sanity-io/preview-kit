@@ -257,7 +257,7 @@ const PreviewCount = () => {
 ```tsx
 // pages/index.js
 import { PreviewSuspense } from '@sanity/preview-kit'
-import sanityClient from '@sanity/client'
+import createClient from '@sanity/client'
 import DataTable from 'components/DataTable'
 import { lazy } from 'react'
 
@@ -267,17 +267,18 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
 
+const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+})
+
 export const getStaticProps = async ({ preview = false }) => {
   if (preview) {
     return { props: { preview } }
   }
 
-  const client = sanityClient({
-    projectId,
-    dataset,
-    apiVersion,
-    useCdn: false,
-  })
   const data = await client.fetch(`*[]`)
 
   return { props: { preview, data } }
@@ -320,7 +321,7 @@ This also means you need to protect your `pages/api/preview` handler with a secr
 ```tsx
 // pages/index.js
 import { PreviewSuspense } from '@sanity/preview-kit'
-import sanityClient from '@sanity/client'
+import createClient from '@sanity/client'
 import DataTable from 'components/DataTable'
 import { lazy } from 'react'
 
@@ -330,17 +331,18 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
 
+const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+})
+
 export const getStaticProps = async ({ preview = false, previewData = {} }) => {
   if (preview) {
     return { props: { preview, token: previewData.token } }
   }
 
-  const client = sanityClient({
-    projectId,
-    dataset,
-    apiVersion,
-    useCdn: false,
-  })
   const data = await client.fetch(`*[]`)
 
   return { props: { preview, data } }

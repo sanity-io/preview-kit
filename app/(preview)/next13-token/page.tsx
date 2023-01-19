@@ -5,9 +5,13 @@ import { type FooterProps, query as footerQuery } from 'components/Footer'
 import PageTemplate from 'components/PageTemplate'
 import { type TableProps, query as tableQuery } from 'components/Table'
 import { previewData } from 'next/headers'
+import { cache } from 'react'
+
+const client = createClient()
+const cachedFetch = cache(client.fetch.bind(client))
 
 export default async function Next13TokenPage() {
-  const token = previewData()?.token
+  const token = (previewData() as { token?: string })?.token
 
   const button = (
     <PreviewButton
@@ -18,6 +22,7 @@ export default async function Next13TokenPage() {
   )
 
   if (token) {
+    // eslint-disable-next-line no-shadow
     const client = createClient().withConfig({ token })
     const footerData = await client.fetch<FooterProps['data']>(footerQuery)
 
@@ -29,9 +34,8 @@ export default async function Next13TokenPage() {
     )
   }
 
-  const client = createClient()
-  const tablePromise = client.fetch<TableProps['data']>(tableQuery)
-  const footerPromise = client.fetch<FooterProps['data']>(footerQuery)
+  const tablePromise = cachedFetch<TableProps['data']>(tableQuery)
+  const footerPromise = cachedFetch<FooterProps['data']>(footerQuery)
   return (
     <>
       {button}

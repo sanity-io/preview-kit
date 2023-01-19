@@ -5,6 +5,10 @@ import { type FooterProps, query as footerQuery } from 'components/Footer'
 import PageTemplate from 'components/PageTemplate'
 import { type TableProps, query as tableQuery } from 'components/Table'
 import { previewData } from 'next/headers'
+import { cache } from 'react'
+
+const client = createClient()
+const cachedFetch = cache(client.fetch.bind(client))
 
 export default async function Next13CookieEdgePage() {
   const preview = !!previewData()
@@ -18,6 +22,7 @@ export default async function Next13CookieEdgePage() {
   )
 
   if (preview) {
+    // eslint-disable-next-line no-shadow
     const client = createClient().withConfig({
       // eslint-disable-next-line no-process-env
       token: process.env.SANITY_API_READ_TOKEN,
@@ -32,9 +37,8 @@ export default async function Next13CookieEdgePage() {
     )
   }
 
-  const client = createClient()
-  const tablePromise = client.fetch<TableProps['data']>(tableQuery)
-  const footerPromise = client.fetch<FooterProps['data']>(footerQuery)
+  const tablePromise = cachedFetch<TableProps['data']>(tableQuery)
+  const footerPromise = cachedFetch<FooterProps['data']>(footerQuery)
   return (
     <>
       {button}
