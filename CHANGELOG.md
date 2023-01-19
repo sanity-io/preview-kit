@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/sanity-io/preview-kit/compare/v1.2.24...v1.3.0) (2023-01-19)
+
+### Features
+
+- add optional `serverSnapshot` to `usePreview` ([#199](https://github.com/sanity-io/preview-kit/issues/199)) ([1dc68f8](https://github.com/sanity-io/preview-kit/commit/1dc68f8d58853a664bc33751c118fc6d0882d84b))
+
 ## [1.2.24](https://github.com/sanity-io/preview-kit/compare/v1.2.23...v1.2.24) (2023-01-18)
 
 ### Bug Fixes
