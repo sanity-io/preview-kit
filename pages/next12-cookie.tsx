@@ -4,7 +4,7 @@ import { createClient } from 'app/sanity.client'
 import Container from 'components/Container'
 import { FooterProps, query as footerQuery } from 'components/Footer'
 import PageTemplate from 'components/PageTemplate'
-import { type TableProps, query as tableQuery } from 'components/Table'
+import { query as tableQuery, type TableProps } from 'components/Table'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 export const getStaticProps: GetStaticProps<{

@@ -1,6 +1,6 @@
 import {
-  type SanityClient,
   createClient as _createClient,
+  type SanityClient,
 } from '@sanity/client'
 
 import { apiVersion, dataset, projectId, useCdn } from './config'

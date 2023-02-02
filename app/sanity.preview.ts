@@ -1,6 +1,6 @@
 'use client'
 
-import { type UsePreview, definePreview } from '@sanity/preview-kit'
+import { definePreview, type UsePreview } from '@sanity/preview-kit'
 
 import { dataset, projectId } from './config'
 

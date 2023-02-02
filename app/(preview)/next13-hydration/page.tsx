@@ -1,4 +1,4 @@
-import { type CountProps, Count, query } from 'app/Count'
+import { Count, type CountProps, query } from 'app/Count'
 import PreviewButton from 'app/PreviewButton'
 import PreviewCount from 'app/PreviewCount'
 import { createClient } from 'app/sanity.client'
