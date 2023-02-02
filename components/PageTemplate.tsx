@@ -1,5 +1,5 @@
-import { type FooterProps, Footer } from './Footer'
-import { type TableProps, Table } from './Table'
+import { Footer, type FooterProps } from './Footer'
+import { Table, type TableProps } from './Table'
 
 export default function PageTemplate({
   tableData,

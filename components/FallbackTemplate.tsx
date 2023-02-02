@@ -1,4 +1,4 @@
-import { type FooterProps, Footer } from './Footer'
+import { Footer, type FooterProps } from './Footer'
 import { TableFallback } from './Table'
 
 export default function FallbackTemplate({
