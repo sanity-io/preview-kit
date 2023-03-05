@@ -12,7 +12,7 @@ on:
   pull_request:
     types: [opened, synchronize]
   push:
-    branches: [main, monorepo]
+    branches: [main]
   workflow_dispatch:
     inputs:
       test:
