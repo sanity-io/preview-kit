@@ -21,7 +21,7 @@ jobs:
         with:
           cache: pnpm
           node-version: lts/*
-      - run: pnpm install --prefer-online --dev --ignore-scripts
+      - run: pnpm install --dev --ignore-scripts
       - uses: actions/cache@v3
         with:
           path: node_modules/.cache/prettier/.prettier-cache
