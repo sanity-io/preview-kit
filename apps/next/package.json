@@ -9,14 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "5.2.2",
     "@sanity/preview-kit": "workspace:*",
+    "bulma": "^0.9.4",
     "groq": "^3.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "groqd": "^0.9.0",
     "next": "^13.2.1",
-    "bulma": "^0.9.4",
-    "@sanity/client": "5.2.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "^18.14.2",
