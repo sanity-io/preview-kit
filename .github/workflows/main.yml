@@ -4,7 +4,7 @@ name: CI
 run-name: >-
   ${{
     inputs.release && inputs.test && 'CI ➤ Test ➤ Release' ||
-    inputs.test && 'CI ➤ Test'
+    inputs.test && 'CI ➤ Test' ||
     ''
   }}
 
