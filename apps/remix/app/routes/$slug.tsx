@@ -1,21 +1,15 @@
 import type { LoaderArgs } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import {
-  type TableProps,
-  query as tableQuery,
-} from 'apps/next/components/Table'
-import {
-  type FooterProps,
-  query as footerQuery,
-} from 'apps/next/components/Footer'
+import { type TableProps, query as tableQuery } from 'components/Table'
+import { type FooterProps, query as footerQuery } from 'components/Footer'
 
 import { client as _client } from '~/sanity/client'
 
-import Container from 'apps/next/components/Container'
+import Container from 'components/Container'
 import { previewSlug } from '~/sanity/config'
 import { getSession } from '~/sessions'
-import PageTemplate from 'apps/next/components/PageTemplate'
+import PageTemplate from 'components/PageTemplate'
 import PreviewTemplate from 'components/PreviewTemplate'
 
 export const loader = async ({ params, request }: LoaderArgs) => {

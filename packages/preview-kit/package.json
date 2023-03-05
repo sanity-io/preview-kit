@@ -50,12 +50,10 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "pkg build --strict && pkg --strict",
-    "dev": "next",
-    "format": "npm run prettier && eslint --cache --fix .",
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "npm run build",
     "release": "semantic-release || semantic-release --dry-run --debug",
-    "test": "node test.mjs && node test.cjs"
+    "test:esm": "node test.mjs && node test.cjs"
   },
   "browserslist": [
     "> 0.2% and supports es6-module and supports es6-module-dynamic-import and not dead and not IE 11",
@@ -68,15 +66,12 @@
     "suspend-react": "^0.0.9"
   },
   "devDependencies": {
-    "@remix-run/eslint-config": "^1.13.0",
     "@sanity/client": "5.2.2",
-    "@sanity/eslint-config-studio": "^2.0.1",
     "@sanity/pkg-utils": "^2.2.6",
     "@sanity/semantic-release-preset": "^4.0.0",
     "@types/node": "^18.14.2",
     "@types/react": "^18.0.28",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "bulma": "^0.9.4",
     "eslint": "^8.35.0",
     "eslint-config-next": "13.2.1",
     "eslint-config-prettier": "^8.6.0",
@@ -86,12 +81,8 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "groq": "^3.5.0",
     "groqd": "^0.9.0",
-    "next": "13.2.1",
-    "prettier": "^2.8.4",
-    "prettier-plugin-packagejson": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanity": "^3.5.0",
     "semantic-release": "^20.1.1",
     "typescript": "^4.9.5"
   },

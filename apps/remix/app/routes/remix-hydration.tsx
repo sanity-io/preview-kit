@@ -1,4 +1,4 @@
-import Container from 'apps/next/components/Container'
+import Container from 'components/Container'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { createClient } from '@sanity/client'

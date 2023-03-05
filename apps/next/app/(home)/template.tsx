@@ -1,4 +1,4 @@
-import Container from 'apps/next/components/Container'
+import Container from 'components/Container'
 
 export default function HomeTemplate({
   children,

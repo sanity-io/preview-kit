@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react'
 
-import Container from 'apps/next/components/Container'
+import Container from 'components/Container'
 
 const links = [
   ['Create React App', 'https://preview-kit-cra.sanity.build'],

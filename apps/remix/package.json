@@ -5,7 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "PORT=3001 remix dev",
     "lint": "eslint --max-warnings 0 ."
   },
   "dependencies": {

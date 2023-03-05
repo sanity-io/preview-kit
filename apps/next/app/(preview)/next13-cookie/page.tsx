@@ -1,6 +1,6 @@
-import PreviewButton from 'apps/next/app/PreviewButton'
-import PreviewTemplate from 'apps/next/app/PreviewTemplate'
-import { createClient } from 'apps/next/app/sanity.client'
+import PreviewButton from 'app/PreviewButton'
+import PreviewTemplate from 'app/PreviewTemplate'
+import { createClient } from 'app/sanity.client'
 import {
   type FooterProps,
   query as footerQuery,

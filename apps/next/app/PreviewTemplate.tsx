@@ -1,10 +1,10 @@
 'use client'
 
 import { PreviewSuspense } from '@sanity/preview-kit'
-import PreviewFooter from 'apps/next/app/PreviewFooter'
-import PreviewTable from 'apps/next/app/PreviewTable'
-import FallbackTemplate from 'apps/next/components/FallbackTemplate'
-import type { FooterProps } from 'apps/next/components/Footer'
+import PreviewFooter from 'app/PreviewFooter'
+import PreviewTable from 'app/PreviewTable'
+import FallbackTemplate from 'components/FallbackTemplate'
+import type { FooterProps } from 'components/Footer'
 
 export default function PreviewTemplate({
   token,
