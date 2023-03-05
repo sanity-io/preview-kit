@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base",
+  "compilerOptions": {
+    "incremental": true,
+    "noEmit": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "rootDir": ".",
+    "paths": {
+      "@sanity/preview-kit": ["src/"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["dist", "node_modules"]
+}
