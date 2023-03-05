@@ -9,7 +9,7 @@
     {
       "extends": [":semanticCommitTypeAll(chore)"],
       "description": "Group all dependencies from the app directory",
-      "matchPaths": ["app/**", "packages/eslint-config-custom/**"],
+      "matchPaths": ["apps/**"],
       "groupName": "App dependencies"
     }
   ]
