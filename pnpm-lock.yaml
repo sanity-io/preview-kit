@@ -47,7 +47,7 @@ importers:
     specifiers:
       '@sanity/client': 5.2.2
       '@sanity/preview-kit': workspace:*
-      '@types/node': ^18.14.2
+      '@types/node': ^18.14.6
       '@types/react': ^18.0.28
       bulma: ^0.9.4
       groq: ^3.5.0
@@ -147,7 +147,7 @@ importers:
       '@sanity/pkg-utils': ^2.2.6
       '@sanity/semantic-release-preset': ^4.0.0
       '@types/event-source-polyfill': ^1.0.1
-      '@types/node': ^18.14.2
+      '@types/node': ^18.14.6
       '@types/react': ^18.0.28
       '@typescript-eslint/eslint-plugin': ^5.54.0
       eslint: ^8.35.0
@@ -9333,6 +9333,18 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  /follow-redirects/1.15.2_debug@4.3.4:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -9582,7 +9594,7 @@ packages:
     dependencies:
       debug: 4.3.4
       decompress-response: 7.0.0
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
       into-stream: 6.0.0
       is-plain-object: 5.0.0
       is-retry-allowed: 2.2.0
