@@ -5,7 +5,7 @@
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "dev": "DISABLE_ESLINT_PLUGIN=true react-scripts start"
+    "dev": "DISABLE_ESLINT_PLUGIN=true PORT=3002 BROWSER=none react-scripts start"
   },
   "browserslist": {
     "production": [
@@ -13,7 +13,7 @@
       "not dead",
       "not op_mini all"
     ],
-  "development": [
+    "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
@@ -23,10 +23,12 @@
     "@sanity/client": "5.2.2",
     "@sanity/preview-kit": "workspace:*",
     "bulma": "^0.9.4",
+    "groq": "^3.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "swr": "^2.0.4"
+    "swr": "^2.0.4",
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

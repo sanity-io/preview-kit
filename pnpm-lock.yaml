@@ -4,14 +4,10 @@ importers:
 
   .:
     specifiers:
-      eslint: ^8.35.0
-      eslint-config-custom: workspace:*
       prettier: ^2.8.4
       prettier-plugin-packagejson: ^2.4.3
       turbo: ^1.8.3
     devDependencies:
-      eslint: 8.35.0
-      eslint-config-custom: link:packages/eslint-config-custom
       prettier: 2.8.4
       prettier-plugin-packagejson: 2.4.3_prettier@2.8.4
       turbo: 1.8.3
@@ -23,75 +19,93 @@ importers:
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
       bulma: ^0.9.4
-      eslint: ^8.35.0
-      eslint-config-custom: workspace:*
+      groq: ^3.5.0
       react: ^18.2.0
       react-dom: ^18.2.0
       react-scripts: ^5.0.1
       swr: ^2.0.4
-      tsconfig: workspace:*
       typescript: ^4.9.5
+      webpack: ^5.75.0
     dependencies:
       '@sanity/client': 5.2.2
       '@sanity/preview-kit': link:../../packages/preview-kit
       bulma: 0.9.4
+      groq: 3.5.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-scripts: 5.0.1_ttstqpwd5x4n2qlxnjlizm3yxq
       swr: 2.0.4_react@18.2.0
+      webpack: 5.75.0
     devDependencies:
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
-      eslint: 8.35.0
-      eslint-config-custom: link:../../packages/eslint-config-custom
-      tsconfig: link:../../packages/tsconfig
       typescript: 4.9.5
 
   apps/next:
     specifiers:
+      '@remix-run/eslint-config': ^1.13.0
       '@sanity/client': 5.2.2
+      '@sanity/eslint-config-studio': ^2.0.1
       '@sanity/groq-store': ^2.0.7
       '@sanity/pkg-utils': ^2.2.6
+      '@sanity/preview-kit': workspace:*
       '@sanity/semantic-release-preset': ^4.0.0
       '@types/event-source-polyfill': ^1.0.1
       '@types/node': ^18.14.2
       '@types/react': ^18.0.28
+      '@typescript-eslint/eslint-plugin': ^5.54.0
       bulma: ^0.9.4
       eslint: ^8.35.0
-      eslint-config-custom: workspace:*
+      eslint-config-next: 13.2.1
+      eslint-config-prettier: ^8.6.0
+      eslint-config-sanity: ^6.0.0
+      eslint-gitignore: ^0.1.0
+      eslint-plugin-prettier: ^4.2.1
+      eslint-plugin-simple-import-sort: ^10.0.0
       event-source-polyfill: ^1.0.31
       groq: ^3.5.0
       groqd: ^0.9.0
       next: 13.2.1
+      prettier: ^2.8.4
+      prettier-plugin-packagejson: ^2.4.3
       react: ^18.2.0
       react-dom: ^18.2.0
       sanity: ^3.5.0
       semantic-release: ^20.1.1
       suspend-react: ^0.0.9
-      tsconfig: workspace:*
       typescript: ^4.9.5
     dependencies:
       '@sanity/groq-store': 2.0.7
+      '@sanity/preview-kit': link:../../packages/preview-kit
       '@types/event-source-polyfill': 1.0.1
       event-source-polyfill: 1.0.31
       suspend-react: 0.0.9_react@18.2.0
     devDependencies:
+      '@remix-run/eslint-config': 1.14.0_ezujzymwn6i6oisrjb2haixety
       '@sanity/client': 5.2.2
+      '@sanity/eslint-config-studio': 2.0.1_ycpbpc6yetojsgtrx3mwntkhsu
       '@sanity/pkg-utils': 2.2.6_alpjt73dvgv6kni625hu7f2l4m
       '@sanity/semantic-release-preset': 4.0.0_semantic-release@20.1.1
       '@types/node': 18.14.6
       '@types/react': 18.0.28
+      '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
       bulma: 0.9.4
       eslint: 8.35.0
-      eslint-config-custom: link:../../packages/eslint-config-custom
+      eslint-config-next: 13.2.1_ycpbpc6yetojsgtrx3mwntkhsu
+      eslint-config-prettier: 8.6.0_eslint@8.35.0
+      eslint-config-sanity: 6.0.0_eslint@8.35.0
+      eslint-gitignore: 0.1.0_eslint@8.35.0
+      eslint-plugin-prettier: 4.2.1_u2zha4kiojzs42thzpgwygphmy
+      eslint-plugin-simple-import-sort: 10.0.0_eslint@8.35.0
       groq: 3.5.1
       groqd: 0.9.1
       next: 13.2.1_6m24vuloj5ihw4zc5lbsktc4fu
+      prettier: 2.8.4
+      prettier-plugin-packagejson: 2.4.3_prettier@2.8.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       sanity: 3.5.1_4b4yjg5ws2gg6dcar3nnejb2um
       semantic-release: 20.1.1
-      tsconfig: link:../../packages/tsconfig
       typescript: 4.9.5
 
   apps/remix:
@@ -109,13 +123,11 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.54.0
       bulma: ^0.9.4
       eslint: ^8.35.0
-      eslint-config-custom: workspace:*
       groq: ^3.5.0
       groqd: ^0.9.0
       react: ^18.2.0
       react-dom: ^18.2.0
       remix-utils: ^6.0.0
-      tsconfig: workspace:*
       typescript: ^4.9.5
     dependencies:
       '@remix-run/node': 1.14.0
@@ -137,8 +149,6 @@ importers:
       '@types/react-dom': 18.0.11
       '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
       eslint: 8.35.0
-      eslint-config-custom: link:../../packages/eslint-config-custom
-      tsconfig: link:../../packages/tsconfig
       typescript: 4.9.5
 
   apps/studio:
@@ -146,15 +156,13 @@ importers:
       '@sanity/vision': ^3.5.0
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
-      eslint: ^8.35.0
-      eslint-config-custom: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
       react-scripts: ^5.0.1
       sanity: ^3.5.0
       styled-components: ^5.3.6
-      tsconfig: workspace:*
       typescript: ^4.9.5
+      webpack: ^5.75.0
     dependencies:
       '@sanity/vision': 3.5.1_26idtpd4nozja4fdthxj3urb5y
       react: 18.2.0
@@ -162,60 +170,43 @@ importers:
       react-scripts: 5.0.1_n6r2bbqk4f3tgeg2owpxcv6w34
       sanity: 3.5.1_bvuafbny56uns7i3iq7gj2j2ru
       styled-components: 5.3.8_7i5myeigehqah43i5u7wbekgba
+      webpack: 5.75.0_esbuild@0.16.17
     devDependencies:
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
-      eslint: 8.35.0
-      eslint-config-custom: link:../../packages/eslint-config-custom
-      tsconfig: link:../../packages/tsconfig
       typescript: 4.9.5
-
-  packages/eslint-config-custom:
-    specifiers:
-      '@remix-run/eslint-config': ^1.13.0
-      '@sanity/eslint-config-studio': ^2.0.1
-      '@typescript-eslint/eslint-plugin': ^5.54.0
-      eslint-config-next: 13.2.1
-      eslint-config-prettier: ^8.6.0
-      eslint-config-sanity: ^6.0.0
-      eslint-config-turbo: ^0.0.9
-      eslint-gitignore: ^0.1.0
-      eslint-plugin-prettier: ^4.2.1
-      eslint-plugin-simple-import-sort: ^10.0.0
-    dependencies:
-      '@remix-run/eslint-config': 1.14.0_ezujzymwn6i6oisrjb2haixety
-      '@sanity/eslint-config-studio': 2.0.1_ycpbpc6yetojsgtrx3mwntkhsu
-      '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
-      eslint-config-next: 13.2.1_ycpbpc6yetojsgtrx3mwntkhsu
-      eslint-config-prettier: 8.6.0_eslint@8.35.0
-      eslint-config-sanity: 6.0.0_eslint@8.35.0
-      eslint-config-turbo: 0.0.9_eslint@8.35.0
-      eslint-gitignore: 0.1.0_eslint@8.35.0
-      eslint-plugin-prettier: 4.2.1_u2zha4kiojzs42thzpgwygphmy
-      eslint-plugin-simple-import-sort: 10.0.0_eslint@8.35.0
 
   packages/preview-kit:
     specifiers:
+      '@remix-run/eslint-config': ^1.13.0
       '@sanity/client': 5.2.2
+      '@sanity/eslint-config-studio': ^2.0.1
       '@sanity/groq-store': ^2.0.7
       '@sanity/pkg-utils': ^2.2.6
       '@sanity/semantic-release-preset': ^4.0.0
       '@types/event-source-polyfill': ^1.0.1
       '@types/node': ^18.14.2
       '@types/react': ^18.0.28
+      '@typescript-eslint/eslint-plugin': ^5.54.0
       bulma: ^0.9.4
       eslint: ^8.35.0
-      eslint-config-custom: workspace:*
+      eslint-config-next: 13.2.1
+      eslint-config-prettier: ^8.6.0
+      eslint-config-sanity: ^6.0.0
+      eslint-gitignore: ^0.1.0
+      eslint-plugin-prettier: ^4.2.1
+      eslint-plugin-simple-import-sort: ^10.0.0
       event-source-polyfill: ^1.0.31
       groq: ^3.5.0
       groqd: ^0.9.0
       next: 13.2.1
+      prettier: ^2.8.4
+      prettier-plugin-packagejson: ^2.4.3
       react: ^18.2.0
       react-dom: ^18.2.0
       sanity: ^3.5.0
       semantic-release: ^20.1.1
       suspend-react: ^0.0.9
-      tsconfig: workspace:*
       typescript: ^4.9.5
     dependencies:
       '@sanity/groq-store': 2.0.7
@@ -223,26 +214,32 @@ importers:
       event-source-polyfill: 1.0.31
       suspend-react: 0.0.9_react@18.2.0
     devDependencies:
+      '@remix-run/eslint-config': 1.14.0_ezujzymwn6i6oisrjb2haixety
       '@sanity/client': 5.2.2
+      '@sanity/eslint-config-studio': 2.0.1_ycpbpc6yetojsgtrx3mwntkhsu
       '@sanity/pkg-utils': 2.2.6_alpjt73dvgv6kni625hu7f2l4m
       '@sanity/semantic-release-preset': 4.0.0_semantic-release@20.1.1
       '@types/node': 18.14.6
       '@types/react': 18.0.28
+      '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
       bulma: 0.9.4
       eslint: 8.35.0
-      eslint-config-custom: link:../eslint-config-custom
+      eslint-config-next: 13.2.1_ycpbpc6yetojsgtrx3mwntkhsu
+      eslint-config-prettier: 8.6.0_eslint@8.35.0
+      eslint-config-sanity: 6.0.0_eslint@8.35.0
+      eslint-gitignore: 0.1.0_eslint@8.35.0
+      eslint-plugin-prettier: 4.2.1_u2zha4kiojzs42thzpgwygphmy
+      eslint-plugin-simple-import-sort: 10.0.0_eslint@8.35.0
       groq: 3.5.1
       groqd: 0.9.1
       next: 13.2.1_6m24vuloj5ihw4zc5lbsktc4fu
+      prettier: 2.8.4
+      prettier-plugin-packagejson: 2.4.3_prettier@2.8.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       sanity: 3.5.1_4b4yjg5ws2gg6dcar3nnejb2um
       semantic-release: 20.1.1
-      tsconfig: link:../tsconfig
       typescript: 4.9.5
-
-  packages/tsconfig:
-    specifiers: {}
 
 packages:
 
@@ -2957,7 +2954,7 @@ packages:
     resolution: {integrity: sha512-r0i5rcO6SMAZtqiGarUVMr3k256X0R0j6pEkKg4PxqUW+hG0qgMxRVAJsuoRG5OBFkCOlSfWZJ0mP9fQdCcyNg==}
     dependencies:
       glob: 7.1.7
-    dev: false
+    dev: true
 
   /@next/swc-android-arm-eabi/13.2.1:
     resolution: {integrity: sha512-Yua7mUpEd1wzIT6Jjl3dpRizIfGp9NR4F2xeRuQv+ae+SDI1Em2WyM9m46UL+oeW5GpMiEHoaBagr47RScZFmQ==}
@@ -3248,6 +3245,7 @@ packages:
       picocolors: 1.0.0
       tiny-glob: 0.2.9
       tslib: 2.5.0
+    dev: true
 
   /@pmmmwh/react-refresh-webpack-plugin/0.5.10_unmakpayn7vcxadrrsbqlrpehy:
     resolution: {integrity: sha512-j0Ya0hCFZPd4x40qLzbhGsh9TMtdb+CJQiso+WxLOPNasohq9cc5SNUcwsZaRH6++Xh91Xkm/xHCkuIiIu0LUA==}
@@ -3433,6 +3431,7 @@ packages:
       - eslint-import-resolver-webpack
       - jest
       - supports-color
+    dev: true
 
   /@remix-run/express/1.14.0_express@4.18.2:
     resolution: {integrity: sha512-Kj7kVbj3f86TTbwE8kbSqHjLEzHJvs+cvYdlBEDrWsuXj1q5ciHs7Jjun6qSLrrOxCtEMqFXc6s530p67M1fiQ==}
@@ -3857,7 +3856,7 @@ packages:
       - eslint
       - supports-color
       - typescript
-    dev: false
+    dev: true
 
   /@sanity/eventsource/3.0.3:
     resolution: {integrity: sha512-7OXdCJOY4gQuOk5kpnbybVmnB1Cvwi2ISHE1WnGudsA3c92dCRoY+MZzFDp3wZKGEKxZEC8u91AkjXGwrddokQ==}
@@ -4492,6 +4491,7 @@ packages:
       dom-accessibility-api: 0.5.16
       lz-string: 1.5.0
       pretty-format: 27.5.1
+    dev: true
 
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
@@ -4543,6 +4543,7 @@ packages:
 
   /@types/aria-query/5.0.1:
     resolution: {integrity: sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==}
+    dev: true
 
   /@types/babel__core/7.20.0:
     resolution: {integrity: sha512-+n8dL/9GWblDO0iU6eZAwEIJVr5DWigtle+Q6HLOrh/pdbXOhOtqzq8VPPE2zvNJzSKY4vH/z3iT3tn0A3ypiQ==}
@@ -6562,7 +6563,6 @@ packages:
 
   /confusing-browser-globals/1.0.11:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==}
-    dev: false
 
   /connect-history-api-fallback/1.6.0:
     resolution: {integrity: sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==}
@@ -7400,6 +7400,7 @@ packages:
 
   /dom-accessibility-api/0.5.16:
     resolution: {integrity: sha512-X7BJ2yElsnOJ30pZF4uIIDfBEVgF4XEBxL9Bxhy6dnrm5hkzqmsWHGTiHqRiITNhMyFLyAiWndIJP7Z1NTteDg==}
+    dev: true
 
   /dom-converter/0.2.0:
     resolution: {integrity: sha512-gd3ypIPfOMr9h5jIKq8E3sHOTCjeirnl0WK5ZdS1AW0Odt0b1PaWaHdJ4Qk4klv+YB9aJBS7mESXjFoDQPu6DA==}
@@ -8092,7 +8093,7 @@ packages:
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
-    dev: false
+    dev: true
 
   /eslint-config-prettier/8.6.0_eslint@8.35.0:
     resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
@@ -8101,7 +8102,7 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.35.0
-    dev: false
+    dev: true
 
   /eslint-config-react-app/7.0.1_7j3seqw65kz5oybnun3bj5zuyi:
     resolution: {integrity: sha512-K6rNzvkIeHaTd8m/QEh1Zko0KI7BACWkkneSs6s9cKZC/J27X3eZR6Upt1jkmZ/4FK+XUOPPxMEN7+lbUXfSlA==}
@@ -8145,16 +8146,7 @@ packages:
       eslint: '>=8.0.0'
     dependencies:
       eslint: 8.35.0
-    dev: false
-
-  /eslint-config-turbo/0.0.9_eslint@8.35.0:
-    resolution: {integrity: sha512-j1cTdx3tRmKo0csyfQKhpuT8dynK9oddbK5nmrShoMpXI2qMbxHLYH7MWAid4FmJN8rYympy3VKw5U63Yazycg==}
-    peerDependencies:
-      eslint: '>6.6.0'
-    dependencies:
-      eslint: 8.35.0
-      eslint-plugin-turbo: 0.0.9_eslint@8.35.0
-    dev: false
+    dev: true
 
   /eslint-gitignore/0.1.0_eslint@8.35.0:
     resolution: {integrity: sha512-VFvY5Wyjuz5xXDC/NeONHzsh4YQNok2Gzg4SftAAuhkbrdHv5CChjfiFyLKhRlgOdCJr5kBquaLXHtuDBTW2/Q==}
@@ -8168,7 +8160,7 @@ packages:
       fast-glob: 3.2.12
     transitivePeerDependencies:
       - supports-color
-    dev: false
+    dev: true
 
   /eslint-import-resolver-node/0.3.6:
     resolution: {integrity: sha512-0En0w03NRVMn9Uiyn8YRPDKvWjxCWkslUEhGNTdGx15RvPJYQ+lbOlqrlNI2vEAs4pDYK4f/HN2TbDmk5TP0iw==}
@@ -8177,6 +8169,7 @@ packages:
       resolve: 1.22.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /eslint-import-resolver-node/0.3.7:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
@@ -8205,6 +8198,7 @@ packages:
       synckit: 0.8.5
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /eslint-module-utils/2.7.4_qynxowrxvm2kj5rbowcxf5maga:
     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
@@ -8243,6 +8237,7 @@ packages:
       eslint: 8.35.0
       eslint-utils: 2.1.0
       regexpp: 3.2.0
+    dev: true
 
   /eslint-plugin-flowtype/8.0.3_4wfvnxdi7q4xn7cpwuonjvu574:
     resolution: {integrity: sha512-dX8l6qUL6O+fYPtpNRideCFSpmWOUVx5QcaGLVqe/vlDiBSe4vYljDWDETwnyFzpl7By/WVIu6rcrniCgH9BqQ==}
@@ -8301,6 +8296,7 @@ packages:
       '@testing-library/dom': 8.20.0
       eslint: 8.35.0
       requireindex: 1.2.0
+    dev: true
 
   /eslint-plugin-jest/25.7.0_npuaqhfkjgus3nqfbgjmqmizqa:
     resolution: {integrity: sha512-PWLUEXeeF7C9QGKqvdSbzLOiLTx+bno7/HC9eefePfEb257QFHg7ye3dh80AZVkaa/RQsBB1Q/ORQvg2X7F0NQ==}
@@ -8343,6 +8339,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
+    dev: true
 
   /eslint-plugin-jsx-a11y/6.7.1_eslint@8.35.0:
     resolution: {integrity: sha512-63Bog4iIethyo8smBklORknVjB0T2dwB8Mr/hIC+fBS0uyHdYYpzM/Ed+YC8VxTjlXHEWFOdmgwcDn1U2L9VCA==}
@@ -8381,6 +8378,7 @@ packages:
       minimatch: 3.1.2
       resolve: 1.22.1
       semver: 6.3.0
+    dev: true
 
   /eslint-plugin-prettier/4.2.1_u2zha4kiojzs42thzpgwygphmy:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
@@ -8397,7 +8395,7 @@ packages:
       eslint-config-prettier: 8.6.0_eslint@8.35.0
       prettier: 2.8.4
       prettier-linter-helpers: 1.0.0
-    dev: false
+    dev: true
 
   /eslint-plugin-react-hooks/4.6.0_eslint@8.35.0:
     resolution: {integrity: sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==}
@@ -8436,7 +8434,7 @@ packages:
       eslint: '>=5.0.0'
     dependencies:
       eslint: 8.35.0
-    dev: false
+    dev: true
 
   /eslint-plugin-testing-library/5.10.2_ycpbpc6yetojsgtrx3mwntkhsu:
     resolution: {integrity: sha512-f1DmDWcz5SDM+IpCkEX0lbFqrrTs8HRsEElzDEqN/EBI0hpRj8Cns5+IVANXswE8/LeybIJqPAOQIFu2j5Y5sw==}
@@ -8449,14 +8447,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
-
-  /eslint-plugin-turbo/0.0.9_eslint@8.35.0:
-    resolution: {integrity: sha512-fEsuSnYU3GLtT+s66mUuzDL1LaSieIx5uk3tPO0ToGv7hI2XzOfP24aPkQItTBGl7kq2JaVkRzPwcnfz8hkp0w==}
-    peerDependencies:
-      eslint: '>6.6.0'
-    dependencies:
-      eslint: 8.35.0
-    dev: false
 
   /eslint-scope/5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
@@ -8477,6 +8467,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       eslint-visitor-keys: 1.3.0
+    dev: true
 
   /eslint-utils/3.0.0_eslint@8.35.0:
     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
@@ -8490,6 +8481,7 @@ packages:
   /eslint-visitor-keys/1.3.0:
     resolution: {integrity: sha512-6J72N8UNa462wa/KFODt/PJ3IU60SDpC3QXC1Hjc1BXXpfL2C9R5+AU7jhe0F6GREqVMh4Juu+NY7xn+6dipUQ==}
     engines: {node: '>=4'}
+    dev: true
 
   /eslint-visitor-keys/2.1.0:
     resolution: {integrity: sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==}
@@ -8828,7 +8820,7 @@ packages:
 
   /fast-diff/1.2.0:
     resolution: {integrity: sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==}
-    dev: false
+    dev: true
 
   /fast-glob/3.2.11:
     resolution: {integrity: sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==}
@@ -9336,6 +9328,7 @@ packages:
 
   /get-tsconfig/4.4.0:
     resolution: {integrity: sha512-0Gdjo/9+FzsYhXCEFueo2aY1z1tpXrxWZzP7k8ul9qt1U5o8rYJwTJYmaeHdrVosYIVYkOy2iwCJ9FdpocJhPQ==}
+    dev: true
 
   /get-uri/2.0.4:
     resolution: {integrity: sha512-v7LT/s8kVjs+Tx0ykk1I+H/rbpzkHvuIq87LmeXptcf5sNWm9uQiwjNAt94SJPA1zOlCntmnOlJvVWKmzsxG8Q==}
@@ -9407,7 +9400,7 @@ packages:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
-    dev: false
+    dev: true
 
   /glob/7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
@@ -9480,6 +9473,7 @@ packages:
 
   /globalyzer/0.1.0:
     resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
+    dev: true
 
   /globby/10.0.0:
     resolution: {integrity: sha512-3LifW9M4joGZasyYPz2A1U74zbC/45fvpXUvO/9KbSa+VV0aGZarWkfdgKyR9sExNP0t0x0ss/UMJpNpcaTspw==}
@@ -9528,9 +9522,11 @@ packages:
       ignore: 5.2.4
       merge2: 1.4.1
       slash: 4.0.0
+    dev: true
 
   /globrex/0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
+    dev: true
 
   /gopd/1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
@@ -11547,6 +11543,7 @@ packages:
   /lz-string/1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
+    dev: true
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -13982,7 +13979,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       fast-diff: 1.2.0
-    dev: false
+    dev: true
 
   /prettier-plugin-packagejson/2.4.3_prettier@2.8.4:
     resolution: {integrity: sha512-kPeeviJiwy0BgOSk7No8NmzzXfW4R9FYWni6ziA5zc1kGVVrKnBzMZdu2TUhI+I7h8/5Htt3vARYOk7KKJTTNQ==}
@@ -14007,6 +14004,7 @@ packages:
     resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
 
   /pretty-bytes/5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
@@ -14879,6 +14877,7 @@ packages:
   /requireindex/1.2.0:
     resolution: {integrity: sha512-L9jEkOi3ASd9PYit2cwRfyppc9NoABujTP8/5gFcbERmo5jUoAKovIC3fsF17pkTnGsrByysqX+Kxd2OTNI1ww==}
     engines: {node: '>=0.10.5'}
+    dev: true
 
   /requires-port/1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
@@ -16266,6 +16265,7 @@ packages:
     dependencies:
       '@pkgr/utils': 2.3.1
       tslib: 2.5.0
+    dev: true
 
   /tailwindcss/3.2.7_postcss@8.4.21:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
@@ -16496,6 +16496,7 @@ packages:
     dependencies:
       globalyzer: 0.1.0
       globrex: 0.1.2
+    dev: true
 
   /tiny-invariant/1.0.6:
     resolution: {integrity: sha512-FOyLWWVjG+aC0UqG76V53yAWdXfH8bO6FNmyZOuUrzDzK8DI3/JRY25UD7+g49JWM1LXwymsKERB+DzI0dTEQA==}
