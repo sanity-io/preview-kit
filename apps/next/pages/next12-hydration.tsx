@@ -1,9 +1,9 @@
 import { PreviewSuspense } from '@sanity/preview-kit'
-import { Count, type CountProps, query } from 'apps/next/app/Count'
-import PreviewButton from 'apps/next/app/PreviewButton'
-import PreviewCount from 'apps/next/app/PreviewCount'
-import { createClient } from 'apps/next/app/sanity.client'
-import Container from 'apps/next/components/Container'
+import { Count, type CountProps, query } from 'app/Count'
+import PreviewButton from 'app/PreviewButton'
+import PreviewCount from 'app/PreviewCount'
+import { createClient } from 'app/sanity.client'
+import Container from 'components/Container'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 export const getStaticProps: GetStaticProps<{

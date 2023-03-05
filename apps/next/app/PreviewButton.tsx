@@ -1,4 +1,4 @@
-import type { PreviewSlug } from 'apps/next/app/config'
+import type { PreviewSlug } from 'app/config'
 
 export default function PreviewButton({
   preview,

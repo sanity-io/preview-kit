@@ -1,4 +1,4 @@
-import { previewSlug } from 'apps/next/app/config'
+import { previewSlug } from 'app/config'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default function preview(

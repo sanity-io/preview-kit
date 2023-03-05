@@ -1,15 +1,9 @@
 import PreviewButton from 'app/PreviewButton'
 import PreviewTemplate from 'app/PreviewTemplate'
 import { createClient } from 'app/sanity.client'
-import {
-  type FooterProps,
-  query as footerQuery,
-} from 'apps/next/components/Footer'
-import PageTemplate from 'apps/next/components/PageTemplate'
-import {
-  query as tableQuery,
-  type TableProps,
-} from 'apps/next/components/Table'
+import { type FooterProps, query as footerQuery } from 'components/Footer'
+import PageTemplate from 'components/PageTemplate'
+import { query as tableQuery, type TableProps } from 'components/Table'
 import { previewData } from 'next/headers'
 import { cache } from 'react'
 

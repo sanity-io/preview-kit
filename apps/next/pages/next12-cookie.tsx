@@ -1,13 +1,10 @@
-import PreviewButton from 'apps/next/app/PreviewButton'
-import PreviewTemplate from 'apps/next/app/PreviewTemplate'
-import { createClient } from 'apps/next/app/sanity.client'
-import Container from 'apps/next/components/Container'
-import { FooterProps, query as footerQuery } from 'apps/next/components/Footer'
-import PageTemplate from 'apps/next/components/PageTemplate'
-import {
-  query as tableQuery,
-  type TableProps,
-} from 'apps/next/components/Table'
+import PreviewButton from 'app/PreviewButton'
+import PreviewTemplate from 'app/PreviewTemplate'
+import { createClient } from 'app/sanity.client'
+import Container from 'components/Container'
+import { FooterProps, query as footerQuery } from 'components/Footer'
+import PageTemplate from 'components/PageTemplate'
+import { query as tableQuery, type TableProps } from 'components/Table'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 export const getStaticProps: GetStaticProps<{
