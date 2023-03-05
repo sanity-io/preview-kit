@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.3
       - uses: actions/setup-node@v3
         with:
           cache: pnpm
           node-version: lts/*
-      - run: corepack enable
       - run: pnpm install --prefer-online --dev --ignore-scripts
       - uses: actions/cache@v3
         with:

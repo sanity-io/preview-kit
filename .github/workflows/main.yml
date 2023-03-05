@@ -35,11 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.3
       - uses: actions/setup-node@v3
         with:
           cache: pnpm
           node-version: lts/*
-      - run: corepack enable && pnpm --version
       - run: pnpm install
       - run: pnpm lint
       - run: pnpm build
@@ -84,9 +84,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - run: corepack enable
+      - run: corepack enable && pnpm --version
       - run: pnpm install --loglevel=error
-      - run: pnpm test
+      - run: pnpm test -- --output-logs=new-only --continue --concurrency=1
       - run: pmpn test:esm
         # Only node 16 and later supports `assert {type: json}` used in the test.mjs unit
         if: matrix.node != '14'
@@ -102,11 +102,11 @@ jobs:
           # Need to fetch entire commit history to
           # analyze every commit since last release
           fetch-depth: 0
+      - uses: pnpm/action-setup@v2.2.3
       - uses: actions/setup-node@v3
         with:
           cache: pnpm
           node-version: lts/*
-      - run: corepack enable
       - run: pnpm install --loglevel=error
       - run: pnpm release
         # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state
