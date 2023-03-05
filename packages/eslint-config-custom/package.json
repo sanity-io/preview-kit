@@ -1,0 +1,21 @@
+{
+  "name": "eslint-config-custom",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@sanity/eslint-config-studio": "^2.0.1",
+    "@remix-run/eslint-config": "^1.13.0",
+    "eslint-config-next": "13.2.1",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-sanity": "^6.0.0",
+    "eslint-gitignore": "^0.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",    
+    "eslint-config-turbo": "^0.0.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

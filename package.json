@@ -1,7 +1,15 @@
 {
   "private": true,
   "packageManager": "pnpm@7.28.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --cache --write ."
+  },
   "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-custom": "workspace:*",
     "prettier": "^2.8.4",
     "prettier-plugin-packagejson": "^2.4.3",
     "turbo": "^1.8.3"

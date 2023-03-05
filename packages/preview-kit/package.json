@@ -48,9 +48,8 @@
     "src"
   ],
   "scripts": {
-    "prebuild": "npm run clean",
+    "prebuild": "rimraf dist",
     "build": "pkg build --strict && pkg --strict",
-    "clean": "rimraf dist",
     "dev": "next",
     "format": "npm run prettier && eslint --cache --fix .",
     "lint": "eslint --max-warnings 0 .",
@@ -69,22 +68,17 @@
     "suspend-react": "^0.0.9"
   },
   "devDependencies": {
-    "@remix-run/eslint-config": "^1.13.0",
+    
     "@sanity/client": "5.2.2",
-    "@sanity/eslint-config-studio": "^2.0.1",
+    
     "@sanity/pkg-utils": "^2.2.6",
     "@sanity/semantic-release-preset": "^4.0.0",
     "@types/node": "^18.14.2",
     "@types/react": "^18.0.28",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    
     "bulma": "^0.9.4",
     "eslint": "^8.35.0",
-    "eslint-config-next": "13.2.1",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-config-sanity": "^6.0.0",
-    "eslint-gitignore": "^0.1.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
+    
     "groq": "^3.5.0",
     "groqd": "^0.9.0",
     "next": "13.2.1",
