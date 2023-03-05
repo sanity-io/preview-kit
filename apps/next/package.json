@@ -2,107 +2,28 @@
   "name": "next",
   "version": "1.0.0",
   "private": true,
-  "keywords": [
-    "sanity",
-    "sanity.io",
-    "next.js",
-    "studio",
-    "react",
-    "preview",
-    "groq",
-    "live"
-  ],
-  "homepage": "https://github.com/sanity-io/preview-kit#readme",
-  "bugs": {
-    "url": "https://github.com/sanity-io/preview-kit/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/sanity-io/preview-kit.git",
-    "directory": "packages/preview-kit"
-  },
-  "license": "MIT",
-  "author": "Sanity.io <hello@sanity.io>",
-  "sideEffects": false,
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "source": "./src/index.ts",
-      "require": "./dist/index.cjs",
-      "node": {
-        "import": "./dist/index.cjs.js",
-        "require": "./dist/index.cjs"
-      },
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "pkg build --strict && pkg --strict",
+    "build": "next build",
     "dev": "next",
-    "format": "npm run prettier && eslint --cache --fix .",
-    "lint": "eslint --max-warnings 0 .",
-    "prepublishOnly": "npm run build",
-    "release": "semantic-release || semantic-release --dry-run --debug",
-    "test": "node test.mjs && node test.cjs"
+    "lint": "next lint"
   },
-  "browserslist": [
-    "> 0.2% and supports es6-module and supports es6-module-dynamic-import and not dead and not IE 11",
-    "maintained node versions"
-  ],
   "dependencies": {
     "@sanity/preview-kit": "workspace:*",
-    "@sanity/groq-store": "^2.0.7",
-    "@types/event-source-polyfill": "^1.0.1",
-    "event-source-polyfill": "^1.0.31",
-    "suspend-react": "^0.0.9"
-  },
-  "devDependencies": {
-    "@remix-run/eslint-config": "^1.13.0",
-    "@sanity/client": "5.2.2",
-    "@sanity/eslint-config-studio": "^2.0.1",
-    "@sanity/pkg-utils": "^2.2.6",
-    "@sanity/semantic-release-preset": "^4.0.0",
-    "@types/node": "^18.14.2",
-    "@types/react": "^18.0.28",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "bulma": "^0.9.4",
-    "eslint": "^8.35.0",
-    "eslint-config-next": "13.2.1",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-config-sanity": "^6.0.0",
-    "eslint-gitignore": "^0.1.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
     "groq": "^3.5.0",
-    "groqd": "^0.9.0",
-    "next": "13.2.1",
-    "prettier": "^2.8.4",
-    "prettier-plugin-packagejson": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanity": "^3.5.0",
-    "semantic-release": "^20.1.1",
-    "typescript": "^4.9.5"
+    "groqd": "^0.9.0",
+    "next": "^13.2.1",
+    "bulma": "^0.9.4",
+    "@sanity/client": "5.2.2"
   },
-  "peerDependencies": {
-    "react": "^18"
+  "devDependencies": {
+    "@types/node": "^18.14.2",
+    "@types/react": "^18.0.28",
+    "typescript": "^4.9.5"
   },
   "engines": {
     "node": ">=14"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

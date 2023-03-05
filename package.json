@@ -2,6 +2,9 @@
   "private": true,
   "scripts": {
     "bootstrap:cra": "pnpm --package vercel -c dlx 'vercel link apps/cra && vercel env pull apps/cra/.env.local'",
+    "bootstrap:next": "pnpm --package vercel -c dlx 'vercel link apps/next && vercel env pull apps/next/.env.local'",
+    "bootstrap:remix": "pnpm --package vercel -c dlx 'vercel link apps/remix && vercel env pull apps/remix/.env.local'",
+    "bootstrap:studio": "pnpm --package vercel -c dlx 'vercel link apps/studio && vercel env pull apps/studio/.env.local'",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "format": "prettier --cache --write .",

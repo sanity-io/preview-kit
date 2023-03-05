@@ -28,7 +28,7 @@ root.render(
       </Suspense>
       <section className="section">
         <a
-          href="https://preview-kit.sanity.build/"
+          href={process.env.REACT_APP_BACK_URL}
           className="button is-light is-link"
         >
           Go back
