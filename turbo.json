@@ -8,6 +8,9 @@
       "dependsOn": ["^build"]
     },
     "test": {
+      "cache": false
+    },
+    "test:esm": {
       "dependsOn": ["build"],
       "cache": false
     },

@@ -12,7 +12,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "format": "prettier --cache --write .",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:esm": "turbo run test:esm"
   },
   "devDependencies": {
     "prettier": "^2.8.4",
