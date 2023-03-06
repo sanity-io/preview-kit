@@ -12,6 +12,10 @@
     "groq",
     "live"
   ],
+  "prettier": {
+    "semi": false,
+  "singleQuote": true
+  },
   "homepage": "https://github.com/sanity-io/preview-kit#readme",
   "bugs": {
     "url": "https://github.com/sanity-io/preview-kit/issues"
@@ -67,13 +71,13 @@
   },
   "devDependencies": {
     "@sanity/client": "5.2.2",
+    "@next/eslint-plugin-next": "^13.2.3",
     "@sanity/pkg-utils": "^2.2.6",
     "@sanity/semantic-release-preset": "^4.0.0",
     "@types/node": "^18.14.6",
     "@types/react": "^18.0.28",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "eslint": "^8.35.0",
-    "eslint-config-next": "13.2.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-sanity": "^6.0.0",
     "eslint-gitignore": "^0.1.0",
