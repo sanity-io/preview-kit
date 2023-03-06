@@ -5,6 +5,7 @@ run-name: >-
   ${{
     inputs.release && inputs.test && 'CI ➤ Test ➤ Release' ||
     inputs.test && 'CI ➤ Test' ||
+    inputs.release && 'CI ➤ Release' ||
     ''
   }}
 
@@ -110,7 +111,7 @@ jobs:
           cache: pnpm
           node-version: lts/*
       - run: pnpm install --loglevel=error
-      - run: pnpm release
+      - run: pnpm run --resursive release
         # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state
         # e.g. git tags were pushed but it exited before `npm publish`
         if: always()
