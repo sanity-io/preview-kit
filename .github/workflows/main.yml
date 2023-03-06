@@ -45,6 +45,7 @@ jobs:
         with:
           cache: pnpm
           node-version: lts/*
+      - run: corepack enable && pnpm --version
       - run: pnpm install
       - run: pnpm lint
       - run: pnpm build
@@ -90,7 +91,7 @@ jobs:
       - run: corepack enable && pnpm --version
       - run: pnpm install --loglevel=error
       - run: pnpm test -- --output-logs=new-only --continue --concurrency=1
-      - run: pmpn test:esm
+      - run: pnpm test:esm
         # Only node 16 and later supports `assert {type: json}` used in the test.mjs unit
         if: matrix.node != '14'
 
@@ -110,6 +111,7 @@ jobs:
         with:
           cache: pnpm
           node-version: lts/*
+      - run: corepack enable && pnpm --version
       - run: pnpm install --loglevel=error
       - run: pnpm run --resursive release
         # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state

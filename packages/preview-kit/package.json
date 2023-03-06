@@ -57,6 +57,7 @@
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "npm run build",
     "release": "semantic-release || semantic-release --dry-run --debug",
+    "pretest:esm": "pnpm run build",
     "test:esm": "node test.mjs && node test.cjs",
     "test": "echo todo"
   },
