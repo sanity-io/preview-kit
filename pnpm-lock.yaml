@@ -21,7 +21,7 @@ importers:
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
       bulma: ^0.9.4
-      groq: ^3.5.0
+      groq: ^3.5.1
       react: ^18.2.0
       react-dom: ^18.2.0
       react-scripts: ^5.0.1
@@ -51,8 +51,8 @@ importers:
       '@types/react': ^18.0.28
       bulma: ^0.9.4
       eslint-config-next: ^13.2.3
-      groq: ^3.5.0
-      groqd: ^0.9.0
+      groq: ^3.5.1
+      groqd: ^0.9.1
       next: ^13.2.3
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -74,12 +74,12 @@ importers:
 
   apps/remix:
     specifiers:
-      '@remix-run/dev': ^1.13.0
-      '@remix-run/eslint-config': ^1.13.0
-      '@remix-run/node': ^1.13.0
-      '@remix-run/react': ^1.13.0
-      '@remix-run/serve': ^1.13.0
-      '@remix-run/vercel': ^1.13.0
+      '@remix-run/dev': ^1.14.0
+      '@remix-run/eslint-config': ^1.14.0
+      '@remix-run/node': ^1.14.0
+      '@remix-run/react': ^1.14.0
+      '@remix-run/serve': ^1.14.0
+      '@remix-run/vercel': ^1.14.0
       '@sanity/client': 5.2.2
       '@sanity/preview-kit': workspace:*
       '@types/react': ^18.0.28
@@ -87,8 +87,8 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.54.0
       bulma: ^0.9.4
       eslint: ^8.35.0
-      groq: ^3.5.0
-      groqd: ^0.9.0
+      groq: ^3.5.1
+      groqd: ^0.9.1
       react: ^18.2.0
       react-dom: ^18.2.0
       remix-utils: ^6.0.0
@@ -119,13 +119,13 @@ importers:
     specifiers:
       '@sanity/eslint-config-studio': ^2.0.1
       '@sanity/preview-kit': workspace:*
-      '@sanity/vision': ^3.5.0
+      '@sanity/vision': ^3.5.1
       eslint: ^8.35.0
       react: ^18.2.0
       react-dom: ^18.2.0
       react-scripts: ^5.0.1
-      sanity: ^3.5.0
-      styled-components: ^5.3.6
+      sanity: ^3.5.1
+      styled-components: ^5.3.8
       typescript: ^4.9.5
       webpack: ^5.75.0
     dependencies:
@@ -9394,6 +9394,18 @@ packages:
         optional: true
     dev: false
 
+  /follow-redirects/1.15.2_debug@4.3.4:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
+    dev: false
+
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -9642,7 +9654,7 @@ packages:
     dependencies:
       debug: 4.3.4
       decompress-response: 7.0.0
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
       into-stream: 6.0.0
       is-plain-object: 5.0.0
       is-retry-allowed: 2.2.0
