@@ -44,7 +44,7 @@ jobs:
         with:
           cache: pnpm
           node-version: lts/*
-      - run: pnpm install --re
+      - run: pnpm install
       - run: pnpm lint
       - run: pnpm build
         if: github.event.inputs.test != 'false'
