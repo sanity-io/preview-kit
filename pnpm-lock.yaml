@@ -171,7 +171,7 @@ importers:
       suspend-react: 0.0.9_react@18.2.0
     devDependencies:
       '@next/eslint-plugin-next': 13.2.3
-      '@sanity/pkg-utils': 2.2.6_alpjt73dvgv6kni625hu7f2l4m
+      '@sanity/pkg-utils': 2.2.7_alpjt73dvgv6kni625hu7f2l4m
       '@sanity/semantic-release-preset': 4.0.0_semantic-release@20.1.1
       '@types/node': 18.14.6
       '@types/react': 18.0.28
@@ -1876,6 +1876,7 @@ packages:
     cpu: [arm]
     os: [android]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/android-arm/0.16.3:
@@ -1902,6 +1903,7 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/android-arm64/0.16.3:
@@ -1928,6 +1930,7 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/android-x64/0.16.3:
@@ -1954,6 +1957,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/darwin-arm64/0.16.3:
@@ -1980,6 +1984,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/darwin-x64/0.16.3:
@@ -2006,6 +2011,7 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/freebsd-arm64/0.16.3:
@@ -2032,6 +2038,7 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/freebsd-x64/0.16.3:
@@ -2058,6 +2065,7 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-arm/0.16.3:
@@ -2084,6 +2092,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-arm64/0.16.3:
@@ -2110,6 +2119,7 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-ia32/0.16.3:
@@ -2136,6 +2146,7 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-loong64/0.16.3:
@@ -2162,6 +2173,7 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-mips64el/0.16.3:
@@ -2188,6 +2200,7 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-ppc64/0.16.3:
@@ -2214,6 +2227,7 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-riscv64/0.16.3:
@@ -2240,6 +2254,7 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-s390x/0.16.3:
@@ -2266,6 +2281,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/linux-x64/0.16.3:
@@ -2292,6 +2308,7 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/netbsd-x64/0.16.3:
@@ -2318,6 +2335,7 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/openbsd-x64/0.16.3:
@@ -2344,6 +2362,7 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/sunos-x64/0.16.3:
@@ -2370,6 +2389,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/win32-arm64/0.16.3:
@@ -2396,6 +2416,7 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/win32-ia32/0.16.3:
@@ -2422,6 +2443,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: false
     optional: true
 
   /@esbuild/win32-x64/0.16.3:
@@ -3276,6 +3298,11 @@ packages:
       webpack-dev-server: 4.11.1_webpack@5.75.0
     dev: false
 
+  /@pnpm/config.env-replace/1.0.0:
+    resolution: {integrity: sha512-ZVPVDi1E8oeXlYqkGRtX0CkzLTwE2zt62bjWaWKaAvI8NZqHzlMvGeSNDpW+JB3+aKanYb4UETJOF1/CxGPemA==}
+    engines: {node: '>=12.22.0'}
+    dev: true
+
   /@pnpm/network.ca-file/1.0.2:
     resolution: {integrity: sha512-YcPQ8a0jwYU9bTdJDpXjMi7Brhkr1mXsXrUJvjqM2mQDgkRiz8jFaQGOdaLxgjtUfQgZhKy/O3cG/YwmgKaxLA==}
     engines: {node: '>=12.22.0'}
@@ -3283,10 +3310,11 @@ packages:
       graceful-fs: 4.2.10
     dev: true
 
-  /@pnpm/npm-conf/1.0.5:
-    resolution: {integrity: sha512-hD8ml183638O3R6/Txrh0L8VzGOrFXgRtRDG4qQC4tONdZ5Z1M+tlUUDUvrjYdmK6G+JTBTeaCLMna11cXzi8A==}
+  /@pnpm/npm-conf/2.1.0:
+    resolution: {integrity: sha512-Oe6ntvgsMTE3hDIqy6sajqHF+MnzJrOF06qC2QSiUEybLL7cp6tjoKUa32gpd9+KPVl4QyMs3E3nsXrx/Vdnlw==}
     engines: {node: '>=12'}
     dependencies:
+      '@pnpm/config.env-replace': 1.0.0
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
     dev: true
@@ -3991,8 +4019,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/pkg-utils/2.2.6_alpjt73dvgv6kni625hu7f2l4m:
-    resolution: {integrity: sha512-bnO/m6NlRygYr6LKqjyrkrVRF1eCcy0gyaFrsFhETTBz02uLiJmwhj1+EHY06P0sdO49P+Rv8seuDwTKz3EqMA==}
+  /@sanity/pkg-utils/2.2.7_alpjt73dvgv6kni625hu7f2l4m:
+    resolution: {integrity: sha512-WuKxymlydx+IxtTKcUeeTHVfv0AsarUkhIBTSVm+b/YmNJVcudFok93lkx3sjxZDOVoTK++tZ53mYfquPAa5Mg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     peerDependencies:
@@ -4325,7 +4353,7 @@ packages:
       npm: 8.19.4
       rc: 1.2.8
       read-pkg: 5.2.0
-      registry-auth-token: 5.0.1
+      registry-auth-token: 5.0.2
       semantic-release: 20.1.1
       semver: 7.3.8
       tempy: 1.0.1
@@ -4659,7 +4687,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.21.1
-      '@types/estree': 1.0.0
+      '@types/estree': 0.0.51
     dev: false
 
   /@types/eslint/8.21.1:
@@ -5164,7 +5192,7 @@ packages:
       '@babel/plugin-syntax-typescript': 7.20.0_@babel+core@7.21.0
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.2
       '@vanilla-extract/css': 1.9.5
-      esbuild: 0.16.17
+      esbuild: 0.16.3
       eval: 0.1.6
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -8239,6 +8267,7 @@ packages:
       '@esbuild/win32-arm64': 0.16.17
       '@esbuild/win32-ia32': 0.16.17
       '@esbuild/win32-x64': 0.16.17
+    dev: false
 
   /esbuild/0.16.3:
     resolution: {integrity: sha512-71f7EjPWTiSguen8X/kxEpkAS7BFHwtQKisCDDV3Y4GLGWBaoSCyD5uXkaUew6JDzA9FEN1W23mdnSwW9kqCeg==}
@@ -9868,7 +9897,7 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.12
+      fast-glob: 3.2.11
       glob: 7.2.3
       ignore: 5.2.4
       merge2: 1.4.1
@@ -15262,11 +15291,11 @@ packages:
       unicode-match-property-ecmascript: 2.0.0
       unicode-match-property-value-ecmascript: 2.1.0
 
-  /registry-auth-token/5.0.1:
-    resolution: {integrity: sha512-UfxVOj8seK1yaIOiieV4FIP01vfBDLsY0H9sQzi9EbbUdJiuuBjJgLa1DpImXMNPnVkBD4eVxTEXcrZA6kfpJA==}
+  /registry-auth-token/5.0.2:
+    resolution: {integrity: sha512-o/3ikDxtXaA59BmZuZrJZDJv8NMDGSj+6j6XaeBmHw8eY1i1qd9+6H+LjVvQXx3HN6aRCGa1cUdJ9RaJZUugnQ==}
     engines: {node: '>=14'}
     dependencies:
-      '@pnpm/npm-conf': 1.0.5
+      '@pnpm/npm-conf': 2.1.0
     dev: true
 
   /regjsparser/0.9.1:
