@@ -57,7 +57,8 @@
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "npm run build",
     "release": "semantic-release || semantic-release --dry-run --debug",
-    "test:esm": "node test.mjs && node test.cjs"
+    "test:esm": "node test.mjs && node test.cjs",
+    "test": "echo todo"
   },
   "browserslist": [
     "> 0.2% and supports es6-module and supports es6-module-dynamic-import and not dead and not IE 11",
