@@ -145,7 +145,6 @@ importers:
   packages/preview-kit:
     specifiers:
       '@next/eslint-plugin-next': ^13.2.3
-      '@sanity/client': 5.2.2
       '@sanity/groq-store': ^2.0.7
       '@sanity/pkg-utils': ^2.2.6
       '@sanity/semantic-release-preset': ^4.0.0
@@ -160,10 +159,7 @@ importers:
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-simple-import-sort: ^10.0.0
       event-source-polyfill: ^1.0.31
-      groq: ^3.5.0
-      groqd: ^0.9.0
       react: ^18.2.0
-      react-dom: ^18.2.0
       rimraf: ^4.3.0
       semantic-release: ^20.1.1
       suspend-react: ^0.0.9
@@ -175,7 +171,6 @@ importers:
       suspend-react: 0.0.9_react@18.2.0
     devDependencies:
       '@next/eslint-plugin-next': 13.2.3
-      '@sanity/client': 5.2.2
       '@sanity/pkg-utils': 2.2.6_alpjt73dvgv6kni625hu7f2l4m
       '@sanity/semantic-release-preset': 4.0.0_semantic-release@20.1.1
       '@types/node': 18.14.6
@@ -187,10 +182,7 @@ importers:
       eslint-gitignore: 0.1.0_eslint@8.35.0
       eslint-plugin-prettier: 4.2.1_u2zha4kiojzs42thzpgwygphmy
       eslint-plugin-simple-import-sort: 10.0.0_eslint@8.35.0
-      groq: 3.5.1
-      groqd: 0.9.1
       react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
       rimraf: 4.3.0
       semantic-release: 20.1.1
       typescript: 4.9.5
@@ -3851,6 +3843,7 @@ packages:
       rxjs: 7.8.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@sanity/color/2.2.3:
     resolution: {integrity: sha512-b4e6JAHHa/tKpAnLOAHaJyNEHO1l/g2oecN22FWkhTAuKCINPNhPeoeUn5rK5ngKzbXrvynBd/h2849lld3FRg==}
@@ -3896,6 +3889,7 @@ packages:
     dependencies:
       event-source-polyfill: 1.0.25
       eventsource: 2.0.2
+    dev: false
 
   /@sanity/export/3.5.1:
     resolution: {integrity: sha512-aTjkYTzKKfr36tjbPQHSIpZ4Z3Y081sIR/bmeBJySdQv8WbnDGhPBE0dGOeIiJOde4rJVI15aETQUgsUo0aBXQ==}
@@ -7457,6 +7451,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       mimic-response: 3.1.0
+    dev: false
 
   /dedent/0.7.0:
     resolution: {integrity: sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==}
@@ -9005,6 +9000,7 @@ packages:
 
   /event-source-polyfill/1.0.25:
     resolution: {integrity: sha512-hQxu6sN1Eq4JjoI7ITdQeGGUN193A2ra83qC0Ltm9I2UJVAten3OFVN6k5RX4YWeCS0BoC8xg/5czOCIHVosQg==}
+    dev: false
 
   /event-source-polyfill/1.0.31:
     resolution: {integrity: sha512-4IJSItgS/41IxN5UVAVuAyczwZF7ZIEsM1XAoUzIHA6A+xzusEZUutdXz2Nr+MQPLxfTiCvqE79/C8HT8fKFvA==}
@@ -9031,6 +9027,7 @@ packages:
   /eventsource/2.0.2:
     resolution: {integrity: sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA==}
     engines: {node: '>=12.0.0'}
+    dev: false
 
   /execa/2.1.0:
     resolution: {integrity: sha512-Y/URAVapfbYy2Xp/gb6A0E7iR8xeqOCXsuuaoMn7A5PzrXUK84E1gyiEfq0wQd/GHA6GsoHWwhNq8anb0mleIw==}
@@ -9395,6 +9392,7 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -9654,6 +9652,7 @@ packages:
       tunnel-agent: 0.6.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /get-own-enumerable-property-symbols/3.0.2:
     resolution: {integrity: sha512-I0UBV/XOz1XkIJHEUDMZAbzCThU/H8DxmSfmdGcKPnVhu2VfFqr34jr9777IyaTYvxjedWhqVIilEDsCdP5G6g==}
@@ -9944,12 +9943,14 @@ packages:
   /groq/3.5.1:
     resolution: {integrity: sha512-v+bbZzQj0fEF/7jx+hBk49w9mSf/38SfJHNAEJ6rHM8bKS+31a8toIziH/KSV0ajr+ocdLCJkUmVzTgEmx1otw==}
     engines: {node: '>=14'}
+    dev: false
 
   /groqd/0.9.1:
     resolution: {integrity: sha512-v7nqUO6T27R0oI8MK0EGmqMyDhrwGmnxWtBsIzlA+C3Oajj8saQGkfd1pcuOf3VWCr8kwpQu+u8OE/LXr8h6qg==}
     engines: {node: '>= 14'}
     dependencies:
       zod: 3.21.0
+    dev: false
 
   /gunzip-maybe/1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -10744,6 +10745,7 @@ packages:
   /is-retry-allowed/2.2.0:
     resolution: {integrity: sha512-XVm7LOeLpTW4jV19QSH38vkswxoLud8sQ57YwJVTPWdiaI9I8keEhGFpBlslyVsgdQy4Opg8QOLb8YRgsyZiQg==}
     engines: {node: '>=10'}
+    dev: false
 
   /is-root/2.1.0:
     resolution: {integrity: sha512-AGOriNp96vNBd3HtU+RzFEc75FfR5ymiYv8E553I71SCeXBiMsVDUtdio1OEFvrPyLIQ9tVR5RxXIFe5PUFjMg==}
@@ -13409,6 +13411,7 @@ packages:
 
   /parse-headers/2.0.5:
     resolution: {integrity: sha512-ft3iAoLOB/MlwbNXgzy43SWGP6sQki2jQvAyBg/zDFAgr9bfNWZIUj42Kw2eJIl8kEi4PbgE6U1Zau/HwI75HA==}
+    dev: false
 
   /parse-json/4.0.0:
     resolution: {integrity: sha512-aOIos8bujGN93/8Ox/jPLh7RwVnPEysynVFE+fQZyg6jKELEHwzgKdLRFHUgXJL6kylijVSBC4BvN9OmsB48Rw==}
@@ -14517,6 +14520,7 @@ packages:
     dependencies:
       speedometer: 1.0.0
       through2: 2.0.5
+    dev: false
 
   /promise-inflight/1.0.1:
     resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
@@ -14767,6 +14771,7 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
 
   /react-error-overlay/6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
@@ -15768,6 +15773,7 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
 
   /schema-dts/1.1.2_typescript@4.9.5:
     resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
@@ -16231,6 +16237,7 @@ packages:
 
   /speedometer/1.0.0:
     resolution: {integrity: sha512-lgxErLl/7A5+vgIIXsh9MbeukOaCb2axgQ+bKCdIE+ibNT4XNYGNCR1qFEGq6F+YDASXK3Fh/c5FgtZchFolxw==}
+    dev: false
 
   /split/1.0.1:
     resolution: {integrity: sha512-mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==}
@@ -17046,6 +17053,7 @@ packages:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
     dependencies:
       safe-buffer: 5.2.1
+    dev: false
 
   /turbo-darwin-64/1.8.3:
     resolution: {integrity: sha512-bLM084Wr17VAAY/EvCWj7+OwYHvI9s/NdsvlqGp8iT5HEYVimcornCHespgJS/yvZDfC+mX9EQkn3V2JmYgGGw==}
