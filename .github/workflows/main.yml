@@ -33,6 +33,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+       TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+       TURBO_TEAM: sanity-io
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.3
@@ -40,7 +44,7 @@ jobs:
         with:
           cache: pnpm
           node-version: lts/*
-      - run: pnpm install
+      - run: pnpm install --re
       - run: pnpm lint
       - run: pnpm build
         if: github.event.inputs.test != 'false'
