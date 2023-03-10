@@ -144,7 +144,7 @@ importers:
 
   packages/preview-kit:
     specifiers:
-      '@next/eslint-plugin-next': ^13.2.3
+      '@next/eslint-plugin-next': ^13.2.4
       '@sanity/groq-store': ^2.0.8
       '@sanity/pkg-utils': ^2.2.8
       '@sanity/semantic-release-preset': ^4.0.0
@@ -170,7 +170,7 @@ importers:
       event-source-polyfill: 1.0.31
       suspend-react: 0.0.9_react@18.2.0
     devDependencies:
-      '@next/eslint-plugin-next': 13.2.3
+      '@next/eslint-plugin-next': 13.2.4
       '@sanity/pkg-utils': 2.2.8_alpjt73dvgv6kni625hu7f2l4m
       '@sanity/semantic-release-preset': 4.0.0_semantic-release@20.1.1
       '@types/node': 18.14.6
@@ -2963,6 +2963,12 @@ packages:
 
   /@next/eslint-plugin-next/13.2.3:
     resolution: {integrity: sha512-QmMPItnU7VeojI1KnuwL9SLFWEwmaNHNlnOGpoTwdLoSiP9sc8KYiAHWEc4/44L+cAdCxcZYvn7frcRNP5l84Q==}
+    dependencies:
+      glob: 7.1.7
+    dev: true
+
+  /@next/eslint-plugin-next/13.2.4:
+    resolution: {integrity: sha512-ck1lI+7r1mMJpqLNa3LJ5pxCfOB1lfJncKmRJeJxcJqcngaFwylreLP7da6Rrjr6u2gVRTfmnkSkjc80IiQCwQ==}
     dependencies:
       glob: 7.1.7
     dev: true
