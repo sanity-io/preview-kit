@@ -149,7 +149,7 @@ importers:
       '@sanity/pkg-utils': ^2.2.10
       '@sanity/semantic-release-preset': ^4.0.0
       '@types/event-source-polyfill': ^1.0.1
-      '@types/node': ^18.14.6
+      '@types/node': ^18.15.3
       '@types/react': ^18.0.28
       '@typescript-eslint/eslint-plugin': ^5.55.0
       eslint: ^8.36.0
@@ -171,9 +171,9 @@ importers:
       suspend-react: 0.0.9_react@18.2.0
     devDependencies:
       '@next/eslint-plugin-next': 13.2.4
-      '@sanity/pkg-utils': 2.2.10_mubmc4jbdynqubpxxo2ltzd5ve
+      '@sanity/pkg-utils': 2.2.10_cbfmry4sbbh4vatmdrsmatfg5a
       '@sanity/semantic-release-preset': 4.0.0_semantic-release@20.1.1
-      '@types/node': 18.15.2
+      '@types/node': 18.15.3
       '@types/react': 18.0.28
       '@typescript-eslint/eslint-plugin': 5.55.0_342y7v4tc7ytrrysmit6jo4wri
       eslint: 8.36.0
@@ -3056,24 +3056,24 @@ packages:
       - supports-color
     dev: true
 
-  /@microsoft/api-extractor-model/7.26.4_@types+node@18.15.2:
+  /@microsoft/api-extractor-model/7.26.4_@types+node@18.15.3:
     resolution: {integrity: sha512-PDCgCzXDo+SLY5bsfl4bS7hxaeEtnXj7XtuzEE+BtALp7B5mK/NrS2kHWU69pohgsRmEALycQdaQPXoyT2i5MQ==}
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.55.2_@types+node@18.15.2
+      '@rushstack/node-core-library': 3.55.2_@types+node@18.15.3
     transitivePeerDependencies:
       - '@types/node'
     dev: true
 
-  /@microsoft/api-extractor/7.34.4_@types+node@18.15.2:
+  /@microsoft/api-extractor/7.34.4_@types+node@18.15.3:
     resolution: {integrity: sha512-HOdcci2nT40ejhwPC3Xja9G+WSJmWhCUKKryRfQYsmE9cD+pxmBaKBKCbuS9jUcl6bLLb4Gz+h7xEN5r0QiXnQ==}
     hasBin: true
     dependencies:
-      '@microsoft/api-extractor-model': 7.26.4_@types+node@18.15.2
+      '@microsoft/api-extractor-model': 7.26.4_@types+node@18.15.3
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.55.2_@types+node@18.15.2
+      '@rushstack/node-core-library': 3.55.2_@types+node@18.15.3
       '@rushstack/rig-package': 0.3.18
       '@rushstack/ts-command-line': 4.13.2
       colors: 1.2.5
@@ -3984,7 +3984,7 @@ packages:
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
 
-  /@rushstack/node-core-library/3.55.2_@types+node@18.15.2:
+  /@rushstack/node-core-library/3.55.2_@types+node@18.15.3:
     resolution: {integrity: sha512-SaLe/x/Q/uBVdNFK5V1xXvsVps0y7h1sN7aSJllQyFbugyOaxhNRF25bwEDnicARNEjJw0pk0lYnJQ9Kr6ev0A==}
     peerDependencies:
       '@types/node': '*'
@@ -3992,7 +3992,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 18.15.2
+      '@types/node': 18.15.3
       colors: 1.2.5
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -4209,7 +4209,7 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/pkg-utils/2.2.10_mubmc4jbdynqubpxxo2ltzd5ve:
+  /@sanity/pkg-utils/2.2.10_cbfmry4sbbh4vatmdrsmatfg5a:
     resolution: {integrity: sha512-IpRjn7Y9jOgBCGPeWsV//V26/DbS7od47a/6tJ2JBSp1WUpUIV1de5liRD0ObMG1D9f6fEvli5NkPA3p1Dk5qw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -4219,7 +4219,7 @@ packages:
       '@babel/core': 7.21.0
       '@babel/preset-env': 7.20.2_@babel+core@7.21.0
       '@babel/types': 7.21.2
-      '@microsoft/api-extractor': 7.34.4_@types+node@18.15.2
+      '@microsoft/api-extractor': 7.34.4_@types+node@18.15.3
       '@microsoft/tsdoc-config': 0.16.2
       '@rollup/plugin-alias': 4.0.3_rollup@3.19.1
       '@rollup/plugin-babel': 6.0.3_jevk4yzkg77j7462xtn3soil3y
