@@ -55,7 +55,7 @@
     "prebuild": "rimraf dist",
     "build": "pkg build --strict && pkg --strict",
     "lint": "eslint --max-warnings 0 .",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm run build",
     "release": "semantic-release || semantic-release --dry-run --debug",
     "pretest:esm": "pnpm run build",
     "test:esm": "node test.mjs && node test.cjs",
