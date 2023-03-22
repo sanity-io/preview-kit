@@ -145,7 +145,7 @@ importers:
   packages/preview-kit:
     specifiers:
       '@next/eslint-plugin-next': ^13.2.4
-      '@sanity/groq-store': 2.0.9
+      '@sanity/groq-store': 2.1.0
       '@sanity/pkg-utils': ^2.2.13
       '@sanity/semantic-release-preset': ^4.0.1
       '@types/event-source-polyfill': '1'
@@ -165,7 +165,7 @@ importers:
       suspend-react: 0.0.9
       typescript: ^5.0.2
     dependencies:
-      '@sanity/groq-store': 2.0.9
+      '@sanity/groq-store': 2.1.0
       '@types/event-source-polyfill': 1.0.1
       event-source-polyfill: 1.0.31
       suspend-react: 0.0.9_react@18.2.0
@@ -4108,6 +4108,15 @@ packages:
       eventsource: 2.0.2
     dev: false
 
+  /@sanity/eventsource/5.0.0:
+    resolution: {integrity: sha512-0ewT+BDzfiamHwitUfRcwsl/RREHjWv6VNZvQ8Q4OnnNKXfEEGXbWmqzof0okOTkp4XELgyliht4Qj28o9AU2g==}
+    dependencies:
+      '@types/event-source-polyfill': 1.0.1
+      '@types/eventsource': 1.1.11
+      event-source-polyfill: 1.0.31
+      eventsource: 2.0.2
+    dev: false
+
   /@sanity/export/3.7.1:
     resolution: {integrity: sha512-334+fabfdXgkIBDEx/g0lNQcRpwKJDoNO7DB53S9n+bP0i5i2NlM2PllYz6lShbbWs1i54gXTOI7B5/k3OR0pA==}
     engines: {node: '>=14.18.0'}
@@ -4128,12 +4137,12 @@ packages:
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
     dev: false
 
-  /@sanity/groq-store/2.0.9:
-    resolution: {integrity: sha512-q6n0p04oxiY+Q2Objgmyvy1yJH1Y4OM0G9q7XLv4ZIvNiYVLKYo5RUF4vUL6wFSi8IE5N1eM7P0DWj3u/86iJA==}
+  /@sanity/groq-store/2.1.0:
+    resolution: {integrity: sha512-GYWtsi0TyTOXiFbGmlPccKE/UsFom9byU8DpPsshNpD0z2MNy19/L0lAaV5/JdUgb8uu84sEKYMPumkRG94lhw==}
     engines: {node: '>=14.18'}
     dependencies:
+      '@sanity/eventsource': 5.0.0
       '@sanity/types': 3.7.1
-      eventsource: 2.0.2
       fast-deep-equal: 3.1.3
       groq: 3.7.1
       groq-js: 1.1.8
@@ -4915,6 +4924,10 @@ packages:
 
   /@types/event-source-polyfill/1.0.1:
     resolution: {integrity: sha512-dls8b0lUgJ/miRApF0efboQ9QZnAm7ofTO6P1ILu8bRPxUFKDxVwFf8+TeuuErmNui6blpltyr7+eV72dbQXlQ==}
+    dev: false
+
+  /@types/eventsource/1.1.11:
+    resolution: {integrity: sha512-L7wLDZlWm5mROzv87W0ofIYeQP5K2UhoFnnUyEWLKM6UBb0ZNRgAqp98qE5DkgfBXdWfc2kYmw9KZm4NLjRbsw==}
     dev: false
 
   /@types/express-serve-static-core/4.17.33:
