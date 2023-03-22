@@ -145,7 +145,7 @@ importers:
   packages/preview-kit:
     specifiers:
       '@next/eslint-plugin-next': ^13.2.4
-      '@sanity/groq-store': 2.0.8
+      '@sanity/groq-store': 2.0.9
       '@sanity/pkg-utils': ^2.2.13
       '@sanity/semantic-release-preset': ^4.0.1
       '@types/event-source-polyfill': '1'
@@ -165,7 +165,7 @@ importers:
       suspend-react: 0.0.9
       typescript: ^5.0.2
     dependencies:
-      '@sanity/groq-store': 2.0.8
+      '@sanity/groq-store': 2.0.9
       '@types/event-source-polyfill': 1.0.1
       event-source-polyfill: 1.0.31
       suspend-react: 0.0.9_react@18.2.0
@@ -4128,8 +4128,8 @@ packages:
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
     dev: false
 
-  /@sanity/groq-store/2.0.8:
-    resolution: {integrity: sha512-k/fgsSHGPiCCnIGMRv0SOPWl2k2q2o1GJEgumnvyr0LwEgfymX05qoHmtT66nvfUpcnL5Qf3KOBWO3PAwYK4og==}
+  /@sanity/groq-store/2.0.9:
+    resolution: {integrity: sha512-q6n0p04oxiY+Q2Objgmyvy1yJH1Y4OM0G9q7XLv4ZIvNiYVLKYo5RUF4vUL6wFSi8IE5N1eM7P0DWj3u/86iJA==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/types': 3.7.1
