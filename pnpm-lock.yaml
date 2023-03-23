@@ -16,7 +16,7 @@ importers:
 
   apps/cra:
     specifiers:
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@sanity/preview-kit': workspace:*
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
@@ -29,7 +29,7 @@ importers:
       typescript: ^5.0.2
       webpack: ^5.76.2
     dependencies:
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@sanity/preview-kit': link:../../packages/preview-kit
       bulma: 0.9.4
       groq: 3.7.1
@@ -45,24 +45,24 @@ importers:
 
   apps/next:
     specifiers:
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@sanity/preview-kit': workspace:*
       '@types/node': ^18.15.3
       '@types/react': ^18.0.28
       bulma: ^0.9.4
       eslint-config-next: ^13.2.4
       groq: ^3.7.0
-      groqd: ^0.10.0
+      groqd: ^0.11.0
       next: ^13.2.4
       react: ^18.2.0
       react-dom: ^18.2.0
       typescript: ^5.0.2
     dependencies:
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@sanity/preview-kit': link:../../packages/preview-kit
       bulma: 0.9.4
       groq: 3.7.1
-      groqd: 0.10.0
+      groqd: 0.11.0
       next: 13.2.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -80,7 +80,7 @@ importers:
       '@remix-run/react': ^1.14.3
       '@remix-run/serve': ^1.14.3
       '@remix-run/vercel': ^1.14.3
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@sanity/preview-kit': workspace:*
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
@@ -88,7 +88,7 @@ importers:
       bulma: ^0.9.4
       eslint: ^8.36.0
       groq: ^3.7.0
-      groqd: ^0.10.0
+      groqd: ^0.11.0
       react: ^18.2.0
       react-dom: ^18.2.0
       remix-utils: ^6.0.0
@@ -98,11 +98,11 @@ importers:
       '@remix-run/react': 1.14.3_biqbaboplfbrettd7655fr4n2y
       '@remix-run/serve': 1.14.3
       '@remix-run/vercel': 1.14.3_@vercel+node@2.9.14
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@sanity/preview-kit': link:../../packages/preview-kit
       bulma: 0.9.4
       groq: 3.7.1
-      groqd: 0.10.0
+      groqd: 0.11.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       remix-utils: 6.0.0_dk2tduo4gx4denamyf4hlafioy
@@ -4051,11 +4051,11 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client/5.3.0:
-    resolution: {integrity: sha512-GUu33gDy5Lx9FNyRGeRNrn2ZYNNthn3Qj2y4GPtb3MkdUtdWHKXmCi3S7nqusTshwS0Uz/w+wX9/h5Nbq9iofg==}
+  /@sanity/client/5.3.1:
+    resolution: {integrity: sha512-8xN0wQzUfzDXKXNWj3Kx9mU3tYXJ4OCKnKbT17rsJKvDcpx7tacm2waPYrDCqEkxmGgtoZa/knpbV1keSmpLGw==}
     engines: {node: '>=14.18'}
     dependencies:
-      '@sanity/eventsource': 4.1.1
+      '@sanity/eventsource': 5.0.0
       get-it: 8.0.11
       rxjs: 7.8.0
     transitivePeerDependencies:
@@ -4101,9 +4101,11 @@ packages:
       eventsource: 1.1.2
     dev: false
 
-  /@sanity/eventsource/4.1.1:
-    resolution: {integrity: sha512-4RpexVqD+hbIXDgFLgWq/vSJWHNEBbc9eGa96ear/3ADFhMQx+QG4Q7r3QmQkB2t7LfUrrJfMQn9sMwaBTlurg==}
+  /@sanity/eventsource/5.0.0:
+    resolution: {integrity: sha512-0ewT+BDzfiamHwitUfRcwsl/RREHjWv6VNZvQ8Q4OnnNKXfEEGXbWmqzof0okOTkp4XELgyliht4Qj28o9AU2g==}
     dependencies:
+      '@types/event-source-polyfill': 1.0.1
+      '@types/eventsource': 1.1.11
       event-source-polyfill: 1.0.31
       eventsource: 2.0.2
     dev: false
@@ -4333,7 +4335,7 @@ packages:
   /@sanity/types/3.7.1:
     resolution: {integrity: sha512-iU3eUKJHJc8gpFUTEe/eIoJA+J6SUJrGDzdyxviJ0MoG8Z0EWwyZ3ps1HCzrfFJTnTRouhK3o5R7Wrar/uml5g==}
     dependencies:
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@types/react': 18.0.28
     transitivePeerDependencies:
       - supports-color
@@ -4915,6 +4917,10 @@ packages:
 
   /@types/event-source-polyfill/1.0.1:
     resolution: {integrity: sha512-dls8b0lUgJ/miRApF0efboQ9QZnAm7ofTO6P1ILu8bRPxUFKDxVwFf8+TeuuErmNui6blpltyr7+eV72dbQXlQ==}
+    dev: false
+
+  /@types/eventsource/1.1.11:
+    resolution: {integrity: sha512-L7wLDZlWm5mROzv87W0ofIYeQP5K2UhoFnnUyEWLKM6UBb0ZNRgAqp98qE5DkgfBXdWfc2kYmw9KZm4NLjRbsw==}
     dev: false
 
   /@types/express-serve-static-core/4.17.33:
@@ -10273,8 +10279,8 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /groqd/0.10.0:
-    resolution: {integrity: sha512-AXGGTOiY4H+5PlE/Tilb/IF9jBseNekLn1j+VdICEj52U2z6tIGEtK1H+asE21cxO1E8GvpbbhUR83JhzcyNPQ==}
+  /groqd/0.11.0:
+    resolution: {integrity: sha512-1k9nlvdv2Np369mhmRDPWdov6w8uR0Fb4yn2PPLhrcl1IEOdrMFqr7femzBB3rb+2SEAeph6Uy+Kj/k01MwIhQ==}
     engines: {node: '>= 14'}
     dependencies:
       zod: 3.21.4
@@ -15946,7 +15952,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.7.1
       '@sanity/cli': 3.7.1
-      '@sanity/client': 5.3.0
+      '@sanity/client': 5.3.1
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.7.1
       '@sanity/eventsource': 3.0.3
