@@ -1,5 +1,5 @@
+import type EventSourcePolyfillType from '@sanity/eventsource/browser'
 import type { Config, GroqStore } from '@sanity/groq-store'
-import type { EventSourcePolyfill as EventSourcePolyfillType } from 'event-source-polyfill'
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
@@ -27,18 +27,22 @@ import type { EventSourcePolyfill as EventSourcePolyfillType } from 'event-sourc
  * ```
  * @internal
  */
-export const _lazyGroqStore = async () => {
+export const _lazyGroqStore = async (): Promise<
+  (config: Config) => GroqStore
+> => {
   const pkg = await import('@sanity/groq-store')
   const { groqStore } = 'default' in pkg ? pkg.default : pkg
-  return groqStore as (config: Config) => GroqStore
+  return groqStore
 }
 
 /**
  * See the typings for `_lazyGroqStore` for detailed usage instructions.
  * @internal
  */
-export const _lazyEventSourcePolyfill = async () => {
-  const pkg = await import('event-source-polyfill')
-  const { EventSourcePolyfill } = 'default' in pkg ? pkg.default : pkg
-  return EventSourcePolyfill as unknown as EventSourcePolyfillType
+export const _lazyEventSourcePolyfill = async (): Promise<
+  typeof EventSourcePolyfillType
+> => {
+  const pkg = await import('@sanity/eventsource/browser')
+  const EventSourcePolyfill = 'default' in pkg ? pkg.default : pkg
+  return EventSourcePolyfill
 }
