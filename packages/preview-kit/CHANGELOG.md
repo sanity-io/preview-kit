@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.8](https://github.com/sanity-io/preview-kit/compare/v1.3.7...v1.3.8) (2023-03-24)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/groq-store to v2.1.0 ([#283](https://github.com/sanity-io/preview-kit/issues/283)) ([e94fce2](https://github.com/sanity-io/preview-kit/commit/e94fce20305ded323b740eda9a02f37bcc4c2a84))
+- replace `event-source-polyfill` with `@sanity/eventsource` ([#286](https://github.com/sanity-io/preview-kit/issues/286)) ([11eac9e](https://github.com/sanity-io/preview-kit/commit/11eac9ea591cc321f317c46faa6732e185e1c2a7))
+
 ## [1.3.7](https://github.com/sanity-io/preview-kit/compare/v1.3.6...v1.3.7) (2023-03-22)
 
 ### Bug Fixes
