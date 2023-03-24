@@ -1,5 +1,5 @@
+import type EventSourcePolyfill from '@sanity/eventsource/browser'
 import type { Config, GroqStore } from '@sanity/groq-store'
-import type { EventSourcePolyfill } from 'event-source-polyfill'
 import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import { suspend } from 'suspend-react'
 
@@ -40,10 +40,10 @@ export interface _PreviewConfig extends PreviewConfig {
    */
   importGroqStore: () => (config: Config) => GroqStore
   /**
-   * Lazy load `event-source-polyfille`.
+   * Lazy load `@sanity/eventsource/browser`.
    * This happens if `token` is specified.
    */
-  importEventSourcePolyfill: () => EventSourcePolyfill
+  importEventSourcePolyfill: () => typeof EventSourcePolyfill
   /**
    * Suspend render until the dataset is done loading.
    */
@@ -144,7 +144,7 @@ export const _definePreview = ({
         subscriptionThrottleMs,
         includeTypes,
         token: token === null ? undefined : token,
-        // Lazy load the huge `event-source-polyfill`, but only if a token is specified
+        // Lazy load the huge `@sanity/eventsource/browser` polyfill, but only if a token is specified
         EventSource: token === null ? undefined : importEventSourcePolyfill(),
         listen: true,
         overlayDrafts,
@@ -282,7 +282,7 @@ export const definePreview = (config: PreviewConfig): UsePreview =>
     importEventSourcePolyfill: () =>
       suspend(
         () => _lazyEventSourcePolyfill(),
-        ['@sanity/preview-kit', 'event-source-polyfill']
+        ['@sanity/preview-kit', '@sanity/eventsource/browser']
       ),
     importGroqStore: () =>
       suspend(
