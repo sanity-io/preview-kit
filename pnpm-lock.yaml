@@ -170,7 +170,7 @@ importers:
     devDependencies:
       '@next/eslint-plugin-next': 13.2.4
       '@sanity/pkg-utils': 2.2.13_zd7fjxbseldtiwc6h6ujrbvxuy
-      '@sanity/semantic-release-preset': 4.0.2_semantic-release@21.0.0
+      '@sanity/semantic-release-preset': 4.1.0_semantic-release@21.0.0
       '@types/node': 18.15.10
       '@types/react': 18.0.29
       '@typescript-eslint/eslint-plugin': 5.56.0_2hcjazgfnbtq42tcc73br2vup4
@@ -4294,11 +4294,11 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/semantic-release-preset/4.0.2_semantic-release@21.0.0:
-    resolution: {integrity: sha512-c5tsL4SV/aJb/9lUZtV4aMKjMzZ8UJJplMtDfGTTXAdWQTC/3LqBQ6DOd+XAMIJ5UcWYd/gQVRGCQhGpOtcaqw==}
+  /@sanity/semantic-release-preset/4.1.0_semantic-release@21.0.0:
+    resolution: {integrity: sha512-ccByxKujVyANKsBOX8w13+3CAFKkoRAmtE9LwWVG77Ntb/v8TGTmD6ecqYU4F1k3UojCH/OP2Gj94irQa492vA==}
     engines: {node: '>=18'}
     peerDependencies:
-      semantic-release: '20'
+      semantic-release: 20 || 21
     dependencies:
       '@semantic-release/changelog': 6.0.3_semantic-release@21.0.0
       '@semantic-release/exec': 6.0.3_semantic-release@21.0.0
@@ -8253,8 +8253,8 @@ packages:
     resolution: {integrity: sha512-1HQ2M2sPtxwnvOvT1ZClHyQDiggdNjURWpY2we6aMKCQiUVxTmVs2UYPLIrD84sS+kMdUwfBSylbJPwNnBrnHQ==}
     dev: false
 
-  /es-module-lexer/1.2.0:
-    resolution: {integrity: sha512-2BMfqBDeVCcOlLaL1ZAfp+D868SczNpKArrTM3dhpd7dK/OVlogzY15qpUngt+LMTq5UC/csb9vVQAgupucSbA==}
+  /es-module-lexer/1.2.1:
+    resolution: {integrity: sha512-9978wrXM50Y4rTMmW5kXIC09ZdXQZqkE4mxhwkd8VbzsGkXGPgV4zWuqQJgCEzYngdo2dYDa0l8xhX4fkSwJSg==}
     dev: true
 
   /es-set-tostringtag/2.0.1:
@@ -8782,7 +8782,7 @@ packages:
       enhanced-resolve: 5.12.0
       eslint: 8.36.0
       eslint-plugin-import: 2.27.5_eslint@8.36.0
-      get-tsconfig: 4.4.0
+      get-tsconfig: 4.5.0
       globby: 13.1.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -10020,8 +10020,8 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
 
-  /get-tsconfig/4.4.0:
-    resolution: {integrity: sha512-0Gdjo/9+FzsYhXCEFueo2aY1z1tpXrxWZzP7k8ul9qt1U5o8rYJwTJYmaeHdrVosYIVYkOy2iwCJ9FdpocJhPQ==}
+  /get-tsconfig/4.5.0:
+    resolution: {integrity: sha512-MjhiaIWCJ1sAU4pIQ5i5OfOuHHxVo1oYeNsWTON7jxYkod8pHocXeh+SSbmu5OZZZK73B6cbJ2XADzXehLyovQ==}
     dev: true
 
   /get-uri/2.0.4:
@@ -15792,7 +15792,7 @@ packages:
     dependencies:
       '@rollup/pluginutils': 5.0.2_rollup@3.20.2
       debug: 4.3.4
-      es-module-lexer: 1.2.0
+      es-module-lexer: 1.2.1
       esbuild: 0.17.14
       joycon: 3.1.1
       jsonc-parser: 3.2.0
