@@ -63,7 +63,7 @@ jobs:
         # https://nodejs.org/en/about/releases/
         # https://pnpm.io/installation#compatibility
         # Includes the lowest version supported by preview-kit (defined in pkg.engines.node) and the upcoming version in development
-        node: [14, 16, 18, 19]
+        node: [16, 18, 19]
         os: [ubuntu-latest]
         # Also test the LTS on mac and windows
         include:
