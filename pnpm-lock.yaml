@@ -20,8 +20,8 @@ importers:
   apps/cra:
     dependencies:
       '@sanity/client':
-        specifier: 5.3.2
-        version: 5.3.2
+        specifier: 5.4.0
+        version: 5.4.0
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -60,8 +60,8 @@ importers:
   apps/next:
     dependencies:
       '@sanity/client':
-        specifier: 5.3.2
-        version: 5.3.2
+        specifier: 5.4.0
+        version: 5.4.0
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -112,8 +112,8 @@ importers:
         specifier: ^1.14.3
         version: 1.14.3(@vercel/node@2.10.1)
       '@sanity/client':
-        specifier: 5.3.2
-        version: 5.3.2
+        specifier: 5.4.0
+        version: 5.4.0
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -4079,8 +4079,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@5.3.2:
-    resolution: {integrity: sha512-6FqAyoXJmzJMU9i6LRIqBRUs5c08zaYksy4bNdqGP+ixBW6peebGKs4sgR1vtUIIT1YapPmEWELAEqqiIlnzfA==}
+  /@sanity/client@5.4.0:
+    resolution: {integrity: sha512-9O0zzBOcoji937610qjgDh3/5DCKGZ1w1Tsjnunq+EEdLvl0FBXiBA77an6gZ7CuqUhsjDmSi+Xn7ax28RAsvw==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
@@ -4356,7 +4356,7 @@ packages:
   /@sanity/types@3.8.0:
     resolution: {integrity: sha512-qdFZjmhy6Pr6gGA0c571sxW8UJ7DLf4eQ64GUPLxZv9RoVANewtO3Hm83uufsouYTX0fv1uankzymx4zAf44kg==}
     dependencies:
-      '@sanity/client': 5.3.2
+      '@sanity/client': 5.4.0
       '@types/react': 18.0.30
     transitivePeerDependencies:
       - supports-color
@@ -15839,7 +15839,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.8.0
       '@sanity/cli': 3.8.0
-      '@sanity/client': 5.3.2
+      '@sanity/client': 5.4.0
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.8.0
       '@sanity/eventsource': 5.0.0
