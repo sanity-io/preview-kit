@@ -22,7 +22,7 @@ export const loader = async () => {
   const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2022-11-15',
+    apiVersion: '2023-05-03',
     useCdn: true,
   })
   const previewClient = client.withConfig({
