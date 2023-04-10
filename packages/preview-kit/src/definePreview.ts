@@ -1,5 +1,5 @@
 import type EventSourcePolyfill from '@sanity/eventsource/browser'
-import type { Config, GroqStore } from '@sanity/groq-store'
+import type { Config, GroqStore, Subscription } from '@sanity/groq-store'
 import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import { suspend } from 'suspend-react'
 
@@ -162,24 +162,38 @@ export const _definePreview = ({
           serverSnapshot === undefined ? undefined : () => serverSnapshot,
         getSnapshot: () => snapshot,
         subscribe: (onStoreChange: () => void) => {
-          const subscription = store.subscribe(
-            query,
-            typeof params === 'undefined' ? {} : params,
-            (err, result) => {
-              if (err) {
-                console.error(
-                  'Error thrown in the usePreviewHook subscription',
-                  err
-                )
-                throw err
-              } else {
+          let subscription: Subscription | undefined
+          const handleError = (err: Error) => {
+            console.error(
+              'Error thrown in the usePreviewHook subscription',
+              err
+            )
+            throw err
+          }
+          if (listen) {
+            subscription = store.subscribe(
+              query,
+              typeof params === 'undefined' ? {} : params,
+              (err, result) => {
+                if (err) {
+                  handleError(err)
+                } else {
+                  snapshot = result
+                  onStoreChange()
+                }
+              }
+            )
+          } else {
+            store
+              .query(query, params)
+              .then((result) => {
                 snapshot = result
                 onStoreChange()
-              }
-            }
-          )
+              })
+              .catch(handleError)
+          }
 
-          return () => subscription.unsubscribe()
+          return () => subscription?.unsubscribe()
         },
       }
     }, [initial, params, query, serverSnapshot])
