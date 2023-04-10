@@ -1,10 +1,10 @@
 export const projectId =
   typeof document === 'undefined'
-    ? process.env.SANITY_PROJECT_ID
+    ? process.env.SANITY_API_PROJECT_ID
     : window?.ENV?.projectId
 export const dataset =
   typeof document === 'undefined'
-    ? process.env.SANITY_DATASET
+    ? process.env.SANITY_API_DATASET
     : window?.ENV?.dataset
 export const apiVersion =
   typeof document === 'undefined'
