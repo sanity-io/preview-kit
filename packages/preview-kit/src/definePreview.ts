@@ -82,6 +82,7 @@ export const _definePreview = ({
   documentLimit = 3000,
   subscriptionThrottleMs = 10,
   overlayDrafts = true,
+  listen = true,
   importEventSourcePolyfill,
   importGroqStore,
   preload,
@@ -146,7 +147,7 @@ export const _definePreview = ({
         token: token === null ? undefined : token,
         // Lazy load the huge `@sanity/eventsource/browser` polyfill, but only if a token is specified
         EventSource: token === null ? undefined : importEventSourcePolyfill(),
-        listen: true,
+        listen,
         overlayDrafts,
       })
     }
@@ -218,7 +219,7 @@ export type UsePreview<R = any, P = Params, Q = string> = (
 export interface PreviewConfig
   extends Pick<
     Config,
-    'projectId' | 'dataset' | 'includeTypes' | 'overlayDrafts'
+    'projectId' | 'dataset' | 'includeTypes' | 'overlayDrafts' | 'listen'
   > {
   /**
    * The maximum number of documents, to prevent using too much memory unexpectedly
