@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/sanity-io/preview-kit/compare/v1.3.8...v1.4.0) (2023-04-11)
+
+### Features
+
+- expose listen config for non-live previews ([#298](https://github.com/sanity-io/preview-kit/issues/298)) ([e5a1d56](https://github.com/sanity-io/preview-kit/commit/e5a1d56c7e04f86c4eb6e90b635bf909decfc9cc))
+
 ## [1.3.8](https://github.com/sanity-io/preview-kit/compare/v1.3.7...v1.3.8) (2023-03-24)
 
 ### Bug Fixes
