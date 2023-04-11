@@ -58,7 +58,7 @@ export const previewConfig: PreviewConfig = {
   // By default new changes made to the dataset will be automatically synced, providing a live preview experience.
   // This behavior can be disabled by setting the `listen` flag to `false`. When disabled, you will still be able
   // to preview content, but will need to reload the page to see any change made after the page loaded.
-  listen: true
+  listen: true,
 }
 ```
 
