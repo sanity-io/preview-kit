@@ -45,19 +45,25 @@ import type { PreviewConfig } from '@sanity/preview-kit'
 export const previewConfig: PreviewConfig = {
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET,
-  // The limit on number of documents, to prevent using too much memory unexpectedly
-  // It's 3000 by default, increase or decrease as needed and use `includeTypes` to further optimize the performance
+  // The limit on number of documents. The default is 3000, increase or decrease
+  // as needed and use `includeTypes` to further optimize the performance.
   documentLimit: 10000,
-  // Optional allow list filter for document types. You can use this to limit the amount of documents by declaring the types you want to sync. Note that since you're fetching a subset of your dataset, queries that works against your Content Lake might not work against the local groq-store.
+  // Optional allow-list filter for document types. You can use this to limit
+  // the amount of documents by declaring the types you want to sync. Note that
+  // since you're fetching a subset of your dataset, queries that works against
+  // your Content Lake might not work against the local groq-store.
   includeTypes: ['post', 'page', 'product', 'sanity.imageAsset'],
-  // By default documents that are "draft" are overlayed with their published counterparts.
-  // This lets you simulate what your app will look like after the drafts are published.
-  // If your queries are already equipped to handle drafts vs published
-  // or you otherwise show UI depending on draft status set this to false
+  // By default documents that are "draft" are overlayed with their published
+  // counterparts. This lets you simulate what your app will look like after
+  // the drafts are published.  If your queries are already equipped to handle
+  // drafts vs published or you otherwise show UI depending on draft status set
+  // this to false.
   overlayDrafts: true,
-  // By default new changes made to the dataset will be automatically synced, providing a live preview experience.
-  // This behavior can be disabled by setting the `listen` flag to `false`. When disabled, you will still be able
-  // to preview content, but will need to reload the page to see any change made after the page loaded.
+  // By default new changes made to the dataset will be automatically synced,
+  // providing a live preview experience. This behavior can be disabled by
+  // setting the `listen` flag to `false`. When disabled, you will still be able
+  // to preview content, but will need to reload the page to see any change made
+  // after the page loaded.
   listen: true,
 }
 ```
@@ -388,11 +394,13 @@ export default function PreviewDataTable({ token }) {
 // pages/api/preview.js
 export default function preview(req, res) {
   const secret = process.env.PREVIEW_SECRET
-  // Check the secret if it's provided, enables running preview mode locally before the env var is setup
+  // Check the secret if it's provided, enables running preview mode locally
+  // before the env var is setup
   if (secret && req.query.secret !== secret) {
     return res.status(401).json({ message: 'Invalid secret' })
   }
-  // This token should only have `viewer` access rights in https://manage.sanity.io
+  // This token should only have `viewer` access rights in
+  // https://manage.sanity.io
   const token = process.env.SANITY_API_READ_TOKEN
   if (!token) {
     throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
@@ -432,7 +440,8 @@ const client = createClient({
 export const getStaticProps = async ({ preview = false, previewData = {} }) => {
   if (preview) {
     const previewClient = client.withConfig({ token: previewData.token })
-    // Query altered to include drafts, and all documents that don't have a draft
+    // Query altered to include drafts, and all documents that don't have a
+    // draft
     const data = await client.fetch(`*[!(_id in path("drafts.**"))]`)
     return { props: { preview, token: previewData.token } }
   }
@@ -444,7 +453,9 @@ export const getStaticProps = async ({ preview = false, previewData = {} }) => {
 
 export default function IndexPage({ preview, data, token }) {
   if (preview) {
-    // We render DataTable with the preview data, and PreviewDataTable will stream updates that might happen after the initial SSR hydration and the client takes over rendering
+    // We render DataTable with the preview data, and PreviewDataTable will
+    // stream updates that might happen after the initial SSR hydration and the
+    // client takes over rendering
     return (
       <PreviewSuspense fallback={<DataTable data={data} />}>
         <PreviewDataTable token={token} />
@@ -463,9 +474,10 @@ import { definePreview } from '@sanity/preview-kit'
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 
-// We turn off `overlayDrafts` since the GROQ queries that run in preview mode is updated to overlay drafts instead, this lets us
-// reuse the same query during preview mode, with @sanity/client when rendering
-// preview data on the server, with `@sanity/groq-store` taking over in the browser
+// We turn off `overlayDrafts` since the GROQ queries that run in preview mode
+// is updated to overlay drafts instead, this lets us reuse the same query
+// during preview mode, with @sanity/client when rendering preview data on the
+// server, with `@sanity/groq-store` taking over in the browser
 const usePreview = definePreview({ projectId, dataset, overlayDrafts: false })
 
 export default function PreviewDataTable({ token }) {
