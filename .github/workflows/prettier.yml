@@ -28,7 +28,7 @@ jobs:
           key: prettier-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('.prettierignore') }}-${{ hashFiles('.prettierrc.cjs') }}
       - run: pnpm format
       - run: git restore .github/workflows
-      - uses: EndBug/add-and-commit@61a88be553afe4206585b31aa72387c64295d08b # tag=v9
+      - uses: EndBug/add-and-commit@b97a9fe893e2984b63d00feaee5922e16ab1cc1e # v9
         with:
           default_author: github_actions
           commit: --no-verify
