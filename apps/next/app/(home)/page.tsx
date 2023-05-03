@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 const links = [
-  ['Create React App', 'https://preview-kit-cra.sanity.build'],
   ['Next 12 - cookie', '/next12-cookie'],
   ['Next 12 - token', '/next12-token'],
   ['Next 12 - hydration', '/next12-hydration'],

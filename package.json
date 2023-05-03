@@ -1,8 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "bootstrap:cra": "vercel link apps/cra",
-    "postbootstrap:cra": "(cd apps/cra && vercel env pull .env.local)",
     "bootstrap:next": "vercel link apps/next",
     "postbootstrap:next": "(cd apps/next && vercel env pull .env.local)",
     "bootstrap:remix": "vercel link apps/remix",

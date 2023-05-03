@@ -3,7 +3,6 @@ import { Link } from '@remix-run/react'
 import Container from 'components/Container'
 
 const links = [
-  ['Create React App', 'https://preview-kit-cra.sanity.build'],
   ['Next 12 - cookie', 'https://preview-kit.sanity.build/next12-cookie'],
   ['Next 12 - token', 'https://preview-kit.sanity.build/next12-token'],
   ['Next 12 - hydration', 'https://preview-kit.sanity.build/next12-hydration'],
