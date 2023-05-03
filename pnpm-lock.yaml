@@ -4147,7 +4147,7 @@ packages:
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
-      '@sanity/types': 3.9.1
+      '@sanity/types': 3.10.0
       fast-deep-equal: 3.1.3
       groq: 3.10.0
       groq-js: 1.1.9
@@ -4346,15 +4346,6 @@ packages:
 
   /@sanity/types@3.10.0:
     resolution: {integrity: sha512-rsJ6awocrduX/4ZCa38nCM9Zwa8teh/CtB44oRbU4yT/mbsYM/NJUDVt+aIA+AizpIYBaeHtSf+3W3BbpTmqZg==}
-    dependencies:
-      '@sanity/client': 5.4.2
-      '@types/react': 18.2.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /@sanity/types@3.9.1:
-    resolution: {integrity: sha512-A6M86wIAuM2EYzTxUpPkZmZug0PJDmbZK5a7E5VfkWzJFKRvHNa3ZmVGXijHE7M/1KOJH+t1KQeqLkfMsYq4Ig==}
     dependencies:
       '@sanity/client': 5.4.2
       '@types/react': 18.2.0
@@ -5712,7 +5703,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.5.0
+      semver: 7.3.8
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
