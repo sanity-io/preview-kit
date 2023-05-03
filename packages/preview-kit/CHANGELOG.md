@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/sanity-io/preview-kit/compare/v1.4.0...v1.4.1) (2023-05-03)
+
+### Bug Fixes
+
+- **docs:** add README.md to published package ([fdf29af](https://github.com/sanity-io/preview-kit/commit/fdf29afb58c26b637539b90538c90d8757885087))
+
 ## [1.4.0](https://github.com/sanity-io/preview-kit/compare/v1.3.8...v1.4.0) (2023-04-11)
 
 ### Features
