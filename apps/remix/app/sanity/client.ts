@@ -8,4 +8,5 @@ export const client = createClient({
   apiVersion,
   useCdn,
   studioUrl: 'https://preview-kit-test-studio.sanity.build/',
+  encodeSourceMap: true,
 })
