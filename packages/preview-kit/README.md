@@ -8,12 +8,12 @@ Requires React 18, support for other libraries like Solid, Svelte, Vue etc are p
 - [Installation](#installation)
 - [Usage](#usage)
   - [Demos \& Starters](#demos--starters)
-  - [Create React App, cookie auth only](#create-react-app-cookie-auth-only)
-  - [Create React App, custom token auth](#create-react-app-custom-token-auth)
   - [Remix, cookie auth only](#remix-cookie-auth-only)
   - [Next `/pages` Preview Mode, cookie auth only](#next-pages-preview-mode-cookie-auth-only)
   - [Next `/pages` Preview Mode, with a viewer token](#next-pages-preview-mode-with-a-viewer-token)
   - [Next `/pages` Preview Mode, with fast SSR hydration](#next-pages-preview-mode-with-fast-ssr-hydration)
+  - [Create React App, cookie auth only](#create-react-app-cookie-auth-only)
+  - [Create React App, custom token auth](#create-react-app-custom-token-auth)
 - [Development](#development)
   - [Release new version](#release-new-version)
 - [License](#license)
@@ -22,6 +22,10 @@ Requires React 18, support for other libraries like Solid, Svelte, Vue etc are p
 
 ```bash
 npm i @sanity/preview-kit
+```
+
+```bash
+pnpm i @sanity/preview-kit
 ```
 
 ```bash
@@ -74,129 +78,6 @@ The component that calls `usePreview` needs to be wrapped in a `Suspense` bounda
 
 - [Sanity Studio v3 + Remix](https://github.com/SimeonGriggs/remix-sanity-studio-v3)
 - [A Next.js Blog with a Native Authoring Experience](https://github.com/sanity-io/nextjs-blog-cms-sanity-v3)
-
-## Create React App, cookie auth only
-
-If you're hosting Sanity Studio on the same domain as you're doing previews, you may use `cookie` based auth:
-
-```jsx
-import createClient from '@sanity/client'
-import { definePreview } from '@sanity/preview-kit'
-import groq from 'groq'
-import { Suspense, useReducer } from 'react'
-import { createRoot } from 'react-dom/client'
-import useSWR from 'swr/immutable'
-
-const root = createRoot(document.getElementById('root'))
-root.render(
-  <Suspense fallback="Loading...">
-    <App />
-  </Suspense>
-)
-
-const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
-const dataset = process.env.REACT_APP_SANITY_DATASET
-const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
-const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
-
-const query = groq`count(*[])`
-
-function App() {
-  const [preview, toggle] = useReducer((state) => !state, false)
-  const { data } = useSWR(query, (query) => client.fetch(query), {
-    suspense: true,
-  })
-
-  return (
-    <>
-      <button type="button" onClick={toggle}>
-        {preview ? 'Stop preview' : 'Start preview'}
-      </button>
-      {preview ? <PreviewCount /> : <Count data={data} />}
-    </>
-  )
-}
-
-const Count = ({ data }) => (
-  <>
-    Documents: <strong>{data}</strong>
-  </>
-)
-
-const usePreview = definePreview({
-  projectId,
-  dataset,
-  onPublicAccessOnly: () =>
-    alert('You are not logged in. You will only see public data.'),
-})
-const PreviewCount = () => {
-  const data = usePreview(null, query)
-
-  return <Count data={data} />
-}
-```
-
-## Create React App, custom token auth
-
-If you're not hosting Sanity Studio on the same domain as your previews, or if you need to support browsers that don't work with cookie auth (iOS Safari or browser incognito modes), you may use the `token` option to provide a Sanity Viewer token:
-
-```jsx
-import createClient from '@sanity/client'
-import { definePreview } from '@sanity/preview-kit'
-import groq from 'groq'
-import { Suspense, useReducer } from 'react'
-import { createRoot } from 'react-dom/client'
-import useSWR from 'swr/immutable'
-
-const root = createRoot(document.getElementById('root'))
-root.render(
-  <Suspense fallback="Loading...">
-    <App />
-  </Suspense>
-)
-
-const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
-const dataset = process.env.REACT_APP_SANITY_DATASET
-const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
-const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
-
-const query = groq`count(*[])`
-
-function App() {
-  const [preview, toggle] = useReducer((state) => !state, false)
-  const { data } = useSWR(query, (query) => client.fetch(query), {
-    suspense: true,
-  })
-
-  return (
-    <>
-      <button type="button" onClick={toggle}>
-        {preview ? 'Stop preview' : 'Start preview'}
-      </button>
-      {preview ? <PreviewCount /> : <Count data={data} />}
-    </>
-  )
-}
-
-const Count = ({ data }) => (
-  <>
-    Documents: <strong>{data}</strong>
-  </>
-)
-
-const usePreview = definePreview({ projectId, dataset })
-const PreviewCount = () => {
-  // Call custom authenticated backend to fetch the Sanity Viewer token
-  const { data: token } = useSWR(
-    'https://example.com/preview/token',
-    (url) => fetch(url, { credentials: 'include' }).then((res) => res.text()),
-    { suspense: true }
-  )
-  const data = usePreview(token, query)
-
-  return <Count data={data} />
-}
-```
 
 ## Remix, cookie auth only
 
@@ -485,6 +366,129 @@ export default function PreviewDataTable({ token }) {
   const data = usePreview(token, `*[!(_id in path("drafts.**"))]`)
 
   return <DataTable data={data} />
+}
+```
+
+## Create React App, cookie auth only
+
+If you're hosting Sanity Studio on the same domain as you're doing previews, you may use `cookie` based auth:
+
+```jsx
+import createClient from '@sanity/client'
+import { definePreview } from '@sanity/preview-kit'
+import groq from 'groq'
+import { Suspense, useReducer } from 'react'
+import { createRoot } from 'react-dom/client'
+import useSWR from 'swr/immutable'
+
+const root = createRoot(document.getElementById('root'))
+root.render(
+  <Suspense fallback="Loading...">
+    <App />
+  </Suspense>
+)
+
+const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
+const dataset = process.env.REACT_APP_SANITY_DATASET
+const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
+const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
+
+const query = groq`count(*[])`
+
+function App() {
+  const [preview, toggle] = useReducer((state) => !state, false)
+  const { data } = useSWR(query, (query) => client.fetch(query), {
+    suspense: true,
+  })
+
+  return (
+    <>
+      <button type="button" onClick={toggle}>
+        {preview ? 'Stop preview' : 'Start preview'}
+      </button>
+      {preview ? <PreviewCount /> : <Count data={data} />}
+    </>
+  )
+}
+
+const Count = ({ data }) => (
+  <>
+    Documents: <strong>{data}</strong>
+  </>
+)
+
+const usePreview = definePreview({
+  projectId,
+  dataset,
+  onPublicAccessOnly: () =>
+    alert('You are not logged in. You will only see public data.'),
+})
+const PreviewCount = () => {
+  const data = usePreview(null, query)
+
+  return <Count data={data} />
+}
+```
+
+## Create React App, custom token auth
+
+If you're not hosting Sanity Studio on the same domain as your previews, or if you need to support browsers that don't work with cookie auth (iOS Safari or browser incognito modes), you may use the `token` option to provide a Sanity Viewer token:
+
+```jsx
+import createClient from '@sanity/client'
+import { definePreview } from '@sanity/preview-kit'
+import groq from 'groq'
+import { Suspense, useReducer } from 'react'
+import { createRoot } from 'react-dom/client'
+import useSWR from 'swr/immutable'
+
+const root = createRoot(document.getElementById('root'))
+root.render(
+  <Suspense fallback="Loading...">
+    <App />
+  </Suspense>
+)
+
+const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
+const dataset = process.env.REACT_APP_SANITY_DATASET
+const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
+const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
+
+const query = groq`count(*[])`
+
+function App() {
+  const [preview, toggle] = useReducer((state) => !state, false)
+  const { data } = useSWR(query, (query) => client.fetch(query), {
+    suspense: true,
+  })
+
+  return (
+    <>
+      <button type="button" onClick={toggle}>
+        {preview ? 'Stop preview' : 'Start preview'}
+      </button>
+      {preview ? <PreviewCount /> : <Count data={data} />}
+    </>
+  )
+}
+
+const Count = ({ data }) => (
+  <>
+    Documents: <strong>{data}</strong>
+  </>
+)
+
+const usePreview = definePreview({ projectId, dataset })
+const PreviewCount = () => {
+  // Call custom authenticated backend to fetch the Sanity Viewer token
+  const { data: token } = useSWR(
+    'https://example.com/preview/token',
+    (url) => fetch(url, { credentials: 'include' }).then((res) => res.text()),
+    { suspense: true }
+  )
+  const data = usePreview(token, query)
+
+  return <Count data={data} />
 }
 ```
 
