@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/sanity-io/preview-kit/compare/v1.5.0...v1.5.1) (2023-05-03)
+
+### Bug Fixes
+
+- add release notes ([8a401e0](https://github.com/sanity-io/preview-kit/commit/8a401e0ecc865d52305b15dcae8ac881f6567b96))
+
 ## [1.5.0](https://github.com/sanity-io/preview-kit/compare/v1.4.1...v1.5.0) (2023-05-03)
 
 ### Introducing Content Source Maps
