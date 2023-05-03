@@ -12,10 +12,6 @@
     "groq",
     "live"
   ],
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
   "homepage": "https://github.com/sanity-io/preview-kit#readme",
   "bugs": {
     "url": "https://github.com/sanity-io/preview-kit/issues"
@@ -57,14 +53,18 @@
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "pnpm run build",
     "release": "semantic-release || semantic-release --dry-run --debug",
+    "test": "echo todo",
     "pretest:esm": "pnpm run build",
-    "test:esm": "node test.mjs && node test.cjs",
-    "test": "echo todo"
+    "test:esm": "node test.mjs && node test.cjs"
   },
   "browserslist": [
     "> 0.2% and supports es6-module and supports es6-module-dynamic-import and not dead and not IE 11",
     "maintained node versions"
   ],
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
   "dependencies": {
     "@sanity/eventsource": "5",
     "@sanity/groq-store": "2.1.0",
