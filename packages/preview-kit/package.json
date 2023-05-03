@@ -72,7 +72,7 @@
     "coverage": "vitest run --coverage",
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "pnpm run build",
-    "release": "semantic-release --dry-run --debug || semantic-release --dry-run --debug",
+    "release": "semantic-release || semantic-release --dry-run --debug",
     "test": "vitest",
     "pretest:esm": "pnpm run build",
     "test:esm": "node test.mjs && node test.cjs"
