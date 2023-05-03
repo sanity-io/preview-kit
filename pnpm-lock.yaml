@@ -159,7 +159,7 @@ importers:
     dependencies:
       '@sanity/client':
         specifier: ^6.0.0
-        version: 6.0.0
+        version: 6.0.1
       '@sanity/eventsource':
         specifier: ^5.0.0
         version: 5.0.0
@@ -4069,8 +4069,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.0.0:
-    resolution: {integrity: sha512-XF/KSMyNBgCcm3bKo1htuFeDFNgT21t3RAC/e28CJMvZnlKkUBxcSqKC/fFx17dado7PCsbXBTMcTJU3WuUFIg==}
+  /@sanity/client@6.0.1:
+    resolution: {integrity: sha512-q2Mi79ttJxoUjZG3LGlfIFoYfMUxra9tRaPbfmQRVJQ2I/TiVGvuE6yt38fgox796wpeZvYeuYH8L7Ms79IXYg==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
@@ -5702,7 +5702,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.8
+      semver: 7.5.0
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
