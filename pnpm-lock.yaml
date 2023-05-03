@@ -189,8 +189,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1(semantic-release@21.0.2)
       '@types/lodash.isplainobject':
-        specifier: '4'
-        version: 4.0.0
+        specifier: ^4.0.7
+        version: 4.0.7
       '@types/node':
         specifier: ^18.16.3
         version: 18.16.3
@@ -5021,8 +5021,8 @@ packages:
       '@types/node': 18.16.3
     dev: true
 
-  /@types/lodash.isplainobject@4.0.0:
-    resolution: {integrity: sha512-W70f1vy1LMAI1kdBFsON/dzj40m8N3vv4lLGSVyasCVXPEvFIDjplng+BqqqsoT9OARLfwXhZeg+ZKVFvw2odw==}
+  /@types/lodash.isplainobject@4.0.7:
+    resolution: {integrity: sha512-fdHtdjpy7fXydEaRHx1dPa+2AVmLbmk2Gv7f0w/90BKCH0DkWo8pIrzygnB3rvgo6oKNb3cO9VaPpj9GLCr5Ug==}
     dependencies:
       '@types/lodash': 4.14.194
     dev: true
@@ -5702,7 +5702,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.8
+      semver: 7.5.0
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
