@@ -5,6 +5,8 @@ import {
 
 import { apiVersion, dataset, projectId, useCdn } from './config'
 
+export type { SanityClient }
+
 export const createClient = (): SanityClient =>
   _createClient({
     projectId,
