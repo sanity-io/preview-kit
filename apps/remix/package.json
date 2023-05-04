@@ -4,7 +4,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "init": "sanity init -y --project pv8y60vp --dataset production --env .env.local --output-path .",
+    "init": "sanity init --project pv8y60vp --dataset production --env .env.local",
     "build": "remix build",
     "dev": "PORT=3001 remix dev",
     "lint": "eslint --max-warnings 0 ."
