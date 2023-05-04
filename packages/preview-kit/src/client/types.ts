@@ -1,7 +1,10 @@
 import type {
-  ClientConfig as _ClientConfig,
+  ClientConfig as CoreClientConfig,
   RawQueryResponse,
 } from '@sanity/client'
+
+/** @alpha */
+export type { CoreClientConfig }
 
 /** @alpha */
 export type PathSegment = string | number
@@ -33,7 +36,7 @@ export type Logger =
     >
 
 /** @alpha */
-export interface ClientConfig extends _ClientConfig {
+export interface ClientConfig extends CoreClientConfig {
   /**
    * Some strings shouldn't be encoded, for example if you store internal URLs the stega characters will break routing.
    * ```ts

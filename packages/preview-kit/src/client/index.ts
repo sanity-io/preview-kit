@@ -7,6 +7,9 @@ export type * from './mapToEditLinks'
 export { mapToEditLinks } from './mapToEditLinks'
 export type * from './types'
 
+/** @alpha */
+export type { SanityClient }
+
 /**
  * @alpha
  */
