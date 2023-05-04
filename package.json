@@ -1,5 +1,11 @@
 {
   "private": true,
+  "name":"preview-kit-monorepo",
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "bootstrap:next": "vercel link apps/next",
     "postbootstrap:next": "(cd apps/next && vercel env pull .env.local)",
@@ -8,6 +14,7 @@
     "bootstrap:studio": "vercel link apps/studio",
     "postbootstrap:studio": "(cd apps/studio && vercel env pull .env.local)",
     "build": "turbo run build",
+    "check:deps-updates": "pnpx npm-check-updates --workspaces --root -m",
     "dev": "turbo run dev",
     "format": "prettier --cache --write .",
     "lint": "turbo run lint",
