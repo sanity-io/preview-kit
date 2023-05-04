@@ -1,22 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "bootstrap:next": "vercel link apps/next",
-    "postbootstrap:next": "(cd apps/next && vercel env pull .env.local)",
-    "bootstrap:remix": "vercel link apps/remix",
-    "postbootstrap:remix": "(cd apps/remix && vercel env pull .env.local)",
-    "bootstrap:studio": "vercel link apps/studio",
-    "postbootstrap:studio": "(cd apps/studio && vercel env pull .env.local)",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "format": "prettier --cache --write .",
+    "init": "pnpm -r run init",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:esm": "turbo run test:esm"
   },
   "devDependencies": {
-    "prettier": "^2.8.8",
+    "@sanity/cli": "3.10.0",
     "prettier-plugin-packagejson": "^2.4.3",
+    "prettier": "^2.8.8",
     "turbo": "1.9.3",
     "vercel": "29"
   },

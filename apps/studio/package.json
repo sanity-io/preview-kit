@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "init": "sanity init -y --project pv8y60vp --dataset production --env .env.local --output-path .",
     "build": "sanity build",
     "dev": "sanity dev"
   },
