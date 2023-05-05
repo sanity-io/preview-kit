@@ -86,12 +86,14 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@sanity/client": "^6.0.0",
+    "@sanity/client": "6.1.0-scope.0",
     "@sanity/eventsource": "^5.0.0",
     "@sanity/groq-store": "2.1.0",
     "@vercel/stega": "0.0.4",
     "lodash.isplainobject": "^4.0.6",
+    "lru-cache": "9.1.1",
     "suspend-react": "0.0.9",
+    "suspense": "0.0.37",
     "tiny-invariant": "^1.3.1"
   },
   "devDependencies": {
@@ -118,6 +120,11 @@
   },
   "peerDependencies": {
     "react": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=14"

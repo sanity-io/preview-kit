@@ -22,6 +22,15 @@ importers:
 
   apps/next:
     dependencies:
+      '@sanity/client':
+        specifier: 6.1.0-scope.0
+        version: 6.1.0-scope.0
+      '@sanity/eventsource':
+        specifier: ^5.0.0
+        version: 5.0.0
+      '@sanity/groq-store':
+        specifier: 2.1.0
+        version: 2.1.0
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -34,6 +43,9 @@ importers:
       groqd:
         specifier: ^0.15.4
         version: 0.15.4
+      lru-cache:
+        specifier: ^9.1.1
+        version: 9.1.1
       next:
         specifier: ^13.4.0
         version: 13.4.0(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)
@@ -43,43 +55,12 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-    devDependencies:
-      '@types/node':
-        specifier: ^18.16.3
-        version: 18.16.3
-      '@types/react':
-        specifier: ^18.2.5
-        version: 18.2.5
-      eslint-config-next:
-        specifier: ^13.4.0
-        version: 13.4.0(eslint@8.39.0)(typescript@5.0.4)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-
-  apps/next-experimental:
-    dependencies:
-      '@sanity/preview-kit':
+      suspense:
+        specifier: 0.0.37
+        version: 0.0.37(react-dom@18.2.0)(react@18.2.0)
+      ui:
         specifier: workspace:*
-        version: link:../../packages/preview-kit
-      bulma:
-        specifier: ^0.9.4
-        version: 0.9.4
-      groq:
-        specifier: ^3.10.0
-        version: 3.10.0
-      groqd:
-        specifier: ^0.15.4
-        version: 0.15.4
-      next:
-        specifier: ^13.4.0
-        version: 13.4.0(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
+        version: link:../../packages/ui
     devDependencies:
       '@types/node':
         specifier: ^18.16.3
@@ -229,8 +210,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/client':
-        specifier: ^6.0.0
-        version: 6.0.1
+        specifier: 6.1.0-scope.0
+        version: 6.1.0-scope.0
       '@sanity/eventsource':
         specifier: ^5.0.0
         version: 5.0.0
@@ -243,9 +224,15 @@ importers:
       lodash.isplainobject:
         specifier: ^4.0.6
         version: 4.0.6
+      lru-cache:
+        specifier: 9.1.1
+        version: 9.1.1
       suspend-react:
         specifier: 0.0.9
         version: 0.0.9(react@18.2.0)
+      suspense:
+        specifier: 0.0.37
+        version: 0.0.37(react-dom@18.2.0)(react@18.2.0)
       tiny-invariant:
         specifier: ^1.3.1
         version: 1.3.1
@@ -310,6 +297,55 @@ importers:
       vitest-github-actions-reporter:
         specifier: ^0.10.0
         version: 0.10.0(vitest@0.31.0)
+
+  packages/ui:
+    dependencies:
+      groq:
+        specifier: ^3.10.0
+        version: 3.10.0
+      groqd:
+        specifier: ^0.15.4
+        version: 0.15.4
+    devDependencies:
+      '@next/eslint-plugin-next':
+        specifier: ^13.4.0
+        version: 13.4.0
+      '@sanity/pkg-utils':
+        specifier: ^2.2.14
+        version: 2.2.14(@types/node@14.18.33)(typescript@5.0.4)
+      '@types/react':
+        specifier: ^18.2.5
+        version: 18.2.5
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^5.59.2
+        version: 5.59.2(@typescript-eslint/parser@5.59.2)(eslint@8.39.0)(typescript@5.0.4)
+      eslint:
+        specifier: ^8.39.0
+        version: 8.39.0
+      eslint-config-prettier:
+        specifier: ^8.8.0
+        version: 8.8.0(eslint@8.39.0)
+      eslint-config-sanity:
+        specifier: ^6.0.0
+        version: 6.0.0(eslint@8.39.0)
+      eslint-gitignore:
+        specifier: ^0.1.0
+        version: 0.1.0(eslint@8.39.0)
+      eslint-plugin-prettier:
+        specifier: ^4.2.1
+        version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.39.0)(prettier@2.8.8)
+      eslint-plugin-simple-import-sort:
+        specifier: ^10.0.0
+        version: 10.0.0(eslint@8.39.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      rimraf:
+        specifier: ^5.0.0
+        version: 5.0.0
+      typescript:
+        specifier: ^5.0.4
+        version: 5.0.4
 
 packages:
 
@@ -3182,12 +3218,42 @@ packages:
       - supports-color
     dev: true
 
+  /@microsoft/api-extractor-model@7.26.7(@types/node@14.18.33):
+    resolution: {integrity: sha512-rx3Tq632VG3ddR74kPuPbv1qmUgO2IuCvn1z16hbNWNS5RhnTQqNPWIm7NVoi6lCh2E7uxzfmdnWXIXiJhM5IQ==}
+    dependencies:
+      '@microsoft/tsdoc': 0.14.2
+      '@microsoft/tsdoc-config': 0.16.2
+      '@rushstack/node-core-library': 3.58.0(@types/node@14.18.33)
+    transitivePeerDependencies:
+      - '@types/node'
+    dev: true
+
   /@microsoft/api-extractor-model@7.26.7(@types/node@18.16.3):
     resolution: {integrity: sha512-rx3Tq632VG3ddR74kPuPbv1qmUgO2IuCvn1z16hbNWNS5RhnTQqNPWIm7NVoi6lCh2E7uxzfmdnWXIXiJhM5IQ==}
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
       '@rushstack/node-core-library': 3.58.0(@types/node@18.16.3)
+    transitivePeerDependencies:
+      - '@types/node'
+    dev: true
+
+  /@microsoft/api-extractor@7.34.7(@types/node@14.18.33):
+    resolution: {integrity: sha512-8CrrYyOBWqc4XFviR1KSuHSlmJjlnC5CVpPkcFB8HXiLABUVaVWFTsOzJIwUU6z8mc4BZPZ8tSGAg/mwFDU31Q==}
+    hasBin: true
+    dependencies:
+      '@microsoft/api-extractor-model': 7.26.7(@types/node@14.18.33)
+      '@microsoft/tsdoc': 0.14.2
+      '@microsoft/tsdoc-config': 0.16.2
+      '@rushstack/node-core-library': 3.58.0(@types/node@14.18.33)
+      '@rushstack/rig-package': 0.3.18
+      '@rushstack/ts-command-line': 4.13.2
+      colors: 1.2.5
+      lodash: 4.17.21
+      resolve: 1.22.2
+      semver: 7.3.8
+      source-map: 0.6.1
+      typescript: 4.8.4
     transitivePeerDependencies:
       - '@types/node'
     dev: true
@@ -4036,6 +4102,24 @@ packages:
   /@rushstack/eslint-patch@1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
 
+  /@rushstack/node-core-library@3.58.0(@types/node@14.18.33):
+    resolution: {integrity: sha512-DHAZ3LTOEq2/EGURznpTJDnB3SNE2CKMDXuviQ6afhru6RykE3QoqXkeyjbpLb5ib5cpIRCPE/wykNe0xmQj3w==}
+    peerDependencies:
+      '@types/node': '*'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+    dependencies:
+      '@types/node': 14.18.33
+      colors: 1.2.5
+      fs-extra: 7.0.1
+      import-lazy: 4.0.0
+      jju: 1.4.0
+      resolve: 1.22.2
+      semver: 7.3.8
+      z-schema: 5.0.5
+    dev: true
+
   /@rushstack/node-core-library@3.58.0(@types/node@18.16.3):
     resolution: {integrity: sha512-DHAZ3LTOEq2/EGURznpTJDnB3SNE2CKMDXuviQ6afhru6RykE3QoqXkeyjbpLb5ib5cpIRCPE/wykNe0xmQj3w==}
     peerDependencies:
@@ -4117,8 +4201,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.0.1:
-    resolution: {integrity: sha512-q2Mi79ttJxoUjZG3LGlfIFoYfMUxra9tRaPbfmQRVJQ2I/TiVGvuE6yt38fgox796wpeZvYeuYH8L7Ms79IXYg==}
+  /@sanity/client@6.1.0-scope.0:
+    resolution: {integrity: sha512-81ESZRPosTKLcXxJ4FYLMjKSTXCuXnOdcy0Vs7+R37DQzs5D5U2EBAq43ERS3GMkdsVkIVxsE3aDVxyfc6FEDw==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
@@ -4268,6 +4352,53 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /@sanity/pkg-utils@2.2.14(@types/node@14.18.33)(typescript@5.0.4):
+    resolution: {integrity: sha512-k8/yORoGsRFyT6zSdsL+SfBdAf7yX1koNIPXNcitjpQ3x8RHpmWuC+9inrxTYRu97QTyUrnN8z7j67PSS9lVPw==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    peerDependencies:
+      typescript: ^4.7 || ^5
+    dependencies:
+      '@babel/core': 7.21.8
+      '@babel/preset-env': 7.21.5(@babel/core@7.21.8)
+      '@babel/types': 7.21.5
+      '@microsoft/api-extractor': 7.34.7(@types/node@14.18.33)
+      '@microsoft/tsdoc-config': 0.16.2
+      '@rollup/plugin-alias': 5.0.0(rollup@3.21.3)
+      '@rollup/plugin-babel': 6.0.3(@babel/core@7.21.8)(rollup@3.21.3)
+      '@rollup/plugin-commonjs': 24.1.0(rollup@3.21.3)
+      '@rollup/plugin-json': 6.0.0(rollup@3.21.3)
+      '@rollup/plugin-node-resolve': 15.0.2(rollup@3.21.3)
+      '@rollup/plugin-replace': 5.0.2(rollup@3.21.3)
+      '@rollup/plugin-terser': 0.4.1(rollup@3.21.3)
+      browserslist: 4.21.5
+      cac: 6.7.14
+      chalk: 4.1.2
+      chokidar: 3.5.3
+      esbuild: 0.17.18
+      esbuild-register: 3.4.2(esbuild@0.17.18)
+      find-config: 1.0.0
+      globby: 11.1.0
+      jsonc-parser: 3.2.0
+      mkdirp: 2.1.6
+      pkg-up: 3.1.0
+      prettier: 2.8.8
+      pretty-bytes: 5.6.0
+      recast: 0.22.0
+      rimraf: 4.4.1
+      rollup: 3.21.3
+      rollup-plugin-esbuild: 5.0.0(esbuild@0.17.18)(rollup@3.21.3)
+      rxjs: 7.8.1
+      treeify: 1.1.0
+      typescript: 5.0.4
+      uuid: 9.0.0
+      zod: 3.21.4
+    transitivePeerDependencies:
+      - '@types/babel__core'
+      - '@types/node'
+      - supports-color
+    dev: true
 
   /@sanity/pkg-utils@2.2.14(@types/node@18.16.3)(typescript@5.0.4):
     resolution: {integrity: sha512-k8/yORoGsRFyT6zSdsL+SfBdAf7yX1koNIPXNcitjpQ3x8RHpmWuC+9inrxTYRu97QTyUrnN8z7j67PSS9lVPw==}
@@ -6332,6 +6463,10 @@ packages:
       es-abstract: 1.21.2
       get-intrinsic: 1.2.0
       is-string: 1.0.7
+
+  /array-sorting-utilities@0.0.1:
+    resolution: {integrity: sha512-h/idT7IGFYQoUk+/ilm5uFAbG1mZ/vW5wYDJG+OD0w15AvTEBv3Yu9WGcV0dTTdKitcufHtLYQjHd42m9u7RZw==}
+    dev: false
 
   /array-union@2.1.0:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
@@ -10969,6 +11104,12 @@ packages:
       has: 1.0.3
       side-channel: 1.0.4
 
+  /interval-utilities@0.0.1:
+    resolution: {integrity: sha512-Qo1IAx3noFPA0ssKfNe0eQmLmGmquWlEiwPn9Oeb16L1PqWnNe0YGfeRlU/hF7dtjjYRdNfVMVl+0o0cMLvjOQ==}
+    dependencies:
+      point-utilities: 0.0.2
+    dev: false
+
   /intl-parse-accept-language@1.0.0:
     resolution: {integrity: sha512-YFMSV91JNBOSjw1cOfw2tup6hDP7mkz+2AUV7W1L1AM6ntgI75qC1ZeFpjPGMrWp+upmBRTX2fJWQ8c7jsUWpA==}
     engines: {node: '>=14'}
@@ -12532,7 +12673,6 @@ packages:
   /lru-cache@9.1.1:
     resolution: {integrity: sha512-65/Jky17UwSb0BuB9V+MyDpsOtXKmYwzhyl+cOa9XUiI4uV2Ouy/2voFP3+al0BjZbJgMBD8FojMpAf+Z+qn4A==}
     engines: {node: 14 || >=16.14}
-    dev: true
 
   /lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -13458,6 +13598,13 @@ packages:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
     dev: false
 
+  /node-interval-tree@2.1.2:
+    resolution: {integrity: sha512-bJ9zMDuNGzVQg1xv0bCPzyEDxHgbrx7/xGj6CDokvizZZmastPsOh0JJLuY8wA5q2SfX1TLNMk7XNV8WxbGxzA==}
+    engines: {node: '>= 14.0.0'}
+    dependencies:
+      shallowequal: 1.1.0
+    dev: false
+
   /node-releases@2.0.10:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
 
@@ -14229,6 +14376,10 @@ packages:
   /pluralize-esm@9.0.5:
     resolution: {integrity: sha512-Kb2dcpMsIutFw2hYrN0EhsAXOUJTd6FVMIxvNAkZCMQLVt9NGZqQczvGpYDxNWCZeCWLHUPxQIBudWzt1h7VVA==}
     engines: {node: '>=14.0.0'}
+    dev: false
+
+  /point-utilities@0.0.2:
+    resolution: {integrity: sha512-jNUr+ijPk0cWw39gtJG0O8HNPL2EVC7e2ilC1NUlJw1QVTgC8NIMS/8AmG9IJfvfmJx+IlT8KNJzf/Jb035STQ==}
     dev: false
 
   /polished@4.2.2:
@@ -17175,6 +17326,20 @@ packages:
       react: '>=17.0'
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /suspense@0.0.37(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-bYkte27BH4tvOATUPqrlr7hoDAGmHeXe1vTXLlvckKX+wmrzpLOHTlY6j8w5rvX2Z8H8C7Dk3m0lpHFLOzQvTw==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      array-sorting-utilities: 0.0.1
+      interval-utilities: 0.0.1
+      node-interval-tree: 2.1.2
+      point-utilities: 0.0.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /svg-parser@2.0.4:

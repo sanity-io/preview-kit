@@ -3,10 +3,7 @@
   "compilerOptions": {
     "incremental": true,
     "noEmit": true,
-    "rootDir": ".",
-    "paths": {
-      "@sanity/preview-kit": ["src/"]
-    }
+    "rootDir": "."
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["dist", "node_modules"]

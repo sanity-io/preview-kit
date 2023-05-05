@@ -3,7 +3,7 @@
 import { definePreview, type UsePreview } from '@sanity/preview-kit'
 
 import { dataset, projectId } from './config'
-import { Count, type CountProps, query } from './Count'
+import { Count, type CountProps, queryCount } from 'ui'
 
 let alerted = false
 
@@ -26,6 +26,6 @@ export default function PreviewCount({
 }: {
   initialData: CountProps['data']
 }) {
-  const data = usePreview(null, query, {}, initialData)
+  const data = usePreview(null, queryCount, {}, initialData)
   return <Count data={data} />
 }
