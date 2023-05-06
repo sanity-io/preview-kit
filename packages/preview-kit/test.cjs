@@ -3,13 +3,15 @@
 const { strict: assert } = require('node:assert')
 
 const previewKit = require('@sanity/preview-kit')
-const { PreviewSuspense, definePreview } = previewKit
+const { useListeningQuery } = previewKit
+const previewKitClient = require('@sanity/preview-kit/client')
+const { createClient } = previewKitClient
+const previewKitGroqStore = require('@sanity/preview-kit/groq-store')
+const { GroqStoreProvider } = previewKitGroqStore
+const previewKitLiveStore = require('@sanity/preview-kit/live-store')
+const { LiveStoreProvider } = previewKitLiveStore
 
-// Testing pkg.exports[.]
-assert.equal(typeof PreviewSuspense, 'function')
-assert.equal(typeof definePreview, 'function')
-
-// Ensure it's possible to check what version of @sanity/preview-kity is being used
-const pkg = require('@sanity/preview-kit/package.json')
-
-assert.equal(typeof pkg.version, 'string')
+assert.equal(typeof useListeningQuery, 'function')
+assert.equal(typeof createClient, 'function')
+assert.equal(typeof GroqStoreProvider, 'object')
+assert.equal(typeof LiveStoreProvider, 'object')

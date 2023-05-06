@@ -3,16 +3,11 @@
   "compilerOptions": {
     "incremental": true,
     "noEmit": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "rootDir": ".",
     "paths": {
       "@sanity/preview-kit": ["src/"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["dist", "node_modules"]
 }

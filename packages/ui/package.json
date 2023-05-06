@@ -1,0 +1,89 @@
+{
+  "name": "ui",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "source": "./src/index.ts",
+      "require": "./dist/index.cjs",
+      "node": {
+        "import": "./dist/index.cjs.js",
+        "require": "./dist/index.cjs"
+      },
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "source": "./src/react/index.ts",
+      "require": "./dist/react.cjs",
+      "import": "./dist/react.js",
+      "default": "./dist/react.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "react": [
+        "./dist/react.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist coverage",
+    "build": "pkg build --strict && pkg --strict",
+    "clean": "rimraf dist",
+    "lint": "eslint --max-warnings 0 .",
+    "prepublishOnly": "npm run build",
+    "type-check": "tsc --noEmit"
+  },
+  "browserslist": [
+    "> 0.2% and supports es6-module and supports es6-module-dynamic-import and not dead and not IE 11",
+    "maintained node versions"
+  ],
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "date-fns": "2.30.0",
+    "@vercel/stega": "0.0.4",
+    "bulma": "^0.9.4",
+    "groq": "^3.10.0",
+    "groqd": "^0.15.4",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@sanity/pkg-utils": "^2.2.14",
+    "@types/react": "^18.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-gitignore": "^0.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "react": "^18.2.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

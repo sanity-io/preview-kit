@@ -4,10 +4,6 @@ name: Simulate High Traffic
 on:
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
-
 jobs:
   test:
     timeout-minutes: 15
@@ -30,8 +26,9 @@ jobs:
           node-version: lts/*
       - run: corepack enable && pnpm --version
       - run: pnpm install --loglevel=error
-      - run: node scripts/simulate-high-traffic.mjs
+      - run: node -r esbuild-register src/action.ts
+        working-directory: apps/studio
         env:
-          DURATION: 900
-          TOTAL: 100
+          MINUTES: 15
+          BATCH: 10
           SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}

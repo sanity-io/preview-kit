@@ -73,10 +73,10 @@ export function encodeIntoResult(
   })
 }
 
-type WalkMapFn = (value: unknown, path: PathSegment[]) => unknown
+export type WalkMapFn = (value: unknown, path: PathSegment[]) => unknown
 
 // generic way to walk a nested object or array and apply a mapping function to each value
-function walkMap(
+export function walkMap(
   value: unknown,
   mappingFn: WalkMapFn,
   path: PathSegment[] = []
@@ -97,7 +97,7 @@ function walkMap(
   return mappingFn(value, path)
 }
 
-function resolveMapping(
+export function resolveMapping(
   resultPath: PathSegment[],
   csm: ContentSourceMap,
   logger?: Logger
