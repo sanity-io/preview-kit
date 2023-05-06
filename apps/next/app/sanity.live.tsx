@@ -5,6 +5,7 @@ import type { SanityDocument } from '@sanity/client'
 
 import type { SanityClient, ClientConfig } from '@sanity/preview-kit/client'
 import { Params } from '@sanity/preview-kit'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 export interface LiveCacheConfig {
   client: SanityClient
@@ -16,8 +17,8 @@ const MAX_DOCUMENTS_CACHE_SIZE = 3000
 
 export type CachedSanityDocument = SanityDocument<Record<string, any>>
 
-const documentsCache = createExternallyManagedCache<
-  [projectId: string, dataset: string, id: string],
+const documentsCache = createCache<
+  [client: SanityClient, projectId: string, dataset: string, id: string],
   CachedSanityDocument
 >({
   debugLabel: '@sanity/preview-kit/live/documents',
@@ -32,11 +33,17 @@ const documentsCache = createExternallyManagedCache<
         },
       }),
   },
+  getKey: ([client, projectId, dataset, id]) => `${projectId}.${dataset}.${id}`,
+  load(params, loadOptions) {
+    const [client, , , id] = params
+    return client.getDocument(id) as Promise<CachedSanityDocument>
+  },
 })
 
 export function createLiveCache({ client }: LiveCacheConfig) {
   return createCache<[query: string, params?: Params], any>({
     debugLabel: '@sanity/preview-kit/live/queries',
+    // getKey: ([token, query, params]) => `${query}.${JSON.stringify(params)}`,
     async load([query, params], { signal }) {
       const { projectId, dataset, resultSourceMap } =
         client.config() as unknown as ClientConfig
@@ -46,6 +53,7 @@ export function createLiveCache({ client }: LiveCacheConfig) {
         // client
         const { result, resultSourceMap } = await client.fetch(query, params, {
           signal,
+          // token: token || undefined,
           filterResponse: false,
         })
 
@@ -54,9 +62,54 @@ export function createLiveCache({ client }: LiveCacheConfig) {
             cause: { result, resultSourceMap },
           })
         }
+        return { result, resultSourceMap }
       } else {
         // groq-store
       }
     },
   })
+}
+
+const LiveCacheContext = createContext<ReturnType<
+  typeof createLiveCache
+> | null>(null)
+
+export function LiveContentProvider({
+  children,
+  client,
+}: {
+  children: React.ReactNode
+  client: SanityClient
+}) {
+  const liveCache = useMemo(() => createLiveCache({ client }), [client])
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  if (mounted) {
+    return (
+      <LiveCacheContext.Provider value={liveCache}>
+        {children}
+      </LiveCacheContext.Provider>
+    )
+  }
+
+  return <>{children}</>
+}
+
+export function useLiveCache(
+  query: string,
+  params?: Params,
+  token?: string | null
+) {
+  const liveCache = useContext(LiveCacheContext)
+
+  if (!liveCache) {
+    throw new TypeError('Missing LiveCacheContext', { cause: liveCache })
+  }
+
+  console.log({ liveCache })
+
+  const response = liveCache.prefetch(query, params)
+
+  console.log('response', response)
 }
