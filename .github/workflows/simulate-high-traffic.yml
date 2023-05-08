@@ -1,0 +1,37 @@
+---
+name: Simulate High Traffic
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: ${{ matrix.node }}
+      TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      TURBO_TEAM: sanity-io
+    steps:
+      
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # v2.2.4
+      - uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          node-version: lts/*
+      - run: corepack enable && pnpm --version
+      - run: pnpm install --loglevel=error
+      - run: node scripts/simulate-high-traffic.mjs
+        env:
+          DURATION: 900
+          TOTAL: 100
+          SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
