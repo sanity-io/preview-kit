@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "init": "sanity init --project pv8y60vp --dataset production --env .env.local",
     "build": "next build",
     "dev": "next",
+    "init": "sanity init --project pv8y60vp --dataset production --env .env.local",
     "lint": "next lint"
   },
   "dependencies": {
