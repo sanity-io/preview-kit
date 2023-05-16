@@ -369,8 +369,8 @@ importers:
         specifier: ^3.10.0
         version: 3.10.0
       groqd-playground:
-        specifier: ^0.0.12
-        version: 0.0.12(@sanity/icons@2.3.1)(@sanity/ui@1.3.3)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.10.1)(styled-components@5.3.10)
+        specifier: ^0.0.13
+        version: 0.0.13(@sanity/icons@2.3.1)(@sanity/ui@1.3.3)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.10.1)(styled-components@5.3.10)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -11232,8 +11232,8 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /groqd-playground@0.0.12(@sanity/icons@2.3.1)(@sanity/ui@1.3.3)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.10.1)(styled-components@5.3.10):
-    resolution: {integrity: sha512-Chlup0BRl1Rg5RAYXdwtvcJlI9MMVjfoVpJJLBBLZzBuhiqdgYIwz9+URfvmHN5k/UPYNFVVYa5tSoeHnFFquQ==}
+  /groqd-playground@0.0.13(@sanity/icons@2.3.1)(@sanity/ui@1.3.3)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.10.1)(styled-components@5.3.10):
+    resolution: {integrity: sha512-0bJ+s88N45S4eD3d3zmNbdjdcUtNSSRuRJAqq2dVN3jN3ugBpur6A/HCZUdChONJb4X09KqVwd9BoqmlIy5I6Q==}
     peerDependencies:
       '@sanity/icons': ^2.3.1
       '@sanity/ui': ^1.3.2
@@ -11246,7 +11246,7 @@ packages:
       '@sanity/icons': 2.3.1(react@18.2.0)
       '@sanity/ui': 1.3.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.10)
       '@uiw/react-split': 5.8.10(react-dom@18.2.0)(react@18.2.0)
-      groqd: 0.15.4
+      groqd: 0.15.5
       lodash.has: 4.5.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -11258,6 +11258,13 @@ packages:
 
   /groqd@0.15.4:
     resolution: {integrity: sha512-JFSUXPf8GimM9cUf5f780/glw6Gxg7iPFfvMe05hvvZcoxIhmpM0WKQO4or4kkawDBBLFgMszLKuyNYLzIRj5A==}
+    engines: {node: '>= 14'}
+    dependencies:
+      zod: 3.21.4
+    dev: false
+
+  /groqd@0.15.5:
+    resolution: {integrity: sha512-J0DzFrLXXKFpaGw6Efznoof66IcaedRyt/nqIZjTmC1z25wVgWziz25Ogo7PQnf/7SenzaBVvKsSFejHGurPWQ==}
     engines: {node: '>= 14'}
     dependencies:
       zod: 3.21.4
