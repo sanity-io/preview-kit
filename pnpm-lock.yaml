@@ -5,8 +5,8 @@ importers:
   .:
     devDependencies:
       '@sanity/cli':
-        specifier: 3.10.0
-        version: 3.10.0
+        specifier: 3.11.1
+        version: 3.11.1
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -4407,24 +4407,6 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /@sanity/cli@3.10.0:
-    resolution: {integrity: sha512-BSXaQ6BeBICfThM9DRFlk6cHnZZft1I+qrzhpG2lTWwWQTelD555Kr0U9h2W2J/EKz4Wb5LLeNl3QT0D5jc0xA==}
-    engines: {node: '>=14.18.0'}
-    hasBin: true
-    dependencies:
-      '@babel/traverse': 7.21.5(supports-color@5.5.0)
-      '@vercel/frameworks': 1.3.4
-      '@vercel/fs-detectors': 3.8.9
-      chalk: 4.1.2
-      esbuild: 0.16.17
-      esbuild-register: 3.4.2(esbuild@0.16.17)
-      get-it: 8.1.3
-      golden-fleece: 1.0.9
-      pkg-dir: 5.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@sanity/cli@3.10.1:
     resolution: {integrity: sha512-DAbhRPhue2LECLn/H1sLOpYtCgOzHrmHAKw98CGEI6KUNe03Wj2BHYoC+ZEjxNJdaK9Y3A2vJocQre36n3TLRQ==}
     engines: {node: '>=14.18.0'}
@@ -4442,6 +4424,24 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /@sanity/cli@3.11.1:
+    resolution: {integrity: sha512-DSudmGPeltqD90TxEoFDPGlBa77uItn9xxShroZisZXh7RI8OU0aiP0/tkYiqLdhX+dWTuel9gea4485kuy4tg==}
+    engines: {node: '>=14.18.0'}
+    hasBin: true
+    dependencies:
+      '@babel/traverse': 7.21.5(supports-color@5.5.0)
+      '@vercel/frameworks': 1.4.2
+      '@vercel/fs-detectors': 3.9.2
+      chalk: 4.1.2
+      esbuild: 0.16.17
+      esbuild-register: 3.4.2(esbuild@0.16.17)
+      get-it: 8.1.3
+      golden-fleece: 1.0.9
+      pkg-dir: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /@sanity/client@5.4.2:
     resolution: {integrity: sha512-M/ebzTGwYq+NDGMfBWxKtwtmCRJbBvXxAIQXu/J0vxnr8mXKw8gBQ7GaG0tI4WJ54w5sI6pnrD6mPiKdRHVNYw==}
@@ -5985,18 +5985,31 @@ packages:
     resolution: {integrity: sha512-STSWs66rxX5pVKkhsYNeLx/Vlxjwe+dhy6PfXgBEJua7FXbWDjXjUyjzEyk63yUWysUflEBtLW9ckS/2V0QCZw==}
     dev: true
 
+  /@vercel/error-utils@1.0.10:
+    resolution: {integrity: sha512-nsKy2sy+pjUWyKI1V/XXKspVzHMYgSalmj5+EsKWFXZbnNZicqxNtMR94J8Hs7SB4TQxh0s4KhczJtL59AVGMg==}
+    dev: true
+
   /@vercel/error-utils@1.0.8:
     resolution: {integrity: sha512-s+f7jP2oH1koICbQ8e3K9hOpOeUct7rbCnF9qsNwXemq850wAh2e90tp9R6oYBM0BNpiLRRm+oG5zD2sCIm3HQ==}
     dev: true
 
   /@vercel/error-utils@1.0.9:
     resolution: {integrity: sha512-EqnCFBOUtUCXhVOTwE7QJOI63l6uvFNUy51vAHil0jgfP+GTdVtJdNK1UG7inXPOsLxRs+Wi/PyNuwBW9j63Lw==}
+    dev: false
 
   /@vercel/frameworks@1.3.4:
     resolution: {integrity: sha512-a5E4T+V+GLGLKXhpqdyG4eoom1CUXr2H9PrXTf5lpWUq3MdU+TIzmTPu4EUyRq67V65KW9tZkoli1b99LM1x/Q==}
     dependencies:
       '@iarna/toml': 2.2.3
       js-yaml: 3.13.1
+    dev: false
+
+  /@vercel/frameworks@1.4.2:
+    resolution: {integrity: sha512-Fojv8RIhcNUbtRPa0bpw1ELQgZ2RXOn3SFQmtUnE5qtC62p1PXMTsLr2XyoHaXYXgTgEMID5I3HbokzPnmIinw==}
+    dependencies:
+      '@iarna/toml': 2.2.3
+      js-yaml: 3.13.1
+    dev: true
 
   /@vercel/fs-detectors@3.8.9:
     resolution: {integrity: sha512-qnE62vtHKIEWOmrDCxVOJPtQZYvAuohoKlvIHPfVBNRzc9PgFt0V3Ur1xs5xO9q0uXwIVQ/mB+K4w7GNomzhiA==}
@@ -6009,6 +6022,20 @@ packages:
       json5: 2.2.2
       minimatch: 3.1.2
       semver: 6.1.1
+    dev: false
+
+  /@vercel/fs-detectors@3.9.2:
+    resolution: {integrity: sha512-fApNP4um51mB2DRe4DKmLlPpFiNrlShBNZdxf4sNx0hmempQ3g7BBirqKD66VWEFHRTmO3gctzuhNpBXVTD/+w==}
+    dependencies:
+      '@vercel/error-utils': 1.0.10
+      '@vercel/frameworks': 1.4.2
+      '@vercel/routing-utils': 2.2.1
+      glob: 8.0.3
+      js-yaml: 4.1.0
+      json5: 2.2.2
+      minimatch: 3.1.2
+      semver: 6.1.1
+    dev: true
 
   /@vercel/gatsby-plugin-vercel-analytics@1.0.10:
     resolution: {integrity: sha512-v329WHdtIce+y7oAmaWRvEx59Xfo0FxlQqK4BJG0u6VWYoKWPaflohDAiehIZf/YHCRVb59ZxnzmMOcm/LR8YQ==}
@@ -6188,7 +6215,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.8
+      semver: 7.5.1
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
@@ -6229,6 +6256,7 @@ packages:
       path-to-regexp: 6.1.0
     optionalDependencies:
       ajv: 6.12.6
+    dev: false
 
   /@vercel/routing-utils@2.2.1:
     resolution: {integrity: sha512-kzMZsvToDCDskNRZD71B9UAgstec7ujmlGH8cBEo6F/07VaFeji6GQdgd6Zwnrj+TvzQBggKoPQR64VkVY8Lzw==}
@@ -10856,7 +10884,7 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       glob: 7.2.3
       ignore: 5.2.4
       merge2: 1.4.1
