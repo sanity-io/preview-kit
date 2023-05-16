@@ -1,5 +1,6 @@
-import type { MetaFunction, LinksFunction } from '@remix-run/node'
-import { json } from '@remix-run/node'
+import type { MetaFunction, LinksFunction } from '@vercel/remix'
+
+import { Container } from 'ui/react'
 import {
   Links,
   LiveReload,
@@ -7,27 +8,18 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from '@remix-run/react'
-import styles from 'bulma/css/bulma.min.css'
-
-import * as projectDetails from '~/sanity/config'
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  title: '@sanity/preview-kit + remix',
   viewport: 'width=device-width,initial-scale=1',
 })
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
-
-export async function loader() {
-  return json({ ENV: projectDetails })
-}
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: 'https://esm.sh/bulma/css/bulma.min.css' },
+]
 
 export default function App() {
-  const data = useLoaderData()
-
   return (
     <html lang="en">
       <head>
@@ -35,13 +27,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
         <ScrollRestoration />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
-          }}
-        />
         <Scripts />
         <LiveReload />
       </body>

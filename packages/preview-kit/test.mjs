@@ -2,19 +2,12 @@
 
 import { strict as assert } from 'node:assert'
 
-import { PreviewSuspense, definePreview } from '@sanity/preview-kit'
-import { createClient, mapToEditLinks } from '@sanity/preview-kit/client'
+import { useListeningQuery } from '@sanity/preview-kit'
+import { createClient } from '@sanity/preview-kit/client'
+import { GroqStoreProvider } from '@sanity/preview-kit/groq-store'
+import { LiveStoreProvider } from '@sanity/preview-kit/live-store'
 
-// Testing pkg.exports[.]
-assert.equal(typeof PreviewSuspense, 'function')
-assert.equal(typeof definePreview, 'function')
-
-// Ensure it's possible to check what version of @sanity/preview-kit is being used
-import pkg from '@sanity/preview-kit/package.json' assert { type: 'json' }
-
-assert.equal(typeof pkg.version, 'string')
-
-// Testing pkg.exports[./client]
-
+assert.equal(typeof useListeningQuery, 'function')
 assert.equal(typeof createClient, 'function')
-assert.equal(typeof mapToEditLinks, 'function')
+assert.equal(typeof GroqStoreProvider, 'object')
+assert.equal(typeof LiveStoreProvider, 'object')

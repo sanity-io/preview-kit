@@ -79,6 +79,7 @@ const encodeTestCases = [
 
 test.each(encodeTestCases)('encode $name', ({ queryResult, expected }) => {
   const mockTranscoder = vi.fn().mockImplementation((input: string) => input)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   encode(queryResult as any, mockTranscoder)
 
   expect(mockTranscoder).toBeCalledTimes(expected.encoderCalls)

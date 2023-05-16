@@ -10,7 +10,7 @@ import type {
   Logger,
   PathSegment,
 } from './types'
-import type { ClientConfig, FilterDefault } from './types'
+import type { FilterDefault, PreviewKitClientConfig } from './types'
 
 const filterDefault: FilterDefault = ({ path }) => {
   const endPath = path.at(-1)
@@ -44,8 +44,8 @@ const TRUNCATE_LENGTH = 20
  * @internal
  */
 export function createTranscoder(
-  studioUrl: ClientConfig['studioUrl'],
-  encodeSourceMapAtPath?: ClientConfig['encodeSourceMapAtPath'],
+  studioUrl: PreviewKitClientConfig['studioUrl'],
+  encodeSourceMapAtPath?: PreviewKitClientConfig['encodeSourceMapAtPath'],
   logger?: Logger
 ): {
   report: Record<

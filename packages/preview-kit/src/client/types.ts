@@ -1,33 +1,22 @@
-import type {
-  ClientConfig as CoreClientConfig,
-  RawQueryResponse,
-} from '@sanity/client'
+import type { ClientConfig } from '@sanity/client'
+import type { RawQueryResponse } from '@sanity/client'
 
-/** @alpha */
-export type { CoreClientConfig }
-
-/** @alpha */
+/** @public */
 export type PathSegment = string | number
 
-/** @alpha */
-export type ContentSourceMapQueryResponse =
-  | RawQueryResponse<unknown>
-  | Pick<RawQueryResponse<unknown>, 'result' | 'resultSourceMap'>
-
-/** @alpha */
+/** @public */
 export type StudioUrl =
   | `/${string}`
   | `${string}.sanity.studio`
   | `https://${string}`
   | string
 
-/** @alpha */
+/** @public */
 export type FilterDefault = (props: {
   path: PathSegment[]
   filterDefault: FilterDefault
 }) => boolean
 
-/** @alpha */
 export type Logger =
   | typeof console
   | Pick<
@@ -35,24 +24,28 @@ export type Logger =
       'debug' | 'error' | 'groupCollapsed' | 'groupEnd' | 'log' | 'table'
     >
 
-/** @alpha */
-export interface ClientConfig extends CoreClientConfig {
+/** @public */
+export type ContentSourceMapQueryResponse =
+  | RawQueryResponse<unknown>
+  | Pick<RawQueryResponse<unknown>, 'result' | 'resultSourceMap'>
+
+export interface PreviewKitClientConfig extends ClientConfig {
   /**
-   * Some strings shouldn't be encoded, for example if you store internal URLs the stega characters will break routing.
-   * ```ts
-    createClient({
-      encodeSourceMapAtPath: (props) => {
-        switch (props.path.at(-1)) {
-          case 'url':
-            return false
-          default:
-            return props.filterDefault(props)
+     * Some strings shouldn't be encoded, for example if you store internal URLs the stega characters will break routing.
+     * ```ts
+      createClient({
+        encodeSourceMapAtPath: (props) => {
+          switch (props.path.at(-1)) {
+            case 'url':
+              return false
+            default:
+              return props.filterDefault(props)
+          }
         }
-      }
-    })
-   * ```
-   * @alpha
-   */
+      })
+     * ```
+     * @alpha
+     */
   encodeSourceMapAtPath?: FilterDefault
   /**
    * Whether to encode source maps in the result, using steganography.

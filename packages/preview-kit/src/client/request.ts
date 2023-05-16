@@ -12,13 +12,13 @@ import invariant from 'tiny-invariant'
 
 import { createTranscoder } from './transcode'
 import type {
-  ClientConfig,
   ContentSourceMapQueryResponse,
   PathSegment,
+  PreviewKitClientConfig,
 } from './types'
 
 type TranscodeResponseConfig = Pick<
-  ClientConfig,
+  PreviewKitClientConfig,
   'studioUrl' | 'encodeSourceMapAtPath' | 'logger'
 >
 
@@ -27,6 +27,7 @@ function transcodeResponse({
   encodeSourceMapAtPath,
   logger,
 }: TranscodeResponseConfig) {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const transcoder = createTranscoder(studioUrl, encodeSourceMapAtPath, logger!)
   return {
     onResponse: (response: unknown) => {
@@ -94,7 +95,7 @@ export function createHttpRequest({
   studioUrl,
   encodeSourceMapAtPath,
   logger,
-}: ClientConfig): HttpRequest {
+}: PreviewKitClientConfig): HttpRequest {
   invariant(studioUrl, 'Missing studioUrl in client config')
   const superRequester = originalRequester.clone()
 
@@ -107,6 +108,7 @@ export function createHttpRequest({
     options: RequestOptions,
     requester = superRequester
   ): HttpRequest {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return requester({ maxRedirects: 0, ...options } as any)
   }
 
