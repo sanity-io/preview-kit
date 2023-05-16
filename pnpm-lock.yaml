@@ -229,23 +229,23 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/client':
-        specifier: ^6.0.0
-        version: 6.0.1
+        specifier: ^6.1.1
+        version: 6.1.1
       '@sanity/eventsource':
         specifier: ^5.0.0
         version: 5.0.0
       '@sanity/groq-store':
-        specifier: 2.1.0
+        specifier: ^2.1.0
         version: 2.1.0
       '@vercel/stega':
-        specifier: 0.0.4
+        specifier: ^0.0.4
         version: 0.0.4
       lodash.isplainobject:
         specifier: ^4.0.6
         version: 4.0.6
       suspend-react:
-        specifier: 0.0.9
-        version: 0.0.9(react@18.2.0)
+        specifier: ^0.0.10
+        version: 0.0.10(react@18.2.0)
       tiny-invariant:
         specifier: ^1.3.1
         version: 1.3.1
@@ -4117,8 +4117,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.0.1:
-    resolution: {integrity: sha512-q2Mi79ttJxoUjZG3LGlfIFoYfMUxra9tRaPbfmQRVJQ2I/TiVGvuE6yt38fgox796wpeZvYeuYH8L7Ms79IXYg==}
+  /@sanity/client@6.1.1:
+    resolution: {integrity: sha512-T93HCjJdvylcc1GysF52C3nYyBwiBvygzzIv44EGrRg/NPlWbr4Kc4WaLPmtIsZwadKL6g6F+tNETd5OSUykuA==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
@@ -17169,8 +17169,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /suspend-react@0.0.9(react@18.2.0):
-    resolution: {integrity: sha512-668Pxy4z54fhjpnPqw6olj3vvpV03VywFNXazyNSYSTuHaRw3NJJjO5l8R49AUk5fMTkJXGVGaaVSgdaO01S3w==}
+  /suspend-react@0.0.10(react@18.2.0):
+    resolution: {integrity: sha512-7yyJ1aBr9Ap4XZQOBaYlOelNcRc42zv50C0pVNOHfhW/DwTbHGFVZKKJsVndyQvQTv/fAkIO9TAMvGiSCjT0Zw==}
     peerDependencies:
       react: '>=17.0'
     dependencies:
