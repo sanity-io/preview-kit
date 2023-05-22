@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { vercelStegaSplit } from '@vercel/stega'
 import groq from 'groq'
-import { q } from 'groqd'
+import { type InferType, q } from 'groqd'
 import { memo } from 'react'
 import type {} from 'zod'
 
@@ -169,7 +169,7 @@ export const { query: tableQuery, schema: tableSchema } = q('*')
   .slice(0, 10)
 
 export type TableProps = {
-  data: unknown[]
+  data: InferType<typeof tableSchema>[]
 }
 
 const thead = (

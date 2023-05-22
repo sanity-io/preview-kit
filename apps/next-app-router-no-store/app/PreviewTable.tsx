@@ -1,3 +1,5 @@
+'use client'
+
 import { TableProps, tableQuery, Table } from 'ui/react'
 import { useListeningQuery } from '@sanity/preview-kit'
 

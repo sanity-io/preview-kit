@@ -2,7 +2,6 @@ import {
   Button,
   Container,
   PreviewDraftsButton,
-  Table,
   TableProps,
   Timestamp,
   ViewPublishedButton,
@@ -14,12 +13,12 @@ import {
   unstable__environment as environment,
 } from '@sanity/client'
 import { sanityClient, draftsClient } from '../sanity.client'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 
 import { lazy } from 'react'
+import Table from '../Table'
 
 const PreviewProvider = lazy(() => import('../PreviewProvider'))
-const PreviewTable = lazy(() => import('../PreviewTable'))
 
 export const getStaticProps: GetStaticProps<{
   preview: boolean
@@ -77,7 +76,7 @@ export default function Page({
         {button}
         {preview ? (
           <PreviewProvider token={token!}>
-            <PreviewTable data={[]} />
+            <Table data={data} />
           </PreviewProvider>
         ) : (
           <Table data={data} />

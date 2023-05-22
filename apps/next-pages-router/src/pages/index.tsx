@@ -74,7 +74,7 @@ export default function Page({
       <form action={action} style={{ display: 'contents' }}>
         {button}
         <Table data={data} />
-        <Timestamp date={new Date(timestamp)} />
+        <Timestamp date={timestamp} />
       </form>
       <RefreshButton />
       <script

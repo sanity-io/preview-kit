@@ -78,7 +78,7 @@ export function useListeningQuery<
   )
 }
 
-// /*
+/*
 // Just for quickly testing the overload typings
 function TestComponent() {
   const snapshot = [{_id: '123'}]
