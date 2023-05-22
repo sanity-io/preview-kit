@@ -280,7 +280,9 @@ export const Footer = memo(function Footer({ data }: FooterProps) {
   )
 })
 
-export function Timestamp({ date }: { date: Date }) {
+export function Timestamp(props: { date: Date | string }) {
+  const date =
+    typeof props.date === 'string' ? new Date(props.date) : props.date
   return (
     <time dateTime={date.toJSON()}>
       {date.getUTCHours().toString().padStart(2, '0')}:

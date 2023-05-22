@@ -1,13 +1,15 @@
+import type { QueryParams } from '@sanity/client'
 import DefaultEventSource from '@sanity/eventsource'
 import { type Config, groqStore } from '@sanity/groq-store'
 import { memo, useState } from 'react'
 
-import {
-  getQueryCacheKey as getCacheKey,
-  type QueryCacheKey,
-  type StoreContext,
-  storeContext as Context,
-} from '../context'
+import { defineListenerContext as Context } from '../context'
+import type {
+  DefineListenerContext,
+  ListenerGetSnapshot,
+  ListenerSubscribe,
+} from '../types'
+import { getQueryCacheKey, type QueryCacheKey } from '../utils'
 
 /**
  * @alpha
@@ -56,9 +58,13 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
   // @TODO can we just re throw inside the subscription itself?
   if (error) throw error
 
-  const [context] = useState<StoreContext>(() => ({
-    defineSubscribe: (initialSnapshot, query, params) => {
-      const key = getCacheKey(query, params)
+  const [context] = useState<DefineListenerContext>(() => {
+    return function defineListener<Snapshot>(
+      initialSnapshot: Snapshot,
+      query: string,
+      params: QueryParams
+    ) {
+      const key = getQueryCacheKey(query, params)
 
       // groq-store returns on subscriptions when the dataset haven't finished loading yet.
       // We workaround this by setting the initial value as the one provided by the hook
@@ -66,7 +72,7 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
         snapshots.set(key, initialSnapshot)
       }
 
-      return (onStoreChange) => {
+      const subscribe: ListenerSubscribe = (onStoreChange) => {
         if (!ready.has(key)) {
           store.query(query, params).then((result) => {
             if (!ready.has(key)) {
@@ -88,12 +94,12 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
         })
         return () => subscription.unsubscribe()
       }
-    },
-    defineGetSnapshot: (query, params) => {
-      const key = getCacheKey(query, params)
-      return () => snapshots.get(key)
-    },
-  }))
+      const getSnapshot: ListenerGetSnapshot<Snapshot> = () =>
+        snapshots.get(key)
+
+      return { subscribe, getSnapshot }
+    } satisfies DefineListenerContext
+  })
 
   return <Context.Provider value={context}>{children}</Context.Provider>
 })

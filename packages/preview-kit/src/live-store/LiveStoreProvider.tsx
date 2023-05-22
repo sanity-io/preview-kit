@@ -21,12 +21,13 @@ import {
 
 import { parseNormalisedJsonPath } from '../client/jsonpath'
 import { resolveMapping, walkMap } from '../client/sourcemap'
-import {
-  getQueryCacheKey as getCacheKey,
-  type QueryCacheKey,
-  type StoreContext,
-  storeContext as Context,
-} from '../context'
+import { defineListenerContext as Context } from '../context'
+import type {
+  DefineListenerContext,
+  ListenerGetSnapshot,
+  ListenerSubscribe,
+} from '../types'
+import { getQueryCacheKey, type QueryCacheKey } from '../utils'
 
 // Documents share the same cache even if there are nested providers, with a Least Recently Used (LRU) cache
 const documentsCache = new LRUCache({
@@ -77,9 +78,13 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
   const [subscriptions, setSubscriptions] = useState<QueryCacheKey[]>([])
   const [snapshots] = useState<QuerySnapshotsCache>(() => new Map())
   const hooks = useHooks(setSubscriptions)
-  const [context] = useState<StoreContext>(() => ({
-    defineSubscribe: (initialSnapshot, query, params) => {
-      const key = getCacheKey(query, params)
+  const [context] = useState<DefineListenerContext>(() => {
+    return function defineListener<Snapshot>(
+      initialSnapshot: Snapshot,
+      query: string,
+      params: QueryParams
+    ) {
+      const key = getQueryCacheKey(query, params)
 
       // Warm up the cache by setting the initial snapshot, showing stale-while-revalidate
       if (!snapshots.has(key)) {
@@ -90,18 +95,17 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
         })
       }
 
-      return (onStoreChange) => {
+      const subscribe: ListenerSubscribe = (onStoreChange) => {
         const unsubscribe = hooks.subscribe(key, query, params, onStoreChange)
 
         return () => unsubscribe()
       }
-    },
-    defineGetSnapshot: (query, params) => {
-      const key = getCacheKey(query, params)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return () => snapshots.get(key)?.result as any
-    },
-  }))
+      const getSnapshot: ListenerGetSnapshot<Snapshot> = () =>
+        snapshots.get(key)?.result as unknown as Snapshot
+
+      return { subscribe, getSnapshot }
+    } satisfies DefineListenerContext
+  })
   const [turboIds, setTurboIds] = useState<string[]>([])
   const turboIdsFromSourceMap = useCallback(
     (contentSourceMap: ContentSourceMap) => {
@@ -213,7 +217,7 @@ const QuerySubscription = memo(function QuerySubscription(
       })
 
       if (!signal.aborted) {
-        snapshots.set(getCacheKey(query, params), {
+        snapshots.set(getQueryCacheKey(query, params), {
           result: turboChargeResult(
             projectId,
             dataset,
@@ -471,7 +475,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
   useEffect(() => {
     const nextTurboIds = new Set<string>()
     for (const { query, params } of cache.values()) {
-      const key = getCacheKey(query, params)
+      const key = getQueryCacheKey(query, params)
       const snapshot = snapshots.get(key)
       if (snapshot && snapshot.resultSourceMap?.documents?.length) {
         for (const { _id } of snapshot.resultSourceMap.documents) {

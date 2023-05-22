@@ -14,7 +14,7 @@ import {
   unstable__environment as environment,
 } from '@sanity/client'
 import { sanityClient, draftsClient } from '../sanity.client'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import { lazy } from 'react'
 
@@ -77,12 +77,12 @@ export default function Page({
         {button}
         {preview ? (
           <PreviewProvider token={token!}>
-            <PreviewTable data={data} />
+            <PreviewTable data={[]} />
           </PreviewProvider>
         ) : (
           <Table data={data} />
         )}
-        <Timestamp date={new Date(timestamp)} />
+        <Timestamp date={timestamp} />
       </form>
       <RefreshButton />
       <script
