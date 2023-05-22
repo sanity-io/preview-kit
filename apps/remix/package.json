@@ -5,7 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "PORT=3001 remix dev",
+    "dev": "remix dev",
     "init": "sanity init --project pv8y60vp --dataset production --env .env.local",
     "lint": "eslint --max-warnings 0 ."
   },
