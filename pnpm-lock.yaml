@@ -523,8 +523,8 @@ importers:
         specifier: 2.30.0
         version: 2.30.0
       groq:
-        specifier: 3.10.0
-        version: 3.10.0
+        specifier: 3.11.1
+        version: 3.11.1
       groqd:
         specifier: 0.15.4
         version: 0.15.4
@@ -6383,7 +6383,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.8
+      semver: 7.5.1
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
@@ -11311,6 +11311,11 @@ packages:
 
   /groq@3.10.0:
     resolution: {integrity: sha512-e0svTundFQ9N1dI/kytsZKa3gcWSCZ/6+iVEYGLs49TGsYrc3rCGuxNR+AZA23pS6bpRuxGCnXf1+vU4vIIMQg==}
+    engines: {node: '>=14'}
+    dev: false
+
+  /groq@3.11.1:
+    resolution: {integrity: sha512-g4UG/8+XFbZyrP54yJpM9Mhg7AP/lrgRdu44RrpXask9d3qF2LYMG38cWEyZxn1by6Hcl7ylbTJQzwg85+7QGw==}
     engines: {node: '>=14'}
     dev: false
 
