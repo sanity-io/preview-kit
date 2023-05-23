@@ -1,5 +1,5 @@
 import type { QueryParams as ClientQueryParams } from '@sanity/client'
-import { useContext, useMemo } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import isFastEqual from 'react-fast-compare'
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector'
 
@@ -68,11 +68,12 @@ export function useListeningQuery<
     () => defineStore<Snapshot>(initialSnapshot, query, params),
     [defineStore, initialSnapshot, params, query]
   )
+  const [serverSnapshot] = useState(() => initialSnapshot)
 
   return useSyncExternalStoreWithSelector<Snapshot, Selection>(
     store.subscribe,
     store.getSnapshot,
-    () => initialSnapshot,
+    () => serverSnapshot,
     selector,
     isEqual
   )
