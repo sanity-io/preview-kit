@@ -1,11 +1,12 @@
 import {
   Button,
   Container,
+  FooterProps,
   PreviewDraftsButton,
-  Table,
   TableProps,
   Timestamp,
   ViewPublishedButton,
+  footerQuery,
   tableQuery,
 } from 'ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -17,14 +18,16 @@ import { sanityClient } from '../sanity.client'
 import { useEffect } from 'react'
 
 import { lazy } from 'react'
+import Table from '../Table'
+import Footer from '../Footer'
 
 const PreviewProvider = lazy(() => import('../PreviewProvider'))
-const PreviewTable = lazy(() => import('../PreviewTable'))
 
 export const getStaticProps: GetStaticProps<{
   preview: boolean
   token: string
-  data: TableProps['data']
+  table: TableProps['data']
+  footer: FooterProps['data']
   timestamp: string
   server__adapter: typeof adapter
   server__environment: typeof environment
@@ -44,14 +47,16 @@ export const getStaticProps: GetStaticProps<{
         token,
       })
     : sanityClient
-  const data = await client.fetch(tableQuery)
+  const table = client.fetch(tableQuery)
+  const footer = client.fetch(footerQuery)
   const timestamp = new Date().toJSON()
 
   return {
     props: {
       preview,
       token,
-      data,
+      table: await table,
+      footer: await footer,
       timestamp,
       server__adapter: adapter,
       server__environment: environment,
@@ -62,7 +67,8 @@ export const getStaticProps: GetStaticProps<{
 export default function Page({
   preview,
   token,
-  data,
+  table,
+  footer,
   timestamp,
   server__adapter,
   server__environment,
@@ -83,12 +89,16 @@ export default function Page({
         {button}
         {preview ? (
           <PreviewProvider token={token!}>
-            <PreviewTable data={data} />
+            <Table data={table} />
+            <Footer data={footer} />
           </PreviewProvider>
         ) : (
-          <Table data={data} />
+          <>
+            <Table data={table} />
+            <Footer data={footer} />
+          </>
         )}
-        <Timestamp date={new Date(timestamp)} />
+        <Timestamp date={timestamp} />
       </form>
       <RefreshButton />
       <script

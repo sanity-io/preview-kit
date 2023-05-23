@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { vercelStegaSplit } from '@vercel/stega'
 import groq from 'groq'
-import { q } from 'groqd'
+import { type InferType, q } from 'groqd'
 import { memo } from 'react'
 import type {} from 'zod'
 
@@ -169,7 +169,7 @@ export const { query: tableQuery, schema: tableSchema } = q('*')
   .slice(0, 10)
 
 export type TableProps = {
-  data: unknown[]
+  data: InferType<typeof tableSchema>[]
 }
 
 const thead = (
@@ -238,12 +238,6 @@ export const TableFallback = memo(function TableFallback({
               <td style={{ whiteSpace: 'nowrap' }} width={300}>
                 Loading…
               </td>
-              <td style={{ whiteSpace: 'nowrap' }} width={400}>
-                &nbsp;
-              </td>
-              <td style={{ whiteSpace: 'nowrap' }} width={300}>
-                &nbsp;
-              </td>
               <td style={{ whiteSpace: 'nowrap' }} width={300}>
                 &nbsp;
               </td>
@@ -280,7 +274,9 @@ export const Footer = memo(function Footer({ data }: FooterProps) {
   )
 })
 
-export function Timestamp({ date }: { date: Date }) {
+export function Timestamp(props: { date: Date | string }) {
+  const date =
+    typeof props.date === 'string' ? new Date(props.date) : props.date
   return (
     <time dateTime={date.toJSON()}>
       {date.getUTCHours().toString().padStart(2, '0')}:
