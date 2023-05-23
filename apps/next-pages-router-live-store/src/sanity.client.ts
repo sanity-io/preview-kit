@@ -9,7 +9,7 @@ export const sanityClient = createClient({
   apiVersion,
   useCdn,
   studioUrl: 'https://preview-kit-test-studio.sanity.build/',
-  encodeSourceMap: process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview',
+  encodeSourceMap: true,
   encodeSourceMapAtPath: () => true,
 })
 
