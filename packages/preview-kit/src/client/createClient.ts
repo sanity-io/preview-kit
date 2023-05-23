@@ -26,7 +26,6 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
   }
 
   try {
-    // @TODO backport the resultSourceMap check to v1
     if (shouldEncodeSourceMap && config.resultSourceMap !== false) {
       logger?.debug('[@sanity/preview-kit]: Creating source map enabled client')
       const httpRequest = createHttpRequest({ ...config, studioUrl })
