@@ -1,11 +1,14 @@
 import {
   Button,
   Container,
+  Footer,
+  FooterProps,
   PreviewDraftsButton,
   Table,
   TableProps,
   Timestamp,
   ViewPublishedButton,
+  footerQuery,
   tableQuery,
 } from 'ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -18,7 +21,8 @@ import { useEffect } from 'react'
 
 export const getStaticProps: GetStaticProps<{
   preview: boolean
-  data: TableProps['data']
+  table: TableProps['data']
+  footer: FooterProps['data']
   timestamp: string
   server__adapter: typeof adapter
   server__environment: typeof environment
@@ -38,13 +42,15 @@ export const getStaticProps: GetStaticProps<{
         token,
       })
     : sanityClient
-  const data = await client.fetch(tableQuery)
+  const table = client.fetch(tableQuery)
+  const footer = client.fetch(footerQuery)
   const timestamp = new Date().toJSON()
 
   return {
     props: {
       preview,
-      data,
+      table: await table,
+      footer: await footer,
       timestamp,
       server__adapter: adapter,
       server__environment: environment,
@@ -54,7 +60,8 @@ export const getStaticProps: GetStaticProps<{
 
 export default function Page({
   preview,
-  data,
+  table,
+  footer,
   timestamp,
   server__adapter,
   server__environment,
@@ -73,7 +80,8 @@ export default function Page({
     <Container>
       <form action={action} style={{ display: 'contents' }}>
         {button}
-        <Table data={data} />
+        <Table data={table} />
+        <Footer data={footer} />
         <Timestamp date={timestamp} />
       </form>
       <RefreshButton />

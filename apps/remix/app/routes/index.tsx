@@ -9,6 +9,8 @@ import {
   Button,
   ViewPublishedButton,
   PreviewDraftsButton,
+  footerQuery,
+  Footer,
 } from 'ui/react'
 import {
   unstable__adapter as adapter,
@@ -49,12 +51,14 @@ export async function loader({ request }: LoaderArgs) {
     token,
   })
   const client = preview ? draftsClient : sanityClient
-  const data = await client.fetch(tableQuery)
+  const table = client.fetch(tableQuery)
+  const footer = client.fetch(footerQuery)
   const timestamp = new Date().toJSON()
 
   return {
     preview,
-    data,
+    table: await table,
+    footer: await footer,
     timestamp,
     server__adapter: adapter,
     server__environment: environment,
@@ -62,8 +66,14 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function Index() {
-  const { preview, data, timestamp, server__adapter, server__environment } =
-    useLoaderData<typeof loader>()
+  const {
+    preview,
+    table,
+    footer,
+    timestamp,
+    server__adapter,
+    server__environment,
+  } = useLoaderData<typeof loader>()
 
   useEffect(() => {
     console.log({
@@ -79,8 +89,9 @@ export default function Index() {
     <>
       <form action={action} style={{ display: 'contents' }}>
         {button}
-        <Table data={data} />
-        <Timestamp date={new Date(timestamp)} />
+        <Table data={table} />
+        <Footer data={footer} />
+        <Timestamp date={timestamp} />
       </form>
       <RefreshButton />
       <script
