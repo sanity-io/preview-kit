@@ -44,7 +44,7 @@ export const NoStoreContext = function defineListener<Snapshot>(
     }
   }
   const getSnapshot: ListenerGetSnapshot<Snapshot> = () =>
-    snapshots.get(key) as Snapshot
+    snapshots.has(key) ? (snapshots.get(key) as Snapshot) : initialSnapshot
 
   return { subscribe, getSnapshot }
 } satisfies DefineListenerContext

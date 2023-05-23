@@ -4,26 +4,29 @@ import { useLoaderData, useRevalidator } from '@remix-run/react'
 
 import type { TableProps, FooterProps } from 'ui/react'
 import {
-  Table,
   Timestamp,
   tableQuery,
   Button,
   ViewPublishedButton,
   PreviewDraftsButton,
   footerQuery,
-  Footer,
+  TableFallback,
 } from 'ui/react'
 import {
   unstable__adapter as adapter,
   unstable__environment as environment,
 } from '@sanity/client'
 import { getSession } from '~/sessions'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
+import Footer from '~/Footer'
+import Table from '~/Table'
 
 const projectId = process.env.SANITY_PROJECT_ID || 'pv8y60vp'
 const dataset = process.env.SANITY_DATASET || 'production'
 const apiVersion = process.env.SANITY_API_VERSION || '2022-11-15'
 const useCdn = true
+
+const PreviewProvider = lazy(() => import('../PreviewProvider'))
 
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get('Cookie'))
@@ -58,6 +61,9 @@ export async function loader({ request }: LoaderArgs) {
 
   return {
     preview,
+    token,
+    projectId,
+    dataset,
     table: await table,
     footer: await footer,
     timestamp,
@@ -69,6 +75,9 @@ export async function loader({ request }: LoaderArgs) {
 export default function Index() {
   const {
     preview,
+    token,
+    projectId,
+    dataset,
     table,
     footer,
     timestamp,
@@ -90,8 +99,30 @@ export default function Index() {
     <>
       <form action={action} style={{ display: 'contents' }}>
         {button}
-        <Table data={table} />
-        <Footer data={footer} />
+        {preview ? (
+          <Suspense
+            fallback={
+              <>
+                <TableFallback rows={table.length} />
+                <Footer data={footer} />
+              </>
+            }
+          >
+            <PreviewProvider
+              token={token!}
+              projectId={projectId}
+              dataset={dataset}
+            >
+              <Table data={table} />
+              <Footer data={footer} />
+            </PreviewProvider>
+          </Suspense>
+        ) : (
+          <>
+            <Table data={table} />
+            <Footer data={footer} />
+          </>
+        )}
         <Timestamp date={timestamp} />
       </form>
       <RefreshButton />

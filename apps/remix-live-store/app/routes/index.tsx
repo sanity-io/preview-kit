@@ -1,16 +1,14 @@
-import { createClient } from '@sanity/preview-kit/client'
 import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData, useRevalidator } from '@remix-run/react'
 
+import type { TableProps, FooterProps } from 'ui/react'
 import {
-  Table,
   Timestamp,
   tableQuery,
   Button,
   ViewPublishedButton,
   PreviewDraftsButton,
   footerQuery,
-  Footer,
 } from 'ui/react'
 import {
   unstable__adapter as adapter,
@@ -18,45 +16,42 @@ import {
 } from '@sanity/client'
 import { getSession } from '~/sessions'
 import { useEffect } from 'react'
-
-const projectId = process.env.SANITY_PROJECT_ID || 'pv8y60vp'
-const dataset = process.env.SANITY_DATASET || 'production'
-const apiVersion = process.env.SANITY_API_VERSION || '2022-11-15'
-const useCdn = true
+import { getClient } from '~/utils'
+import PreviewProvider from '~/PreviewProvider'
+import Table from '~/Table'
+import Footer from '~/Footer'
 
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get('Cookie'))
   const preview = session.get('view') === 'previewDrafts'
 
-  const sanityClient = createClient({
-    projectId,
-    dataset,
-    apiVersion,
-    useCdn,
-    studioUrl: 'https://preview-kit-test-studio.sanity.build/',
-    encodeSourceMap: true,
-    encodeSourceMapAtPath: () => true,
-  })
-
+  const projectId = process.env.SANITY_PROJECT_ID || 'pv8y60vp'
+  const dataset = process.env.SANITY_DATASET || 'production'
+  const apiVersion = process.env.SANITY_API_VERSION || '2022-11-15'
+  const useCdn = true
   const token = process.env.SANITY_API_READ_TOKEN
   if (!token) {
     throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
   }
-  // Used to preview drafts as they will appear once published
-  const draftsClient = sanityClient.withConfig({
-    perspective: 'previewDrafts',
-    // required by previewDrafts
-    apiVersion: 'X',
-    useCdn: false,
+
+  const client = getClient(preview, {
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn,
     token,
   })
-  const client = preview ? draftsClient : sanityClient
-  const table = client.fetch(tableQuery)
-  const footer = client.fetch(footerQuery)
+  const table = client.fetch<TableProps['data']>(tableQuery)
+  const footer = client.fetch<FooterProps['data']>(footerQuery)
   const timestamp = new Date().toJSON()
 
   return {
     preview,
+    token,
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn,
     table: await table,
     footer: await footer,
     timestamp,
@@ -68,6 +63,11 @@ export async function loader({ request }: LoaderArgs) {
 export default function Index() {
   const {
     preview,
+    token,
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn,
     table,
     footer,
     timestamp,
@@ -89,9 +89,24 @@ export default function Index() {
     <>
       <form action={action} style={{ display: 'contents' }}>
         {button}
-        <Table data={table} />
-        <Footer data={footer} />
-        <Timestamp date={new Date(timestamp)} />
+        {preview ? (
+          <PreviewProvider
+            apiVersion={apiVersion}
+            useCdn={useCdn}
+            token={token!}
+            projectId={projectId}
+            dataset={dataset}
+          >
+            <Table data={table} />
+            <Footer data={footer} />
+          </PreviewProvider>
+        ) : (
+          <>
+            <Table data={table} />
+            <Footer data={footer} />
+          </>
+        )}
+        <Timestamp date={timestamp} />
       </form>
       <RefreshButton />
       <script

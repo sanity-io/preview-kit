@@ -443,7 +443,129 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
 
+  apps/remix-groq-store-lazy:
+    dependencies:
+      '@remix-run/node':
+        specifier: 1.16.0
+        version: 1.16.0
+      '@remix-run/react':
+        specifier: 1.16.0
+        version: 1.16.0(react-dom@18.2.0)(react@18.2.0)
+      '@sanity/client':
+        specifier: 6.1.1
+        version: 6.1.1
+      '@sanity/preview-kit':
+        specifier: workspace:*
+        version: link:../../packages/preview-kit
+      '@vercel/remix':
+        specifier: 1.16.0
+        version: 1.16.0(react-dom@18.2.0)(react@18.2.0)
+      groq:
+        specifier: 3.10.0
+        version: 3.10.0
+      groqd:
+        specifier: 0.15.4
+        version: 0.15.4
+      isbot:
+        specifier: latest
+        version: 3.6.10
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      ui:
+        specifier: workspace:*
+        version: link:../../packages/ui
+    devDependencies:
+      '@remix-run/dev':
+        specifier: 1.16.0
+        version: 1.16.0(@remix-run/serve@1.16.0)(@types/node@14.18.33)
+      '@remix-run/eslint-config':
+        specifier: 1.16.0
+        version: 1.16.0(eslint@8.39.0)(react@18.2.0)(typescript@5.0.4)
+      '@remix-run/serve':
+        specifier: 1.16.0
+        version: 1.16.0
+      '@types/react':
+        specifier: 18.2.0
+        version: 18.2.0
+      '@types/react-dom':
+        specifier: 18.2.1
+        version: 18.2.1
+      '@typescript-eslint/eslint-plugin':
+        specifier: 5.59.2
+        version: 5.59.2(@typescript-eslint/parser@5.59.2)(eslint@8.39.0)(typescript@5.0.4)
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
   apps/remix-live-store:
+    dependencies:
+      '@remix-run/node':
+        specifier: 1.16.0
+        version: 1.16.0
+      '@remix-run/react':
+        specifier: 1.16.0
+        version: 1.16.0(react-dom@18.2.0)(react@18.2.0)
+      '@sanity/client':
+        specifier: 6.1.1
+        version: 6.1.1
+      '@sanity/preview-kit':
+        specifier: workspace:*
+        version: link:../../packages/preview-kit
+      '@vercel/remix':
+        specifier: 1.16.0
+        version: 1.16.0(react-dom@18.2.0)(react@18.2.0)
+      groq:
+        specifier: 3.10.0
+        version: 3.10.0
+      groqd:
+        specifier: 0.15.4
+        version: 0.15.4
+      isbot:
+        specifier: latest
+        version: 3.6.10
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      ui:
+        specifier: workspace:*
+        version: link:../../packages/ui
+    devDependencies:
+      '@remix-run/dev':
+        specifier: 1.16.0
+        version: 1.16.0(@remix-run/serve@1.16.0)(@types/node@14.18.33)
+      '@remix-run/eslint-config':
+        specifier: 1.16.0
+        version: 1.16.0(eslint@8.39.0)(react@18.2.0)(typescript@5.0.4)
+      '@remix-run/serve':
+        specifier: 1.16.0
+        version: 1.16.0
+      '@types/react':
+        specifier: 18.2.0
+        version: 18.2.0
+      '@types/react-dom':
+        specifier: 18.2.1
+        version: 18.2.1
+      '@typescript-eslint/eslint-plugin':
+        specifier: 5.59.2
+        version: 5.59.2(@typescript-eslint/parser@5.59.2)(eslint@8.39.0)(typescript@5.0.4)
+      eslint:
+        specifier: 8.39.0
+        version: 8.39.0
+      typescript:
+        specifier: 5.0.4
+        version: 5.0.4
+
+  apps/remix-live-store-lazy:
     dependencies:
       '@remix-run/node':
         specifier: 1.16.0

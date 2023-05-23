@@ -238,12 +238,6 @@ export const TableFallback = memo(function TableFallback({
               <td style={{ whiteSpace: 'nowrap' }} width={300}>
                 Loading…
               </td>
-              <td style={{ whiteSpace: 'nowrap' }} width={400}>
-                &nbsp;
-              </td>
-              <td style={{ whiteSpace: 'nowrap' }} width={300}>
-                &nbsp;
-              </td>
               <td style={{ whiteSpace: 'nowrap' }} width={300}>
                 &nbsp;
               </td>
