@@ -28,7 +28,7 @@ export const createClient = (config: ClientConfig): SanityClient => {
   }
 
   try {
-    if (shouldEncodeSourceMap) {
+    if (shouldEncodeSourceMap && config.resultSourceMap !== false) {
       logger?.debug('[@sanity/preview-kit]: Creating source map enabled client')
       const httpRequest = createHttpRequest({ ...config, studioUrl })
       return new SanityClient(httpRequest, {
