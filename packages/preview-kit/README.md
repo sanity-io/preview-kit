@@ -142,21 +142,21 @@ An example report:
 [@sanity/preview-kit]: Stega encoding source map into result
   [@sanity/preview-kit]: Paths encoded: 3, skipped: 17
   [@sanity/preview-kit]: Table of encoded paths
-  ┌─────────┬──────────────────────────────────┬───────────────────────────┬────────┐
-  │ (index) │                     path         │           value           │ length │
-  ├─────────┼──────────────────────────────────┼───────────────────────────┼────────┤
-  │    0    │ ["footer",0,"children",0,"text"] │ '"The future is alrea...' │   67   │
-  │    1    │ ["footer",1,"children",0,"text"] │     'Robin Williams'      │   14   │
-  │    2    │             ["title"]            │     'Visual Editing'      │   14   │
-  └─────────┴──────────────────────────────────┴───────────────────────────┴────────┘
+  ┌─────────┬──────────────────────────────┬───────────────────────────┬────────┐
+  │ (index) │              path            │           value           │ length │
+  ├─────────┼──────────────────────────────┼───────────────────────────┼────────┤
+  │    0    │ "footer[0].children[0].text" │ '"The future is alrea...' │   67   │
+  │    1    │ "footer[1].children[0].text" │     'Robin Williams'      │   14   │
+  │    2    │            "title"           │     'Visual Editing'      │   14   │
+  └─────────┴──────────────────────────────┴───────────────────────────┴────────┘
   [@sanity/preview-kit]: List of skipped paths [
-    [ 'footer', number, '_key' ],
-    [ 'footer', number, 'children', number, '_key' ],
-    [ 'footer', number, 'children', number, '_type' ],
-    [ 'footer', number, '_type' ],
-    [ 'footer', number, 'style' ],
-    [ '_type' ],
-    [ 'slug', 'current' ],
+    'footer[number]._key',
+    'footer[number].children[number]._key',
+    'footer[number].children[number]._type',
+    'footer[number]._type',
+    'footer[number].style',
+    '_type',
+    'slug.current',
   ]
 ```
 
