@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import type { ContentSourceMapDocuments } from '@sanity/client'
-import { vercelStegaEncode } from '@vercel/stega'
+import { vercelStegaCombine } from '@vercel/stega'
 
 import { defineEditLink } from './editIntent'
 import { parseNormalisedJsonPath } from './jsonpath'
@@ -122,10 +122,14 @@ export function createTranscoder(
       })
     }
 
-    return `${vercelStegaEncode({
-      origin: 'sanity.io',
-      href: createEditLink(sourceDocument, sourcePath),
-    })}${input}`
+    return vercelStegaCombine(
+      input,
+      {
+        origin: 'sanity.io',
+        href: createEditLink(sourceDocument, sourcePath),
+      },
+      'auto'
+    )
   }
   return {
     report,
