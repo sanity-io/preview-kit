@@ -13,7 +13,6 @@ import invariant from 'tiny-invariant'
 import { createTranscoder } from './transcode'
 import type {
   ContentSourceMapQueryResponse,
-  PathSegment,
   PreviewKitClientConfig,
 } from './types'
 
@@ -68,9 +67,9 @@ function transcodeResponse({
             logger?.table(transcoder.report.encoded)
           }
           if (transcoder.report.skipped.length > 0) {
-            const skipped = new Map<string, PathSegment[]>()
+            const skipped = new Set<string>()
             for (const { path } of transcoder.report.skipped) {
-              skipped.set(path, JSON.parse(path))
+              skipped.add(path.replace(/\[\d+\]/g, '[number]'))
             }
             logger?.log(`[@sanity/preview-kit]: List of skipped paths`, [
               ...skipped.values(),

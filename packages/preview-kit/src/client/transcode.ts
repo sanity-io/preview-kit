@@ -102,7 +102,7 @@ export function createTranscoder(
     ) {
       if (logger) {
         report.skipped.push({
-          path: JSON.stringify(sourcePath),
+          path: prettyPathForLogging(sourcePath),
           value: `${input.slice(0, TRUNCATE_LENGTH)}${
             input.length > TRUNCATE_LENGTH ? '...' : ''
           }`,
@@ -114,7 +114,7 @@ export function createTranscoder(
 
     if (logger) {
       report.encoded.push({
-        path: JSON.stringify(sourcePath),
+        path: prettyPathForLogging(sourcePath),
         value: `${input.slice(0, TRUNCATE_LENGTH)}${
           input.length > TRUNCATE_LENGTH ? '...' : ''
         }`,
@@ -140,4 +140,16 @@ export function createTranscoder(
       )
     },
   }
+}
+
+function prettyPathForLogging(path: PathSegment[]): string {
+  return path
+    .map((segment, index) =>
+      typeof segment === 'number'
+        ? `[${segment}]`
+        : index > 0
+        ? `.${segment}`
+        : segment
+    )
+    .join('')
 }
