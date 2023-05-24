@@ -150,11 +150,11 @@ An example report:
   │    2    │            "title"           │     'Visual Editing'      │   14   │
   └─────────┴──────────────────────────────┴───────────────────────────┴────────┘
   [@sanity/preview-kit]: List of skipped paths [
-    'footer[number]._key',
-    'footer[number].children[number]._key',
-    'footer[number].children[number]._type',
-    'footer[number]._type',
-    'footer[number].style',
+    'footer[]._key',
+    'footer[].children[]._key',
+    'footer[].children[]._type',
+    'footer[]._type',
+    'footer[].style',
     '_type',
     'slug.current',
   ]

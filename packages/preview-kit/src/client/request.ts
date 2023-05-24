@@ -69,7 +69,7 @@ function transcodeResponse({
           if (transcoder.report.skipped.length > 0) {
             const skipped = new Set<string>()
             for (const { path } of transcoder.report.skipped) {
-              skipped.add(path.replace(/\[\d+\]/g, '[number]'))
+              skipped.add(path.replace(/\[\d+\]/g, '[]'))
             }
             logger?.log(`[@sanity/preview-kit]: List of skipped paths`, [
               ...skipped.values(),
