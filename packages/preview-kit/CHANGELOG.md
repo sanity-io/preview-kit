@@ -5,6 +5,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4](https://github.com/sanity-io/preview-kit/compare/v1.5.3...v1.5.4) (2023-05-24)
+
+### Bug Fixes
+
+- less verbose logger paths (#348)
+- improve Portable Text support (#349)
+- skip encoding URLs and ISO dates (#350)
+
+## [1.5.3](https://github.com/sanity-io/preview-kit/compare/v1.5.2...v1.5.3) (2023-05-16)
+
+### Bug Fixes
+
+- **deps:** update dependencies ([faf40f1](https://github.com/sanity-io/preview-kit/commit/faf40f1db7423a3990963e659eb7c4c578d11086))
+
 ## [1.5.2](https://github.com/sanity-io/preview-kit/compare/v1.5.1...v1.5.2) (2023-05-03)
 
 ### Bug Fixes
