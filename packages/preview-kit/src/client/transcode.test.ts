@@ -35,7 +35,7 @@ test('transcodes Content Lake source mappings to Vercel stega encoded metadata',
       "encoded": [
         {
           "length": 946,
-          "path": "[\\"content\\",0,\\"children\\",0,\\"text\\"]",
+          "path": "content[0].children[0].text",
           "value": "​Lorem ipsum dolor s...",
         },
       ],
@@ -63,7 +63,7 @@ test('always skips slugs', () => {
       "skipped": [
         {
           "length": 21,
-          "path": "[\\"slug\\",\\"current\\"]",
+          "path": "slug.current",
           "value": "/agency-partners/10u...",
         },
       ],

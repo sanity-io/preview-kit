@@ -4,6 +4,8 @@ import { expect, test } from 'vitest'
 
 import { createClient } from './index'
 
+const title = '🚀 🤯'
+
 test('it returns stega encoded source maps', async () => {
   expect.assertions(3)
   const client = createClient({
@@ -15,36 +17,39 @@ test('it returns stega encoded source maps', async () => {
     logger: console,
   })
 
-  const resultArray = await client.fetch(`*[_id == $id]`, {
-    id: 'c7fd2fd7-5445-443d-9e80-e11d6c32f47a',
-  })
+  const resultArray = await client.fetch(
+    `*[_type == "page" && title == $title][0..1]`,
+    { title }
+  )
   expect(vercelStegaDecode(resultArray[0].title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=c7fd2fd7-5445-443d-9e80-e11d6c32f47a;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
       "origin": "sanity.io",
     }
   `
   )
 
-  const resultObject = await client.fetch(`*[_id == $id][0]`, {
-    id: 'c7fd2fd7-5445-443d-9e80-e11d6c32f47a',
-  })
+  const resultObject = await client.fetch(
+    `*[_type == "page" && title == $title][0]`,
+    { title }
+  )
   expect(vercelStegaDecode(resultObject.title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=c7fd2fd7-5445-443d-9e80-e11d6c32f47a;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
       "origin": "sanity.io",
     }
   `
   )
 
-  const resultString = await client.fetch(`*[_id == $id][0].title`, {
-    id: 'c7fd2fd7-5445-443d-9e80-e11d6c32f47a',
-  })
+  const resultString = await client.fetch(
+    `*[_type == "page" && title == $title][0].title`,
+    { title }
+  )
   expect(vercelStegaDecode(resultString)).toMatchInlineSnapshot(`
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=c7fd2fd7-5445-443d-9e80-e11d6c32f47a;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
       "origin": "sanity.io",
     }
   `)
@@ -61,15 +66,13 @@ test('it can access the original source map', async () => {
   })
 
   const { result, resultSourceMap } = await client.fetch(
-    `*[_id == $id][0].title`,
-    {
-      id: 'c7fd2fd7-5445-443d-9e80-e11d6c32f47a',
-    },
+    `*[_type == "page" && title == $title][0].title`,
+    { title },
     { filterResponse: false }
   )
   expect(vercelStegaDecode(result)).toMatchInlineSnapshot(`
     {
-      "href": "/studio/intent/edit/id=c7fd2fd7-5445-443d-9e80-e11d6c32f47a;path=title",
+      "href": "/studio/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
       "origin": "sanity.io",
     }
   `)
@@ -77,7 +80,7 @@ test('it can access the original source map', async () => {
     {
       "documents": [
         {
-          "_id": "c7fd2fd7-5445-443d-9e80-e11d6c32f47a",
+          "_id": "abbba612-5449-42fc-b3f4-f4ec8a98c6ee",
         },
       ],
       "mappings": {
@@ -109,10 +112,8 @@ test('it can query the content source map without transcoding', async () => {
   })
 
   const { result, resultSourceMap } = await client.fetch(
-    `*[_id == $id][0].title`,
-    {
-      id: 'c7fd2fd7-5445-443d-9e80-e11d6c32f47a',
-    },
+    `*[_type == "page" && title == $title][0].title`,
+    { title },
     { filterResponse: false }
   )
   expect(vercelStegaDecode(result)).toBeUndefined()
@@ -120,7 +121,7 @@ test('it can query the content source map without transcoding', async () => {
     {
       "documents": [
         {
-          "_id": "c7fd2fd7-5445-443d-9e80-e11d6c32f47a",
+          "_id": "abbba612-5449-42fc-b3f4-f4ec8a98c6ee",
         },
       ],
       "mappings": {
@@ -151,9 +152,10 @@ test('encodeSourceMapAtPath', async () => {
     encodeSourceMapAtPath: ({ path }) => path.at(-1) !== 'title',
   })
 
-  const resultString = await client.fetch(`*[_id == $id][0].title`, {
-    id: 'c7fd2fd7-5445-443d-9e80-e11d6c32f47a',
-  })
+  const resultString = await client.fetch(
+    `*[_type == "page" && title == $title][0].title`,
+    { title }
+  )
   expect(resultString).toBe('🚀 🤯')
   expect(vercelStegaDecode(resultString)).toBe(undefined)
 })
