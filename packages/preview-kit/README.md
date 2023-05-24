@@ -103,7 +103,7 @@ const client = createClient({
 
 #### `encodeSourceMapAtPath`
 
-By default source maps are encoded into all strings that can be traced back to a document field. We make some exceptions for fields like, `document._type`, `document._id` and `document.slug.current`, that we've seen leading to breakage if the string is altered.
+By default source maps are encoded into all strings that can be traced back to a document field, except for URLs and ISO dates. We also make some exceptions for fields like, `document._type`, `document._id` and `document.slug.current`, that we've seen leading to breakage if the string is altered as well as for Portable Text.
 
 You can customize this behavior using `encodeSourceMapAtPath`:
 
