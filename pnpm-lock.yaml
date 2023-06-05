@@ -805,8 +805,8 @@ importers:
   packages/ui:
     dependencies:
       '@vercel/stega':
-        specifier: 0.0.4
-        version: 0.0.4
+        specifier: 0.0.5
+        version: 0.0.5
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -817,8 +817,8 @@ importers:
         specifier: 3.11.5
         version: 3.11.5
       groqd:
-        specifier: 0.15.4
-        version: 0.15.4
+        specifier: 0.15.6
+        version: 0.15.6
       zod:
         specifier: 3.21.4
         version: 3.21.4
@@ -6584,7 +6584,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.8
+      semver: 7.5.1
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
@@ -6650,10 +6650,6 @@ packages:
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
     dev: true
-
-  /@vercel/stega@0.0.4:
-    resolution: {integrity: sha512-4c9AibBOJ9oGvvev0f5QFbdcDPmOjkxdlrKb5Y70DnAc0ThtFujod8DRGA/RLFQ5lAvgRTdpvoczl8GhHuxFJQ==}
-    dev: false
 
   /@vercel/stega@0.0.5:
     resolution: {integrity: sha512-vvuUYW0rBp4Ea9xv0LilqFyDHAW9tvy4GL70G1ayGisQwpOYIPChmiw/56jqZvpxjE9gjQIApLfglOcdZe3PcA==}
