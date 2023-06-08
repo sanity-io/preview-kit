@@ -183,7 +183,7 @@ console.log(resultSourceMap) // `resultSourceMap` is now available, even if `enc
 If you're building your own custom preview logic you can use `mapToEditLinks` to skip encoding hidden metadata into strings, and access the edit links directly:
 
 ```tsx
-import { createClient } from '@sanity/preview-kit/client'
+import { createClient, mapToEditLinks } from '@sanity/preview-kit/client'
 
 const client = createClient({
   ...config,
