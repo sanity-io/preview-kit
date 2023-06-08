@@ -8,16 +8,16 @@ export type ListenerSubscribe = (onStoreChange: () => void) => () => void
 /**
  * @internal
  */
-export type ListenerGetSnapshot<Snapshot> = () => Snapshot
+export type ListenerGetSnapshot<QueryResult> = () => QueryResult
 
 /**
  * @internal
  */
-export type DefineListenerContext = <Snapshot>(
-  initialSnapshot: Snapshot,
+export type DefineListenerContext = <QueryResult>(
+  initialSnapshot: QueryResult,
   query: string,
   params: QueryParams
 ) => {
   subscribe: ListenerSubscribe
-  getSnapshot: ListenerGetSnapshot<Snapshot>
+  getSnapshot: ListenerGetSnapshot<QueryResult>
 }

@@ -14,8 +14,8 @@ const deps = new Map<QueryCacheKey, number>()
 /**
  * @internal
  */
-export const NoStoreContext = function defineListener<Snapshot>(
-  initialSnapshot: Snapshot,
+export const NoStoreContext = function defineListener<QueryResult>(
+  initialSnapshot: QueryResult,
   query: string,
   params: QueryParams
 ) {
@@ -43,8 +43,8 @@ export const NoStoreContext = function defineListener<Snapshot>(
       }
     }
   }
-  const getSnapshot: ListenerGetSnapshot<Snapshot> = () =>
-    snapshots.has(key) ? (snapshots.get(key) as Snapshot) : initialSnapshot
+  const getSnapshot: ListenerGetSnapshot<QueryResult> = () =>
+    snapshots.has(key) ? (snapshots.get(key) as QueryResult) : initialSnapshot
 
   return { subscribe, getSnapshot }
 } satisfies DefineListenerContext

@@ -79,8 +79,8 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
   const [snapshots] = useState<QuerySnapshotsCache>(() => new Map())
   const hooks = useHooks(setSubscriptions)
   const [context] = useState<DefineListenerContext>(() => {
-    return function defineListener<Snapshot>(
-      initialSnapshot: Snapshot,
+    return function defineListener<QueryResult>(
+      initialSnapshot: QueryResult,
       query: string,
       params: QueryParams
     ) {
@@ -99,8 +99,8 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
 
         return () => unsubscribe()
       }
-      const getSnapshot: ListenerGetSnapshot<Snapshot> = () =>
-        snapshots.get(key)?.result as unknown as Snapshot
+      const getSnapshot: ListenerGetSnapshot<QueryResult> = () =>
+        snapshots.get(key)?.result as unknown as QueryResult
 
       return { subscribe, getSnapshot }
     } satisfies DefineListenerContext
@@ -217,13 +217,13 @@ const QuerySubscription = memo(function QuerySubscription(
 
       if (!signal.aborted) {
         snapshots.set(getQueryCacheKey(query, params), {
-          result: turboChargeResult(
+          result: turboChargeResultIfSourceMap(
             projectId,
             dataset,
             result,
             resultSourceMap
           ),
-          resultSourceMap,
+          resultSourceMap: resultSourceMap ?? ({} as ContentSourceMap),
         })
 
         if (resultSourceMap) {
@@ -549,7 +549,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
     const updatedKeys: QueryCacheKey[] = []
     for (const [key, snapshot] of snapshots.entries()) {
       if (snapshot.resultSourceMap?.documents?.length) {
-        snapshot.result = turboChargeResult(
+        snapshot.result = turboChargeResultIfSourceMap(
           projectId,
           dataset,
           snapshot.result,
@@ -610,12 +610,14 @@ const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
   return null
 })
 
-function turboChargeResult(
+function turboChargeResultIfSourceMap(
   projectId: string,
   dataset: string,
   result: unknown,
-  resultSourceMap: ContentSourceMap
+  resultSourceMap?: ContentSourceMap
 ) {
+  if (!resultSourceMap) return result
+
   return walkMap(result, (value, path) => {
     const resolveMappingResult = resolveMapping(path, resultSourceMap)
     if (!resolveMappingResult) {

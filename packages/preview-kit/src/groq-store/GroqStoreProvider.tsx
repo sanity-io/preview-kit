@@ -59,8 +59,8 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
   if (error) throw error
 
   const [context] = useState<DefineListenerContext>(() => {
-    return function defineListener<Snapshot>(
-      initialSnapshot: Snapshot,
+    return function defineListener<QueryResult>(
+      initialSnapshot: QueryResult,
       query: string,
       params: QueryParams
     ) {
@@ -94,7 +94,7 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
         })
         return () => subscription.unsubscribe()
       }
-      const getSnapshot: ListenerGetSnapshot<Snapshot> = () =>
+      const getSnapshot: ListenerGetSnapshot<QueryResult> = () =>
         snapshots.get(key)
 
       return { subscribe, getSnapshot }
