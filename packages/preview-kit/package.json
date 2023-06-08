@@ -118,7 +118,6 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@sanity/client": "^6.1.1",
     "@sanity/eventsource": "^5.0.0",
     "@sanity/groq-store": "2.1.0",
     "@vercel/stega": "0.0.5",
@@ -158,6 +157,7 @@
     "vitest-github-actions-reporter": "0.10.0"
   },
   "peerDependencies": {
+    "@sanity/client": "^6.1.1",
     "react": "^18.0.0"
   },
   "peerDependenciesMeta": {
