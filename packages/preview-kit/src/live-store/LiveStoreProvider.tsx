@@ -90,8 +90,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
       if (!snapshots.has(key)) {
         snapshots.set(key, {
           result: initialSnapshot,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          resultSourceMap: {} as any,
+          resultSourceMap: {} as ContentSourceMap,
         })
       }
 
