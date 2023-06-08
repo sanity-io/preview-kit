@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { vercelStegaSplit } from '@vercel/stega'
 import groq from 'groq'
-import { type InferType, q } from 'groqd'
+import { q } from 'groqd'
 import { memo } from 'react'
-import type {} from 'zod'
 
 /* eslint-disable react/jsx-no-bind */
 // import { memo, useReducer } from 'react'
@@ -157,7 +156,7 @@ export function Container({ children }: { children: React.ReactNode }) {
   )
 }
 
-export const { query: tableQuery, schema: tableSchema } = q('*')
+const { query: tableQuery, schema: tableSchema } = q('*')
   .filter("_type == 'page'")
   .grab({
     _id: q.string(),
@@ -167,9 +166,10 @@ export const { query: tableQuery, schema: tableSchema } = q('*')
   })
   .order('title asc')
   .slice(0, 10)
+export { tableQuery }
 
 export type TableProps = {
-  data: InferType<typeof tableSchema>[]
+  data: unknown
 }
 
 const thead = (
