@@ -275,14 +275,16 @@ import type { UsersResponse } from '~/UsersList'
 import { UsersList, usersQuery } from '~/UsersList'
 import { Layout } from '~/ui'
 
-export async function loader({ request }: LoaderArgs) {
-  const client = createClient({
+export const getClient = () =>
+  createClient({
     projectId: process.env.SANITY_PROJECT_ID,
     dataset: process.env.SANITY_DATASET,
     apiVersion: process.env.SANITY_API_VERSION,
-    useCdn: true,
-    token: process.env.SANITY_API_READ_TOKEN,
+    useCdn: false,
   })
+
+export async function loader({ request }: LoaderArgs) {
+  const client = getClient()
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
@@ -367,24 +369,25 @@ import { Layout } from '~/ui'
 
 const PreviewProvider = lazy(() => import('~/PreviewProvider'))
 
-export async function loader({ request }: LoaderArgs) {
-  const client = createClient({
+export const getClient = (preview = false) =>
+  createClient({
     projectId: process.env.SANITY_PROJECT_ID,
     dataset: process.env.SANITY_DATASET,
     apiVersion: process.env.SANITY_API_VERSION,
-    useCdn: true,
-    token: process.env.SANITY_API_READ_TOKEN,
+    useCdn: !preview,
+    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
+
+export async function loader({ request }: LoaderArgs) {
+  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+  const client = getClient(isPreview)
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
   const users = await client.fetch<UsersResponse>(usersQuery, { lastId })
 
   const { projectId, dataset, token } = client.config()
-  const preview =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-      ? { token, projectId, dataset }
-      : (false as const)
+  const preview = isPreview ? { token, projectId, dataset } : (false as const)
 
   return { preview, users, lastId }
 }
@@ -516,7 +519,89 @@ export function UsersList(props: UsersListProps) {
 }
 ```
 
-And done! Out of the box it'll only trigger a re-render of `UsersList` if the query response changed, using `react-fast-compare` under the hood. You can tweak this behavior by passing a custom `isEqual` function as the third argument to `useListeningQuery` if there's only some changes you want to trigger a re-render.
+And done! You can optionally optimize it further by adding a loading UI while it loads, or improve performance by adding a custom `isEqual` function to reduce React re-renders if there's a lot of data that changes but isn't user visible (SEO metadata and such).
+
+#### Implementing a Loading UI
+
+The best way to do this is to add a wrapper component that is only used in production, this allows you to use the `initialSnapshot` to determine if the previews are finished loading or not.
+
+```tsx
+export function UsersList(props: UsersListProps) {
+  const { data, lastId } = props
+
+  return (
+    <>
+      <ListView list={data.list} />
+      <ListPagination total={data.total} lastId={lastId} />
+    </>
+  )
+}
+
+const isLoadingSymbol = Symbol('isLoading')
+export function PreviewUsersList(props: UsersListProps) {
+  const { data: serverSnapshot, lastId } = props
+  const snapshot = useListeningQuery(isLoadingSymbol, usersQuery, { lastId })
+  const isLoading = snapshot === isLoadingSymbol
+  const data = isLoading ? serverSnapshot : snapshot
+
+  return (
+    <>
+      <PreviewStatus isLoading={isLoading} />
+      <UsersList data={users} lastId={lastId} />
+    </>
+  )
+}
+```
+
+Change the layout from:
+
+```tsx
+const children = <UsersList data={users} lastId={lastId} />
+
+return (
+  <Layout>
+    {preview ? (
+      <Suspense fallback={children}>
+        <PreviewProvider
+          token={preview.token!}
+          projectId={preview.projectId!}
+          dataset={preview.dataset!}
+        >
+          {children}
+        </PreviewProvider>
+      </Suspense>
+    ) : (
+      children
+    )}
+  </Layout>
+)
+```
+
+To this:
+
+```tsx
+return (
+  <Layout>
+    {preview ? (
+      <Suspense fallback={children}>
+        <PreviewProvider
+          token={preview.token!}
+          projectId={preview.projectId!}
+          dataset={preview.dataset!}
+        >
+          <PreviewUsersList data={users} lastId={lastId} />
+        </PreviewProvider>
+      </Suspense>
+    ) : (
+      <UsersList data={users} lastId={lastId} />
+    )}
+  </Layout>
+)
+```
+
+#### Optimizing performance
+
+Out of the box it'll only trigger a re-render of `UsersList` if the query response changed, using `react-fast-compare` under the hood. You can tweak this behavior by passing a custom `isEqual` function as the third argument to `useListeningQuery` if there's only some changes you want to trigger a re-render.
 
 ```tsx
 const data = useListeningQuery(
