@@ -92,22 +92,14 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-function getClient(isPreview: boolean): SanityClient {
-  const client = createClient({
+export const getClient = (preview = false) =>
+  createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
+    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
-
-  if (isPreview) {
-    return client.withConfig({
-      token: process.env.SANITY_API_READ_TOKEN,
-    })
-  }
-
-  return client
-}
 
 export async function loader({ request }: LoaderArgs) {
   const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
@@ -166,22 +158,14 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-function getClient(isPreview: boolean): SanityClient {
-  const client = createClient({
+export const getClient = (preview = false) =>
+  createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
+    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
-
-  if (isPreview) {
-    return client.withConfig({
-      token: process.env.SANITY_API_READ_TOKEN,
-    })
-  }
-
-  return client
-}
 
 export async function loader({ request }: LoaderArgs) {
   const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
@@ -244,22 +228,14 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-function getClient(isPreview: boolean): SanityClient {
-  const client = createClient({
+export const getClient = (preview = false) =>
+  createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
+    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
-
-  if (isPreview) {
-    return client.withConfig({
-      token: process.env.SANITY_API_READ_TOKEN,
-    })
-  }
-
-  return client
-}
 
 export async function loader({ request }: LoaderArgs) {
   const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
@@ -318,22 +294,14 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-function getClient(isPreview: boolean): SanityClient {
-  const client = createClient({
+export const getClient = (preview = false) =>
+  createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
+    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
-
-  if (isPreview) {
-    return client.withConfig({
-      token: process.env.SANITY_API_READ_TOKEN,
-    })
-  }
-
-  return client
-}
 
 export async function loader({ request }: LoaderArgs) {
   const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
