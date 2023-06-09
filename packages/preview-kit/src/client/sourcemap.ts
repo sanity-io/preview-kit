@@ -51,7 +51,8 @@ export function encodeIntoResult(
       return value
     }
 
-    const resolveMappingResult = resolveMapping(path, response.resultSourceMap)
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const resolveMappingResult = resolveMapping(path, response.resultSourceMap!)
     if (!resolveMappingResult) {
       return value
     }
@@ -66,8 +67,10 @@ export function encodeIntoResult(
     }
 
     const sourceDocument =
-      response.resultSourceMap.documents[mapping.source.document]
-    const sourcePath = response.resultSourceMap.paths[mapping.source.path]
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      response.resultSourceMap!.documents[mapping.source.document!]
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const sourcePath = response.resultSourceMap!.paths[mapping.source.path]
 
     return encoder(value, sourceDocument, sourcePath + pathSuffix)
   })

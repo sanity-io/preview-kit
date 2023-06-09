@@ -5,6 +5,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/sanity-io/preview-kit/compare/v1.5.4...v2.0.0) (2023-06-09)
+
+### ⚠ BREAKING CHANGES
+
+- `definePreview` and `<PreviewSuspense>` are replaced by `<GroqStoreProvider>`.
+- `usePreview` are replaced by `useListeningQuery`.
+- `@sanity/client` is now a peer dependency.
+
+[The migration guide outlines every breaking change and how to migrate your code](https://github.com/sanity-io/preview-kit/blob/main/MIGRATION.md)
+
+### Features
+
+- Live previews are now easier to build, have a much shorter bootup time and you no longer need separate preview versions of components as `useListeningQuery` can be disabled for production modes.
+- `token` are set in a single location, `<GroqStoreProvider>`, instead of prop-drilled to every preview component.
+- `Suspense` boundaries now optional, you only need them if you're code-splitting `GroqStoreProvider` with `React.lazy`
+
+### Bug Fixes
+
+- Preview hooks no longer perform queries while the initial dataset export is streaming, as this could lead to incomplete query results and unexpected cases of `null`.
+
 ## [1.5.2](https://github.com/sanity-io/preview-kit/compare/v1.5.1...v1.5.2) (2023-05-03)
 
 ### Bug Fixes
