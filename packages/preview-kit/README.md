@@ -11,15 +11,15 @@
 # Installation
 
 ```bash
-npm i @sanity/preview-kit
+npm i @sanity/preview-kit @sanity/client
 ```
 
 ```bash
-pnpm i @sanity/preview-kit
+pnpm i @sanity/preview-kit @sanity/client
 ```
 
 ```bash
-yarn add @sanity/preview-kit
+yarn add @sanity/preview-kit @sanity/client
 ```
 
 # `@sanity/preview-kit/client`
@@ -640,6 +640,32 @@ export const UsersList = memo(function UsersList(props: UsersListProps) {
     </>
   )
 })
+```
+
+### Technical limits
+
+#### `<GroqStoreProvider/>`
+
+The real-time preview isn't optimized and comes with a configured limit of 3000 documents. You can experiment with larger datasets by configuring it with `documentLimit: <Integer>`. Be aware that this might significantly affect the preview performance.
+You may use the `includeTypes` option to reduce the amount of documents and reduce the risk of hitting the `documentLimit`:
+
+```tsx
+import { GroqStoreProvider } from '@sanity/preview-kit/groq-store'
+
+return (
+  <GroqStoreProvider
+    projectId={projectId}
+    dataset={dataset}
+    token={token}
+    documentLimit={10000}
+    includeTypes={['page', 'product', 'sanity.imageAsset']}
+    // If you have a lot of editors changing content at the same time it might help to increase this value
+    // to reduce the amount of rerenders React have to perform.
+    subscriptionThrottleMs={300}
+  >
+    {children}
+  </GroqStoreProvider>
+)
 ```
 
 ## Release new version
