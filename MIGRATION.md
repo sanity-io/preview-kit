@@ -37,8 +37,8 @@ The main differences between the two hooks are:
 - `token` is no longer a hook argument, it's now provided by the `GroqStoreProvider` component.
 - generics are adjusted to match the behavior of `@sanity/client`'s `client.fetch` method.
 - `serverSnapshot` is now called `initialSnapshot` and is required. It's still used as the return value for a `getServerSnapshot` in the underlying `useSyncExternalStore` during SSR hydration to ensure you don't get mismatch errors.
-- It no longer might return `null` during initial render, instead it returns `initialSnapshot` until the dataset export is finished and it's safe to run queries.
-- `PreviewSuspense` is no longer needed, instead you use `initialSnapshot` to imeplemt either a stale-while-revalidate pattern or a fallback UI.
+- It no longer returns `null` during the initial render. Instead, it returns `initialSnapshot` until the dataset export is finished and it's safe to run queries.
+- `PreviewSuspense` is no longer needed, instead you use `initialSnapshot` to implement either a `stale-while-revalidate` pattern or a fallback UI.
 
 ## `definePreview` and `PreviewSuspense` are replaced by `<GroqStoreProvider />`
 
@@ -74,7 +74,7 @@ The main differences between the two APIs are:
 - `definePreview` omits the `token` argument and instead requires you to pass it to the `usePreview` hook, while `GroqStoreProvider` handles `token` so the hooks don't need to.
 - A `Suspense` boundary is only required if you use `React.lazy` to code-split your app, otherwise it's optional.
 - `GroqStoreProvider` exposes the same underlying `@sanity/groq-store` options, as props on the component.
-- The `onPublicAccessOnly` API is removed, to speed up startup time by eliminating a waterfall of requests, it'll throw an error instead and you can use a `ReactErrorBoundary` to handle it.
+- The `onPublicAccessOnly` API is removed to speed up startup time by eliminating a waterfall of requests. Instead, it throws an error, and you can use a `ReactErrorBoundary` to handle it.
 - `GroqStoreProvider` is optional, when omitted the `useListeningQuery` hooks will fall back to a no-op mode, where it'll return `initialSnapshot` so it's safe to use in production.
 
 ## Migrating a component with a `stale-while-revalidate` pattern to the new hook
@@ -144,7 +144,7 @@ const PreviewCount = ({ token }) => {
 }
 ```
 
-After migration it looks like this:
+After migration, it looks like this:
 
 ```tsx
 import createClient from '@sanity/client'
@@ -278,7 +278,7 @@ const PreviewCount = ({ token }) => {
 }
 ```
 
-After migration it looks like this:
+After migration, it looks like this:
 
 ```tsx
 import createClient from '@sanity/client'
