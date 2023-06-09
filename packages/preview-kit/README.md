@@ -4,13 +4,8 @@
 
 - [Installation](#installation)
 - [`@sanity/preview-kit/client` Visual Editing with Content Source Maps](#sanitypreview-kitclient)
-- [`@sanity/preview-kit` Live real-time preview for React](#sanitypreview-kit)
-  - [Demos \& Starters](#demos--starters)
-  - [Remix, cookie auth only](#remix-cookie-auth-only)
-  - [Next `/pages` Preview Mode, cookie auth only](#next-pages-preview-mode-cookie-auth-only)
-  - [Next `/pages` Preview Mode, with a viewer token](#next-pages-preview-mode-with-a-viewer-token)
-  - [Next `/pages` Preview Mode, with fast SSR hydration](#next-pages-preview-mode-with-fast-ssr-hydration)
-- [Development](#development)
+- [`@sanity/preview-kit` Live real-time preview for React](#sanitypreview-kit-1)
+  - [Live real-time preview for React](#live-real-time-preview-for-react)
   - [Release new version](#release-new-version)
 - [License](#license)
 
@@ -209,13 +204,17 @@ console.log(title, titleEditLink)
 # `@sanity/preview-kit`
 
 > **Note**
+>
 > This is the new docs for `@sanity/preview-kit` v2. If you're looking for docs for v1 APIs, like `definePreview` and `usePreview`, they're available [on the v1 branch.](https://github.com/sanity-io/preview-kit/tree/v1#readme).
+>
 > There's a full migration guide available [here.][migration]
+>
 > If you're looking for React Server Component and Next.js docs, [they're in the `next-sanity` readme.](https://github.com/sanity-io/next-sanity#readme)
 
 ## Live real-time preview for React
 
 > **Note**
+>
 > The examples in this README use Remix, you can find Next.js specific examples in the [`next-sanity` README][next-sanity-readme]. Including information on how to build live previews in React Server Components with the new app-router.
 
 Write GROQ queries like [@sanity/client](https://github.com/sanity-io/client) and have them resolve in-memory, locally. Updates from Content Lake are streamed in real-time with sub-second latency.
