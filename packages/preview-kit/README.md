@@ -5,8 +5,7 @@
 - [Installation](#installation)
 - [`@sanity/preview-kit/client` Visual Editing with Content Source Maps](#sanitypreview-kitclient)
 - [`@sanity/preview-kit` Live real-time preview for React](#sanitypreview-kit-1)
-  - [Live real-time preview for React](#live-real-time-preview-for-react)
-  - [Release new version](#release-new-version)
+- [Release new version](#release-new-version)
 - [License](#license)
 
 # Installation
