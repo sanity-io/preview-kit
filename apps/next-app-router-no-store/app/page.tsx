@@ -1,20 +1,20 @@
 import { draftMode } from 'next/headers'
-import {
-  ViewPublishedButton,
-  PreviewDraftsButton,
-  Footer,
-  footerQuery,
-} from 'ui/react'
+import { PreviewDraftsButton, Footer, footerQuery } from 'ui/react'
 import RefreshButton from './RefreshButton'
 import { unstable__adapter, unstable__environment } from '@sanity/client'
 import { Table, Timestamp, tableQuery } from 'ui/react'
 import { sanityClient, draftsClient } from './sanity.client'
 import PreviewTable from './PreviewTable'
 import PreviewFooter from './PreviewFooter'
+import ViewPublishedButtonWithLoadingStatus from './ViewPublishedButtonWithLoadingStatus'
 
 export default async function Page() {
   const isDraftMode = draftMode().isEnabled
-  const button = isDraftMode ? <ViewPublishedButton /> : <PreviewDraftsButton />
+  const button = isDraftMode ? (
+    <ViewPublishedButtonWithLoadingStatus />
+  ) : (
+    <PreviewDraftsButton />
+  )
   const client = isDraftMode ? draftsClient : sanityClient
   const table = client.fetch(tableQuery)
   const footer = client.fetch(footerQuery)

@@ -3,13 +3,20 @@ import DefaultEventSource from '@sanity/eventsource'
 import { type Config, groqStore } from '@sanity/groq-store'
 import { memo, useState } from 'react'
 
-import { defineListenerContext as Context } from '../context'
+import {
+  defineListenerContext as ListenerContext,
+  LoadedListenersContext,
+} from '../context'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
   ListenerSubscribe,
 } from '../types'
-import { getQueryCacheKey, type QueryCacheKey } from '../utils'
+import {
+  getQueryCacheKey,
+  type QueryCacheKey,
+  useLoadingListenersContext,
+} from '../utils'
 
 /**
  * @alpha
@@ -43,6 +50,9 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
   } = props
 
   const [ready] = useState(() => new Set<QueryCacheKey>())
+  const [loadedListenersContext, updateLoadedListeners] =
+    useLoadingListenersContext(ready)
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [snapshots] = useState(() => new Map<QueryCacheKey, any>())
   const [store] = useState(() =>
@@ -63,7 +73,7 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
   // @TODO can we just re throw inside the subscription itself?
   if (error) throw error
 
-  const [context] = useState<DefineListenerContext>(() => {
+  const [listenerContext] = useState<DefineListenerContext>(() => {
     return function defineListener<QueryResult>(
       initialSnapshot: QueryResult,
       query: string,
@@ -82,7 +92,10 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
           store.query(query, params).then((result) => {
             if (!ready.has(key)) {
               snapshots.set(key, result)
+
               ready.add(key)
+              updateLoadedListeners()
+
               onStoreChange()
             }
           }, setError)
@@ -106,5 +119,11 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
     } satisfies DefineListenerContext
   })
 
-  return <Context.Provider value={context}>{children}</Context.Provider>
+  return (
+    <ListenerContext.Provider value={listenerContext}>
+      <LoadedListenersContext.Provider value={loadedListenersContext}>
+        {children}
+      </LoadedListenersContext.Provider>
+    </ListenerContext.Provider>
+  )
 })
