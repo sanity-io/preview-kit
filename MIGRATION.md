@@ -326,7 +326,7 @@ export default function CountPage() {
           dataset={dataset}
           token={preview.token}
         >
-          <PreviewCount />
+          <Count data={data} />
         </GroqStoreProvider>
       ) : (
         <Count data={data} />
@@ -335,20 +335,18 @@ export default function CountPage() {
   )
 }
 
-const Count = ({ data }: { data: number }) => (
-  <>
-    Documents: <strong>{data}</strong>
-  </>
-)
+const Count = ({ data: serverSnapshot }: { data: number | null }) => {
+  const data = useListeningQuery(serverSnapshot, query)
+  const isLoading = useListeningQueryStatus(query) === 'loading'
 
-const isLoadingCount = Symbol('isLoadingCount')
-const PreviewCount = () => {
-  const snapshot = useListeningQuery(isLoadingCount, query)
-
-  if (snapshot === isLoadingCount) {
+  if (isLoading) {
     return <Spinner />
   }
 
-  return <Count data={snapshot} />
+  return (
+    <>
+      Documents: <strong>{data}</strong>
+    </>
+  )
 }
 ```

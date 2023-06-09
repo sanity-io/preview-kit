@@ -20,6 +20,7 @@ import { getClient } from '~/utils'
 import PreviewProvider from '~/PreviewProvider'
 import Table from '~/Table'
 import Footer from '~/Footer'
+import { useListeningQueryStatus } from '@sanity/preview-kit'
 
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get('Cookie'))
@@ -82,13 +83,16 @@ export default function Index() {
     })
   }, [])
 
-  const button = preview ? <ViewPublishedButton /> : <PreviewDraftsButton />
+  const button = preview ? (
+    <ViewPublishedButtonWithLoadingStatus />
+  ) : (
+    <PreviewDraftsButton />
+  )
   const action = preview ? '/api/exit-preview' : '/api/preview'
 
   return (
     <>
       <form action={action} style={{ display: 'contents' }}>
-        {button}
         {preview ? (
           <PreviewProvider
             apiVersion={apiVersion}
@@ -97,11 +101,13 @@ export default function Index() {
             projectId={projectId}
             dataset={dataset}
           >
+            {button}
             <Table data={table} />
             <Footer data={footer} />
           </PreviewProvider>
         ) : (
           <>
+            {button}
             <Table data={table} />
             <Footer data={footer} />
           </>
@@ -133,4 +139,10 @@ function RefreshButton() {
       <Button>Refresh</Button>
     </form>
   )
+}
+
+function ViewPublishedButtonWithLoadingStatus() {
+  const status = useListeningQueryStatus(tableQuery)
+
+  return <ViewPublishedButton isLoading={status === 'loading'} />
 }

@@ -21,3 +21,8 @@ export type DefineListenerContext = <QueryResult>(
   subscribe: ListenerSubscribe
   getSnapshot: ListenerGetSnapshot<QueryResult>
 }
+
+/**
+ * @public
+ */
+export type ListenerStatus = 'loading' | 'success'

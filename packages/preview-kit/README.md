@@ -521,9 +521,9 @@ export function UsersList(props: UsersListProps) {
 
 And done! You can optionally optimize it further by adding a loading UI while it loads, or improve performance by adding a custom `isEqual` function to reduce React re-renders if there's a lot of data that changes but isn't user visible (SEO metadata and such).
 
-#### Implementing a Loading UI
+#### Implementing a Loading UI with `useListeningQueryStatus`
 
-The best way to do this is to add a wrapper component that is only used in preview mode that calls the `useListeningQuery` hook, this allows you to use the `initialSnapshot` to determine if the previews are finished loading or not.
+The best way to do this is to add a wrapper component that is only used in preview mode that calls the `useListeningQuery` and `useListeningQueryStatus` hooks.
 
 ```tsx
 export function UsersList(props: UsersListProps) {
@@ -537,16 +537,14 @@ export function UsersList(props: UsersListProps) {
   )
 }
 
-const isLoadingSymbol = Symbol('isLoading')
 export function PreviewUsersList(props: UsersListProps) {
   const { data: serverSnapshot, lastId } = props
-  const snapshot = useListeningQuery(isLoadingSymbol, usersQuery, { lastId })
-  const isLoading = snapshot === isLoadingSymbol
-  const data = isLoading ? serverSnapshot : snapshot
+  const data = useListeningQuery(serverSnapshot, usersQuery, { lastId })
+  const queryStatus = useListeningQueryStatus(usersQuery, { lastId })
 
   return (
     <>
-      <PreviewStatus isLoading={isLoading} />
+      <PreviewStatus isLoading={queryStatus === 'loading'} />
       <UsersList data={users} lastId={lastId} />
     </>
   )

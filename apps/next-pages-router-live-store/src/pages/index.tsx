@@ -20,6 +20,7 @@ import { useEffect } from 'react'
 import { lazy } from 'react'
 import Table from '../Table'
 import Footer from '../Footer'
+import { useListeningQueryStatus } from '@sanity/preview-kit'
 
 const PreviewProvider = lazy(() => import('../PreviewProvider'))
 
@@ -67,7 +68,11 @@ export default function Page({
   server__adapter,
   server__environment,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const button = preview ? <ViewPublishedButton /> : <PreviewDraftsButton />
+  const button = preview ? (
+    <ViewPublishedButtonWithLoadingStatus />
+  ) : (
+    <PreviewDraftsButton />
+  )
   const action = preview ? '/api/exit-preview' : '/api/preview'
 
   useEffect(() => {
@@ -80,14 +85,15 @@ export default function Page({
   return (
     <Container>
       <form action={action} style={{ display: 'contents' }}>
-        {button}
         {preview ? (
           <PreviewProvider token={token!}>
+            {button}
             <Table data={table} />
             <Footer data={footer} />
           </PreviewProvider>
         ) : (
           <>
+            {button}
             <Table data={table} />
             <Footer data={footer} />
           </>
@@ -111,4 +117,10 @@ function RefreshButton() {
       <Button>Refresh</Button>
     </form>
   )
+}
+
+function ViewPublishedButtonWithLoadingStatus() {
+  const status = useListeningQueryStatus(tableQuery)
+
+  return <ViewPublishedButton isLoading={status === 'loading'} />
 }

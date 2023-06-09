@@ -113,9 +113,18 @@ import { memo } from 'react'
 //   )
 // })
 
-export function Button({ children }: { children: React.ReactNode }) {
+export function Button({
+  children,
+  isLoading,
+}: {
+  children: React.ReactNode
+  isLoading?: boolean
+}) {
   return (
-    <button type="submit" className={`button is-light `}>
+    <button
+      type="submit"
+      className={`button is-light ${isLoading ? 'is-loading' : ''}`}
+    >
       {children}
     </button>
   )
@@ -128,10 +137,10 @@ export function PreviewDraftsButton() {
   )
 }
 
-export function ViewPublishedButton() {
+export function ViewPublishedButton({ isLoading }: { isLoading?: boolean }) {
   return (
     <section className="section">
-      <Button>View Published</Button>
+      <Button isLoading={isLoading}>View Published</Button>
     </section>
   )
 }

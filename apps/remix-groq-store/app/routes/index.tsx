@@ -20,6 +20,7 @@ import { useEffect } from 'react'
 import Footer from '~/Footer'
 import Table from '~/Table'
 import PreviewProvider from '~/PreviewProvider'
+import { useListeningQueryStatus } from '@sanity/preview-kit'
 
 const projectId = process.env.SANITY_PROJECT_ID || 'pv8y60vp'
 const dataset = process.env.SANITY_DATASET || 'production'
@@ -90,24 +91,29 @@ export default function Index() {
     })
   }, [])
 
-  const button = preview ? <ViewPublishedButton /> : <PreviewDraftsButton />
+  const button = preview ? (
+    <ViewPublishedButtonWithLoadingStatus />
+  ) : (
+    <PreviewDraftsButton />
+  )
   const action = preview ? '/api/exit-preview' : '/api/preview'
 
   return (
     <>
       <form action={action} style={{ display: 'contents' }}>
-        {button}
         {preview ? (
           <PreviewProvider
             token={token!}
             projectId={projectId}
             dataset={dataset}
           >
+            {button}
             <Table data={table} />
             <Footer data={footer} />
           </PreviewProvider>
         ) : (
           <>
+            {button}
             <Table data={table} />
             <Footer data={footer} />
           </>
@@ -139,4 +145,10 @@ function RefreshButton() {
       <Button>Refresh</Button>
     </form>
   )
+}
+
+function ViewPublishedButtonWithLoadingStatus() {
+  const status = useListeningQueryStatus(tableQuery)
+
+  return <ViewPublishedButton isLoading={status === 'loading'} />
 }

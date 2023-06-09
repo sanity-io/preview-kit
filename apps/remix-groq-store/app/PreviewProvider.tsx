@@ -13,7 +13,12 @@ export default function PreviewProvider({
   token: string
 } & Pick<GroqStoreProviderProps, 'projectId' | 'dataset'>) {
   return (
-    <GroqStoreProvider projectId={projectId} dataset={dataset} token={token}>
+    <GroqStoreProvider
+      projectId={projectId}
+      dataset={dataset}
+      token={token}
+      documentLimit={Infinity}
+    >
       {children}
     </GroqStoreProvider>
   )

@@ -12,6 +12,7 @@ import { sanityClient, draftsClient } from './sanity.client'
 import PreviewProvider from './PreviewProvider'
 import PreviewTable from './PreviewTable'
 import PreviewFooter from './PreviewFooter'
+import ViewPublishedButtonWithLoadingStatus from './ViewPublishedButtonWithLoadingStatus'
 
 const token = process.env.SANITY_API_READ_TOKEN
 if (!token) {
@@ -20,21 +21,26 @@ if (!token) {
 
 export default async function Page() {
   const isDraftMode = draftMode().isEnabled
-  const button = isDraftMode ? <ViewPublishedButton /> : <PreviewDraftsButton />
+  const button = isDraftMode ? (
+    <ViewPublishedButtonWithLoadingStatus />
+  ) : (
+    <PreviewDraftsButton />
+  )
   const client = isDraftMode ? draftsClient.withConfig({ token }) : sanityClient
   const table = client.fetch(tableQuery)
   const footer = client.fetch(footerQuery)
   return (
     <>
       <form action="/api/draft" style={{ display: 'contents' }}>
-        {button}
         {isDraftMode ? (
           <PreviewProvider token={client.config().token!}>
+            {button}
             <PreviewTable data={await table} />
             <PreviewFooter data={await footer} />
           </PreviewProvider>
         ) : (
           <>
+            {button}
             <Table data={await table} />
             <Footer data={await footer} />
           </>

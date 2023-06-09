@@ -3,10 +3,12 @@ import { useCallback, useContext, useMemo, useState } from 'react'
 import isFastEqual from 'react-fast-compare'
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector'
 
-import { defineListenerContext } from './context'
+import { defineListenerContext, LoadedListenersContext } from './context'
+import type { ListenerStatus } from './types'
+import { getQueryCacheKey } from './utils'
 
 // Re-export types we use that are needed externally
-export type { ClientQueryParams }
+export type { ClientQueryParams, ListenerStatus }
 
 /**
  * By default 'react-fast-compare' is used to check if the query result has changed.
@@ -21,7 +23,7 @@ export interface ListeningQueryHookOptions<QueryResult> {
   isEqual?: isEqualFn<QueryResult>
 }
 
-/** @public 1 */
+/** @public */
 export function useListeningQuery<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams
@@ -30,7 +32,6 @@ export function useListeningQuery<
   query: string,
   queryParams?: QueryParams,
   options?: ListeningQueryHookOptions<QueryResult>
-  // isEqual: (a: QueryResult, b: QueryResult) => boolean = isFastEqual
 ): QueryResult {
   const { isEqual = isFastEqual } = options || {}
 
@@ -55,6 +56,25 @@ export function useListeningQuery<
     selector,
     isEqual
   )
+}
+
+/**
+ * Wether a particular query is loading or not.
+ * @public
+ */
+export function useListeningQueryStatus<
+  QueryParams extends ClientQueryParams = ClientQueryParams
+>(query: string, queryParams?: QueryParams): ListenerStatus {
+  const loadedListeners = useContext(LoadedListenersContext)
+  const params = useParams(queryParams)
+  const key = useMemo(() => getQueryCacheKey(query, params), [params, query])
+
+  return useMemo(() => {
+    if (Array.isArray(loadedListeners)) {
+      return loadedListeners.includes(key) ? 'success' : 'loading'
+    }
+    return 'success'
+  }, [key, loadedListeners])
 }
 
 /**
