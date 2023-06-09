@@ -1,6 +1,6 @@
 {
   "name": "@sanity/preview-kit",
-  "version": "2.1.0",
+  "version": "2.2.0-rc.0",
   "description": "General purpose utils for live content and visual editing",
   "keywords": [
     "groq",
@@ -60,6 +60,17 @@
       "import": "./dist/groq-store.js",
       "default": "./dist/groq-store.js"
     },
+    "./live-store": {
+      "types": "./dist/live-store.d.ts",
+      "source": "./src/live-store/index.ts",
+      "require": "./dist/live-store.cjs",
+      "node": {
+        "import": "./dist/live-store.cjs.js",
+        "require": "./dist/live-store.cjs"
+      },
+      "import": "./dist/live-store.js",
+      "default": "./dist/live-store.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
@@ -73,6 +84,9 @@
       ],
       "groq-store": [
         "./dist/groq-store.d.ts"
+      ],
+      "live-store": [
+        "./dist/live-store.d.ts"
       ]
     }
   },
@@ -80,7 +94,8 @@
     "dist",
     "src",
     "client.js",
-    "groq-store.js"
+    "groq-store.js",
+    "live-store.js"
   ],
   "scripts": {
     "prebuild": "rimraf dist coverage",
