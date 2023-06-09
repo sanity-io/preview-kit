@@ -24,6 +24,10 @@ export interface GroqStoreProviderProps extends Config {
    * @defaultValue true
    */
   overlayDrafts?: boolean
+  /**
+   * @defaultValue 3000
+   */
+  documentLimit?: number
 }
 /**
  * Caches the store instance, if the config changes you need to pass a new `key` prop to apply it and trigger a re-render
@@ -47,6 +51,7 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
       EventSource: props.token ? DefaultEventSource : undefined,
       listen: true,
       overlayDrafts: true,
+      documentLimit: 3000,
       // Spread in the rest
       ...config,
     })

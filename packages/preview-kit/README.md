@@ -208,484 +208,358 @@ console.log(title, titleEditLink)
 
 # `@sanity/preview-kit`
 
+> **Note**
+> This is the new docs for `@sanity/preview-kit` v2. If you're looking for docs for v1 APIs, like `definePreview` and `usePreview`, they're available [on the v1 branch.](https://github.com/sanity-io/preview-kit/tree/v1#readme).
+> There's a full migration guide available [here.][migration]
+> If you're looking for React Server Component and Next.js docs, [they're in the `next-sanity` readme.](https://github.com/sanity-io/next-sanity#readme)
+
 ## Live real-time preview for React
+
+> **Note**
+> The examples in this README use Remix, you can find Next.js specific examples in the [`next-sanity` README][next-sanity-readme]. Including information on how to build live previews in React Server Components with the new app-router.
 
 Write GROQ queries like [@sanity/client](https://github.com/sanity-io/client) and have them resolve in-memory, locally. Updates from Content Lake are streamed in real-time with sub-second latency.
 
 Requires React 18, support for other libraries like Solid, Svelte, Vue etc are planned. For now you can use [@sanity/groq-store](https://github.com/sanity-io/groq-store) [directly](https://github.com/sanity-io/groq-store/blob/main/example/example.ts).
 
-You create a `usePreview` hook using `definePreview`
+Get started in 3 steps:
+
+1. Define a `<GroqStoreProvider />` configuration, with your Sanity project ID, dataset and a reader token (optional).
+2. Refactor the root layout of your app to conditionally wrap it in `<GroqStoreProvider />` when it's asked to preview drafts.
+3. Use the `useListeningQuery` hook in components that you want to re-render in real-time as your documents are edited.
+
+### 1. Define a `<GroqStoreProvider />` component
+
+Create a new file for the provider, so it can be loaded with `React.lazy` and avoid increasing the bundle size in production. Ensuring code only needed for live previewing drafts is only loaded when needed.
+
+`app/PreviewProvider.tsx`
 
 ```tsx
-import { definePreview } from '@sanity/preview-kit'
+import {
+  GroqStoreProvider,
+  type GroqStoreProviderProps,
+} from '@sanity/preview-kit/groq-store'
 
-const usePreview = definePreview({ projectId, dataset })
-```
-
-If you want to declare the config in a separate file, and have full typings, you can import `PreviewConfig`:
-
-```tsx
-import type { PreviewConfig } from '@sanity/preview-kit'
-export const previewConfig: PreviewConfig = {
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: process.env.SANITY_DATASET,
-  // The limit on number of documents. The default is 3000, increase or decrease
-  // as needed and use `includeTypes` to further optimize the performance.
-  documentLimit: 10000,
-  // Optional allow-list filter for document types. You can use this to limit
-  // the amount of documents by declaring the types you want to sync. Note that
-  // since you're fetching a subset of your dataset, queries that works against
-  // your Content Lake might not work against the local groq-store.
-  includeTypes: ['post', 'page', 'product', 'sanity.imageAsset'],
-  // By default documents that are "draft" are overlayed with their published
-  // counterparts. This lets you simulate what your app will look like after
-  // the drafts are published.  If your queries are already equipped to handle
-  // drafts vs published or you otherwise show UI depending on draft status set
-  // this to false.
-  overlayDrafts: true,
-  // By default new changes made to the dataset will be automatically synced,
-  // providing a live preview experience. This behavior can be disabled by
-  // setting the `listen` flag to `false`. When disabled, you will still be able
-  // to preview content, but will need to reload the page to see any change made
-  // after the page loaded.
-  listen: true,
+export default function PreviewProvider({
+  children,
+  token,
+  projectId,
+  dataset,
+}: {
+  children: React.ReactNode
+  token: string
+} & Pick<GroqStoreProviderProps, 'projectId' | 'dataset'>) {
+  return (
+    <GroqStoreProvider projectId={projectId} dataset={dataset} token={token}>
+      {children}
+    </GroqStoreProvider>
+  )
 }
 ```
 
-The component that calls `usePreview` needs to be wrapped in a `Suspense` boundary as it will ["suspend"](https://reactjs.org/docs/react-api.html#reactsuspense) until the `@sanity/groq-store` is done loading your dataset and ready to resolve your queries.
+Note that only `projectId` and `dataset` are required, `token` is optional. But we recommend always using a `token` if you need to query drafts, as it's the only auth scheme that works in all browsers.
 
-## Demos & Starters
+The props for `GroqStoreProvider` are the same as for `@sanity/groq-store`, except that the `listen` and `overlayDrafts` options are changed from being `false` by default, to `true`. And `documentLimit` is set to `3000` by default instead of being unlimited (to avoid accidentally loading a dataset that is too large to fit in your browser memory).
 
-- [Sanity Studio v3 + Remix](https://github.com/SimeonGriggs/remix-sanity-studio-v3)
-- [A Next.js Blog with a Native Authoring Experience](https://github.com/sanity-io/nextjs-blog-cms-sanity-v3)
+Checkout the [`@sanity/groq-store` readme for more information on the available options.](https://github.com/sanity-io/groq-store#readme)
 
-## Remix, cookie auth only
+### 2. Making a Remix route conditionally preview draft
+
+Here's the Remix route we'll be adding live preview of drafts, it's pretty basic:
 
 ```tsx
-import { json } from '@remix-run/node'
+// app/routes/index.tsx
+import { createClient } from '@sanity/client'
+import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
-import createClient from '@sanity/client'
-import type { UsePreview } from '@sanity/preview-kit'
-import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
-import groq from 'groq'
-import { useReducer } from 'react'
 
-const projectId = 'pv8y60vp'
-const dataset = 'production'
+import type { UsersResponse } from '~/UsersList'
+import { UsersList, usersQuery } from '~/UsersList'
+import { Layout } from '~/ui'
 
-const query = groq`count(*[])`
-
-export const loader = async () => {
+export async function loader({ request }: LoaderArgs) {
   const client = createClient({
-    projectId,
-    dataset,
-    apiVersion: '2023-05-03',
+    projectId: process.env.SANITY_PROJECT_ID,
+    dataset: process.env.SANITY_DATASET,
+    apiVersion: process.env.SANITY_API_VERSION,
     useCdn: true,
+    token: process.env.SANITY_API_READ_TOKEN,
   })
+  const url = new URL(request.url)
+  const lastId = url.searchParams.get('lastId') || ''
 
-  return json({ data: await client.fetch<number>(query) })
+  const users = await client.fetch<UsersResponse>(usersQuery, { lastId })
+
+  return { users, lastId }
 }
 
-export default function CountPage() {
-  const { data } = useLoaderData<typeof loader>()
-  const [preview, toggle] = useReducer((state) => !state, false)
+export default function Index() {
+  const { users, lastId } = useLoaderData<typeof loader>()
 
   return (
-    <>
-      <button type="button" onClick={toggle}>
-        {preview ? 'Stop preview' : 'Start preview'}
-      </button>
+    <Layout>
+      <UsersList data={users} lastId={lastId} />
+    </Layout>
+  )
+}
+```
+
+Now let's import the `PreviewProvider` component we created in the previous step. To ensure we don't increase the production bundle size, we'll use `React.lazy` to code-split the component. The `React.lazy` API requires a `React.Suspense` boundary, so we'll add that too.
+
+```tsx
+import { lazy, Suspense } from 'react'
+
+const PreviewProvider = lazy(() => import('~/PreviewProvider'))
+```
+
+Before we can add `<PreviewProvider />` to the layout we need to update the `loader` to include the props it needs. We'll use an environment variable called `SANITY_API_PREVIEW_DRAFTS` to control when to live preview drafts. Update the `loader` return statement from `return {users, lastId}` to:
+
+```tsx
+const { projectId, dataset, token } = client.config()
+const preview =
+  process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+    ? { token, projectId, dataset }
+    : (false as const)
+
+return { preview, users, lastId }
+```
+
+And add `preview` to `useLoaderData`:
+
+```tsx
+const { preview, users, lastId } = useLoaderData<typeof loader>()
+```
+
+Then make the render conditional based on wether `preview` is set:
+
+```tsx
+const children = <UsersList data={users} lastId={lastId} />
+
+return (
+  <Layout>
+    {preview ? (
+      <Suspense fallback={children}>
+        <PreviewProvider
+          token={preview.token!}
+          projectId={preview.projectId!}
+          dataset={preview.dataset!}
+        >
+          {children}
+        </PreviewProvider>
+      </Suspense>
+    ) : (
+      children
+    )}
+  </Layout>
+)
+```
+
+After putting everything together the route should now look like this:
+
+```tsx
+// app/routes/index.tsx
+import { createClient } from '@sanity/client'
+import type { LoaderArgs } from '@vercel/remix'
+import { useLoaderData } from '@remix-run/react'
+import { lazy, Suspense } from 'react'
+
+import type { UsersResponse } from '~/UsersList'
+import { UsersList, usersQuery } from '~/UsersList'
+import { Layout } from '~/ui'
+
+const PreviewProvider = lazy(() => import('~/PreviewProvider'))
+
+export async function loader({ request }: LoaderArgs) {
+  const client = createClient({
+    projectId: process.env.SANITY_PROJECT_ID,
+    dataset: process.env.SANITY_DATASET,
+    apiVersion: process.env.SANITY_API_VERSION,
+    useCdn: true,
+    token: process.env.SANITY_API_READ_TOKEN,
+  })
+  const url = new URL(request.url)
+  const lastId = url.searchParams.get('lastId') || ''
+
+  const users = await client.fetch<UsersResponse>(usersQuery, { lastId })
+
+  const { projectId, dataset, token } = client.config()
+  const preview =
+    process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+      ? { token, projectId, dataset }
+      : (false as const)
+
+  return { preview, users, lastId }
+}
+
+export default function Index() {
+  const { preview, users, lastId } = useLoaderData<typeof loader>()
+
+  const children = <UsersList data={users} lastId={lastId} />
+
+  return (
+    <Layout>
       {preview ? (
-        <PreviewSuspense fallback={<Count data={data} />}>
-          <PreviewCount />
-        </PreviewSuspense>
+        <Suspense fallback={children}>
+          <PreviewProvider
+            token={preview.token!}
+            projectId={preview.projectId!}
+            dataset={preview.dataset!}
+          >
+            {children}
+          </PreviewProvider>
+        </Suspense>
       ) : (
-        <Count data={data} />
+        children
       )}
-    </>
+    </Layout>
   )
 }
-
-const Count = ({ data }: { data: number }) => (
-  <>
-    Documents: <strong>{data}</strong>
-  </>
-)
-
-const usePreview: UsePreview<number> = definePreview({
-  projectId,
-  dataset,
-  onPublicAccessOnly: () =>
-    alert('You are not logged in. You will only see public data.'),
-})
-const PreviewCount = () => {
-  const data = usePreview(null, query)
-  return <Count data={data!} />
-}
 ```
 
-## Next `/pages` Preview Mode, cookie auth only
+### 3. Adding the `useListeningQuery` hook to components that need to re-render in real-time
 
-For NextJS with `appDir`, see the [next-sanity](https://github.com/sanity-io/next-sanity) docs.
+Let's look at what the `<UsersList>` component looks like, before we add the hook:
 
 ```tsx
-// pages/index.js
-import { PreviewSuspense } from '@sanity/preview-kit'
-import createClient from '@sanity/client'
-import DataTable from 'components/DataTable'
-import { lazy } from 'react'
-
-const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
-const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
-
-const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn: false,
-})
-
-export const getStaticProps = async ({ preview = false }) => {
-  if (preview) {
-    return { props: { preview } }
-  }
-
-  const data = await client.fetch(`*[]`)
-
-  return { props: { preview, data } }
-}
-
-export default function IndexPage({ preview, data }) {
-  if (preview) {
-    return (
-      <PreviewSuspense fallback="Loading...">
-        <PreviewDataTable />
-      </PreviewSuspense>
-    )
-  }
-
-  return <DataTable data={data} />
-}
-```
-
-```tsx
-// components/PreviewDataTable.js
-import { definePreview } from '@sanity/preview-kit'
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
-
-const usePreview = definePreview({ projectId, dataset })
-
-export default function PreviewDataTable() {
-  const data = usePreview(null, `*[]`)
-
-  return <DataTable data={data} />
-}
-```
-
-## Next `/pages` Preview Mode, with a viewer token
-
-This example have the added benefit that it works in non-chromium browsers like Safari. And without needing a Sanity authenticated session to exist on the origin.
-This also means you need to protect your `pages/api/preview` handler with a secret, since the `token` can be used to query _any_ data in your dataset. Only share preview links with people that you're ok with being able to see everything in your dataset.
-
-```tsx
-// pages/index.js
-import { PreviewSuspense } from '@sanity/preview-kit'
-import createClient from '@sanity/client'
-import DataTable from 'components/DataTable'
-import { lazy } from 'react'
-
-const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
-const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
-
-const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn: false,
-})
-
-export const getStaticProps = async ({ preview = false, previewData = {} }) => {
-  if (preview) {
-    return { props: { preview, token: previewData.token } }
-  }
-
-  const data = await client.fetch(`*[]`)
-
-  return { props: { preview, data } }
-}
-
-export default function IndexPage({ preview, data, token }) {
-  if (preview) {
-    return (
-      <PreviewSuspense fallback="Loading...">
-        <PreviewDataTable token={token} />
-      </PreviewSuspense>
-    )
-  }
-
-  return <DataTable data={data} />
-}
-```
-
-```tsx
-// components/PreviewDataTable.js
-import { definePreview } from '@sanity/preview-kit'
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
-
-const usePreview = definePreview({ projectId, dataset })
-
-export default function PreviewDataTable({ token }) {
-  const data = usePreview(token, `*[]`)
-
-  return <DataTable data={data} />
-}
-```
-
-```js
-// pages/api/preview.js
-export default function preview(req, res) {
-  const secret = process.env.PREVIEW_SECRET
-  // Check the secret if it's provided, enables running preview mode locally
-  // before the env var is setup
-  if (secret && req.query.secret !== secret) {
-    return res.status(401).json({ message: 'Invalid secret' })
-  }
-  // This token should only have `viewer` access rights in
-  // https://manage.sanity.io
-  const token = process.env.SANITY_API_READ_TOKEN
-  if (!token) {
-    throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
-  }
-
-  res.setPreviewData({ token })
-  res.writeHead(307, { Location: '/' })
-  res.end()
-}
-```
-
-## Next `/pages` Preview Mode, with fast SSR hydration
-
-This example extends the `preview token` version to use fast SSR hydration.
-The way it works is by providing the data use for Server Side Rendering (SSR) as the 4th argument to `usePreview`. This will cause `usePreview` to no longer suspend while it does the initial dataset export, instead it'll return your provided snapshot until it's ready to run GROQ in-memory.
-
-```tsx
-// pages/index.js
-import { PreviewSuspense } from '@sanity/preview-kit'
-import createClient from '@sanity/client'
-import DataTable from 'components/DataTable'
-import { lazy } from 'react'
-
-const PreviewDataTable = lazy(() => import('components/PreviewDataTable'))
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
-const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION
-
-const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn: false,
-})
-
-export const getStaticProps = async ({ preview = false, previewData = {} }) => {
-  if (preview) {
-    const previewClient = client.withConfig({ token: previewData.token })
-    // Query altered to include drafts, and all documents that don't have a
-    // draft
-    const data = await client.fetch(`*[!(_id in path("drafts.**"))]`)
-    return { props: { preview, token: previewData.token } }
-  }
-
-  const data = await client.fetch(`*[]`)
-
-  return { props: { preview, data } }
-}
-
-export default function IndexPage({ preview, data, token }) {
-  if (preview) {
-    // We render DataTable with the preview data, and PreviewDataTable will
-    // stream updates that might happen after the initial SSR hydration and the
-    // client takes over rendering
-    return (
-      <PreviewSuspense fallback={<DataTable data={data} />}>
-        <PreviewDataTable token={token} />
-      </PreviewSuspense>
-    )
-  }
-
-  return <DataTable data={data} />
-}
-```
-
-```tsx
-// components/PreviewDataTable.js
-import { definePreview } from '@sanity/preview-kit'
-
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
-
-// We turn off `overlayDrafts` since the GROQ queries that run in preview mode
-// is updated to overlay drafts instead, this lets us reuse the same query
-// during preview mode, with @sanity/client when rendering preview data on the
-// server, with `@sanity/groq-store` taking over in the browser
-const usePreview = definePreview({ projectId, dataset, overlayDrafts: false })
-
-export default function PreviewDataTable({ token }) {
-  // Query altered to include drafts, and all documents that don't have a draft
-  const data = usePreview(token, `*[!(_id in path("drafts.**"))]`)
-
-  return <DataTable data={data} />
-}
-```
-
-## Create React App, cookie auth only
-
-If you're hosting Sanity Studio on the same domain as you're doing previews, you may use `cookie` based auth:
-
-```jsx
-import createClient from '@sanity/client'
-import { definePreview } from '@sanity/preview-kit'
+// app/UsersList.tsx
 import groq from 'groq'
-import { Suspense, useReducer } from 'react'
-import { createRoot } from 'react-dom/client'
-import useSWR from 'swr/immutable'
 
-const root = createRoot(document.getElementById('root'))
-root.render(
-  <Suspense fallback="Loading...">
-    <App />
-  </Suspense>
-)
+import { ListView, ListPagination } from '~/ui'
 
-const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
-const dataset = process.env.REACT_APP_SANITY_DATASET
-const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
-const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
+export const usersQuery = groq`{
+  "list": *[_type == "user" && _id > $lastId] | order(_id) [0...20],
+  "total": count(*[_type == "user"]),
+}`
 
-const query = groq`count(*[])`
+export interface UsersResponse {
+  list: User[]
+  total: number
+}
 
-function App() {
-  const [preview, toggle] = useReducer((state) => !state, false)
-  const { data } = useSWR(query, (query) => client.fetch(query), {
-    suspense: true,
-  })
+export interface UsersListProps {
+  data: UsersResponse
+  lastId: string
+}
+
+export function UsersList(props: UsersListProps) {
+  const { data, lastId } = props
 
   return (
     <>
-      <button type="button" onClick={toggle}>
-        {preview ? 'Stop preview' : 'Start preview'}
-      </button>
-      {preview ? <PreviewCount /> : <Count data={data} />}
+      <ListView list={data.list} />
+      <ListPagination total={data.total} lastId={lastId} />
     </>
   )
 }
+```
 
-const Count = ({ data }) => (
-  <>
-    Documents: <strong>{data}</strong>
-  </>
-)
+To make this component connect to your preview provider you need to add the `useListeningQuery`. You don't have to refactor your components so that the hook is only called when there's a parent `<GroqStoreProvider />`, it's safe to call it unconditionally.
+If there's no `<GroqStoreProvider />` it behaves as if the hook had this implementation:
 
-const usePreview = definePreview({
-  projectId,
-  dataset,
-  onPublicAccessOnly: () =>
-    alert('You are not logged in. You will only see public data.'),
-})
-const PreviewCount = () => {
-  const data = usePreview(null, query)
-
-  return <Count data={data} />
+```tsx
+export function useListeningQuery(serverSnapshot) {
+  return serverSnapshot
 }
 ```
 
-## Create React App, custom token auth
+Thus it's fairly easy to add conditional live preview capabilities to `UsersList`, simply add hook to your imports:
 
-If you're not hosting Sanity Studio on the same domain as your previews, or if you need to support browsers that don't work with cookie auth (iOS Safari or browser incognito modes), you may use the `token` option to provide a Sanity Viewer token:
+```tsx
+import { useListeningQuery } from '@sanity/preview-kit'
+```
 
-```jsx
-import createClient from '@sanity/client'
-import { definePreview } from '@sanity/preview-kit'
+And replace this:
+
+```tsx
+const { data, lastId } = props
+```
+
+With this:
+
+```tsx
+const { data: serverSnapshot, lastId } = props
+const data = useListeningQuery(serverSnapshot, usersQuery, { lastId })
+```
+
+All together now:
+
+```tsx
+// app/UsersList.tsx
+import { useListeningQuery } from '@sanity/preview-kit'
 import groq from 'groq'
-import { Suspense, useReducer } from 'react'
-import { createRoot } from 'react-dom/client'
-import useSWR from 'swr/immutable'
 
-const root = createRoot(document.getElementById('root'))
-root.render(
-  <Suspense fallback="Loading...">
-    <App />
-  </Suspense>
-)
+import { ListView, ListPagination } from '~/ui'
 
-const projectId = process.env.REACT_APP_SANITY_PROJECT_ID
-const dataset = process.env.REACT_APP_SANITY_DATASET
-const apiVersion = process.env.REACT_APP_SANITY_API_VERSION
-const client = createClient({ projectId, dataset, apiVersion, useCdn: true })
+export const usersQuery = groq`{
+  "list": *[_type == "user" && _id > $lastId] | order(_id) [0...20],
+  "total": count(*[_type == "user"]),
+}`
 
-const query = groq`count(*[])`
+export interface UsersResponse {
+  list: User[]
+  total: number
+}
 
-function App() {
-  const [preview, toggle] = useReducer((state) => !state, false)
-  const { data } = useSWR(query, (query) => client.fetch(query), {
-    suspense: true,
-  })
+export interface UsersListProps {
+  data: UsersResponse
+  lastId: string
+}
+
+export function UsersList(props: UsersListProps) {
+  const { data: serverSnapshot, lastId } = props
+  const data = useListeningQuery(serverSnapshot, usersQuery, { lastId })
 
   return (
     <>
-      <button type="button" onClick={toggle}>
-        {preview ? 'Stop preview' : 'Start preview'}
-      </button>
-      {preview ? <PreviewCount /> : <Count data={data} />}
+      <ListView list={data.list} />
+      <ListPagination total={data.total} lastId={lastId} />
     </>
   )
 }
-
-const Count = ({ data }) => (
-  <>
-    Documents: <strong>{data}</strong>
-  </>
-)
-
-const usePreview = definePreview({ projectId, dataset })
-const PreviewCount = () => {
-  // Call custom authenticated backend to fetch the Sanity Viewer token
-  const { data: token } = useSWR(
-    'https://example.com/preview/token',
-    (url) => fetch(url, { credentials: 'include' }).then((res) => res.text()),
-    { suspense: true }
-  )
-  const data = usePreview(token, query)
-
-  return <Count data={data} />
-}
 ```
 
-# Development
+And done! Out of the box it'll only trigger a re-render of `UsersList` if the query response changed, using `react-fast-compare` under the hood. You can tweak this behavior by passing a custom `isEqual` function as the third argument to `useListeningQuery` if there's only some changes you want to trigger a re-render.
 
-If you have access to the [test studio](https://preview-kit-test-studio.sanity.build) and our Vercel Team, then:
+```tsx
+const data = useListeningQuery(
+  serverSnapshot,
+  usersQuery,
+  { lastId },
+  {
+    // Only re-render in real-time if user ids and names changed, ignore all other differences
+    isEqual: (a, b) =>
+      a.list.every((aItem, index) => {
+        const bItem = b.list[index]
+        return aItem._id === bItem._id && aItem.name === bItem.name
+      }),
+  }
+)
+```
 
-1. `npx vercel link && npx vercel env pull`
-2. `pnpm run dev` which gives you the test Next app running on `http://localhost:3000`.
-3. Edit data in the test studio and watch it update live.
+You can also use the `React.useDeferredValue` hook and a `React.memo` wrapper to further optimize performance by letting React give other state updates higher priority than the preview updates. It prevents the rest of your app from slowing down should there be too much Studio activity for the previews to keep up with:
 
-If you don't have access then you need to:
+```tsx
+import { memo, useDeferredValue } from 'react'
 
-1. Create a new Sanity project and dataset, and enter their variables in `.env.local` (use `.env.local.example` to get started).
-2. Open the Studio [codesandbox](https://codesandbox.io/s/github/sanity-io/preview-kit/tree/main/studio) and edit `src/App.tsx` to update `projectId` and `dataset`.
-3. You can now run `pnpm run dev` and test things on `http://localhost:3000`.
-4. As you edit things in the codesandbox studio you'll see them streamed to the next app.
+export function PreviewUsersList(props: UsersListProps) {
+  const { data: serverSnapshot, lastId } = props
+  const snapshot = useListeningQuery(serverSnapshot, usersQuery, { lastId })
+  const data = useDeferredValue(snapshot)
+
+  return <UsersList data={data} lastId={lastId} />
+}
+
+export const UsersList = memo(function UsersList(props: UsersListProps) {
+  const { data, lastId } = props
+
+  return (
+    <>
+      <ListView list={data.list} />
+      <ListPagination total={data.total} lastId={lastId} />
+    </>
+  )
+})
+```
 
 ## Release new version
 
@@ -704,3 +578,5 @@ MIT-licensed. See [LICENSE](LICENSE).
 [content-source-maps-intro]: https://www.sanity.io/blog/content-source-maps-announce?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [sales-cta]: https://www.sanity.io/contact/sales?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [enterprise-cta]: https://www.sanity.io/enterprise?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
+[next-sanity-readme]: https://github.com/sanity-io/next-sanity#readme
+[migration]: https://github.com/sanity-io/preview-kit/blob/main/MIGRATION.md
