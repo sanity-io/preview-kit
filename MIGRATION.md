@@ -97,7 +97,7 @@ export const getClient = (preview = false) =>
     projectId,
     dataset,
     apiVersion: '2023-05-03',
-    useCdn: true,
+    useCdn: !preview,
     token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
 
@@ -163,7 +163,7 @@ export const getClient = (preview = false) =>
     projectId,
     dataset,
     apiVersion: '2023-05-03',
-    useCdn: true,
+    useCdn: !preview,
     token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
 
@@ -233,7 +233,7 @@ export const getClient = (preview = false) =>
     projectId,
     dataset,
     apiVersion: '2023-05-03',
-    useCdn: true,
+    useCdn: !preview,
     token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
 
@@ -299,7 +299,7 @@ export const getClient = (preview = false) =>
     projectId,
     dataset,
     apiVersion: '2023-05-03',
-    useCdn: true,
+    useCdn: !preview,
     token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
   })
 
