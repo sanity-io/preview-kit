@@ -82,7 +82,7 @@ The main differences between the two APIs are:
 Here's what a typical migration looks like, to keep the guide simple more advanced patterns like `React.lazy` are omitted:
 
 ```tsx
-import createClient from '@sanity/client'
+import { createClient, type SanityClient } from '@sanity/client'
 import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
 import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
@@ -92,20 +92,31 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export async function loader({ request }: LoaderArgs) {
+function getClient(isPreview: boolean): SanityClient {
   const client = createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
-    token: process.env.SANITY_API_READ_TOKEN,
   })
 
+  if (isPreview) {
+    return client.withConfig({
+      token: process.env.SANITY_API_READ_TOKEN,
+    })
+  }
+
+  return client
+}
+
+export async function loader({ request }: LoaderArgs) {
+  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+  const client = getClient(isPreview)
+
   const data = await client.fetch<number>(query)
-  const preview =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-      ? { token: client.config().token }
-      : (false as const)
+  const preview = isPreview
+    ? { token: client.config().token }
+    : (false as const)
 
   return { preview, data }
 }
@@ -155,20 +166,31 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export async function loader({ request }: LoaderArgs) {
+function getClient(isPreview: boolean): SanityClient {
   const client = createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
-    token: process.env.SANITY_API_READ_TOKEN,
   })
 
+  if (isPreview) {
+    return client.withConfig({
+      token: process.env.SANITY_API_READ_TOKEN,
+    })
+  }
+
+  return client
+}
+
+export async function loader({ request }: LoaderArgs) {
+  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+  const client = getClient(isPreview)
+
   const data = await client.fetch<number>(query)
-  const preview =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-      ? { token: client.config().token }
-      : (false as const)
+  const preview = isPreview
+    ? { token: client.config().token }
+    : (false as const)
 
   return { preview, data }
 }
@@ -222,16 +244,28 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export async function loader({ request }: LoaderArgs) {
+function getClient(isPreview: boolean): SanityClient {
   const client = createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
-    token: process.env.SANITY_API_READ_TOKEN,
   })
 
-  if (process.env.SANITY_API_PREVIEW_DRAFTS === 'true') {
+  if (isPreview) {
+    return client.withConfig({
+      token: process.env.SANITY_API_READ_TOKEN,
+    })
+  }
+
+  return client
+}
+
+export async function loader({ request }: LoaderArgs) {
+  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+  const client = getClient(isPreview)
+
+  if (isPreview) {
     return { preview: { token: client.config().token }, data: null }
   }
 
@@ -284,16 +318,28 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export async function loader({ request }: LoaderArgs) {
+function getClient(isPreview: boolean): SanityClient {
   const client = createClient({
     projectId,
     dataset,
     apiVersion: '2023-05-03',
     useCdn: true,
-    token: process.env.SANITY_API_READ_TOKEN,
   })
 
-  if (process.env.SANITY_API_PREVIEW_DRAFTS === 'true') {
+  if (isPreview) {
+    return client.withConfig({
+      token: process.env.SANITY_API_READ_TOKEN,
+    })
+  }
+
+  return client
+}
+
+export async function loader({ request }: LoaderArgs) {
+  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+  const client = getClient(isPreview)
+
+  if (isPreview) {
     return { preview: { token: client.config().token }, data: null }
   }
 
@@ -304,8 +350,6 @@ export async function loader({ request }: LoaderArgs) {
 export default function CountPage() {
   const { preview, data } = useLoaderData<typeof loader>()
 
-  const children = <Count data={data} />
-
   return (
     <>
       {preview ? (
@@ -314,26 +358,29 @@ export default function CountPage() {
           dataset={dataset}
           token={preview.token}
         >
-          {children}
+          <PreviewCount />
         </GroqStoreProvider>
       ) : (
-        children
+        <Count data={data} />
       )}
     </>
   )
 }
 
-const Count = ({ data: serverSnapshot }: { data: number | null }) => {
-  const data = useListeningQuery(serverSnapshot, query)
+const Count = ({ data }: { data: number }) => (
+  <>
+    Documents: <strong>{data}</strong>
+  </>
+)
 
-  if (data === null) {
+const isLoadingCount = Symbol('isLoadingCount')
+const PreviewCount = () => {
+  const snapshot = useListeningQuery(isLoadingCount, query)
+
+  if (snapshot === isLoadingCount) {
     return <Spinner />
   }
 
-  return (
-    <>
-      Documents: <strong>{data}</strong>
-    </>
-  )
+  return <Count data={snapshot} />
 }
 ```
