@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. See
 ### ⚠ BREAKING CHANGES
 
 - `definePreview` and `<PreviewSuspense>` are replaced by `<GroqStoreProvider>`.
-- `usePreview` are replaced by `useListeningQuery`.
+- `usePreview` is replaced by `useListeningQuery`.
 - `@sanity/client` is now a peer dependency.
 
 [The migration guide outlines every breaking change and how to migrate your code](https://github.com/sanity-io/preview-kit/blob/main/MIGRATION.md)
