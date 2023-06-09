@@ -40,7 +40,7 @@ The main differences between the two hooks are:
 - It no longer might return `null` during initial render, instead it returns `initialSnapshot` until the dataset export is finished and it's safe to run queries.
 - `PreviewSuspense` is no longer needed, instead you use `initialSnapshot` to imeplemt either a stale-while-revalidate pattern or a fallback UI.
 
-## `definePreview` is now `<GroqStoreProvider />`
+## `definePreview` and `PreviewSuspense` are replaced by `<GroqStoreProvider />`
 
 The simplified signature for `definePreview` is:
 
