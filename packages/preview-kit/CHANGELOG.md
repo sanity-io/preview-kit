@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/sanity-io/preview-kit/compare/v2.0.0...v2.1.0) (2023-06-09)
+
+### Features
+
+- add `useListeningQueryStatus` hook ([#378](https://github.com/sanity-io/preview-kit/issues/378)) ([1f3da96](https://github.com/sanity-io/preview-kit/commit/1f3da96c188301893cedba3bf4e0d959a6c2762b))
+
+### Bug Fixes
+
+- remove unused `groq` dependency ([5159973](https://github.com/sanity-io/preview-kit/commit/51599738cddbe1cf01a51e2a45fadd7ac41a7a63))
+
 ## [2.0.0](https://github.com/sanity-io/preview-kit/compare/v1.5.4...v2.0.0) (2023-06-09)
 
 ### ⚠ BREAKING CHANGES
