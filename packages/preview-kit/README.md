@@ -523,7 +523,7 @@ And done! You can optionally optimize it further by adding a loading UI while it
 
 #### Implementing a Loading UI
 
-The best way to do this is to add a wrapper component that is only used in production, this allows you to use the `initialSnapshot` to determine if the previews are finished loading or not.
+The best way to do this is to add a wrapper component that is only used in preview mode that calls the `useListeningQuery` hook, this allows you to use the `initialSnapshot` to determine if the previews are finished loading or not.
 
 ```tsx
 export function UsersList(props: UsersListProps) {
