@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/sanity-io/preview-kit/compare/v2.1.0...v2.1.1) (2023-06-10)
+
+### Bug Fixes
+
+- throw error if `initialSnapshot` is undefined ([1ed2bf6](https://github.com/sanity-io/preview-kit/commit/1ed2bf68b54cbebbe9ea69363d96b8ae1381b17c))
+
 ## [2.1.0](https://github.com/sanity-io/preview-kit/compare/v2.0.0...v2.1.0) (2023-06-09)
 
 ### Features
