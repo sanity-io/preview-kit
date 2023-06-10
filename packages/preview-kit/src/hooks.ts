@@ -43,9 +43,23 @@ export function useListeningQuery<
   )
   // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call
   // helps ensure that we don't get a mismatch between the server and client snapshots
-  const [serverSnapshot] = useState(() =>
-    JSON.parse(JSON.stringify(initialSnapshot))
-  )
+  const [serverSnapshot] = useState(() => {
+    if (initialSnapshot === undefined) {
+      throw new Error(
+        `initialSnapshot can't be undefined, if you don't want an initial value use null instead`
+      )
+    }
+    try {
+      return JSON.parse(JSON.stringify(initialSnapshot))
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        "Failed to deep clone initialSnapshot, this is likely an error and an indication that the snapshot isn't JSON serializable",
+        { initialSnapshot, error }
+      )
+      return initialSnapshot
+    }
+  })
   const getServerSnapshot = useCallback(() => serverSnapshot, [serverSnapshot])
   const selector = useCallback((snapshot: QueryResult) => snapshot, [])
 
