@@ -30,7 +30,9 @@ export async function loader({ request }: LoaderArgs) {
 
   const projectId = process.env.SANITY_PROJECT_ID || 'pv8y60vp'
   const dataset = process.env.SANITY_DATASET || 'production'
-  const apiVersion = process.env.SANITY_API_VERSION || '2022-11-15'
+  // const apiVersion = process.env.SANITY_API_VERSION || '2022-11-15'
+  // @TODO remove this after `perspective` is GA
+  const apiVersion = 'X'
   const useCdn = true
   const token = process.env.SANITY_API_READ_TOKEN
   if (!token) {

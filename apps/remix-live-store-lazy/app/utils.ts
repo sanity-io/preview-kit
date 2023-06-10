@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/preview-kit/client'
 
 export function getClient(
-  previewDrafts: boolean,
+  preview: boolean,
   {
     projectId,
     dataset,
@@ -21,17 +21,17 @@ export function getClient(
     studioUrl: 'https://preview-kit-test-studio.sanity.build/',
     encodeSourceMap: true,
     encodeSourceMapAtPath: () => true,
+    perspective: 'published',
+    token,
   })
 
-  if (previewDrafts) {
+  if (preview) {
     // Used to preview drafts as they will appear once published
     return sanityClient.withConfig({
+      ignoreBrowserTokenWarning: true,
       perspective: 'previewDrafts',
       // required by previewDrafts
-      apiVersion: 'X',
       useCdn: false,
-      token,
-      ignoreBrowserTokenWarning: true,
     })
   }
 
