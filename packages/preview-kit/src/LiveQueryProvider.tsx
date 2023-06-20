@@ -110,6 +110,7 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
   const maxDocuments = cache?.maxDocuments ?? DEFAULT_MAX_DOCUMENTS
   const [documentsCount, setDocumentsCount] = useState<number | null>(null)
   const [error, setError] = useState<Error | null>(null)
+  const [includeTypes] = useState(() => cache?.includeTypes ?? [])
 
   // Rethrow errors to the nearest error boundary
   if (error) {
@@ -125,8 +126,10 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
     const abortController = new AbortController()
     client
       .fetch<number>(
-        'count(*)',
-        {},
+        includeTypes.length > 0
+          ? 'count(*[_type in $includeTypes])'
+          : 'count(*)',
+        { includeTypes },
         { filterResponse: true, signal: abortController.signal }
       )
       .then((result) => {
@@ -141,7 +144,7 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
     return () => {
       abortController.abort()
     }
-  }, [client, documentsCount, logger])
+  }, [client, documentsCount, includeTypes, logger])
 
   if (documentsCount === null) {
     return children
