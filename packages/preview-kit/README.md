@@ -222,69 +222,87 @@ Requires React 18, support for other libraries like Solid, Svelte, Vue etc are p
 
 Get started in 3 steps:
 
-1. Define a `<GroqStoreProvider />` configuration, with your Sanity project ID, dataset and a reader token (optional).
-2. Refactor the root layout of your app to conditionally wrap it in `<GroqStoreProvider />` when it's asked to preview drafts.
-3. Use the `useListeningQuery` hook in components that you want to re-render in real-time as your documents are edited.
+1. Create a `getClient` utility that returns a `@sanity/client` instance.
+2. Define a `<LiveQueryProvider />` configuration.
+3. Refactor the root layout of your app to conditionally wrap it in `<LiveQueryProvider />` when it's asked to preview drafts.
+4. Use the `useLiveQuery` hook in components that you want to re-render in real-time as your documents are edited.
 
-### 1. Define a `<GroqStoreProvider />` component
+### 1. Create a `getClient` utility
 
-Create a new file for the provider, so it can be loaded with `React.lazy` and avoid increasing the bundle size in production. Ensuring code only needed for live previewing drafts is only loaded when needed.
+As `<LiveQueryProvider />` is configured with a `@sanity/client` instance it makes sense to create a utility for it. Doing so makes it easy to ensure the server-side and client-side client are configured the same way.
+
+`app/lib/sanity.ts`
+
+```ts
+import { createClient } from '@sanity/client'
+import type { SanityClient } from '@sanity/client'
+
+export function getClient({
+  preview,
+}: {
+  preview?: { token: string }
+}): SanityClient {
+  const client = createClient({
+    projectId: 'your-project-id',
+    dataset: 'production',
+    apiVersion: '2023-06-20',
+    useCdn: true,
+  })
+  if (preview) {
+    if (!preview.token) {
+      throw new Error('You must provide a token to preview drafts')
+    }
+    return client.withConfig({
+      token: preview.token,
+      useCdn: false,
+      ignoreBrowserTokenWarning: true,
+    })
+  }
+  return client
+}
+```
+
+### 2. Define a `<LiveQueryProvider />` component
+
+Create a new file for the provider, so it can be loaded with `React.lazy` and avoid increasing the bundle size in production. Ensuring code needed for live previewing drafts are only loaded when needed.
 
 `app/PreviewProvider.tsx`
 
 ```tsx
-import {
-  GroqStoreProvider,
-  type GroqStoreProviderProps,
-} from '@sanity/preview-kit/groq-store'
+import { LiveQueryProvider } from '@sanity/preview-kit'
+import { useMemo } from 'react'
+import { getClient } from '~/lib/sanity'
 
 export default function PreviewProvider({
   children,
   token,
-  projectId,
-  dataset,
 }: {
   children: React.ReactNode
   token: string
-} & Pick<GroqStoreProviderProps, 'projectId' | 'dataset'>) {
-  return (
-    <GroqStoreProvider projectId={projectId} dataset={dataset} token={token}>
-      {children}
-    </GroqStoreProvider>
-  )
+}) {
+  const client = useMemo(() => getClient({ preview: { token } }), [token])
+  return <LiveQueryProvider client={client}>{children}</LiveQueryProvider>
 }
 ```
 
-Note that only `projectId` and `dataset` are required, `token` is optional. But we recommend always using a `token` if you need to query drafts, as it's the only auth scheme that works in all browsers.
+Only the `client` prop is required. For debugging you can pass a `logger={console}` prop.
 
-The props for `GroqStoreProvider` are the same as for `@sanity/groq-store`, except that the `listen` and `overlayDrafts` options are changed from being `false` by default, to `true`. And `documentLimit` is set to `3000` by default instead of being unlimited (to avoid accidentally loading a dataset that is too large to fit in your browser memory).
-
-Checkout the [`@sanity/groq-store` readme for more information on the available options.](https://github.com/sanity-io/groq-store#readme)
-
-### 2. Making a Remix route conditionally preview draft
+### 3. Making a Remix route conditionally preview draft
 
 Here's the Remix route we'll be adding live preview of drafts, it's pretty basic:
 
 ```tsx
 // app/routes/index.tsx
-import { createClient } from '@sanity/client'
 import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
 
+import { getClient } from '~/lib/sanity'
 import type { UsersResponse } from '~/UsersList'
 import { UsersList, usersQuery } from '~/UsersList'
 import { Layout } from '~/ui'
 
-export const getClient = () =>
-  createClient({
-    projectId: process.env.SANITY_PROJECT_ID,
-    dataset: process.env.SANITY_DATASET,
-    apiVersion: process.env.SANITY_API_VERSION,
-    useCdn: true,
-  })
-
 export async function loader({ request }: LoaderArgs) {
-  const client = getClient()
+  const client = getClient({})
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
@@ -312,15 +330,20 @@ import { lazy, Suspense } from 'react'
 const PreviewProvider = lazy(() => import('~/PreviewProvider'))
 ```
 
-Before we can add `<PreviewProvider />` to the layout we need to update the `loader` to include the props it needs. We'll use an environment variable called `SANITY_API_PREVIEW_DRAFTS` to control when to live preview drafts. Update the `loader` return statement from `return {users, lastId}` to:
+Before we can add `<PreviewProvider />` to the layout we need to update the `loader` to include the props it needs. We'll use an environment variable called `SANITY_API_PREVIEW_DRAFTS` to control when to live preview drafts, and store a `viewer` API token in `SANITY_API_READ_TOKEN`.
+
+Update the `const client = getClient({})` call to:
 
 ```tsx
-const { projectId, dataset, token } = client.config()
+const token = process.env.SANITY_API_READ_TOKEN
 const preview =
-  process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-    ? { token, projectId, dataset }
-    : (false as const)
+  process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
+const client = getClient({ preview })
+```
 
+Update the `loader` return statement from `return {users, lastId}` to:
+
+```tsx
 return { preview, users, lastId }
 ```
 
@@ -339,13 +362,7 @@ return (
   <Layout>
     {preview ? (
       <Suspense fallback={children}>
-        <PreviewProvider
-          token={preview.token!}
-          projectId={preview.projectId!}
-          dataset={preview.dataset!}
-        >
-          {children}
-        </PreviewProvider>
+        <PreviewProvider token={preview.token}>{children}</PreviewProvider>
       </Suspense>
     ) : (
       children
@@ -358,11 +375,11 @@ After putting everything together the route should now look like this:
 
 ```tsx
 // app/routes/index.tsx
-import { createClient } from '@sanity/client'
 import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
 import { lazy, Suspense } from 'react'
 
+import { getClient } from '~/lib/sanity'
 import type { UsersResponse } from '~/UsersList'
 import { UsersList, usersQuery } from '~/UsersList'
 import { Layout } from '~/ui'
@@ -379,15 +396,14 @@ export const getClient = (preview = false) =>
   })
 
 export async function loader({ request }: LoaderArgs) {
-  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-  const client = getClient(isPreview)
+  const token = process.env.SANITY_API_READ_TOKEN
+  const preview =
+    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
+  const client = getClient({ preview })
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
   const users = await client.fetch<UsersResponse>(usersQuery, { lastId })
-
-  const { projectId, dataset, token } = client.config()
-  const preview = isPreview ? { token, projectId, dataset } : (false as const)
 
   return { preview, users, lastId }
 }
@@ -401,13 +417,7 @@ export default function Index() {
     <Layout>
       {preview ? (
         <Suspense fallback={children}>
-          <PreviewProvider
-            token={preview.token!}
-            projectId={preview.projectId!}
-            dataset={preview.dataset!}
-          >
-            {children}
-          </PreviewProvider>
+          <PreviewProvider token={preview.token!}>{children}</PreviewProvider>
         </Suspense>
       ) : (
         children
@@ -417,7 +427,7 @@ export default function Index() {
 }
 ```
 
-### 3. Adding the `useListeningQuery` hook to components that need to re-render in real-time
+### 4. Adding the `useLiveQuery` hook to components that need to re-render in real-time
 
 Let's look at what the `<UsersList>` component looks like, before we add the hook:
 
@@ -454,19 +464,19 @@ export function UsersList(props: UsersListProps) {
 }
 ```
 
-To make this component connect to your preview provider you need to add the `useListeningQuery`. You don't have to refactor your components so that the hook is only called when there's a parent `<GroqStoreProvider />`, it's safe to call it unconditionally.
-If there's no `<GroqStoreProvider />` it behaves as if the hook had this implementation:
+To make this component connect to your preview provider you need to add the `useLiveQuery`. You don't have to refactor your components so that the hook is only called when there's a parent `<LiveQueryProvider />`, it's safe to call it unconditionally.
+If there's no `<LiveQueryProvider />` it behaves as if the hook had this implementation:
 
 ```tsx
-export function useListeningQuery(serverSnapshot) {
-  return serverSnapshot
+export function useLiveQuery(initialData) {
+  return [initialData, false]
 }
 ```
 
 Thus it's fairly easy to add conditional live preview capabilities to `UsersList`, simply add hook to your imports:
 
 ```tsx
-import { useListeningQuery } from '@sanity/preview-kit'
+import { useLiveQuery } from '@sanity/preview-kit'
 ```
 
 And replace this:
@@ -478,15 +488,15 @@ const { data, lastId } = props
 With this:
 
 ```tsx
-const { data: serverSnapshot, lastId } = props
-const data = useListeningQuery(serverSnapshot, usersQuery, { lastId })
+const { data: initialData, lastId } = props
+const [data] = useLiveQuery(initialData, usersQuery, { lastId })
 ```
 
 All together now:
 
 ```tsx
 // app/UsersList.tsx
-import { useListeningQuery } from '@sanity/preview-kit'
+import { useLiveQuery } from '@sanity/preview-kit'
 import groq from 'groq'
 
 import { ListView, ListPagination } from '~/ui'
@@ -507,8 +517,8 @@ export interface UsersListProps {
 }
 
 export function UsersList(props: UsersListProps) {
-  const { data: serverSnapshot, lastId } = props
-  const data = useListeningQuery(serverSnapshot, usersQuery, { lastId })
+  const { data: initialData, lastId } = props
+  const [data] = useLiveQuery(initialData, usersQuery, { lastId })
 
   return (
     <>
@@ -521,9 +531,9 @@ export function UsersList(props: UsersListProps) {
 
 And done! You can optionally optimize it further by adding a loading UI while it loads, or improve performance by adding a custom `isEqual` function to reduce React re-renders if there's a lot of data that changes but isn't user visible (SEO metadata and such).
 
-#### Implementing a Loading UI with `useListeningQueryStatus`
+#### Implementing a Loading UI with `useLiveQuery`
 
-The best way to do this is to add a wrapper component that is only used in preview mode that calls the `useListeningQuery` and `useListeningQueryStatus` hooks.
+The best way to do this is to add a wrapper component that is only used in preview mode that calls the `useLiveQuery` hook.
 
 ```tsx
 export function UsersList(props: UsersListProps) {
@@ -538,13 +548,12 @@ export function UsersList(props: UsersListProps) {
 }
 
 export function PreviewUsersList(props: UsersListProps) {
-  const { data: serverSnapshot, lastId } = props
-  const data = useListeningQuery(serverSnapshot, usersQuery, { lastId })
-  const queryStatus = useListeningQueryStatus(usersQuery, { lastId })
+  const { data: initialData, lastId } = props
+  const [data, loading] = useLiveQuery(initialData, usersQuery, { lastId })
 
   return (
     <>
-      <PreviewStatus isLoading={queryStatus === 'loading'} />
+      <PreviewStatus loading={loading} />
       <UsersList data={users} lastId={lastId} />
     </>
   )
@@ -560,13 +569,7 @@ return (
   <Layout>
     {preview ? (
       <Suspense fallback={children}>
-        <PreviewProvider
-          token={preview.token!}
-          projectId={preview.projectId!}
-          dataset={preview.dataset!}
-        >
-          {children}
-        </PreviewProvider>
+        <PreviewProvider token={preview.token!}>{children}</PreviewProvider>
       </Suspense>
     ) : (
       children
@@ -582,11 +585,7 @@ return (
   <Layout>
     {preview ? (
       <Suspense fallback={children}>
-        <PreviewProvider
-          token={preview.token!}
-          projectId={preview.projectId!}
-          dataset={preview.dataset!}
-        >
+        <PreviewProvider token={preview.token!}>
           <PreviewUsersList data={users} lastId={lastId} />
         </PreviewProvider>
       </Suspense>
@@ -599,11 +598,11 @@ return (
 
 #### Optimizing performance
 
-Out of the box it'll only trigger a re-render of `UsersList` if the query response changed, using `react-fast-compare` under the hood. You can tweak this behavior by passing a custom `isEqual` function as the third argument to `useListeningQuery` if there's only some changes you want to trigger a re-render.
+Out of the box it'll only trigger a re-render of `UsersList` if the query response changed, using `react-fast-compare` under the hood. You can tweak this behavior by passing a custom `isEqual` function as the third argument to `useLiveQuery` if there's only some changes you want to trigger a re-render.
 
 ```tsx
-const data = useListeningQuery(
-  serverSnapshot,
+const [data] = useLiveQuery(
+  initialData,
   usersQuery,
   { lastId },
   {
@@ -623,8 +622,8 @@ You can also use the `React.useDeferredValue` hook and a `React.memo` wrapper to
 import { memo, useDeferredValue } from 'react'
 
 export function PreviewUsersList(props: UsersListProps) {
-  const { data: serverSnapshot, lastId } = props
-  const snapshot = useListeningQuery(serverSnapshot, usersQuery, { lastId })
+  const { data: initialData, lastId } = props
+  const [snapshot] = useLiveQuery(initialData, usersQuery, { lastId })
   const data = useDeferredValue(snapshot)
 
   return <UsersList data={data} lastId={lastId} />
@@ -642,26 +641,30 @@ export const UsersList = memo(function UsersList(props: UsersListProps) {
 })
 ```
 
-### Technical limits
+### Advanced usage
 
-#### `<GroqStoreProvider/>`
+#### Fine-tuning `cache`
 
-The real-time preview isn't optimized and comes with a configured limit of 3000 documents. You can experiment with larger datasets by configuring it with `documentLimit: <Integer>`. Be aware that this might significantly affect the preview performance.
-You may use the `includeTypes` option to reduce the amount of documents and reduce the risk of hitting the `documentLimit`:
+The defaults set for the `cache` prop are optimized for most use cases, but are conservative since the size of your documents can vary a lot. And your queries might only use some document types and it's not necessary to cache every type.
+Thus you can fine-tune the cache by passing a custom `cache` prop to `LiveQueryProvider`:
 
 ```tsx
-import { GroqStoreProvider } from '@sanity/preview-kit/groq-store'
+import { LiveQueryProvider } from '@sanity/preview-kit'
 
 return (
-  <GroqStoreProvider
-    projectId={projectId}
-    dataset={dataset}
-    token={token}
-    documentLimit={10000}
-    includeTypes={['page', 'product', 'sanity.imageAsset']}
-    // If you have a lot of editors changing content at the same time it might help to increase this value
-    // to reduce the amount of rerenders React have to perform.
-    subscriptionThrottleMs={300}
+  <LiveQueryProvider
+    client={client}
+    cache={{
+      // default: 3000, increased to 10000 for this example app as each document is small
+      maxDocuments: 10000,
+      // The default cache includes all document types, you can reduce the amount of documents
+      // by only including the ones you need.
+      includeTypes: ['page', 'product', 'sanity.imageAsset'],
+      // Turn off using a mutation EventSource listener, this means content updates will require a manual refresh
+      listen: false
+    }}
+    // Passing a logger gives you more information on what to expect based on your configuration
+    logger={console}
   >
     {children}
   </GroqStoreProvider>

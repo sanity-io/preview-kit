@@ -1,6 +1,6 @@
 # Upgrading from v1 to v2
 
-## `usePreview` is now `useListeningQuery`
+## `usePreview` is now `useLiveQuery`
 
 The signature of `usePreview` is:
 
@@ -17,30 +17,32 @@ function usePreview<
 ): QueryResult | null
 ```
 
-While the signature of `useListeningQuery` is:
+While the signature of `useLiveQuery` is:
 
 ```tsx
 import type { QueryParams as ClientQueryParams } from '@sanity/client'
 
-function useListeningQuery<QueryResult, QueryParams = ClientQueryParams>(
-  initialSnapshot: QueryResult,
+type QueryLoading = boolean
+
+function useLiveQuery<QueryResult, QueryParams = ClientQueryParams>(
+  initialData: QueryResult,
   query: string,
-  queryParams?: QueryParams,
+  params?: QueryParams,
   options?: {
     isEqual?: (a: QueryResult, b: QueryResult) => boolean
   }
-): QueryResult
+): [QueryResult, QueryLoading]
 ```
 
 The main differences between the two hooks are:
 
-- `token` is no longer a hook argument, it's now provided by the `GroqStoreProvider` component.
+- `token` is no longer a hook argument, it's now provided by the `LiveQueryProvider` component.
 - generics are adjusted to match the behavior of `@sanity/client`'s `client.fetch` method.
-- `serverSnapshot` is now called `initialSnapshot` and is required. It's still used as the return value for a `getServerSnapshot` in the underlying `useSyncExternalStore` during SSR hydration to ensure you don't get mismatch errors.
-- It no longer returns `null` during the initial render. Instead, it returns `initialSnapshot` until the dataset export is finished and it's safe to run queries.
-- `PreviewSuspense` is no longer needed, instead you use `initialSnapshot` to implement either a `stale-while-revalidate` pattern or a fallback UI.
+- `serverSnapshot` is now called `initialData` and is required. It's still used as the return value for a `getServerSnapshot` in the underlying `useSyncExternalStore` during SSR hydration to ensure you don't get mismatch errors.
+- It no longer returns `null` during the initial render. Instead, it returns `initialData` until the dataset export is finished and it's safe to run queries.
+- `PreviewSuspense` is no longer needed, instead you use `initialData` to implement either a `stale-while-revalidate` pattern or a fallback UI.
 
-## `definePreview` and `PreviewSuspense` are replaced by `<GroqStoreProvider />`
+## `definePreview` and `PreviewSuspense` are replaced by `<LiveQueryProvider />`
 
 The simplified signature for `definePreview` is:
 
@@ -54,28 +56,36 @@ export interface PreviewConfig extends Omit<Config, 'token'> {
 const usePreview = definePreview(config: PreviewConfig)
 ```
 
-While the signature for `<GroqStoreProvider />` is:
+While the signature for `<LiveQueryProvider />` is:
 
 ```tsx
-import { type Config } from '@sanity/groq-store'
+import type { SanityClient } from '@sanity/client'
 
-export interface GroqStoreProviderProps extends Config {
+export interface LiveQueryProviderProps {
   children: React.ReactNode
+  client: SanityClient
+  logger?: typeof console
+  cache?: {
+    /** @defaultValue 3000 */
+    maxDocuments?: number
+    includeTypes?: string[]
+    /** @defaultValue true */
+    listen?: boolean
+  }
 }
 
-export function GroqStoreProvider(
-  props: GroqStoreProviderProps
+export function LiveQueryProvider(
+  props: LiveQueryProviderProps
 ): React.JSX.Element
 ```
 
 The main differences between the two APIs are:
 
-- `GroqStoreProvider` is a React component, while `definePreview` is a top-level function call.
-- `definePreview` omits the `token` argument and instead requires you to pass it to the `usePreview` hook, while `GroqStoreProvider` handles `token` so the hooks don't need to.
+- `LiveQueryProvider` is a React component, while `definePreview` is a top-level function call.
+- `definePreview` omits the `token` argument and instead requires you to pass it to the `usePreview` hook, while `LiveQueryProvider` handles `token` as part of the `client` instance.
 - A `Suspense` boundary is only required if you use `React.lazy` to code-split your app, otherwise it's optional.
-- `GroqStoreProvider` exposes the same underlying `@sanity/groq-store` options, as props on the component.
 - The `onPublicAccessOnly` API is removed to speed up startup time by eliminating a waterfall of requests. Instead, it throws an error, and you can use a `ReactErrorBoundary` to handle it.
-- `GroqStoreProvider` is optional, when omitted the `useListeningQuery` hooks will fall back to a no-op mode, where it'll return `initialSnapshot` so it's safe to use in production.
+- `LiveQueryProvider` is optional, when omitted the `useLiveQuery` hooks will fall back to a no-op mode, where it'll return `initialData` so it's safe to use in production.
 
 ## Migrating a component with a `stale-while-revalidate` pattern to the new hook
 
@@ -92,23 +102,37 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export const getClient = (preview = false) =>
-  createClient({
+export function getClient({
+  preview,
+}: {
+  preview?: { token: string }
+}): SanityClient {
+  const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-05-03',
-    useCdn: !preview,
-    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
+    apiVersion: '2023-06-20',
+    useCdn: true,
   })
+  if (preview) {
+    if (!preview.token) {
+      throw new Error('You must provide a token to preview drafts')
+    }
+    return client.withConfig({
+      token: preview.token,
+      useCdn: false,
+      ignoreBrowserTokenWarning: true,
+    })
+  }
+  return client
+}
 
 export async function loader({ request }: LoaderArgs) {
-  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-  const client = getClient(isPreview)
+  const token = process.env.SANITY_API_READ_TOKEN
+  const preview =
+    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
+  const client = getClient({ preview })
 
   const data = await client.fetch<number>(query)
-  const preview = isPreview
-    ? { token: client.config().token }
-    : (false as const)
 
   return { preview, data }
 }
@@ -147,34 +171,48 @@ const PreviewCount = ({ token }) => {
 After migration, it looks like this:
 
 ```tsx
+import { useMemo } from 'react'
 import createClient from '@sanity/client'
 import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
-import { useListeningQuery } from '@sanity/preview-kit'
-import { GroqStoreProvider } from '@sanity/preview-kit/groq-store'
+import { useLiveQuery, LiveQueryProvider } from '@sanity/preview-kit'
 
 const projectId = 'pv8y60vp'
 const dataset = 'production'
 
 const query = `count(*[])`
 
-export const getClient = (preview = false) =>
-  createClient({
+export function getClient({
+  preview,
+}: {
+  preview?: { token: string }
+}): SanityClient {
+  const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-05-03',
-    useCdn: !preview,
-    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
+    apiVersion: '2023-06-20',
+    useCdn: true,
   })
+  if (preview) {
+    if (!preview.token) {
+      throw new Error('You must provide a token to preview drafts')
+    }
+    return client.withConfig({
+      token: preview.token,
+      useCdn: false,
+      ignoreBrowserTokenWarning: true,
+    })
+  }
+  return client
+}
 
 export async function loader({ request }: LoaderArgs) {
-  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-  const client = getClient(isPreview)
+  const token = process.env.SANITY_API_READ_TOKEN
+  const preview =
+    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
+  const client = getClient({ preview })
 
   const data = await client.fetch<number>(query)
-  const preview = isPreview
-    ? { token: client.config().token }
-    : (false as const)
 
   return { preview, data }
 }
@@ -187,13 +225,7 @@ export default function CountPage() {
   return (
     <>
       {preview ? (
-        <GroqStoreProvider
-          projectId={projectId}
-          dataset={dataset}
-          token={preview.token}
-        >
-          {children}
-        </GroqStoreProvider>
+        <PreviewProvider token={preview.token}>{children}</PreviewProvider>
       ) : (
         children
       )}
@@ -201,13 +233,24 @@ export default function CountPage() {
   )
 }
 
-const Count = ({ data: serverSnapshot }: { data: number }) => {
-  const data = useListeningQuery(serverSnapshot, query)
+const Count = ({ data: initialData }: { data: number }) => {
+  const [data] = useLiveQuery(initialData, query)
   return (
     <>
       Documents: <strong>{data}</strong>
     </>
   )
+}
+
+function PreviewProvider({
+  children,
+  token,
+}: {
+  children: React.ReactNode
+  token: string
+}) {
+  const client = useMemo(() => getClient({ preview: { token } }), [token])
+  return <LiveQueryProvider client={client}>{children}</LiveQueryProvider>
 }
 ```
 
@@ -228,25 +271,39 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export const getClient = (preview = false) =>
-  createClient({
+export function getClient({
+  preview,
+}: {
+  preview?: { token: string }
+}): SanityClient {
+  const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-05-03',
-    useCdn: !preview,
-    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
+    apiVersion: '2023-06-20',
+    useCdn: true,
   })
+  if (preview) {
+    if (!preview.token) {
+      throw new Error('You must provide a token to preview drafts')
+    }
+    return client.withConfig({
+      token: preview.token,
+      useCdn: false,
+      ignoreBrowserTokenWarning: true,
+    })
+  }
+  return client
+}
 
 export async function loader({ request }: LoaderArgs) {
-  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-  const client = getClient(isPreview)
+  const token = process.env.SANITY_API_READ_TOKEN
+  const preview =
+    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
+  const client = getClient({ preview })
 
-  if (isPreview) {
-    return { preview: { token: client.config().token }, data: null }
-  }
+  const data = preview ? null : await client.fetch<number>(query)
 
-  const data = await client.fetch<number>(query)
-  return { preview: false as const, data }
+  return { preview, data }
 }
 
 export default function CountPage() {
@@ -284,8 +341,7 @@ After migration, it looks like this:
 import createClient from '@sanity/client'
 import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
-import { useListeningQuery } from '@sanity/preview-kit'
-import { GroqStoreProvider } from '@sanity/preview-kit/groq-store'
+import { useLiveQuery, LiveQueryProvider } from '@sanity/preview-kit'
 
 import Spinner from '~/Spinner'
 
@@ -294,25 +350,39 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export const getClient = (preview = false) =>
-  createClient({
+export function getClient({
+  preview,
+}: {
+  preview?: { token: string }
+}): SanityClient {
+  const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-05-03',
-    useCdn: !preview,
-    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
+    apiVersion: '2023-06-20',
+    useCdn: true,
   })
+  if (preview) {
+    if (!preview.token) {
+      throw new Error('You must provide a token to preview drafts')
+    }
+    return client.withConfig({
+      token: preview.token,
+      useCdn: false,
+      ignoreBrowserTokenWarning: true,
+    })
+  }
+  return client
+}
 
 export async function loader({ request }: LoaderArgs) {
-  const isPreview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
-  const client = getClient(isPreview)
+  const token = process.env.SANITY_API_READ_TOKEN
+  const preview =
+    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
+  const client = getClient({ preview })
 
-  if (isPreview) {
-    return { preview: { token: client.config().token }, data: null }
-  }
+  const data = preview ? null : await client.fetch<number>(query)
 
-  const data = await client.fetch<number>(query)
-  return { preview: false as const, data }
+  return { preview, data }
 }
 
 export default function CountPage() {
@@ -321,13 +391,9 @@ export default function CountPage() {
   return (
     <>
       {preview ? (
-        <GroqStoreProvider
-          projectId={projectId}
-          dataset={dataset}
-          token={preview.token}
-        >
+        <PreviewProvider token={preview.token}>
           <Count data={data} />
-        </GroqStoreProvider>
+        </PreviewProvider>
       ) : (
         <Count data={data} />
       )}
@@ -335,11 +401,10 @@ export default function CountPage() {
   )
 }
 
-const Count = ({ data: serverSnapshot }: { data: number | null }) => {
-  const data = useListeningQuery(serverSnapshot, query)
-  const isLoading = useListeningQueryStatus(query) === 'loading'
+const Count = ({ data: initialData }: { data: number | null }) => {
+  const [data, loading] = useLiveQuery(initialData, query)
 
-  if (isLoading) {
+  if (loading) {
     return <Spinner />
   }
 
@@ -348,5 +413,16 @@ const Count = ({ data: serverSnapshot }: { data: number | null }) => {
       Documents: <strong>{data}</strong>
     </>
   )
+}
+
+function PreviewProvider({
+  children,
+  token,
+}: {
+  children: React.ReactNode
+  token: string
+}) {
+  const client = useMemo(() => getClient({ preview: { token } }), [token])
+  return <LiveQueryProvider client={client}>{children}</LiveQueryProvider>
 }
 ```
