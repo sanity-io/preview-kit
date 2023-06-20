@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/sanity-io/preview-kit/compare/v2.1.1...v2.2.0) (2023-06-20)
+
+### Features
+
+- add `LiveQueryProvider` & `useLiveQuery` ([1e460b3](https://github.com/sanity-io/preview-kit/commit/1e460b397243e3792f123185be0f442dbaa7f43d))
+
+### Bug Fixes
+
+- **deps:** update dependency lru-cache to v10 ([#383](https://github.com/sanity-io/preview-kit/issues/383)) ([2cb326c](https://github.com/sanity-io/preview-kit/commit/2cb326c10b2997631e544cbe4f3bb353e7b94a81))
+
 ## [2.1.1](https://github.com/sanity-io/preview-kit/compare/v2.1.0...v2.1.1) (2023-06-10)
 
 ### Bug Fixes
