@@ -118,7 +118,7 @@ export function Button({
   isLoading,
   formAction,
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
   isLoading?: boolean
   formAction?: JSX.IntrinsicElements['button']['formAction']
 }) {

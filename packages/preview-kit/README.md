@@ -200,6 +200,12 @@ const titleEditLink = editLinks.title
 console.log(title, titleEditLink)
 ```
 
+## Using Perspectives
+
+The `perspective` option can be used to specify special filtering behavior for queries. The default value is `raw`, which means no special filtering is applied, while [`published`](#published) and [`previewDrafts`](#previewdrafts) can be used to optimize for specific use cases. Read more about this option:
+- [Perspectives in Sanity docs][perspectives-docs]
+- [Perspectives in @sanity/client README][perspectives-readme]
+
 # `@sanity/preview-kit`
 
 > **Note**
@@ -247,6 +253,7 @@ export function getClient({
     dataset: 'production',
     apiVersion: '2023-06-20',
     useCdn: true,
+    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -256,6 +263,7 @@ export function getClient({
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
+      perspective: 'previewDrafts',
     })
   }
   return client
@@ -650,15 +658,59 @@ return (
       maxDocuments: 10000,
       // The default cache includes all document types, you can reduce the amount of documents
       // by only including the ones you need.
+      // You can run the `array::unique(*._type)` GROQ query in `Vision` in your Studio to see how many types are in your dataset.
+      // Just be careful that you don't forget the document types you might be using in strong references, such as `project` or `sanity.imageAsset`
       includeTypes: ['page', 'product', 'sanity.imageAsset'],
       // Turn off using a mutation EventSource listener, this means content updates will require a manual refresh
-      listen: false
+      listen: false,
     }}
+    // If the cache is full it'll fallback to a polling interval mode, that refreshes every 10 seconds by default.
+    // You can opt-in to having an error thrown instead by setting this to `0`.
+    refreshInterval={10000}
     // Passing a logger gives you more information on what to expect based on your configuration
     logger={console}
   >
     {children}
-  </GroqStoreProvider>
+  </LiveQueryProvider>
+)
+```
+
+#### Content Source Map features
+
+When the `client` instance is configured to `client.config().resultSourceMap == true` the `LiveQueryProvider` will opt-in to a faster and smarter cache than the default mode.
+It'll only listen for mutations on the documents that you are using in your queries, and apply the mutations to the cache in real-time.
+This mode is best-effort, and if you're relying on features such as `upper` you may want to disable this mode.
+
+```tsx
+import { LiveQueryProvider } from '@sanity/preview-kit'
+
+return (
+  <LiveQueryProvider
+    client={client}
+    turboSourceMap={false}
+    // Passing a logger gives you more information on what to expect based on your configuration
+    logger={console}
+  >
+    {children}
+  </LiveQueryProvider>
+)
+```
+
+For data that can't be traced with Content Source Maps there's a background refresh interval. Depending on your queries you might want to tweak this interval to get the best performance.
+
+```tsx
+import { LiveQueryProvider } from '@sanity/preview-kit'
+
+return (
+  <LiveQueryProvider
+    client={client}
+    // Refetch all queries every minute instead of the default 10 seconds
+    refreshInterval={1000 * 60}
+    // Passing a logger gives you more information on what to expect based on your configuration
+    logger={console}
+  >
+    {children}
+  </LiveQueryProvider>
 )
 ```
 
@@ -681,3 +733,5 @@ MIT-licensed. See [LICENSE](LICENSE).
 [enterprise-cta]: https://www.sanity.io/enterprise?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [next-sanity-readme]: https://github.com/sanity-io/next-sanity#readme
 [migration]: https://github.com/sanity-io/preview-kit/blob/main/MIGRATION.md
+[perspectives-docs]: https://www.sanity.io/docs/perspectives
+[perspectives-readme]: https://github.com/sanity-io/client/#performing-queries

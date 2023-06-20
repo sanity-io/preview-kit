@@ -72,6 +72,10 @@ export interface LiveQueryProviderProps {
     /** @defaultValue true */
     listen?: boolean
   }
+  /** @defaultValue 10000 */
+  refreshInterval?: number
+  /** @defaultValue true */
+  turboSourceMap?: boolean
 }
 
 export function LiveQueryProvider(
@@ -112,6 +116,7 @@ export function getClient({
     dataset,
     apiVersion: '2023-06-20',
     useCdn: true,
+    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -121,6 +126,7 @@ export function getClient({
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
+      perspective: 'previewDrafts',
     })
   }
   return client
@@ -192,6 +198,7 @@ export function getClient({
     dataset,
     apiVersion: '2023-06-20',
     useCdn: true,
+    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -201,6 +208,7 @@ export function getClient({
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
+      perspective: 'previewDrafts',
     })
   }
   return client
@@ -281,6 +289,7 @@ export function getClient({
     dataset,
     apiVersion: '2023-06-20',
     useCdn: true,
+    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -290,6 +299,7 @@ export function getClient({
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
+      perspective: 'previewDrafts',
     })
   }
   return client
@@ -360,6 +370,7 @@ export function getClient({
     dataset,
     apiVersion: '2023-06-20',
     useCdn: true,
+    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -369,6 +380,7 @@ export function getClient({
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
+      perspective: 'previewDrafts',
     })
   }
   return client

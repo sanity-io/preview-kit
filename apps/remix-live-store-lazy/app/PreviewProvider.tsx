@@ -1,26 +1,17 @@
 import { LiveQueryProvider } from '@sanity/preview-kit'
-import { useState } from 'react'
-import { getClient } from '~/utils'
+import { useMemo } from 'react'
+import { getClient } from './getClient'
 
 export default function PreviewProvider({
   children,
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn,
   token,
 }: {
   children: React.ReactNode
-} & Required<Parameters<typeof getClient>[1]>) {
-  const [client] = useState(() =>
-    getClient(true, { projectId, dataset, apiVersion, useCdn, token })
-  )
+  token: string
+}) {
+  const client = useMemo(() => getClient({ token }), [token])
   return (
-    <LiveQueryProvider
-      client={client}
-      experimental__turboSourceMap
-      logger={console}
-    >
+    <LiveQueryProvider client={client} logger={console}>
       {children}
     </LiveQueryProvider>
   )

@@ -11,12 +11,12 @@ export default function PreviewProvider({
   children: React.ReactNode
   token: string
 }) {
-  const client = useMemo(() => getClient({ preview: true, token }), [token])
+  const client = useMemo(() => getClient({ token }), [token])
   return (
     <LiveQueryProvider
       client={client}
-      cache={{ maxDocuments: Infinity }}
       logger={console}
+      cache={{ includeTypes: ['page'] }}
     >
       {children}
     </LiveQueryProvider>

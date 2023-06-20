@@ -1,4 +1,10 @@
 import {
+  unstable__adapter as adapter,
+  unstable__environment as environment,
+} from '@sanity/client'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { useEffect } from 'react'
+import {
   Button,
   Container,
   FooterProps,
@@ -9,46 +15,35 @@ import {
   footerQuery,
   tableQuery,
 } from 'ui/react'
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import {
-  unstable__adapter as adapter,
-  unstable__environment as environment,
-} from '@sanity/client'
-import { sanityClient, draftsClient } from '../sanity.client'
-import { useEffect } from 'react'
+import { getClient } from '../sanity.client'
 
-import { lazy } from 'react'
-import Table from '../Table'
-import Footer from '../Footer'
 import { useListeningQueryStatus } from '@sanity/preview-kit'
+import { lazy } from 'react'
+import Footer from '../Footer'
+import Table from '../Table'
 
 const PreviewProvider = lazy(() => import('../PreviewProvider'))
 
 export const getStaticProps: GetStaticProps<{
-  preview: boolean
+  draftMode: boolean
   token: string
   table: TableProps['data']
   footer: FooterProps['data']
   timestamp: string
   server__adapter: typeof adapter
   server__environment: typeof environment
-}> = async ({ preview = false }) => {
-  const token = process.env.SANITY_API_READ_TOKEN
-  if (!token) {
-    throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
-  }
-
-  const client = preview
-    ? // Used to preview drafts as they will appear once published
-      draftsClient.withConfig({ token })
-    : sanityClient
-  const table = client.fetch(tableQuery)
-  const footer = client.fetch(footerQuery)
+}> = async ({ draftMode = false }) => {
+  const token = process.env.SANITY_API_READ_TOKEN!
+  const client = getClient(draftMode ? { token } : undefined)
+  const [table, footer] = await Promise.all([
+    client.fetch(tableQuery),
+    client.fetch(footerQuery),
+  ])
   const timestamp = new Date().toJSON()
 
   return {
     props: {
-      preview,
+      draftMode,
       token,
       table: await table,
       footer: await footer,
@@ -60,7 +55,7 @@ export const getStaticProps: GetStaticProps<{
 }
 
 export default function Page({
-  preview,
+  draftMode,
   token,
   table,
   footer,
@@ -68,13 +63,6 @@ export default function Page({
   server__adapter,
   server__environment,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const button = preview ? (
-    <ViewPublishedButtonWithLoadingStatus />
-  ) : (
-    <PreviewDraftsButton />
-  )
-  const action = preview ? '/api/exit-preview' : '/api/preview'
-
   useEffect(() => {
     console.log({
       client__adapter: adapter,
@@ -84,22 +72,25 @@ export default function Page({
 
   return (
     <Container>
-      <form action={action} style={{ display: 'contents' }}>
-        {preview ? (
-          <PreviewProvider token={token!}>
-            {button}
-            <Table data={table} />
-            <Footer data={footer} />
-          </PreviewProvider>
+      <form style={{ display: 'contents' }}>
+        {draftMode ? (
+          <ViewPublishedButton formAction="/api/disable-draft" />
         ) : (
-          <>
-            {button}
-            <Table data={table} />
-            <Footer data={footer} />
-          </>
+          <PreviewDraftsButton formAction="/api/draft" />
         )}
-        <Timestamp date={timestamp} />
       </form>
+      {draftMode ? (
+        <PreviewProvider token={token!}>
+          <Table data={table} />
+          <Footer data={footer} />
+        </PreviewProvider>
+      ) : (
+        <>
+          <Table data={table} />
+          <Footer data={footer} />
+        </>
+      )}
+      <Timestamp date={timestamp} />
       <RefreshButton />
       <script
         type="application/json"
@@ -112,15 +103,10 @@ export default function Page({
 }
 
 function RefreshButton() {
+  const status = useListeningQueryStatus(tableQuery)
   return (
     <form action="/api/revalidate" className="section">
-      <Button>Refresh</Button>
+      <Button isLoading={status === 'loading'}>Refresh</Button>
     </form>
   )
-}
-
-function ViewPublishedButtonWithLoadingStatus() {
-  const status = useListeningQueryStatus(tableQuery)
-
-  return <ViewPublishedButton isLoading={status === 'loading'} />
 }

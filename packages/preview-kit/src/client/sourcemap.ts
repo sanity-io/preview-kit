@@ -108,7 +108,9 @@ export function resolveMapping(
   const resultJsonPath = normalisedJsonPath(resultPath)
 
   if (!csm.mappings) {
-    logger?.error('Missing resultSourceMap.mappings', { resultSourceMap: csm })
+    logger?.error?.('Missing resultSourceMap.mappings', {
+      resultSourceMap: csm,
+    })
     return undefined
   }
 

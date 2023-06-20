@@ -4,7 +4,7 @@ export default function exitPreview(
   req: NextApiRequest,
   res: NextApiResponse
 ): void {
-  res.clearPreviewData({})
+  res.setDraftMode({ enable: false })
   res.writeHead(307, { Location: '/' })
   res.end()
 }

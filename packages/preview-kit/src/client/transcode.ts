@@ -83,7 +83,8 @@ export function createTranscoder(
   transcode: Transcoder
   walk: (input: ContentSourceMapQueryResponse) => ContentSourceMapQueryResponse
 } {
-  const createEditLink = defineEditLink(studioUrl)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const createEditLink = defineEditLink(studioUrl!)
   const report: Record<
     'encoded' | 'skipped',
     { path: string; length: number; value: string }[]

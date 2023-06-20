@@ -41,7 +41,7 @@ function transcodeResponse({
       ) {
         if (!isContentSourceMapBody(response.body)) {
           if (logger) {
-            logger?.error(
+            logger?.error?.(
               '[@sanity/preview-kit]: Missing Content Source Map from response body',
               response.body
             )
@@ -55,29 +55,30 @@ function transcodeResponse({
           const isSkipping = transcoder.report.skipped.length
           const isEncoding = transcoder.report.encoded.length
           if (isSkipping || isEncoding) {
-            logger?.groupCollapsed(
+            // eslint-disable-next-line @typescript-eslint/no-extra-semi
+            ;(logger?.groupCollapsed || logger.log)?.(
               '[@sanity/preview-kit]: Stega encoding source map into result'
             )
-            logger?.log(
+            logger.log?.(
               `[@sanity/preview-kit]: Paths encoded: ${transcoder.report.encoded.length}, skipped: ${transcoder.report.skipped.length}`
             )
           }
           if (transcoder.report.encoded.length > 0) {
-            logger?.log(`[@sanity/preview-kit]: Table of encoded paths`)
-            logger?.table(transcoder.report.encoded)
+            logger?.log?.(`[@sanity/preview-kit]: Table of encoded paths`)
+            ;(logger?.table || logger.log)?.(transcoder.report.encoded)
           }
           if (transcoder.report.skipped.length > 0) {
             const skipped = new Set<string>()
             for (const { path } of transcoder.report.skipped) {
               skipped.add(path.replace(/\[\d+\]/g, '[]'))
             }
-            logger?.log(`[@sanity/preview-kit]: List of skipped paths`, [
+            logger?.log?.(`[@sanity/preview-kit]: List of skipped paths`, [
               ...skipped.values(),
             ])
           }
 
           if (isSkipping || isEncoding) {
-            logger?.groupEnd()
+            logger?.groupEnd?.()
           }
         }
 
