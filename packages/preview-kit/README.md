@@ -386,15 +386,6 @@ import { Layout } from '~/ui'
 
 const PreviewProvider = lazy(() => import('~/PreviewProvider'))
 
-export const getClient = (preview = false) =>
-  createClient({
-    projectId: process.env.SANITY_PROJECT_ID,
-    dataset: process.env.SANITY_DATASET,
-    apiVersion: process.env.SANITY_API_VERSION,
-    useCdn: !preview,
-    token: preview ? process.env.SANITY_API_READ_TOKEN : undefined,
-  })
-
 export async function loader({ request }: LoaderArgs) {
   const token = process.env.SANITY_API_READ_TOKEN
   const preview =
