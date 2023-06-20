@@ -49,3 +49,5 @@ export function useLoadingListenersContext(
 
   return [loadedListenersContext, scheduleUpdate]
 }
+
+export const DEFAULT_MAX_DOCUMENTS = 3000

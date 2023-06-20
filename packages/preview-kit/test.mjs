@@ -2,12 +2,18 @@
 
 import { strict as assert } from 'node:assert'
 
-import { useListeningQuery } from '@sanity/preview-kit'
+import {
+  LiveQueryProvider,
+  useListeningQuery,
+  useListeningQueryStatus,
+  useLiveQuery,
+} from '@sanity/preview-kit'
 import { createClient } from '@sanity/preview-kit/client'
 import { GroqStoreProvider } from '@sanity/preview-kit/groq-store'
-import { LiveStoreProvider } from '@sanity/preview-kit/live-store'
 
+assert.equal(typeof LiveQueryProvider, 'object')
 assert.equal(typeof useListeningQuery, 'function')
+assert.equal(typeof useListeningQueryStatus, 'function')
+assert.equal(typeof useLiveQuery, 'function')
 assert.equal(typeof createClient, 'function')
 assert.equal(typeof GroqStoreProvider, 'object')
-assert.equal(typeof LiveStoreProvider, 'object')

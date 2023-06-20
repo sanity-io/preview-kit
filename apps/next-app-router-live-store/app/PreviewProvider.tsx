@@ -1,6 +1,6 @@
 'use client'
 
-import { LiveStoreProvider } from '@sanity/preview-kit/live-store'
+import { LiveQueryProvider } from '@sanity/preview-kit'
 import { draftsClient } from './sanity.client'
 import { useMemo } from 'react'
 
@@ -15,5 +15,13 @@ export default function PreviewProvider({
     () => draftsClient.withConfig({ token, ignoreBrowserTokenWarning: true }),
     [token]
   )
-  return <LiveStoreProvider client={client}>{children}</LiveStoreProvider>
+  return (
+    <LiveQueryProvider
+      client={client}
+      experimental__turboSourceMap
+      logger={console}
+    >
+      {children}
+    </LiveQueryProvider>
+  )
 }

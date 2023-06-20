@@ -1,7 +1,7 @@
 import type { QueryParams } from '@sanity/client'
 import DefaultEventSource from '@sanity/eventsource'
 import { type Config, groqStore } from '@sanity/groq-store'
-import { memo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 
 import {
   defineListenerContext as ListenerContext,
@@ -11,15 +11,17 @@ import type {
   DefineListenerContext,
   ListenerGetSnapshot,
   ListenerSubscribe,
+  Logger,
 } from '../types'
 import {
+  DEFAULT_MAX_DOCUMENTS,
   getQueryCacheKey,
   type QueryCacheKey,
   useLoadingListenersContext,
 } from '../utils'
 
 /**
- * @alpha
+ * @public
  */
 export interface GroqStoreProviderProps extends Config {
   children: React.ReactNode
@@ -35,16 +37,18 @@ export interface GroqStoreProviderProps extends Config {
    * @defaultValue 3000
    */
   documentLimit?: number
+  logger?: Logger
 }
 /**
  * Caches the store instance, if the config changes you need to pass a new `key` prop to apply it and trigger a re-render
- * @alpha
+ * @public
  */
 export const GroqStoreProvider = memo(function GroqStoreProvider(
   props: GroqStoreProviderProps
 ) {
   const {
     children,
+    logger,
     // The rest is the store config
     ...config
   } = props
@@ -61,11 +65,25 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
       EventSource: props.token ? DefaultEventSource : undefined,
       listen: true,
       overlayDrafts: true,
-      documentLimit: 3000,
+      documentLimit: DEFAULT_MAX_DOCUMENTS,
       // Spread in the rest
       ...config,
     })
   )
+
+  const report = useMemo(() => {
+    if (config.listen) {
+      return `Updates are applied in real-time. The cache is set to max ${config.documentLimit} documents.`
+    }
+    return `Updates require a manual refresh. The cache is set to max ${config.documentLimit} documents.`
+  }, [config.documentLimit, config.listen])
+  useEffect(() => {
+    if (logger) {
+      logger.log(
+        `[@sanity/preview-kit]: With the current configuration you can expect that: ${report}`
+      )
+    }
+  }, [logger, report])
 
   // Make sure any async errors bubble up to the nearest error boundary
   const [error, setError] = useState<unknown>(null)

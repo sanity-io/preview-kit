@@ -1,1 +1,2 @@
-export * from './LiveStoreProvider'
+export type * from './LiveStoreProvider'
+export { LiveStoreProvider as default } from './LiveStoreProvider'

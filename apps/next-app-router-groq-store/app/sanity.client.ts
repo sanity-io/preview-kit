@@ -1,22 +1,36 @@
 import { createClient, type SanityClient } from '@sanity/preview-kit/client'
-import { apiVersion, dataset, projectId, useCdn, token } from './sanity.env'
+import { apiVersion, dataset, projectId, useCdn } from './sanity.env'
 
 export type { SanityClient }
 
-export const sanityClient = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn,
-  studioUrl: 'https://preview-kit-test-studio.sanity.build/',
-  encodeSourceMapAtPath: () => true,
-  token,
-  perspective: 'published',
-})
+export function getClient({
+  preview = false,
+  token = process.env.SANITY_API_READ_TOKEN,
+}: {
+  preview?: boolean
+  token?: string
+}): SanityClient {
+  const client = createClient({
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn,
+    studioUrl: 'https://preview-kit-test-studio.sanity.build/',
+    encodeSourceMapAtPath: () => true,
+    token,
+    perspective: 'published',
+    ignoreBrowserTokenWarning: true,
+  })
 
-// Used to preview drafts as they will appear once published
-export const draftsClient = sanityClient.withConfig({
-  perspective: 'previewDrafts',
-  // required by previewDrafts
-  useCdn: false,
-})
+  if (preview) {
+    if (!token) {
+      throw new Error('You must provide a token to preview drafts')
+    }
+    return client.withConfig({
+      perspective: 'previewDrafts',
+      useCdn: false,
+    })
+  }
+
+  return client
+}

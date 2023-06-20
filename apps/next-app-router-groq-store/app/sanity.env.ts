@@ -5,7 +5,3 @@ export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 // @TODO remove this after `perspective` is GA
 export const apiVersion = 'X'
 export const useCdn = false
-export const token = process.env.SANITY_API_READ_TOKEN
-if (!token) {
-  throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
-}

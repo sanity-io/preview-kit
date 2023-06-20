@@ -26,6 +26,7 @@ import type {
   DefineListenerContext,
   ListenerGetSnapshot,
   ListenerSubscribe,
+  Logger,
 } from '../types'
 import { getQueryCacheKey, type QueryCacheKey } from '../utils'
 
@@ -36,7 +37,7 @@ const documentsCache = new LRUCache({
 })
 
 /**
- * @alpha
+ * @internal
  */
 export interface LiveStoreProviderProps {
   children: React.ReactNode
@@ -55,25 +56,46 @@ export interface LiveStoreProviderProps {
    * Requires Content Source Maps to work.
    * @defaultValue true
    */
-  turbo?: boolean
+  turboSourceMap?: boolean
+  logger?: Logger
 }
 /**
- * @alpha
+ * @internal
  */
 export const LiveStoreProvider = memo(function LiveStoreProvider(
   props: LiveStoreProviderProps
 ) {
-  const { children, client, refreshInterval = 10000, turbo = true } = props
+  const {
+    children,
+    client,
+    refreshInterval = 10000,
+    turboSourceMap = true,
+    logger,
+  } = props
 
   // Check if the client is configured to use Content Source Maps if turbo is enabled
   // It's wrapped inside `useMemo` so it doesn't call `client.config` more than it needs to, but unlike `useEffect` sooner rather than later
   useMemo(() => {
-    if (turbo && !client.config().resultSourceMap) {
-      throw new Error(
-        'The client needs to be configured with `resultSourceMap: true` to enable turbo mode. You can also turn off turbo with `turbo={false} to silence this error.`'
+    if (turboSourceMap && !client.config().resultSourceMap) {
+      logger?.error(
+        'The client needs to be configured with `resultSourceMap: true` to enable turbo mode.`'
       )
     }
-  }, [client, turbo])
+  }, [client, turboSourceMap, logger])
+
+  const report = useMemo(() => {
+    if (turboSourceMap && client.config().resultSourceMap) {
+      return `Updates that can be traced using Content Source Maps will be applied in real-time. Other updates will be applied every ${refreshInterval}ms.`
+    }
+    return `Updates will be applied every ${refreshInterval}ms.`
+  }, [client, refreshInterval, turboSourceMap])
+  useEffect(() => {
+    if (logger) {
+      logger.log(
+        `[@sanity/preview-kit]: With the current configuration you can expect that: ${report}`
+      )
+    }
+  }, [logger, report])
 
   const [subscriptions, setSubscriptions] = useState<QueryCacheKey[]>([])
   const [snapshots] = useState<QuerySnapshotsCache>(() => new Map())
@@ -108,7 +130,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
   const [turboIds, setTurboIds] = useState<string[]>([])
   const turboIdsFromSourceMap = useCallback(
     (contentSourceMap: ContentSourceMap) => {
-      if (!turbo) return
+      if (!turboSourceMap) return
       // This handler only adds ids, on each query fetch. But that's ok since <Turbo /> purges ids that are unused
       const nextTurboIds = new Set<string>()
       if (contentSourceMap.documents?.length) {
@@ -131,13 +153,13 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
         })
       )
     },
-    [turbo]
+    [turboSourceMap]
   )
 
   return (
     <Context.Provider value={context}>
       {children}
-      {turbo && (
+      {turboSourceMap && (
         <Turbo
           cache={hooks.cache}
           client={client}

@@ -3,7 +3,7 @@ import { PreviewDraftsButton, Footer, footerQuery } from 'ui/react'
 import RefreshButton from './RefreshButton'
 import { unstable__adapter, unstable__environment } from '@sanity/client'
 import { Table, Timestamp, tableQuery } from 'ui/react'
-import { sanityClient, draftsClient } from './sanity.client'
+import { getClient } from './sanity.client'
 import PreviewProvider from './PreviewProvider'
 import PreviewTable from './PreviewTable'
 import PreviewFooter from './PreviewFooter'
@@ -16,7 +16,7 @@ export default async function Page() {
   ) : (
     <PreviewDraftsButton />
   )
-  const client = isDraftMode ? draftsClient : sanityClient
+  const client = getClient({ preview: isDraftMode })
   const table = client.fetch(tableQuery)
   const footer = client.fetch(footerQuery)
   return (

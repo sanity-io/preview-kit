@@ -1,4 +1,4 @@
-import { LiveStoreProvider } from '@sanity/preview-kit/live-store'
+import { LiveQueryProvider } from '@sanity/preview-kit'
 import { useState } from 'react'
 import { getClient } from '~/utils'
 
@@ -15,5 +15,13 @@ export default function PreviewProvider({
   const [client] = useState(() =>
     getClient(true, { projectId, dataset, apiVersion, useCdn, token })
   )
-  return <LiveStoreProvider client={client}>{children}</LiveStoreProvider>
+  return (
+    <LiveQueryProvider
+      client={client}
+      experimental__turboSourceMap
+      logger={console}
+    >
+      {children}
+    </LiveQueryProvider>
+  )
 }

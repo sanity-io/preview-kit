@@ -19,11 +19,96 @@ export type { ClientQueryParams, ListenerStatus }
 export type isEqualFn<QueryResult> = (a: QueryResult, b: QueryResult) => boolean
 
 /** @public */
-export interface ListeningQueryHookOptions<QueryResult> {
+export interface LiveQueryHookOptions<QueryResult> {
   isEqual?: isEqualFn<QueryResult>
 }
 
 /** @public */
+export type QueryLoading = boolean
+
+/** @public */
+export function useLiveQuery<
+  QueryResult,
+  QueryParams extends ClientQueryParams = ClientQueryParams
+>(
+  initialData: QueryResult,
+  query: string,
+  queryParams?: QueryParams,
+  options?: LiveQueryHookOptions<QueryResult>
+): [QueryResult, QueryLoading] {
+  const { isEqual = isFastEqual } = options || {}
+
+  const defineStore = useContext(defineListenerContext)
+  const params = useParams(queryParams)
+  const store = useMemo(
+    () => defineStore<QueryResult>(initialData, query, params),
+    [defineStore, initialData, params, query]
+  )
+  // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call
+  // helps ensure that we don't get a mismatch between the server and client snapshots
+  const [serverSnapshot] = useState(() => {
+    if (initialData === undefined) {
+      throw new Error(
+        `initialSnapshot can't be undefined, if you don't want an initial value use null instead`
+      )
+    }
+    try {
+      return JSON.parse(JSON.stringify(initialData))
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        "Failed to deep clone initialSnapshot, this is likely an error and an indication that the snapshot isn't JSON serializable",
+        { initialSnapshot: initialData, error }
+      )
+      return initialData
+    }
+  })
+  const getServerSnapshot = useCallback(() => serverSnapshot, [serverSnapshot])
+  const selector = useCallback((snapshot: QueryResult) => snapshot, [])
+
+  const snapshot = useSyncExternalStoreWithSelector(
+    store.subscribe,
+    store.getSnapshot,
+    getServerSnapshot,
+    selector,
+    isEqual
+  )
+  const loading = useLiveQueryIsLoading(query, params)
+
+  return [snapshot, loading]
+}
+
+/**
+ * Wether a particular query is loading or not.
+ * @public
+ */
+function useLiveQueryIsLoading(
+  query: string,
+  params: ClientQueryParams
+): QueryLoading {
+  const loadedListeners = useContext(LoadedListenersContext)
+  const key = useMemo(() => getQueryCacheKey(query, params), [params, query])
+
+  return useMemo(() => {
+    if (Array.isArray(loadedListeners)) {
+      return loadedListeners.includes(key) ? false : true
+    }
+    return false
+  }, [key, loadedListeners])
+}
+
+/**
+ * @public
+ * @deprecated use `LiveQueryHookOptions` instead
+ */
+export interface ListeningQueryHookOptions<QueryResult> {
+  isEqual?: isEqualFn<QueryResult>
+}
+
+/**
+ * @public
+ * @deprecated use `useLiveQuery` instead
+ */
 export function useListeningQuery<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams
@@ -33,62 +118,27 @@ export function useListeningQuery<
   queryParams?: QueryParams,
   options?: ListeningQueryHookOptions<QueryResult>
 ): QueryResult {
-  const { isEqual = isFastEqual } = options || {}
-
-  const defineStore = useContext(defineListenerContext)
-  const params = useParams(queryParams)
-  const store = useMemo(
-    () => defineStore<QueryResult>(initialSnapshot, query, params),
-    [defineStore, initialSnapshot, params, query]
+  const [snapshot] = useLiveQuery<QueryResult, QueryParams>(
+    initialSnapshot,
+    query,
+    queryParams,
+    options
   )
-  // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call
-  // helps ensure that we don't get a mismatch between the server and client snapshots
-  const [serverSnapshot] = useState(() => {
-    if (initialSnapshot === undefined) {
-      throw new Error(
-        `initialSnapshot can't be undefined, if you don't want an initial value use null instead`
-      )
-    }
-    try {
-      return JSON.parse(JSON.stringify(initialSnapshot))
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        "Failed to deep clone initialSnapshot, this is likely an error and an indication that the snapshot isn't JSON serializable",
-        { initialSnapshot, error }
-      )
-      return initialSnapshot
-    }
-  })
-  const getServerSnapshot = useCallback(() => serverSnapshot, [serverSnapshot])
-  const selector = useCallback((snapshot: QueryResult) => snapshot, [])
-
-  return useSyncExternalStoreWithSelector(
-    store.subscribe,
-    store.getSnapshot,
-    getServerSnapshot,
-    selector,
-    isEqual
-  )
+  return snapshot
 }
 
 /**
  * Wether a particular query is loading or not.
  * @public
+ * @deprecated use `useLiveQuery` instead
  */
 export function useListeningQueryStatus<
   QueryParams extends ClientQueryParams = ClientQueryParams
 >(query: string, queryParams?: QueryParams): ListenerStatus {
-  const loadedListeners = useContext(LoadedListenersContext)
   const params = useParams(queryParams)
-  const key = useMemo(() => getQueryCacheKey(query, params), [params, query])
+  const loading = useLiveQueryIsLoading(query, params)
 
-  return useMemo(() => {
-    if (Array.isArray(loadedListeners)) {
-      return loadedListeners.includes(key) ? 'success' : 'loading'
-    }
-    return 'success'
-  }, [key, loadedListeners])
+  return loading ? 'loading' : 'success'
 }
 
 /**

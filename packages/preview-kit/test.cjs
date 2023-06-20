@@ -3,15 +3,20 @@
 const { strict: assert } = require('node:assert')
 
 const previewKit = require('@sanity/preview-kit')
-const { useListeningQuery } = previewKit
+const {
+  LiveQueryProvider,
+  useListeningQuery,
+  useListeningQueryStatus,
+  useLiveQuery,
+} = previewKit
 const previewKitClient = require('@sanity/preview-kit/client')
 const { createClient } = previewKitClient
 const previewKitGroqStore = require('@sanity/preview-kit/groq-store')
 const { GroqStoreProvider } = previewKitGroqStore
-const previewKitLiveStore = require('@sanity/preview-kit/live-store')
-const { LiveStoreProvider } = previewKitLiveStore
 
+assert.equal(typeof LiveQueryProvider, 'object')
 assert.equal(typeof useListeningQuery, 'function')
+assert.equal(typeof useListeningQueryStatus, 'function')
+assert.equal(typeof useLiveQuery, 'function')
 assert.equal(typeof createClient, 'function')
 assert.equal(typeof GroqStoreProvider, 'object')
-assert.equal(typeof LiveStoreProvider, 'object')
