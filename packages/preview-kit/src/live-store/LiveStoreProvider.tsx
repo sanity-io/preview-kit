@@ -260,10 +260,16 @@ const QuerySubscription = memo(function QuerySubscription(
       }
     }
     const onFinally = startRefresh()
-    effect().catch(setError).finally(onFinally)
+    effect()
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setError(error)
+        }
+      })
+      .finally(onFinally)
     return () => {
       if (!fulfilled) {
-        controller.abort(new DOMException('AbortError'))
+        controller.abort()
       }
     }
   }, [

@@ -123,14 +123,14 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
     }
 
     logger?.log('[@sanity/preview-kit]: fetch documents count')
-    const abortController = new AbortController()
+    const controller = new AbortController()
     client
       .fetch<number>(
         includeTypes.length > 0
           ? 'count(*[_type in $includeTypes])'
           : 'count(*)',
         { includeTypes },
-        { filterResponse: true, signal: abortController.signal }
+        { filterResponse: true, signal: controller.signal }
       )
       .then((result) => {
         logger?.log('[@sanity/preview-kit]: documents count', result)
@@ -142,7 +142,7 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
         }
       })
     return () => {
-      abortController.abort()
+      controller.abort()
     }
   }, [client, documentsCount, includeTypes, logger])
 
