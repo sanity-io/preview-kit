@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/sanity-io/preview-kit/compare/v2.2.1...v2.2.2) (2023-06-21)
+
+### Bug Fixes
+
+- make sure cancelled requests don't throw ([27143f1](https://github.com/sanity-io/preview-kit/commit/27143f1987cba1bc6219a7e8f7a0d0dd29e1b0ef))
+
 ## [2.2.1](https://github.com/sanity-io/preview-kit/compare/v2.2.0...v2.2.1) (2023-06-21)
 
 ### Bug Fixes
