@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/sanity-io/preview-kit/compare/v2.2.0...v2.2.1) (2023-06-21)
+
+### Bug Fixes
+
+- apply `includeTypes` to `count` query ([3eefa35](https://github.com/sanity-io/preview-kit/commit/3eefa35080ee2e2772ab8043223c6ae5fb1fb717))
+
 ## [2.2.0](https://github.com/sanity-io/preview-kit/compare/v2.1.1...v2.2.0) (2023-06-20)
 
 ### Features
