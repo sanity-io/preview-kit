@@ -116,31 +116,50 @@ import { memo } from 'react'
 export function Button({
   children,
   isLoading,
+  formAction,
 }: {
   children: React.ReactNode
   isLoading?: boolean
+  formAction?: JSX.IntrinsicElements['button']['formAction']
 }) {
   return (
     <button
       type="submit"
+      formAction={formAction}
       className={`button is-light ${isLoading ? 'is-loading' : ''}`}
     >
       {children}
     </button>
   )
 }
-export function PreviewDraftsButton() {
+export function PreviewDraftsButton({
+  isLoading,
+  formAction,
+}: {
+  isLoading?: boolean
+  formAction?: JSX.IntrinsicElements['button']['formAction']
+}) {
   return (
     <section className="section">
-      <Button>Preview Drafts</Button>
+      <Button isLoading={isLoading} formAction={formAction}>
+        Preview Drafts
+      </Button>
     </section>
   )
 }
 
-export function ViewPublishedButton({ isLoading }: { isLoading?: boolean }) {
+export function ViewPublishedButton({
+  isLoading,
+  formAction,
+}: {
+  isLoading?: boolean
+  formAction?: JSX.IntrinsicElements['button']['formAction']
+}) {
   return (
     <section className="section">
-      <Button isLoading={isLoading}>View Published</Button>
+      <Button isLoading={isLoading} formAction={formAction}>
+        View Published
+      </Button>
     </section>
   )
 }
@@ -157,6 +176,7 @@ export function Container({ children }: { children: React.ReactNode }) {
           flexDirection: 'column',
           overflow: 'auto',
           padding: '20px',
+          marginBottom: '100px',
         }}
       >
         {children}
@@ -172,6 +192,10 @@ const { query: tableQuery, schema: tableSchema } = q('*')
     _createdAt: q.string().optional(),
     _updatedAt: q.string().optional(),
     title: q.string().optional(),
+    status: q.select({
+      '_originalId in path("drafts.**")': ['"draft"', q.literal('draft')],
+      default: ['"published"', q.literal('published')],
+    }),
   })
   .order('title asc')
   .slice(0, 10)
@@ -185,6 +209,7 @@ const thead = (
   <thead>
     <tr>
       <th>title</th>
+      <th style={{ width: '1%' }}>status</th>
       <th style={{ width: '1%' }}>_updatedAt</th>
     </tr>
   </thead>
@@ -205,6 +230,9 @@ export const Table = memo(function Table(props: TableProps) {
               <tr key={type._id} data-created-at={type._createdAt}>
                 <td style={{ whiteSpace: 'nowrap' }} width={300}>
                   {type.title}
+                </td>
+                <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                  {type.status}
                 </td>
                 <td style={{ whiteSpace: 'nowrap' }} width={300}>
                   <time dateTime={type._updatedAt}>
@@ -250,6 +278,9 @@ export const TableFallback = memo(function TableFallback({
               <td style={{ whiteSpace: 'nowrap' }} width={300}>
                 &nbsp;
               </td>
+              <td style={{ whiteSpace: 'nowrap' }} width={300}>
+                &nbsp;
+              </td>
             </tr>
           ))}
         </tbody>
@@ -258,14 +289,6 @@ export const TableFallback = memo(function TableFallback({
   )
 })
 
-// Funky count query based on what groq-store supports?
-// export const footerQuery = groq`count(array::unique(
-//   *[_type == 'page']{"_id": select(
-//     _id in path("drafts.**") => _id,
-//     "drafts." + _id
-//   )}._id
-// ))
-// `
 export const footerQuery = groq`count(*[_type == 'page'])`
 
 export type FooterProps = {
