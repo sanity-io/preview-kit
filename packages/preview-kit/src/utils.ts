@@ -51,3 +51,4 @@ export function useLoadingListenersContext(
 }
 
 export const DEFAULT_MAX_DOCUMENTS = 3000
+export const DEFAULT_TAG = 'sanity.preview-kit'

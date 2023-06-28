@@ -3,7 +3,7 @@ import type { SanityClient } from '@sanity/client'
 import { lazy, memo, Suspense, useEffect, useMemo, useState } from 'react'
 
 import type { Logger } from './types'
-import { DEFAULT_MAX_DOCUMENTS } from './utils'
+import { DEFAULT_MAX_DOCUMENTS, DEFAULT_TAG } from './utils'
 
 const LazyGroqStoreProvider = lazy(() => import('./groq-store'))
 const LiveStoreProvider = lazy(() => import('./live-store'))
@@ -58,7 +58,11 @@ export const LiveQueryProvider = memo(function LiveQueryProvider(
     experimental__refreshInterval,
   } = props
   // Ensure these values are stable even if userland isn't memoizing properly
-  const [client] = useState(() => props.client)
+  const [client] = useState(() =>
+    props.client.withConfig({
+      requestTagPrefix: props.client.config().requestTagPrefix || DEFAULT_TAG,
+    })
+  )
   const [cache] = useState(() => props.cache)
   const [logger] = useState(() => props.logger)
 
@@ -187,6 +191,7 @@ const GroqStoreProvider = memo(function GroqStoreProvider(
     dataset,
     token,
     perspective = 'previewDrafts',
+    requestTagPrefix,
   } = useMemo(() => client.config(), [client])
 
   return (
@@ -199,6 +204,7 @@ const GroqStoreProvider = memo(function GroqStoreProvider(
       documentLimit={cache?.maxDocuments}
       overlayDrafts={perspective === 'previewDrafts'}
       includeTypes={cache?.includeTypes}
+      requestTagPrefix={requestTagPrefix}
     >
       {children}
     </LazyGroqStoreProvider>
