@@ -2,7 +2,8 @@ import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData, useRevalidator } from '@remix-run/react'
 
 import type { TableProps, FooterProps } from 'ui/react'
-import { TableFallback ,
+import {
+  TableFallback,
   Timestamp,
   tableQuery,
   Button,
