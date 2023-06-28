@@ -99,7 +99,7 @@ export interface PreviewKitClientConfig extends ClientConfig {
    * @defaultValue import.meta.env.SANITY_STUDIO_URL || process.env.SANITY_STUDIO_URL
    * @alpha
    */
-  studioUrl: StudioUrl
+  studioUrl?: StudioUrl
   /**
    * Specify a `console.log` compatible logger to see debug logs, which keys are encoded and which are not.
    * @alpha
