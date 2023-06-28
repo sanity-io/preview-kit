@@ -123,6 +123,11 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
           }, setError)
         }
 
+        if (!config.listen) {
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          return () => {}
+        }
+
         const subscription = store.subscribe(query, params, (err, result) => {
           if (err) {
             setError(err)
