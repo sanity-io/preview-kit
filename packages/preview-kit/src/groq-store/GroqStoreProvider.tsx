@@ -73,9 +73,13 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
 
   const report = useMemo(() => {
     if (config.listen) {
-      return `Updates are applied in real-time. The cache is set to max ${config.documentLimit} documents.`
+      return `Updates are applied in real-time. The cache is set to max ${
+        config.documentLimit || DEFAULT_MAX_DOCUMENTS
+      } documents.`
     }
-    return `Updates require a manual refresh. The cache is set to max ${config.documentLimit} documents.`
+    return `Updates require a manual refresh. The cache is set to max ${
+      config.documentLimit || DEFAULT_MAX_DOCUMENTS
+    } documents.`
   }, [config.documentLimit, config.listen])
   useEffect(() => {
     if (logger) {
