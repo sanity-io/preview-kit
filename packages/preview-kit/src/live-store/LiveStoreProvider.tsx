@@ -548,6 +548,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
           effectFormat: 'mendoza',
           includePreviousRevision: false,
           includeResult: false,
+          tag: 'turbo',
         }
       )
       .subscribe((update) => {
