@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](https://github.com/sanity-io/preview-kit/compare/v2.2.3...v2.2.4) (2023-06-28)
+
+### Bug Fixes
+
+- **deps:** update non-major ([#401](https://github.com/sanity-io/preview-kit/issues/401)) ([a78891c](https://github.com/sanity-io/preview-kit/commit/a78891cc8535f4d4addabd9ed17d3c989daa9b27))
+
 ## [2.2.3](https://github.com/sanity-io/preview-kit/compare/v2.2.2...v2.2.3) (2023-06-27)
 
 ### Bug Fixes
