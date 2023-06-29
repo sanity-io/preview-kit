@@ -95,7 +95,10 @@ export function createHttpRequest({
   studioUrl,
   encodeSourceMapAtPath,
   logger,
-}: PreviewKitClientConfig): HttpRequest {
+}: Pick<
+  PreviewKitClientConfig,
+  'studioUrl' | 'encodeSourceMapAtPath' | 'logger'
+>): HttpRequest {
   invariant(studioUrl, 'Missing studioUrl in client config')
   const superRequester = originalRequester.clone()
 
