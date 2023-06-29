@@ -5,6 +5,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.0](https://github.com/sanity-io/preview-kit/compare/v2.2.4...v2.3.0) (2023-06-29)
+
+### Features
+
+- use `perspective` features ([#389](https://github.com/sanity-io/preview-kit/issues/389)) ([4139e28](https://github.com/sanity-io/preview-kit/commit/4139e286834c385e4de60d46784a6e30cd3b5549))
+
+### Bug Fixes
+
+- allow `encodeSourceMap` to be a string ([79d681e](https://github.com/sanity-io/preview-kit/commit/79d681e9524969f656f1a40321919a04c88e45d4))
+- **deps:** update `@sanity/client` to v6.1.3 ([b149be6](https://github.com/sanity-io/preview-kit/commit/b149be6cc9fad319516edc4c8ca61a7afee850a0))
+- improve logger message ([3facebf](https://github.com/sanity-io/preview-kit/commit/3facebf657431e03277787694561a92e550bcdaa))
+- make `studioUrl` optional ([3ffa49f](https://github.com/sanity-io/preview-kit/commit/3ffa49f23564b652788ef3f1070f40d16ab8d6f1))
+- only forward valid `client` options ([e9b0494](https://github.com/sanity-io/preview-kit/commit/e9b049436d3e415a9a537dab58e98a04bd899978))
+- set `sanity.preview-kit.turbo` tag by default for CSM live preview ([0fac392](https://github.com/sanity-io/preview-kit/commit/0fac3927c81183d06ab48758c53098daf21a34ac))
+- set `sanity.preview-kit` tag by default ([c1c91e0](https://github.com/sanity-io/preview-kit/commit/c1c91e0a43e6e82c47766eeaf78bb90db5b1d268))
+- support `cache.listen = false` ([57de7cc](https://github.com/sanity-io/preview-kit/commit/57de7cc4e6a61abf774de9f5a6df87de9013ff8d))
+
 ## [2.2.4](https://github.com/sanity-io/preview-kit/compare/v2.2.3...v2.2.4) (2023-06-28)
 
 ### Bug Fixes
