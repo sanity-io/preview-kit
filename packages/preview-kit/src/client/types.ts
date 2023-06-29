@@ -58,7 +58,7 @@ export interface PreviewKitClientConfig extends ClientConfig {
    * @defaultValue import.meta.env.SANITY_SOURCE_MAP || process.env.SANITY_SOURCE_MAP || 'auto'
    * @alpha
    */
-  encodeSourceMap?: 'auto' | true | false
+  encodeSourceMap?: 'auto' | string | true | false
   /**
    * Where the Studio is hosted.
    * If it's embedded in the app, use the base path for example `/studio`.

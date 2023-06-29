@@ -25,6 +25,12 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
     shouldEncodeSourceMap = isVercelPreviewEnvironment()
   }
 
+  if (typeof encodeSourceMap === 'string' && encodeSourceMap !== 'auto') {
+    throw new Error(
+      `Invalid value for encodeSourceMap: ${encodeSourceMap}. Did you mean 'auto'?`
+    )
+  }
+
   try {
     if (shouldEncodeSourceMap && config.resultSourceMap !== false) {
       logger?.debug('[@sanity/preview-kit]: Creating source map enabled client')
