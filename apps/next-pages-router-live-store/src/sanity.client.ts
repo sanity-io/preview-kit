@@ -14,7 +14,7 @@ export function getClient(preview?: { token: string }): SanityClient {
     useCdn,
     studioUrl,
     logger: console,
-    resultSourceMap: true,
+    encodeSourceMap: true,
     perspective: 'published',
   })
   if (preview) {
