@@ -76,6 +76,19 @@ function Benchmark() {
               >
                 Create 10k pages
               </Button>
+              <span style={{ display: 'inline-block', width: '1rem' }} />
+              <Button
+                tone="positive"
+                loading={creating}
+                onClick={(event) => {
+                  setCreating(true)
+                  createDocuments(client, 100000)
+                    .catch(setError)
+                    .finally(() => setEditing(false))
+                }}
+              >
+                Create 100k pages
+              </Button>
             </Box>
           </Stack>
         </Box>
