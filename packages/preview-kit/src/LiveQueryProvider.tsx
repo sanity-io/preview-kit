@@ -35,28 +35,31 @@ export interface LiveQueryProviderProps {
   client: SanityClient
   cache?: CacheOptions
   /**
-   * @defaultValue false
-   * @alpha Highly experimental, may have breaking changes in minor releases
+   * Uses a `Listen` API call with EventSource to stream updates in real-time to the documents cache, powered by `Content Source Map` metadata
+   * @defaultValue true
    */
-  experimental__turboSourceMap?: boolean
+  turboSourceMap?: boolean
   /**
    * The interval in millieseconds to refetch in the background, when the tab is active.
+   * It's only used if `turboSourceMap` is set to `true` or there are too many documents to fit in the local cache.
    * Set it to `0` to disable background refresh.
-   * @defaultValue experimental__turboSourceMap ? 10000 : 0
-   * @alpha Highly experimental, may have breaking changes in minor releases
+   * @defaultValue 10000
    */
-  experimental__refreshInterval?: number
+  refreshInterval?: number
   logger?: Logger
 }
 
 export const LiveQueryProvider = memo(function LiveQueryProvider(
   props: LiveQueryProviderProps
 ) {
-  const {
-    children,
-    experimental__turboSourceMap = false,
-    experimental__refreshInterval,
-  } = props
+  const { children, refreshInterval = 10000 } = props
+
+  if (!props.client) {
+    throw new Error(
+      'Missing a `client` prop with a configured Sanity client instance'
+    )
+  }
+
   // Ensure these values are stable even if userland isn't memoizing properly
   const [client] = useState(() =>
     props.client.withConfig({
@@ -65,23 +68,19 @@ export const LiveQueryProvider = memo(function LiveQueryProvider(
   )
   const [cache] = useState(() => props.cache)
   const [logger] = useState(() => props.logger)
+  const turboSourceMap = useMemo(
+    () => props.turboSourceMap ?? client.config().resultSourceMap,
+    [client, props.turboSourceMap]
+  )
 
-  useEffect(() => {
-    if (experimental__refreshInterval || experimental__turboSourceMap) {
-      logger?.warn(
-        '[@sanity/preview-kit]: You are using experimental features, these may have breaking changes in minor releases'
-      )
-    }
-  }, [experimental__refreshInterval, experimental__turboSourceMap, logger])
-
-  if (experimental__turboSourceMap) {
+  if (turboSourceMap) {
     return (
       <Suspense fallback={children}>
         <LiveStoreProvider
           client={client}
           logger={logger}
-          refreshInterval={experimental__refreshInterval}
-          turboSourceMap={experimental__turboSourceMap}
+          refreshInterval={refreshInterval}
+          turboSourceMap={turboSourceMap}
         >
           {children}
         </LiveStoreProvider>
@@ -94,7 +93,7 @@ export const LiveQueryProvider = memo(function LiveQueryProvider(
       client={client}
       cache={cache}
       logger={logger}
-      experimental__refreshInterval={experimental__refreshInterval}
+      refreshInterval={refreshInterval}
     >
       {children}
     </SelectStoreProvider>
@@ -104,13 +103,7 @@ export const LiveQueryProvider = memo(function LiveQueryProvider(
 const SelectStoreProvider = memo(function SelectStoreProvider(
   props: LiveQueryProviderProps
 ) {
-  const {
-    children,
-    experimental__refreshInterval = 0,
-    client,
-    cache,
-    logger,
-  } = props
+  const { children, refreshInterval, client, cache, logger } = props
   const maxDocuments = cache?.maxDocuments ?? DEFAULT_MAX_DOCUMENTS
   const [documentsCount, setDocumentsCount] = useState<number | null>(null)
   const [error, setError] = useState<Error | null>(null)
@@ -154,12 +147,12 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
     return children
   }
 
-  if (experimental__refreshInterval && documentsCount >= maxDocuments) {
+  if (refreshInterval && documentsCount >= maxDocuments) {
     return (
       <Suspense fallback={children}>
         <LiveStoreProvider
           client={client}
-          refreshInterval={experimental__refreshInterval}
+          refreshInterval={refreshInterval}
           turboSourceMap={false}
           logger={logger}
         >

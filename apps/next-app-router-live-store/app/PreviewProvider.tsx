@@ -1,8 +1,8 @@
 'use client'
 
 import { LiveQueryProvider } from '@sanity/preview-kit'
-import { draftsClient } from './sanity.client'
 import { useMemo } from 'react'
+import { getClient } from './sanity.client'
 
 export default function PreviewProvider({
   children,
@@ -11,16 +11,9 @@ export default function PreviewProvider({
   children: React.ReactNode
   token: string
 }) {
-  const client = useMemo(
-    () => draftsClient.withConfig({ token, ignoreBrowserTokenWarning: true }),
-    [token]
-  )
+  const client = useMemo(() => getClient({ token }), [token])
   return (
-    <LiveQueryProvider
-      client={client}
-      experimental__turboSourceMap
-      logger={console}
-    >
+    <LiveQueryProvider client={client} logger={console}>
       {children}
     </LiveQueryProvider>
   )

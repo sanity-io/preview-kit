@@ -1,20 +1,30 @@
 'use client'
 
-import { Button } from 'ui/react'
 import { useRouter } from 'next/navigation'
+import { useEffect, useTransition } from 'react'
+import { experimental_useFormStatus as useFormStatus } from 'react-dom'
+import { Button } from 'ui/react'
+import { revalidate } from './actions'
+
+function useRefresh() {
+  const { pending } = useFormStatus()
+  const router = useRouter()
+  const [loading, startTransition] = useTransition()
+  useEffect(() => {
+    if (!pending) {
+      startTransition(() => router.refresh())
+    }
+  }, [pending, router])
+
+  return pending || loading
+}
 
 export default function RefreshButton() {
-  const router = useRouter()
+  const loading = useRefresh()
 
   return (
-    <form
-      className="section"
-      onSubmit={(event) => {
-        event.preventDefault()
-        router.refresh()
-      }}
-    >
-      <Button>Refresh</Button>
+    <form action={revalidate} className="section">
+      <Button isLoading={loading}>Refresh</Button>
     </form>
   )
 }

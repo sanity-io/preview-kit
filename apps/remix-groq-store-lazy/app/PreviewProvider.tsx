@@ -1,25 +1,22 @@
-import {
-  GroqStoreProvider,
-  type GroqStoreProviderProps,
-} from '@sanity/preview-kit/groq-store'
+import { LiveQueryProvider } from '@sanity/preview-kit'
+import { useMemo } from 'react'
+import { getClient } from './getClient'
 
 export default function PreviewProvider({
   children,
   token,
-  projectId,
-  dataset,
 }: {
   children: React.ReactNode
   token: string
-} & Pick<GroqStoreProviderProps, 'projectId' | 'dataset'>) {
+}) {
+  const client = useMemo(() => getClient({ token }), [token])
   return (
-    <GroqStoreProvider
-      projectId={projectId}
-      dataset={dataset}
-      token={token}
-      documentLimit={Infinity}
+    <LiveQueryProvider
+      client={client}
+      logger={console}
+      cache={{ includeTypes: ['page'] }}
     >
       {children}
-    </GroqStoreProvider>
+    </LiveQueryProvider>
   )
 }

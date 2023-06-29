@@ -19,9 +19,11 @@ export type FilterDefault = (props: {
 
 export type Logger =
   | typeof console
-  | Pick<
-      typeof console,
-      'debug' | 'error' | 'groupCollapsed' | 'groupEnd' | 'log' | 'table'
+  | Partial<
+      Pick<
+        typeof console,
+        'debug' | 'error' | 'groupCollapsed' | 'groupEnd' | 'log' | 'table'
+      >
     >
 
 /** @public */

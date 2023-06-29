@@ -1,40 +1,36 @@
-import { draftMode } from 'next/headers'
-import { PreviewDraftsButton, Footer, footerQuery } from 'ui/react'
-import RefreshButton from './RefreshButton'
 import { unstable__adapter, unstable__environment } from '@sanity/client'
-import { Table, Timestamp, tableQuery } from 'ui/react'
-import { sanityClient, draftsClient } from './sanity.client'
-import PreviewTable from './PreviewTable'
+import { draftMode } from 'next/headers'
+import { Footer, Table, Timestamp, footerQuery, tableQuery } from 'ui/react'
+import DraftModeButton from './DraftModeButton'
 import PreviewFooter from './PreviewFooter'
-import ViewPublishedButtonWithLoadingStatus from './ViewPublishedButtonWithLoadingStatus'
+import PreviewTable from './PreviewTable'
+import RefreshButton from './RefreshButton'
+import { getClient } from './sanity.client'
 
 export default async function Page() {
-  const isDraftMode = draftMode().isEnabled
-  const button = isDraftMode ? (
-    <ViewPublishedButtonWithLoadingStatus />
-  ) : (
-    <PreviewDraftsButton />
-  )
-  const client = isDraftMode ? draftsClient : sanityClient
-  const table = client.fetch(tableQuery)
-  const footer = client.fetch(footerQuery)
+  const token = process.env.SANITY_API_READ_TOKEN!
+  const preview = draftMode().isEnabled ? { token } : undefined
+  const client = getClient(preview)
+  const [table, footer] = await Promise.all([
+    client.fetch(tableQuery),
+    client.fetch(footerQuery),
+  ])
   return (
     <>
-      <form action="/api/draft" style={{ display: 'contents' }}>
-        {button}
-        {isDraftMode ? (
-          <>
-            <PreviewTable data={await table} />
-            <PreviewFooter data={await footer} />
-          </>
-        ) : (
-          <>
-            <Table data={await table} />
-            <Footer data={await footer} />
-          </>
-        )}
-        <Timestamp date={new Date()} />
-      </form>
+      {preview ? (
+        <>
+          <DraftModeButton />
+          <PreviewTable data={table} />
+          <PreviewFooter data={footer} />
+        </>
+      ) : (
+        <>
+          <DraftModeButton />
+          <Table data={table} />
+          <Footer data={footer} />
+        </>
+      )}
+      <Timestamp date={new Date()} />
       <RefreshButton />
       <script
         type="application/json"

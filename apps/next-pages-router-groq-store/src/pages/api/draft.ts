@@ -4,7 +4,7 @@ export default function preview(
   req: NextApiRequest,
   res: NextApiResponse
 ): void {
-  res.setPreviewData({})
+  res.setDraftMode({ enable: true })
   res.writeHead(307, { Location: '/' })
   res.end()
 }
