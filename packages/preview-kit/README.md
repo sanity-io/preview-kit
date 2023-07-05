@@ -3,9 +3,28 @@
 [Sanity.io](https://www.sanity.io/?utm_source=github&utm_medium=readme&utm_campaign=preview-kit) toolkit for building live-as-you-type content preview experiences and visual editing.
 
 - [Installation](#installation)
-- [`@sanity/preview-kit/client` Visual Editing with Content Source Maps](#sanitypreview-kitclient)
-- [`@sanity/preview-kit` Live real-time preview for React](#sanitypreview-kit-1)
-- [Release new version](#release-new-version)
+- [`@sanity/preview-kit/client`](#sanitypreview-kitclient)
+  - [CTE\_NAME with Content Source Maps](#cte_name-with-content-source-maps)
+    - [Enhanced Sanity client with `createClient`](#enhanced-sanity-client-with-createclient)
+      - [`studioUrl`](#studiourl)
+      - [`encodeSourceMap`](#encodesourcemap)
+      - [`encodeSourceMapAtPath`](#encodesourcemapatpath)
+      - [`logger`](#logger)
+      - [`resultSourceMap`](#resultsourcemap)
+  - [Using the Content Source Map with custom logic](#using-the-content-source-map-with-custom-logic)
+  - [Using Perspectives](#using-perspectives)
+- [`@sanity/preview-kit`](#sanitypreview-kit-1)
+  - [Live real-time preview for React](#live-real-time-preview-for-react)
+    - [1. Create a `getClient` utility](#1-create-a-getclient-utility)
+    - [2. Define a `<LiveQueryProvider />` component](#2-define-a-livequeryprovider--component)
+    - [3. Making a Remix route conditionally preview draft](#3-making-a-remix-route-conditionally-preview-draft)
+    - [4. Adding the `useLiveQuery` hook to components that need to re-render in real-time](#4-adding-the-uselivequery-hook-to-components-that-need-to-re-render-in-real-time)
+      - [Implementing a Loading UI with `useLiveQuery`](#implementing-a-loading-ui-with-uselivequery)
+      - [Optimizing performance](#optimizing-performance)
+    - [Advanced usage](#advanced-usage)
+      - [Fine-tuning `cache`](#fine-tuning-cache)
+      - [Content Source Map features](#content-source-map-features)
+  - [Release new version](#release-new-version)
 - [License](#license)
 
 # Installation
@@ -24,35 +43,35 @@ yarn add @sanity/preview-kit @sanity/client
 
 # `@sanity/preview-kit/client`
 
-## Visual Editing with Content Source Maps
+## CTE_NAME with Content Source Maps
 
 > **Note**
 >
 > [Content Source Maps][content-source-maps-intro] are available [as an API][content-source-maps] for select [Sanity enterprise customers][enterprise-cta]. [Contact our sales team for more information.][sales-cta]
 
-You can use [visual editing][visual-editing-intro] with any framework, not just React. [Read our guide for how to get started.][visual-editing]
+You can use [CTE_NAME][visual-editing-intro] with any framework, not just React. [Read our guide for how to get started.][visual-editing]
 
-### `createClient`
+### Enhanced Sanity client with `createClient`
 
-The Preview Kit client is built on top of `@sanity/client` and is designed to be a drop-in replacement. It extends the client configuration with options for customizing visual editing experiences.
+Preview Kit's enhanced Sanity client is built on top of `@sanity/client` and is designed to be a drop-in replacement. It extends the client configuration with options for returning encoded metadata from Content Source Maps.
 
-```diff
--import {createClient, type ClientConfig} from '@sanity/client'
-+import { createClient, type ClientConfig } from '@sanity/preview-kit/client'
+```ts
+// Remove your vanilla `@sanity/client` import
+// import {createClient, type ClientConfig} from '@sanity/client'
+
+// Use the enhanced client instead
+import { createClient, type ClientConfig } from '@sanity/preview-kit/client'
 
 const config: ClientConfig = {
-  projectId: 'your-project-id',
-  dataset: 'your-dataset-name',
-  useCdn: true, // set to `false` to bypass the edge cache
-  apiVersion: '2023-05-03', // use current date (YYYY-MM-DD) to target the latest API version
+  // ...base config options
 
-- // enable content source map in the response
-- resultSourceMap: true,
-+ // Required, set it to the URL of your Sanity Studio
-+ studioUrl: 'https://your-project-name.sanity.studio',
-+ // enable content source map in the response, and encode it into strings
-+ // 'auto' is the default, you can also use `true` or `false`
-+ encodeSourceMap: 'auto',
+  // Required: when "encodeSourceMap" is enabled
+  // Set it to relative or absolute URL of your Sanity Studio
+  studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
+  
+  // Required: for encoded metadata from Content Source Maps
+  // 'auto' is the default, you can also use `true` or `false`
+  encodeSourceMap: 'auto',
 }
 
 const client = createClient(config)
@@ -60,7 +79,7 @@ const client = createClient(config)
 
 #### `studioUrl`
 
-It's **required**, and can either be an absolute URL:
+**Required** when `encodeSourceMap` is active, and can either be an absolute URL:
 
 ```ts
 import { createClient } from '@sanity/preview-kit/client'
@@ -84,7 +103,7 @@ const client = createClient({
 
 #### `encodeSourceMap`
 
-Accepts `"auto"`, the default, or a `boolean`. Controls when to encode the content source map into strings using `@vercel/stega` encoding. When `"auto"` is used a best-effort environment detection is used to see if the environment is a Vercel Preview deployment. Most of the time it works out of the box, but in some scenarios and some frameworks it might be necessary to run custom logic, equivalent to:
+Accepts `"auto"`, the default, or a `boolean`. Controls when to encode the content source map into strings using `@vercel/stega` encoding. When `"auto"` is used a best-effort environment detection is used to see if the environment is a Vercel Preview deployment. On a different hosting provider, or in local development, configure this option to make sure it is only enabled in non-production deployments.
 
 ```tsx
 import { createClient } from '@sanity/preview-kit/client'
@@ -726,7 +745,7 @@ Semantic release will only release on configured branches, so it is safe to run 
 
 MIT-licensed. See [LICENSE](LICENSE).
 
-[visual-editing]: https://www.sanity.io/docs/vercel-visual-editing?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
+[visual-editing]: https://www.sanity.io/docs/CTE_NAME?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [visual-editing-intro]: https://www.sanity.io/blog/visual-editing-sanity-vercel?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [content-source-maps]: https://www.sanity.io/docs/content-source-maps?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [content-source-maps-intro]: https://www.sanity.io/blog/content-source-maps-announce?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
