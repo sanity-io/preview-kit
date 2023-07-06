@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/sanity-io/preview-kit/compare/v2.3.0...v2.3.1) (2023-07-06)
+
+### Bug Fixes
+
+- **docs:** stage changes to README for click to edit ([#408](https://github.com/sanity-io/preview-kit/issues/408)) ([6316e22](https://github.com/sanity-io/preview-kit/commit/6316e22b31b6c6f6812098539113314211eadd49))
+
 ## [2.3.0](https://github.com/sanity-io/preview-kit/compare/v2.2.4...v2.3.0) (2023-06-29)
 
 ### Features
