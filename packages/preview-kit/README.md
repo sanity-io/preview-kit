@@ -4,7 +4,7 @@
 
 - [Installation](#installation)
 - [`@sanity/preview-kit/client`](#sanitypreview-kitclient)
-  - [CTE\_NAME with Content Source Maps](#cte_name-with-content-source-maps)
+  - [Visual Editing with Content Source Maps](#visual-editing-with-content-source-maps)
     - [Enhanced Sanity client with `createClient`](#enhanced-sanity-client-with-createclient)
       - [`studioUrl`](#studiourl)
       - [`encodeSourceMap`](#encodesourcemap)
@@ -43,13 +43,13 @@ yarn add @sanity/preview-kit @sanity/client
 
 # `@sanity/preview-kit/client`
 
-## CTE_NAME with Content Source Maps
+## Visual Editing with Content Source Maps
 
 > **Note**
 >
 > [Content Source Maps][content-source-maps-intro] are available [as an API][content-source-maps] for select [Sanity enterprise customers][enterprise-cta]. [Contact our sales team for more information.][sales-cta]
 
-You can use [CTE_NAME][visual-editing-intro] with any framework, not just React. [Read our guide for how to get started.][visual-editing]
+You can use [Visual Editing][visual-editing-intro] with any framework, not just React. [Read our guide for how to get started.][visual-editing]
 
 ### Enhanced Sanity client with `createClient`
 
@@ -745,7 +745,7 @@ Semantic release will only release on configured branches, so it is safe to run 
 
 MIT-licensed. See [LICENSE](LICENSE).
 
-[visual-editing]: https://www.sanity.io/docs/CTE_NAME?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
+[visual-editing]: https://www.sanity.io/docs/vercel-visual-editing?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [visual-editing-intro]: https://www.sanity.io/blog/visual-editing-sanity-vercel?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [content-source-maps]: https://www.sanity.io/docs/content-source-maps?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [content-source-maps-intro]: https://www.sanity.io/blog/content-source-maps-announce?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
