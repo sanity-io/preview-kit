@@ -721,8 +721,8 @@ importers:
         version: 1.2.0(react@18.2.0)
     devDependencies:
       '@sanity/client':
-        specifier: ^6.1.4
-        version: 6.1.6
+        specifier: 6.2.0-fetch.6
+        version: 6.2.0-fetch.6
       '@sanity/pkg-utils':
         specifier: 2.3.3
         version: 2.3.3(@types/node@18.16.19)(typescript@5.1.6)
@@ -4241,6 +4241,18 @@ packages:
       rxjs: 7.8.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@sanity/client@6.2.0-fetch.6:
+    resolution: {integrity: sha512-wtcDmm+dj7LRQ2ywRJSkCKFkczDHT3SeyxGTm5rNYrCFLTLpKepsop6n/6yK504Zm4KxuVS0b0QhD2wJt71DhQ==}
+    engines: {node: '>=14.18'}
+    dependencies:
+      '@sanity/eventsource': 5.0.0
+      get-it: 8.3.0
+      rxjs: 7.8.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /@sanity/color@2.2.5:
     resolution: {integrity: sha512-tTi22KoKuER3sldXYl4c1Dq2zU7tMLDkljFiaUKVkBbu4PBvRGCFw75kXZnD2b4Bsp6vin+7sI+AKdCKRhfRuw==}
@@ -8923,6 +8935,24 @@ packages:
       tunnel-agent: 0.6.0
     transitivePeerDependencies:
       - supports-color
+
+  /get-it@8.3.0:
+    resolution: {integrity: sha512-R8rM45CWEI1shdTegGCs/9yy/z6DgwS5XMVIVZtSVpu0XABxPp3PA3TCl6mzVQOcHecbqD+VUFg1poAtBtO19A==}
+    engines: {node: '>=14.0.0'}
+    dependencies:
+      debug: 4.3.4(supports-color@5.5.0)
+      decompress-response: 7.0.0
+      follow-redirects: 1.15.2(debug@4.3.4)
+      into-stream: 6.0.0
+      is-plain-object: 5.0.0
+      is-retry-allowed: 2.2.0
+      is-stream: 2.0.1
+      parse-headers: 2.0.5
+      progress-stream: 2.0.0
+      tunnel-agent: 0.6.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /get-latest-version@5.0.1:
     resolution: {integrity: sha512-oonDx2gj9GzP+b1dxrd4KJwnTEFPjugNVALey5ze7cBkwjI/2BQ6X93hzE5cTVHV3DOPTB8U9HlbpEZVLjI1MQ==}
