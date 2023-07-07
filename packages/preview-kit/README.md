@@ -68,7 +68,7 @@ const config: ClientConfig = {
   // Required: when "encodeSourceMap" is enabled
   // Set it to relative or absolute URL of your Sanity Studio
   studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
-  
+
   // Required: for encoded metadata from Content Source Maps
   // 'auto' is the default, you can also use `true` or `false`
   encodeSourceMap: 'auto',
