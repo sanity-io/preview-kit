@@ -9,7 +9,7 @@
     {
       "extends": [":semanticCommitTypeAll(chore)"],
       "description": "Group all dependencies from the app directory",
-      "matchPaths": ["apps/**/package.json", "packages/ui/package.json"],
+      "matchFileNames": ["apps/**/package.json", "packages/ui/package.json"],
       "groupName": "App dependencies"
     }
   ]
