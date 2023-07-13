@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/sanity-io/preview-kit/compare/v2.3.1...v2.3.2) (2023-07-13)
+
+### Bug Fixes
+
+- enable npm provenance publishing ([5ccbed7](https://github.com/sanity-io/preview-kit/commit/5ccbed72f6506c90990ca9733be801663edd00b4))
+
 ## [2.3.1](https://github.com/sanity-io/preview-kit/compare/v2.3.0...v2.3.1) (2023-07-06)
 
 ### Bug Fixes
