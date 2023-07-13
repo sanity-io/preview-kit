@@ -117,7 +117,7 @@
   "devDependencies": {
     "@sanity/client": "^6.1.4",
     "@sanity/pkg-utils": "2.3.3",
-    "@sanity/semantic-release-preset": "4.1.1",
+    "@sanity/semantic-release-preset": "4.1.2",
     "@types/lodash.get": "4.4.7",
     "@types/lodash.isplainobject": "4.0.7",
     "@types/node": "18.16.19",
@@ -154,6 +154,7 @@
     "node": ">=14"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   }
 }

@@ -727,8 +727,8 @@ importers:
         specifier: 2.3.3
         version: 2.3.3(@types/node@18.16.19)(typescript@5.1.6)
       '@sanity/semantic-release-preset':
-        specifier: 4.1.1
-        version: 4.1.1(semantic-release@21.0.7)
+        specifier: 4.1.2
+        version: 4.1.2(semantic-release@21.0.7)
       '@types/lodash.get':
         specifier: 4.4.7
         version: 4.4.7
@@ -4525,8 +4525,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/semantic-release-preset@4.1.1(semantic-release@21.0.7):
-    resolution: {integrity: sha512-U2+iKcCQbNWlG2gbmLqXCa+DY4KvDg6aKrzij+WNi5hjlBa4JLckRa/1AZJwxN7J+iEzwp7p8UdLgr/4UKjADQ==}
+  /@sanity/semantic-release-preset@4.1.2(semantic-release@21.0.7):
+    resolution: {integrity: sha512-h5+nnkvMaldl+2tNKsZI/Bs/PpqIW6P3ninxTVAty3tA2ACDnQ4/7peje7M89lbTCfMBqVIb56Z3dDDG7l8SHQ==}
     engines: {node: '>=18'}
     peerDependencies:
       semantic-release: 20 || 21
@@ -4534,7 +4534,7 @@ packages:
       '@semantic-release/changelog': 6.0.3(semantic-release@21.0.7)
       '@semantic-release/exec': 6.0.3(semantic-release@21.0.7)
       '@semantic-release/git': 10.0.1(semantic-release@21.0.7)
-      conventional-changelog-conventionalcommits: 5.0.0
+      conventional-changelog-conventionalcommits: 6.1.0
       semantic-release: 21.0.7
       semantic-release-license: 1.0.3
     transitivePeerDependencies:
@@ -6914,13 +6914,11 @@ packages:
       compare-func: 2.0.0
     dev: true
 
-  /conventional-changelog-conventionalcommits@5.0.0:
-    resolution: {integrity: sha512-lCDbA+ZqVFQGUj7h9QBKoIpLhl8iihkO0nCTyRNzuXtcd7ubODpYB04IFy31JloiJgG0Uovu8ot8oxRzn7Nwtw==}
-    engines: {node: '>=10'}
+  /conventional-changelog-conventionalcommits@6.1.0:
+    resolution: {integrity: sha512-3cS3GEtR78zTfMzk0AizXKKIdN4OvSh7ibNz6/DPbhWWQu7LqE/8+/GqSodV+sywUR2gpJAdP/1JFf4XtN7Zpw==}
+    engines: {node: '>=14'}
     dependencies:
       compare-func: 2.0.0
-      lodash: 4.17.21
-      q: 1.5.1
     dev: true
 
   /conventional-changelog-writer@6.0.0:
@@ -12655,11 +12653,6 @@ packages:
   /punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
-
-  /q@1.5.1:
-    resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
-    engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
-    dev: true
 
   /qs@6.11.0:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
