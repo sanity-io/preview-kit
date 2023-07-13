@@ -9,14 +9,14 @@ importers:
   .:
     devDependencies:
       '@sanity/cli':
-        specifier: 3.14.1
-        version: 3.14.1
+        specifier: 3.14.2
+        version: 3.14.2
       prettier:
         specifier: 3.0.0
         version: 3.0.0
       prettier-plugin-packagejson:
-        specifier: 2.4.4
-        version: 2.4.4(prettier@3.0.0)
+        specifier: 2.4.5
+        version: 2.4.5(prettier@3.0.0)
       turbo:
         specifier: 1.10.7
         version: 1.10.7
@@ -696,8 +696,8 @@ importers:
         specifier: 2.3.0
         version: 2.3.0
       '@vercel/stega':
-        specifier: 0.0.5
-        version: 0.0.5
+        specifier: 0.1.0
+        version: 0.1.0
       lodash.get:
         specifier: 4.4.2
         version: 4.4.2
@@ -4215,24 +4215,6 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /@sanity/cli@3.14.1:
-    resolution: {integrity: sha512-2qAJaY7Ddh5eOuWdi6nDPCFm+Ye1UYtimTUkyoDJbCMTbZUx7Geh0tgwPijIeT73/0n1eVQ6ZOLm0bpihpk/pw==}
-    engines: {node: '>=14.18.0'}
-    hasBin: true
-    dependencies:
-      '@babel/traverse': 7.22.5(supports-color@5.5.0)
-      '@vercel/frameworks': 1.4.2
-      '@vercel/fs-detectors': 3.9.2
-      chalk: 4.1.2
-      esbuild: 0.16.17
-      esbuild-register: 3.4.2(esbuild@0.16.17)
-      get-it: 8.1.3
-      golden-fleece: 1.0.9
-      pkg-dir: 5.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@sanity/cli@3.14.2:
     resolution: {integrity: sha512-emWwCn73yFHpY+9Gm+k1ILwZ4Gt6rfhKaUwWZqrCM8+6KrI/dE6UhzCRNppVxTRxrxfjqIEgxP7SQAecsUjCbA==}
     engines: {node: '>=14.18.0'}
@@ -4249,7 +4231,6 @@ packages:
       pkg-dir: 5.0.0
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@sanity/client@6.1.7:
     resolution: {integrity: sha512-crleZDBic3VpmBhIuiVZNkJMxAWE/fj5v+hHBXt+2psW1CJrvBdTLX14f4cqC40W1YDDE4ZGrDkYuph6Y6/YzQ==}
@@ -4415,7 +4396,7 @@ packages:
       parse-git-config: 3.0.0
       pkg-up: 3.1.0
       prettier: 2.8.8
-      prettier-plugin-packagejson: 2.4.4(prettier@2.8.8)
+      prettier-plugin-packagejson: 2.4.5(prettier@2.8.8)
       pretty-bytes: 5.6.0
       prompts: 2.4.2
       recast: 0.23.2
@@ -4468,7 +4449,7 @@ packages:
       parse-git-config: 3.0.0
       pkg-up: 3.1.0
       prettier: 2.8.8
-      prettier-plugin-packagejson: 2.4.4(prettier@2.8.8)
+      prettier-plugin-packagejson: 2.4.5(prettier@2.8.8)
       pretty-bytes: 5.6.0
       prompts: 2.4.2
       recast: 0.23.2
@@ -5516,19 +5497,6 @@ packages:
       '@iarna/toml': 2.2.3
       js-yaml: 3.13.1
 
-  /@vercel/fs-detectors@3.9.2:
-    resolution: {integrity: sha512-fApNP4um51mB2DRe4DKmLlPpFiNrlShBNZdxf4sNx0hmempQ3g7BBirqKD66VWEFHRTmO3gctzuhNpBXVTD/+w==}
-    dependencies:
-      '@vercel/error-utils': 1.0.10
-      '@vercel/frameworks': 1.4.2
-      '@vercel/routing-utils': 2.2.1
-      glob: 8.0.3
-      js-yaml: 4.1.0
-      json5: 2.2.2
-      minimatch: 3.1.2
-      semver: 6.1.1
-    dev: true
-
   /@vercel/fs-detectors@3.9.3:
     resolution: {integrity: sha512-R6hM4Thh2dZI1oWjxTLuvLpvjUIBPTveHHUVNlcAn9JqOUXL4BYPIit6r376e/ufXnA47oNPN7C1gf4Mk5hfzA==}
     dependencies:
@@ -5540,7 +5508,6 @@ packages:
       json5: 2.2.2
       minimatch: 3.1.2
       semver: 6.1.1
-    dev: false
 
   /@vercel/gatsby-plugin-vercel-analytics@1.0.10:
     resolution: {integrity: sha512-v329WHdtIce+y7oAmaWRvEx59Xfo0FxlQqK4BJG0u6VWYoKWPaflohDAiehIZf/YHCRVb59ZxnzmMOcm/LR8YQ==}
@@ -5787,10 +5754,6 @@ packages:
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
     dev: true
-
-  /@vercel/stega@0.0.5:
-    resolution: {integrity: sha512-vvuUYW0rBp4Ea9xv0LilqFyDHAW9tvy4GL70G1ayGisQwpOYIPChmiw/56jqZvpxjE9gjQIApLfglOcdZe3PcA==}
-    dev: false
 
   /@vercel/stega@0.1.0:
     resolution: {integrity: sha512-5b0PkOJsFBX5alChuIO3qpkt5vIZBevzLPhUQ1UP8UzVjL3F1VllnZxp/thfD8R5ol7D7WHkgZHIjdUBX4tDpQ==}
@@ -12467,8 +12430,8 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier-plugin-packagejson@2.4.4(prettier@2.8.8):
-    resolution: {integrity: sha512-Xk74PATiZDW+kELIh8e8EY0JpwHo9xbSGc4YfIfxmITWAF8yqHa7A+yAQLLMRoQEkKNi+xaMnR8BX2F9zrsczg==}
+  /prettier-plugin-packagejson@2.4.5(prettier@2.8.8):
+    resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
     peerDependencies:
       prettier: '>= 1.16.0'
     peerDependenciesMeta:
@@ -12476,12 +12439,12 @@ packages:
         optional: true
     dependencies:
       prettier: 2.8.8
-      sort-package-json: 2.5.0
+      sort-package-json: 2.5.1
       synckit: 0.8.5
     dev: true
 
-  /prettier-plugin-packagejson@2.4.4(prettier@3.0.0):
-    resolution: {integrity: sha512-Xk74PATiZDW+kELIh8e8EY0JpwHo9xbSGc4YfIfxmITWAF8yqHa7A+yAQLLMRoQEkKNi+xaMnR8BX2F9zrsczg==}
+  /prettier-plugin-packagejson@2.4.5(prettier@3.0.0):
+    resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
     peerDependencies:
       prettier: '>= 1.16.0'
     peerDependenciesMeta:
@@ -12489,7 +12452,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.0
-      sort-package-json: 2.5.0
+      sort-package-json: 2.5.1
       synckit: 0.8.5
     dev: true
 
@@ -13704,8 +13667,8 @@ packages:
       sort-object-keys: 1.1.3
     dev: true
 
-  /sort-package-json@2.5.0:
-    resolution: {integrity: sha512-KIsqEi/ameVyhhatpzwialQVSMP1mFzRLJgTBKJDz0duQmhnBDjf8MFyFoIoVnW69SqjH3/bziCSlgiuz2KbHg==}
+  /sort-package-json@2.5.1:
+    resolution: {integrity: sha512-vx/KoZxm8YNMUqdlw7SGTfqR5pqZ/sUfgOuRtDILiOy/3AvzhAibyUe2cY3OpLs3oRSow9up4yLVtQaM24rbDQ==}
     hasBin: true
     dependencies:
       detect-indent: 7.0.1
