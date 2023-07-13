@@ -16,8 +16,10 @@ export type { SanityClient }
 export const createClient = (config: ClientConfig): SanityClient => {
   const {
     encodeSourceMap = detectEnableSourceMap(),
+    encodeSourceMapAtPath,
     studioUrl = detectStudioUrl(),
     logger,
+    ...options
   } = config
 
   let shouldEncodeSourceMap = encodeSourceMap === true
@@ -32,7 +34,7 @@ export const createClient = (config: ClientConfig): SanityClient => {
       logger?.debug('[@sanity/preview-kit]: Creating source map enabled client')
       const httpRequest = createHttpRequest({ ...config, studioUrl })
       return new SanityClient(httpRequest, {
-        ...config,
+        ...options,
         // Source maps by Content Lake are required in order to know where to insert the encoded source maps into strings
         resultSourceMap: true,
       })
@@ -44,7 +46,7 @@ export const createClient = (config: ClientConfig): SanityClient => {
       'falling back to non-embedded sourcemap mode'
     )
   }
-  return _createClient(config)
+  return _createClient(options)
 }
 
 function isVercelPreviewEnvironment() {

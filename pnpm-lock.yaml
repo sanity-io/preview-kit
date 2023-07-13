@@ -229,8 +229,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/client':
-        specifier: ^6.1.1
-        version: 6.1.1
+        specifier: ^6.1.7
+        version: 6.1.7
       '@sanity/eventsource':
         specifier: ^5.0.0
         version: 5.0.0
@@ -4117,8 +4117,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.1.1:
-    resolution: {integrity: sha512-T93HCjJdvylcc1GysF52C3nYyBwiBvygzzIv44EGrRg/NPlWbr4Kc4WaLPmtIsZwadKL6g6F+tNETd5OSUykuA==}
+  /@sanity/client@6.1.7:
+    resolution: {integrity: sha512-crleZDBic3VpmBhIuiVZNkJMxAWE/fj5v+hHBXt+2psW1CJrvBdTLX14f4cqC40W1YDDE4ZGrDkYuph6Y6/YzQ==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
