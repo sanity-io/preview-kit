@@ -12,11 +12,11 @@ importers:
         specifier: 3.14.1
         version: 3.14.1
       prettier:
-        specifier: 2.8.8
-        version: 2.8.8
+        specifier: 3.0.0
+        version: 3.0.0
       prettier-plugin-packagejson:
         specifier: 2.4.4
-        version: 2.4.4(prettier@2.8.8)
+        version: 2.4.4(prettier@3.0.0)
       turbo:
         specifier: 1.10.7
         version: 1.10.7
@@ -12476,6 +12476,19 @@ packages:
         optional: true
     dependencies:
       prettier: 2.8.8
+      sort-package-json: 2.5.0
+      synckit: 0.8.5
+    dev: true
+
+  /prettier-plugin-packagejson@2.4.4(prettier@3.0.0):
+    resolution: {integrity: sha512-Xk74PATiZDW+kELIh8e8EY0JpwHo9xbSGc4YfIfxmITWAF8yqHa7A+yAQLLMRoQEkKNi+xaMnR8BX2F9zrsczg==}
+    peerDependencies:
+      prettier: '>= 1.16.0'
+    peerDependenciesMeta:
+      prettier:
+        optional: true
+    dependencies:
+      prettier: 3.0.0
       sort-package-json: 2.5.0
       synckit: 0.8.5
     dev: true
