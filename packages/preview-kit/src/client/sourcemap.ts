@@ -24,13 +24,13 @@ function isArray(value: unknown): value is Array<unknown> {
 export type Encoder = (
   value: string,
   sourceDocument: ContentSourceMapDocuments[number],
-  path: string
+  path: string,
 ) => unknown
 
 /** @alpha */
 export function encode(
   response: ContentSourceMapQueryResponse,
-  encoder: Encoder
+  encoder: Encoder,
 ): ContentSourceMapQueryResponse {
   if (!response.resultSourceMap) {
     throw new TypeError('Missing resultSourceMap')
@@ -43,7 +43,7 @@ export function encode(
 /** @alpha */
 export function encodeIntoResult(
   response: ContentSourceMapQueryResponse,
-  encoder: Encoder
+  encoder: Encoder,
 ): ReturnType<Encoder> {
   return walkMap(response.result, (value, path) => {
     // Only map strings, we could extend this in the future to support other types like integers...
@@ -82,7 +82,7 @@ export type WalkMapFn = (value: unknown, path: PathSegment[]) => unknown
 export function walkMap(
   value: unknown,
   mappingFn: WalkMapFn,
-  path: PathSegment[] = []
+  path: PathSegment[] = [],
 ): unknown {
   if (isArray(value)) {
     return value.map((v, idx) => walkMap(v, mappingFn, path.concat(idx)))
@@ -93,7 +93,7 @@ export function walkMap(
       Object.entries(value).map(([k, v]) => [
         k,
         walkMap(v, mappingFn, path.concat(k)),
-      ])
+      ]),
     )
   }
 
@@ -103,7 +103,7 @@ export function walkMap(
 export function resolveMapping(
   resultPath: PathSegment[],
   csm: ContentSourceMap,
-  logger?: Logger
+  logger?: Logger,
 ): [ContentSourceMapMapping, string, string] | undefined {
   const resultJsonPath = normalisedJsonPath(resultPath)
 

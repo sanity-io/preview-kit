@@ -8,12 +8,12 @@ The signature of `usePreview` is:
 function usePreview<
   QueryResult = any,
   QueryParams = Record<string, unknown>,
-  QueryString = string
+  QueryString = string,
 >(
   token: string | null,
   query: QueryString,
   params?: QueryParams,
-  serverSnapshot?: QueryResult
+  serverSnapshot?: QueryResult,
 ): QueryResult | null
 ```
 
@@ -30,7 +30,7 @@ function useLiveQuery<QueryResult, QueryParams = ClientQueryParams>(
   params?: QueryParams,
   options?: {
     isEqual?: (a: QueryResult, b: QueryResult) => boolean
-  }
+  },
 ): [QueryResult, QueryLoading]
 ```
 
@@ -79,7 +79,7 @@ export interface LiveQueryProviderProps {
 }
 
 export function LiveQueryProvider(
-  props: LiveQueryProviderProps
+  props: LiveQueryProviderProps,
 ): React.JSX.Element
 ```
 

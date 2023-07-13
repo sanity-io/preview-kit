@@ -15,5 +15,5 @@ export const defineListenerContext =
  * @internal
  */
 export const LoadedListenersContext = createContext<QueryCacheKey[] | null>(
-  null
+  null,
 )

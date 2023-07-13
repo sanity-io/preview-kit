@@ -17,7 +17,7 @@ export type QueryCacheKey = `${string}-${string}`
  */
 export function getQueryCacheKey(
   query: string,
-  params: QueryParams
+  params: QueryParams,
 ): QueryCacheKey {
   return `${query}-${JSON.stringify(params)}`
 }
@@ -26,7 +26,7 @@ export function getQueryCacheKey(
  * @internal
  */
 export function useLoadingListenersContext(
-  ready: Set<QueryCacheKey>
+  ready: Set<QueryCacheKey>,
 ): [QueryCacheKey[], () => void] {
   const [tick, forceUpdate] = useReducer((x) => x + 1, 0)
   const mountedRef = useRef(true)
@@ -44,7 +44,7 @@ export function useLoadingListenersContext(
   }, [scheduleUpdate])
   const loadedListenersContext = useMemo(
     () => (tick ? [...ready] : []),
-    [ready, tick]
+    [ready, tick],
   )
 
   return [loadedListenersContext, scheduleUpdate]

@@ -208,7 +208,7 @@ const client = createClient({
 const { result, resultSourceMap } = await client.fetch(
   query,
   params,
-  { filterResponse: false } // This option is returns the entire API response instead of selecting just `result`
+  { filterResponse: false }, // This option is returns the entire API response instead of selecting just `result`
 )
 const studioUrl = 'https://your-company.com/studio'
 const editLinks = mapToEditLinks({ result, resultSourceMap }, studioUrl)
@@ -631,7 +631,7 @@ const [data] = useLiveQuery(
         const bItem = b.list[index]
         return aItem._id === bItem._id && aItem.name === bItem.name
       }),
-  }
+  },
 )
 ```
 

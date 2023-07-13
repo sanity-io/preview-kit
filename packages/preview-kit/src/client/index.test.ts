@@ -19,7 +19,7 @@ test('it returns stega encoded source maps', async () => {
 
   const resultArray = await client.fetch(
     `*[_type == "page" && title == $title][0..1]`,
-    { title }
+    { title },
   )
   expect(vercelStegaDecode(resultArray[0].title)).toMatchInlineSnapshot(
     `
@@ -27,12 +27,12 @@ test('it returns stega encoded source maps', async () => {
       "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
       "origin": "sanity.io",
     }
-  `
+  `,
   )
 
   const resultObject = await client.fetch(
     `*[_type == "page" && title == $title][0]`,
-    { title }
+    { title },
   )
   expect(vercelStegaDecode(resultObject.title)).toMatchInlineSnapshot(
     `
@@ -40,12 +40,12 @@ test('it returns stega encoded source maps', async () => {
       "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
       "origin": "sanity.io",
     }
-  `
+  `,
   )
 
   const resultString = await client.fetch(
     `*[_type == "page" && title == $title][0].title`,
-    { title }
+    { title },
   )
   expect(vercelStegaDecode(resultString)).toMatchInlineSnapshot(`
     {
@@ -68,7 +68,7 @@ test('it can access the original source map', async () => {
   const { result, resultSourceMap } = await client.fetch(
     `*[_type == "page" && title == $title][0].title`,
     { title },
-    { filterResponse: false }
+    { filterResponse: false },
   )
   expect(vercelStegaDecode(result)).toMatchInlineSnapshot(`
     {
@@ -114,7 +114,7 @@ test('it can query the content source map without transcoding', async () => {
   const { result, resultSourceMap } = await client.fetch(
     `*[_type == "page" && title == $title][0].title`,
     { title },
-    { filterResponse: false }
+    { filterResponse: false },
   )
   expect(vercelStegaDecode(result)).toBeUndefined()
   expect(resultSourceMap).toMatchInlineSnapshot(`
@@ -154,7 +154,7 @@ test('encodeSourceMapAtPath', async () => {
 
   const resultString = await client.fetch(
     `*[_type == "page" && title == $title][0].title`,
-    { title }
+    { title },
   )
   expect(resultString).toBe('🚀 🤯')
   expect(vercelStegaDecode(resultString)).toBe(undefined)

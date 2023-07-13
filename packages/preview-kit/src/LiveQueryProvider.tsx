@@ -50,13 +50,13 @@ export interface LiveQueryProviderProps {
 }
 
 export const LiveQueryProvider = memo(function LiveQueryProvider(
-  props: LiveQueryProviderProps
+  props: LiveQueryProviderProps,
 ) {
   const { children, refreshInterval = 10000 } = props
 
   if (!props.client) {
     throw new Error(
-      'Missing a `client` prop with a configured Sanity client instance'
+      'Missing a `client` prop with a configured Sanity client instance',
     )
   }
 
@@ -64,13 +64,13 @@ export const LiveQueryProvider = memo(function LiveQueryProvider(
   const [client] = useState(() =>
     props.client.withConfig({
       requestTagPrefix: props.client.config().requestTagPrefix || DEFAULT_TAG,
-    })
+    }),
   )
   const [cache] = useState(() => props.cache)
   const [logger] = useState(() => props.logger)
   const turboSourceMap = useMemo(
     () => props.turboSourceMap ?? client.config().resultSourceMap,
-    [client, props.turboSourceMap]
+    [client, props.turboSourceMap],
   )
 
   if (turboSourceMap) {
@@ -101,7 +101,7 @@ export const LiveQueryProvider = memo(function LiveQueryProvider(
 })
 
 const SelectStoreProvider = memo(function SelectStoreProvider(
-  props: LiveQueryProviderProps
+  props: LiveQueryProviderProps,
 ) {
   const { children, refreshInterval, client, cache, logger } = props
   const maxDocuments = cache?.maxDocuments ?? DEFAULT_MAX_DOCUMENTS
@@ -127,7 +127,7 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
           ? 'count(*[_type in $includeTypes])'
           : 'count(*)',
         { includeTypes },
-        { filterResponse: true, signal: controller.signal }
+        { filterResponse: true, signal: controller.signal },
       )
       .then((result) => {
         logger?.log('[@sanity/preview-kit]: documents count', result)
@@ -164,7 +164,7 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
 
   if (documentsCount >= maxDocuments) {
     throw new Error(
-      `[@sanity/preview-kit]: You have ${documentsCount} documents in your dataset, which is more than the maximum of ${maxDocuments} documents. Please reduce the number of documents in your dataset or increase the limit.`
+      `[@sanity/preview-kit]: You have ${documentsCount} documents in your dataset, which is more than the maximum of ${maxDocuments} documents. Please reduce the number of documents in your dataset or increase the limit.`,
     )
   }
 
@@ -176,7 +176,7 @@ const SelectStoreProvider = memo(function SelectStoreProvider(
 })
 
 const GroqStoreProvider = memo(function GroqStoreProvider(
-  props: LiveQueryProviderProps
+  props: LiveQueryProviderProps,
 ) {
   const { children, client, cache, logger } = props
   const {

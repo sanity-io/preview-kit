@@ -16,7 +16,7 @@ export type ListenerGetSnapshot<QueryResult> = () => QueryResult
 export type DefineListenerContext = <QueryResult>(
   initialSnapshot: QueryResult,
   query: string,
-  params: QueryParams
+  params: QueryParams,
 ) => {
   subscribe: ListenerSubscribe
   getSnapshot: ListenerGetSnapshot<QueryResult>

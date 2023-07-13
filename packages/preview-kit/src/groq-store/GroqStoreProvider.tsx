@@ -44,7 +44,7 @@ export interface GroqStoreProviderProps extends Config {
  * @public
  */
 export const GroqStoreProvider = memo(function GroqStoreProvider(
-  props: GroqStoreProviderProps
+  props: GroqStoreProviderProps,
 ) {
   const {
     children,
@@ -68,7 +68,7 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
       documentLimit: DEFAULT_MAX_DOCUMENTS,
       // Spread in the rest
       ...config,
-    })
+    }),
   )
 
   const report = useMemo(() => {
@@ -84,7 +84,7 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
   useEffect(() => {
     if (logger) {
       logger.log(
-        `[@sanity/preview-kit]: With the current configuration you can expect that: ${report}`
+        `[@sanity/preview-kit]: With the current configuration you can expect that: ${report}`,
       )
     }
   }, [logger, report])
@@ -99,7 +99,7 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
     return function defineListener<QueryResult>(
       initialSnapshot: QueryResult,
       query: string,
-      params: QueryParams
+      params: QueryParams,
     ) {
       const key = getQueryCacheKey(query, params)
 
