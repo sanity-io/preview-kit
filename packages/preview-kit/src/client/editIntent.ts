@@ -15,17 +15,17 @@ export interface EditLinkProps {
 }
 /** @alpha */
 export type DefineEditLink = (
-  studioUrl: StudioUrl
+  studioUrl: StudioUrl,
 ) => (
-  sourceDocument: ContentSourceMapDocuments[number]
+  sourceDocument: ContentSourceMapDocuments[number],
 ) => `${StudioUrl}${EditLink}`
 
 /** @alpha */
 export function defineEditLink(
-  _studioUrl: StudioUrl
+  _studioUrl: StudioUrl,
 ): (
   sourceDocument: ContentSourceMapDocuments[number],
-  path: string | PathSegment[]
+  path: string | PathSegment[],
 ) => string {
   const studioUrl = _studioUrl.replace(/\/$/, '')
   return (sourceDocument, path) =>
@@ -36,15 +36,15 @@ export function defineEditLink(
 
 /** @alpha */
 export function encodeJsonPathToUriComponent(
-  path: string | PathSegment[]
+  path: string | PathSegment[],
 ): string {
   const sourcePath = Array.isArray(path) ? path : parseNormalisedJsonPath(path)
   return encodeURIComponent(
     sourcePath
       .map((key, i) =>
         // eslint-disable-next-line no-nested-ternary
-        typeof key === 'number' ? `[${key}]` : i > 0 ? `.${key}` : key
+        typeof key === 'number' ? `[${key}]` : i > 0 ? `.${key}` : key,
       )
-      .join('')
+      .join(''),
   )
 }

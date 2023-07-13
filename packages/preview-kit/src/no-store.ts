@@ -17,7 +17,7 @@ const deps = new Map<QueryCacheKey, number>()
 export const NoStoreContext = function defineListener<QueryResult>(
   initialSnapshot: QueryResult,
   query: string,
-  params: QueryParams
+  params: QueryParams,
 ) {
   const key = getQueryCacheKey(query, params)
 

@@ -155,7 +155,7 @@ async function createDocuments(client: SanityClient, amount: number) {
 export async function updateDocuments(
   client: SanityClient,
   minutes: number,
-  batch: number
+  batch: number,
 ) {
   const start = Date.now()
   const end = start + minutes * 60 * 1000
@@ -165,7 +165,7 @@ export async function updateDocuments(
     const ids = await client.fetch(
       groq`*[_type == "page" && !(_id in path("drafts.**"))] | order(title asc)[1..${
         batch + 1
-      }]._id`
+      }]._id`,
     )
     for (const documentId of ids) {
       transaction.patch(documentId, (p) => p.set({ title: generateNewTitle() }))
@@ -176,7 +176,7 @@ export async function updateDocuments(
 async function deleteDocuments(client: SanityClient) {
   // const count = await client.fetch('*[!(_id in path("drafts.**"))]._id')
   const count = await client.fetch(
-    groq`count(*[_type == "page" && !(_id in path("drafts.**"))])`
+    groq`count(*[_type == "page" && !(_id in path("drafts.**"))])`,
   )
 
   const batch = 1000

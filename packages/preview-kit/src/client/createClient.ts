@@ -29,14 +29,14 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
 
   if (typeof encodeSourceMap === 'string' && encodeSourceMap !== 'auto') {
     throw new Error(
-      `Invalid value for encodeSourceMap: ${encodeSourceMap}. Did you mean 'auto'?`
+      `Invalid value for encodeSourceMap: ${encodeSourceMap}. Did you mean 'auto'?`,
     )
   }
 
   try {
     if (shouldEncodeSourceMap && config.resultSourceMap !== false) {
       logger?.debug?.(
-        '[@sanity/preview-kit]: Creating source map enabled client'
+        '[@sanity/preview-kit]: Creating source map enabled client',
       )
       const httpRequest = createHttpRequest({
         encodeSourceMapAtPath,
@@ -54,7 +54,7 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
     console.error(
       '[@sanity/preview-kit]: Error creating client',
       err,
-      'falling back to non-embedded sourcemap mode'
+      'falling back to non-embedded sourcemap mode',
     )
   }
   return _createClient(options)

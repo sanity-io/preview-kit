@@ -43,7 +43,7 @@ function transcodeResponse({
           if (logger) {
             logger?.error?.(
               '[@sanity/preview-kit]: Missing Content Source Map from response body',
-              response.body
+              response.body,
             )
           }
           return response
@@ -57,10 +57,10 @@ function transcodeResponse({
           if (isSkipping || isEncoding) {
             // eslint-disable-next-line @typescript-eslint/no-extra-semi
             ;(logger?.groupCollapsed || logger.log)?.(
-              '[@sanity/preview-kit]: Stega encoding source map into result'
+              '[@sanity/preview-kit]: Stega encoding source map into result',
             )
             logger.log?.(
-              `[@sanity/preview-kit]: Paths encoded: ${transcoder.report.encoded.length}, skipped: ${transcoder.report.skipped.length}`
+              `[@sanity/preview-kit]: Paths encoded: ${transcoder.report.encoded.length}, skipped: ${transcoder.report.skipped.length}`,
             )
           }
           if (transcoder.report.encoded.length > 0) {
@@ -104,12 +104,12 @@ export function createHttpRequest({
 
   // Apply the transcoder middleware
   superRequester.use(
-    transcodeResponse({ studioUrl, encodeSourceMapAtPath, logger })
+    transcodeResponse({ studioUrl, encodeSourceMapAtPath, logger }),
   )
 
   function httpRequest(
     options: RequestOptions,
-    requester = superRequester
+    requester = superRequester,
   ): HttpRequest {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return requester({ maxRedirects: 0, ...options } as any)
@@ -126,7 +126,7 @@ function isBodyResponse(response: unknown): response is { body?: unknown } {
 
 /** @alpha */
 export function isContentSourceMapBody(
-  body: unknown
+  body: unknown,
 ): body is ContentSourceMapQueryResponse {
   return typeof body === 'object' && body !== null && 'resultSourceMap' in body
 }

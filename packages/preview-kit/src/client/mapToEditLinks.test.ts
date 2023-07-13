@@ -96,5 +96,5 @@ test.each(resultEditLinksTestCases)(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const response = mapToEditLinks(queryResult as any, 'test.sanity.studio/')
     expect(response).toEqual(expected)
-  }
+  },
 )

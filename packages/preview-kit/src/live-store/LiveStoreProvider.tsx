@@ -63,7 +63,7 @@ export interface LiveStoreProviderProps {
  * @internal
  */
 export const LiveStoreProvider = memo(function LiveStoreProvider(
-  props: LiveStoreProviderProps
+  props: LiveStoreProviderProps,
 ) {
   const {
     children,
@@ -78,7 +78,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
   useMemo(() => {
     if (turboSourceMap && !client.config().resultSourceMap) {
       logger?.error(
-        'The client needs to be configured with `resultSourceMap: true` to enable turbo mode.`'
+        'The client needs to be configured with `resultSourceMap: true` to enable turbo mode.`',
       )
     }
   }, [client, turboSourceMap, logger])
@@ -92,7 +92,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
   useEffect(() => {
     if (logger) {
       logger.log(
-        `[@sanity/preview-kit]: With the current configuration you can expect that: ${report}`
+        `[@sanity/preview-kit]: With the current configuration you can expect that: ${report}`,
       )
     }
   }, [logger, report])
@@ -104,7 +104,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
     return function defineListener<QueryResult>(
       initialSnapshot: QueryResult,
       query: string,
-      params: QueryParams
+      params: QueryParams,
     ) {
       const key = getQueryCacheKey(query, params)
 
@@ -141,7 +141,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
       startTransition(() =>
         setTurboIds((prevTurboIds) => {
           const mergedTurboIds = Array.from(
-            new Set([...prevTurboIds, ...nextTurboIds])
+            new Set([...prevTurboIds, ...nextTurboIds]),
           )
           if (
             JSON.stringify(mergedTurboIds.sort()) ===
@@ -150,10 +150,10 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
             return prevTurboIds
           }
           return mergedTurboIds
-        })
+        }),
       )
     },
-    [turboSourceMap]
+    [turboSourceMap],
   )
 
   return (
@@ -198,7 +198,7 @@ interface QuerySubscriptionProps
   snapshots: QuerySnapshotsCache
 }
 const QuerySubscription = memo(function QuerySubscription(
-  props: QuerySubscriptionProps
+  props: QuerySubscriptionProps,
 ) {
   const {
     client,
@@ -243,7 +243,7 @@ const QuerySubscription = memo(function QuerySubscription(
             projectId,
             dataset,
             result,
-            resultSourceMap
+            resultSourceMap,
           ),
           resultSourceMap: resultSourceMap ?? ({} as ContentSourceMap),
         })
@@ -296,7 +296,7 @@ type QuerySnapshotsCache = Map<
 function getTurboCacheKey(
   projectId: string,
   dataset: string,
-  _id: string
+  _id: string,
 ): `${string}-${string}-${string}` {
   return `${projectId}-${dataset}-${_id}`
 }
@@ -325,7 +325,7 @@ function useShouldPause(): boolean {
   const visibilityState = useSyncExternalStore(
     onVisibilityChange,
     () => document.visibilityState,
-    () => 'hidden' satisfies DocumentVisibilityState
+    () => 'hidden' satisfies DocumentVisibilityState,
   )
 
   // Should pause activity when offline
@@ -352,7 +352,7 @@ type RevalidateState = 'hit' | 'stale' | 'refresh' | 'inflight'
  * Keeps track of when queries should revalidate
  */
 function useRevalidate(
-  props: Pick<LiveStoreProviderProps, 'refreshInterval'>
+  props: Pick<LiveStoreProviderProps, 'refreshInterval'>,
 ): [RevalidateState, () => () => void] {
   const { refreshInterval } = props
 
@@ -384,7 +384,7 @@ function useRevalidate(
     }
     const timeout = setTimeout(
       () => startTransition(() => setState('stale')),
-      refreshInterval
+      refreshInterval,
     )
     return () => clearTimeout(timeout)
   }, [refreshInterval, state])
@@ -425,14 +425,14 @@ type LiveStoreQueryCacheMap = Map<
  * there is no need to use `setState` to trigger a re-render. That's why the Map is persisted in `useState` but the state setter isn't used.
  */
 function useHooks(
-  setSubscriptions: React.Dispatch<React.SetStateAction<QueryCacheKey[]>>
+  setSubscriptions: React.Dispatch<React.SetStateAction<QueryCacheKey[]>>,
 ): {
   cache: LiveStoreQueryCacheMap
   subscribe: (
     key: QueryCacheKey,
     query: string,
     params: QueryParams,
-    listener: () => void
+    listener: () => void,
   ) => () => void
 } {
   const [cache] = useState<LiveStoreQueryCacheMap>(() => new Map())
@@ -441,7 +441,7 @@ function useHooks(
       key: QueryCacheKey,
       query: string,
       params: QueryParams,
-      listener: () => void
+      listener: () => void,
     ) => {
       if (!cache.has(key)) {
         cache.set(key, { query, params, listeners: new Set<() => void>() })
@@ -451,7 +451,7 @@ function useHooks(
               return prevSubscriptions
             }
             return [...prevSubscriptions, key]
-          })
+          }),
         )
       }
       const hook = cache.get(key)
@@ -470,12 +470,12 @@ function useHooks(
                 return prevSubscriptions.filter((sub) => sub !== key)
               }
               return prevSubscriptions
-            })
+            }),
           )
         }
       }
     },
-    [cache, setSubscriptions]
+    [cache, setSubscriptions],
   )
   return useMemo(() => ({ cache, subscribe }), [cache, subscribe])
 }
@@ -532,7 +532,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
     const nextBatchSlice = [...nextBatch].slice(0, 10)
     if (nextBatchSlice.length === 0) return
     startTransition(() =>
-      setBatch((prevBatch) => [...prevBatch.slice(-10), nextBatchSlice])
+      setBatch((prevBatch) => [...prevBatch.slice(-10), nextBatchSlice]),
     )
   }, [batch, dataset, projectId, turboIds])
 
@@ -549,7 +549,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
           includePreviousRevision: false,
           includeResult: false,
           tag: 'turbo',
-        }
+        },
       )
       .subscribe((update) => {
         if (update.type !== 'mutation' || !update.effects?.apply?.length) return
@@ -582,7 +582,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
           projectId,
           dataset,
           snapshot.result,
-          snapshot.resultSourceMap
+          snapshot.resultSourceMap,
         )
         updatedKeys.push(key)
       }
@@ -623,7 +623,7 @@ const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
 
   useEffect(() => {
     const missingIds = ids.filter(
-      (id) => !documentsCache.has(getTurboCacheKey(projectId, dataset, id))
+      (id) => !documentsCache.has(getTurboCacheKey(projectId, dataset, id)),
     )
     if (missingIds.length === 0) return
     client.getDocuments(missingIds).then((documents) => {
@@ -643,7 +643,7 @@ function turboChargeResultIfSourceMap(
   projectId: string,
   dataset: string,
   result: unknown,
-  resultSourceMap?: ContentSourceMap
+  resultSourceMap?: ContentSourceMap,
 ) {
   if (!resultSourceMap) return result
 
@@ -666,14 +666,14 @@ function turboChargeResultIfSourceMap(
     const sourcePath = resultSourceMap.paths[mapping.source.path]
     if (sourceDocument && sourceDocument._id) {
       const cachedDocument = documentsCache.get(
-        getTurboCacheKey(projectId, dataset, sourceDocument._id)
+        getTurboCacheKey(projectId, dataset, sourceDocument._id),
       )
 
       const cachedValue = cachedDocument
         ? get(
             cachedDocument,
             parseNormalisedJsonPath(sourcePath + pathSuffix),
-            value
+            value,
           )
         : value
       // Preserve stega encoded strings, if they exist

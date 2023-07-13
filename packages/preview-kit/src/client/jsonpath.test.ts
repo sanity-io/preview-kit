@@ -4,13 +4,13 @@ import { normalisedJsonPath, parseNormalisedJsonPath } from './jsonpath'
 
 test('formats normalised JSON Paths', () => {
   expect(normalisedJsonPath(['foo', 'bar', 0, 'baz'])).toBe(
-    "$['foo']['bar'][0]['baz']"
+    "$['foo']['bar'][0]['baz']",
   )
 })
 
 test('formats normalised JSON Paths with escaped characters', () => {
   expect(normalisedJsonPath(['foo', 'bar', 0, 'baz', "it's a 'test'"])).toBe(
-    "$['foo']['bar'][0]['baz']['it\\'s a \\'test\\'']"
+    "$['foo']['bar'][0]['baz']['it\\'s a \\'test\\'']",
   )
 })
 
@@ -25,6 +25,6 @@ test('parses normalised JSON Paths', () => {
 
 test('parses normalised JSON Paths with escaped characters', () => {
   expect(
-    parseNormalisedJsonPath("$['foo']['bar'][0]['baz']['it\\'s a \\'test\\'']")
+    parseNormalisedJsonPath("$['foo']['bar'][0]['baz']['it\\'s a \\'test\\'']"),
   ).toEqual(['foo', 'bar', 0, 'baz', "it's a 'test'"])
 })

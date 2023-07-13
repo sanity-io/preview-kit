@@ -5,7 +5,7 @@ import type { ContentSourceMapQueryResponse } from './types'
 /** @alpha */
 export function mapToEditLinks(
   response: ContentSourceMapQueryResponse,
-  studioUrl: string
+  studioUrl: string,
 ): unknown {
   const createEditLink = defineEditLink(studioUrl)
   return encodeIntoResult(response, (_, sourceDocument, path) => {

@@ -29,12 +29,12 @@ export type QueryLoading = boolean
 /** @public */
 export function useLiveQuery<
   QueryResult,
-  QueryParams extends ClientQueryParams = ClientQueryParams
+  QueryParams extends ClientQueryParams = ClientQueryParams,
 >(
   initialData: QueryResult,
   query: string,
   queryParams?: QueryParams,
-  options?: LiveQueryHookOptions<QueryResult>
+  options?: LiveQueryHookOptions<QueryResult>,
 ): [QueryResult, QueryLoading] {
   const { isEqual = isFastEqual } = options || {}
 
@@ -42,14 +42,14 @@ export function useLiveQuery<
   const params = useParams(queryParams)
   const store = useMemo(
     () => defineStore<QueryResult>(initialData, query, params),
-    [defineStore, initialData, params, query]
+    [defineStore, initialData, params, query],
   )
   // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call
   // helps ensure that we don't get a mismatch between the server and client snapshots
   const [serverSnapshot] = useState(() => {
     if (initialData === undefined) {
       throw new Error(
-        `initialSnapshot can't be undefined, if you don't want an initial value use null instead`
+        `initialSnapshot can't be undefined, if you don't want an initial value use null instead`,
       )
     }
     try {
@@ -58,7 +58,7 @@ export function useLiveQuery<
       // eslint-disable-next-line no-console
       console.warn(
         "Failed to deep clone initialSnapshot, this is likely an error and an indication that the snapshot isn't JSON serializable",
-        { initialSnapshot: initialData, error }
+        { initialSnapshot: initialData, error },
       )
       return initialData
     }
@@ -71,7 +71,7 @@ export function useLiveQuery<
     store.getSnapshot,
     getServerSnapshot,
     selector,
-    isEqual
+    isEqual,
   )
   const loading = useLiveQueryIsLoading(query, params)
 
@@ -84,7 +84,7 @@ export function useLiveQuery<
  */
 function useLiveQueryIsLoading(
   query: string,
-  params: ClientQueryParams
+  params: ClientQueryParams,
 ): QueryLoading {
   const loadedListeners = useContext(LoadedListenersContext)
   const key = useMemo(() => getQueryCacheKey(query, params), [params, query])
@@ -111,18 +111,18 @@ export interface ListeningQueryHookOptions<QueryResult> {
  */
 export function useListeningQuery<
   QueryResult,
-  QueryParams extends ClientQueryParams = ClientQueryParams
+  QueryParams extends ClientQueryParams = ClientQueryParams,
 >(
   initialSnapshot: QueryResult,
   query: string,
   queryParams?: QueryParams,
-  options?: ListeningQueryHookOptions<QueryResult>
+  options?: ListeningQueryHookOptions<QueryResult>,
 ): QueryResult {
   const [snapshot] = useLiveQuery<QueryResult, QueryParams>(
     initialSnapshot,
     query,
     queryParams,
-    options
+    options,
   )
   return snapshot
 }
@@ -133,7 +133,7 @@ export function useListeningQuery<
  * @deprecated use `useLiveQuery` instead
  */
 export function useListeningQueryStatus<
-  QueryParams extends ClientQueryParams = ClientQueryParams
+  QueryParams extends ClientQueryParams = ClientQueryParams,
 >(query: string, queryParams?: QueryParams): ListenerStatus {
   const params = useParams(queryParams)
   const loading = useLiveQueryIsLoading(query, params)
@@ -146,11 +146,11 @@ export function useListeningQueryStatus<
  * @internal
  */
 function useParams(
-  params?: undefined | null | ClientQueryParams
+  params?: undefined | null | ClientQueryParams,
 ): ClientQueryParams {
   const stringifiedParams = useMemo(
     () => JSON.stringify(params || {}),
-    [params]
+    [params],
   )
   return useMemo(() => JSON.parse(stringifiedParams), [stringifiedParams])
 }

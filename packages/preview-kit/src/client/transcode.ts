@@ -63,7 +63,7 @@ const filterDefault: FilterDefault = ({ path }) => {
 export type Transcoder = (
   input: string,
   sourceDocument: ContentSourceMapDocuments[number],
-  sourcePath: PathSegment[]
+  sourcePath: PathSegment[],
 ) => string
 
 const TRUNCATE_LENGTH = 20
@@ -74,7 +74,7 @@ const TRUNCATE_LENGTH = 20
 export function createTranscoder(
   studioUrl: PreviewKitClientConfig['studioUrl'],
   encodeSourceMapAtPath?: PreviewKitClientConfig['encodeSourceMapAtPath'],
-  logger?: Logger
+  logger?: Logger,
 ): {
   report: Record<
     'encoded' | 'skipped',
@@ -93,7 +93,7 @@ export function createTranscoder(
   const transcode = (
     input: string,
     sourceDocument: ContentSourceMapDocuments[number],
-    sourcePath: PathSegment[]
+    sourcePath: PathSegment[],
   ): string => {
     // Allow userland to control when to opt-out of encoding
     if (
@@ -129,7 +129,7 @@ export function createTranscoder(
         origin: 'sanity.io',
         href: createEditLink(sourceDocument, sourcePath),
       },
-      'auto'
+      'auto',
     )
   }
   return {
@@ -141,7 +141,7 @@ export function createTranscoder(
       report.skipped.length = 0
       // Start the recursive machinery
       return encode(input, (value, sourceDocument, path) =>
-        transcode(value, sourceDocument, parseNormalisedJsonPath(path))
+        transcode(value, sourceDocument, parseNormalisedJsonPath(path)),
       )
     },
   }
@@ -154,7 +154,7 @@ function prettyPathForLogging(path: PathSegment[]): string {
         ? `[${segment}]`
         : index > 0
         ? `.${segment}`
-        : segment
+        : segment,
     )
     .join('')
 }
