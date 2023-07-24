@@ -1,8 +1,19 @@
+import { ContentSourceMap } from '@sanity/client'
 import { expect, test, vi } from 'vitest'
 
 import { encode } from './sourcemap'
 
-const encodeTestCases = [
+const encodeTestCases: {
+  name: string
+  queryResult: {
+    result: unknown
+    resultSourceMap: ContentSourceMap
+  }
+  expected: {
+    encoderCalls: number
+    encoderArgs: unknown[][]
+  }
+}[] = [
   {
     name: 'resolves exact mappings to source',
     queryResult: {
@@ -33,7 +44,7 @@ const encodeTestCases = [
     },
     expected: {
       encoderCalls: 1,
-      encoderArgs: [['that', { _id: 'foo' }, `$['this']`]],
+      encoderArgs: [['that', { _id: 'foo' }, ['this']]],
     },
   },
   {
@@ -71,7 +82,7 @@ const encodeTestCases = [
     expected: {
       encoderCalls: 1,
       encoderArgs: [
-        ['that', { _id: 'foo' }, `$['something']['nested']['object']['this']`],
+        ['that', { _id: 'foo' }, ['something', 'nested', 'object', 'this']],
       ],
     },
   },
@@ -79,8 +90,7 @@ const encodeTestCases = [
 
 test.each(encodeTestCases)('encode $name', ({ queryResult, expected }) => {
   const mockTranscoder = vi.fn().mockImplementation((input: string) => input)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  encode(queryResult as any, mockTranscoder)
+  encode(queryResult.result, queryResult.resultSourceMap, mockTranscoder)
 
   expect(mockTranscoder).toBeCalledTimes(expected.encoderCalls)
   for (const args of expected.encoderArgs) {

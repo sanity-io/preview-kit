@@ -1,16 +1,19 @@
 /* eslint-disable no-nested-ternary */
-import type { ContentSourceMapDocuments } from '@sanity/client'
+import type {
+  ContentSourceMap,
+  ContentSourceMapDocuments,
+} from '@sanity/client'
 import { vercelStegaCombine } from '@vercel/stega'
 
 import { defineEditLink } from './editIntent'
-import { parseNormalisedJsonPath } from './jsonpath'
 import { encode } from './sourcemap'
 import type {
-  ContentSourceMapQueryResponse,
+  FilterDefault,
   Logger,
   PathSegment,
+  StudioUrl,
+  Transcoder,
 } from './types'
-import type { FilterDefault, PreviewKitClientConfig } from './types'
 
 const filterDefault: FilterDefault = ({ path }) => {
   const endPath = path.at(-1)
@@ -60,31 +63,15 @@ const filterDefault: FilterDefault = ({ path }) => {
   return true
 }
 
-export type Transcoder = (
-  input: string,
-  sourceDocument: ContentSourceMapDocuments[number],
-  sourcePath: PathSegment[],
-) => string
-
 const TRUNCATE_LENGTH = 20
 
-/**
- * @internal
- */
+/** @alpha */
 export function createTranscoder(
-  studioUrl: PreviewKitClientConfig['studioUrl'],
-  encodeSourceMapAtPath?: PreviewKitClientConfig['encodeSourceMapAtPath'],
+  studioUrl: StudioUrl,
+  encodeSourceMapAtPath?: FilterDefault,
   logger?: Logger,
-): {
-  report: Record<
-    'encoded' | 'skipped',
-    { path: string; length: number; value: string }[]
-  >
-  transcode: Transcoder
-  walk: (input: ContentSourceMapQueryResponse) => ContentSourceMapQueryResponse
-} {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const createEditLink = defineEditLink(studioUrl!)
+): Transcoder {
+  const createEditLink = defineEditLink(studioUrl)
   const report: Record<
     'encoded' | 'skipped',
     { path: string; length: number; value: string }[]
@@ -132,18 +119,18 @@ export function createTranscoder(
       'auto',
     )
   }
-  return {
-    report,
-    transcode,
-    walk: (input: ContentSourceMapQueryResponse) => {
-      // Clear previous reports
-      report.encoded.length = 0
-      report.skipped.length = 0
-      // Start the recursive machinery
-      return encode(input, (value, sourceDocument, path) =>
-        transcode(value, sourceDocument, parseNormalisedJsonPath(path)),
-      )
-    },
+
+  return <R>(result: R, csm: ContentSourceMap) => {
+    // Clear previous reports
+    report.encoded.length = 0
+    report.skipped.length = 0
+
+    return {
+      result: encode(result, csm, (value, sourceDocument, path) =>
+        transcode(value, sourceDocument, path),
+      ),
+      report,
+    }
   }
 }
 

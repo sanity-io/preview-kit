@@ -5,12 +5,8 @@ import type {
   ContentSourceMapMapping,
 } from '@sanity/client'
 
-import { normalisedJsonPath } from './jsonpath'
-import type {
-  ContentSourceMapQueryResponse,
-  Logger,
-  PathSegment,
-} from './types'
+import { normalisedJsonPath, parseNormalisedJsonPath } from './jsonpath'
+import type { Logger, PathSegment } from './types'
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null
@@ -21,38 +17,35 @@ function isArray(value: unknown): value is Array<unknown> {
 }
 
 /** @alpha */
-export type Encoder = (
+export type Encoder<E> = (
   value: string,
   sourceDocument: ContentSourceMapDocuments[number],
-  path: string,
-) => unknown
+  path: PathSegment[],
+) => E
 
 /** @alpha */
-export function encode(
-  response: ContentSourceMapQueryResponse,
-  encoder: Encoder,
-): ContentSourceMapQueryResponse {
-  if (!response.resultSourceMap) {
-    throw new TypeError('Missing resultSourceMap')
-  }
-
-  response.result = encodeIntoResult(response, encoder)
-  return response
+export function encode<R, E>(
+  result: R,
+  csm: ContentSourceMap,
+  encoder: Encoder<E>,
+): R {
+  return encodeIntoResult(result, csm, encoder) as R
 }
 
 /** @alpha */
-export function encodeIntoResult(
-  response: ContentSourceMapQueryResponse,
-  encoder: Encoder,
-): ReturnType<Encoder> {
-  return walkMap(response.result, (value, path) => {
+export function encodeIntoResult<R>(
+  result: R,
+  csm: ContentSourceMap,
+  encoder: Encoder<unknown>,
+): ReturnType<Encoder<unknown>> {
+  return walkMap(result, (value, path) => {
     // Only map strings, we could extend this in the future to support other types like integers...
     if (typeof value !== 'string') {
       return value
     }
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const resolveMappingResult = resolveMapping(path, response.resultSourceMap!)
+    const resolveMappingResult = resolveMapping(path, csm)
     if (!resolveMappingResult) {
       return value
     }
@@ -68,11 +61,15 @@ export function encodeIntoResult(
 
     const sourceDocument =
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      response.resultSourceMap!.documents[mapping.source.document!]
+      csm.documents[mapping.source.document!]
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const sourcePath = response.resultSourceMap!.paths[mapping.source.path]
+    const sourcePath = csm.paths[mapping.source.path]
 
-    return encoder(value, sourceDocument, sourcePath + pathSuffix)
+    return encoder(
+      value,
+      sourceDocument,
+      parseNormalisedJsonPath(sourcePath + pathSuffix),
+    )
   })
 }
 
@@ -108,7 +105,7 @@ export function resolveMapping(
   const resultJsonPath = normalisedJsonPath(resultPath)
 
   if (!csm.mappings) {
-    logger?.error?.('Missing resultSourceMap.mappings', {
+    logger?.error?.('Missing mappings', {
       resultSourceMap: csm,
     })
     return undefined

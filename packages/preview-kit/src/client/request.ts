@@ -10,7 +10,7 @@ import {
 import isPlainObject from 'lodash.isplainobject'
 import invariant from 'tiny-invariant'
 
-import { createTranscoder } from './transcode'
+import { createTranscoder } from '../csm/transcode'
 import type {
   ContentSourceMapQueryResponse,
   PreviewKitClientConfig,
@@ -27,7 +27,11 @@ function transcodeResponse({
   logger,
 }: TranscodeResponseConfig) {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const transcoder = createTranscoder(studioUrl, encodeSourceMapAtPath, logger!)
+  const transcoder = createTranscoder(
+    studioUrl!,
+    encodeSourceMapAtPath,
+    logger!,
+  )
   return {
     onResponse: (response: unknown) => {
       if (!isBodyResponse(response)) {
@@ -49,27 +53,30 @@ function transcodeResponse({
           return response
         }
 
-        const body = transcoder.walk(response.body)
+        const transcoderResult = transcoder(
+          response.body.result,
+          response.body.resultSourceMap!,
+        )
 
         if (logger) {
-          const isSkipping = transcoder.report.skipped.length
-          const isEncoding = transcoder.report.encoded.length
+          const isSkipping = transcoderResult.report.skipped.length
+          const isEncoding = transcoderResult.report.encoded.length
           if (isSkipping || isEncoding) {
             // eslint-disable-next-line @typescript-eslint/no-extra-semi
             ;(logger?.groupCollapsed || logger.log)?.(
               '[@sanity/preview-kit]: Stega encoding source map into result',
             )
             logger.log?.(
-              `[@sanity/preview-kit]: Paths encoded: ${transcoder.report.encoded.length}, skipped: ${transcoder.report.skipped.length}`,
+              `[@sanity/preview-kit]: Paths encoded: ${transcoderResult.report.encoded.length}, skipped: ${transcoderResult.report.skipped.length}`,
             )
           }
-          if (transcoder.report.encoded.length > 0) {
+          if (transcoderResult.report.encoded.length > 0) {
             logger?.log?.(`[@sanity/preview-kit]: Table of encoded paths`)
-            ;(logger?.table || logger.log)?.(transcoder.report.encoded)
+            ;(logger?.table || logger.log)?.(transcoderResult.report.encoded)
           }
-          if (transcoder.report.skipped.length > 0) {
+          if (transcoderResult.report.skipped.length > 0) {
             const skipped = new Set<string>()
-            for (const { path } of transcoder.report.skipped) {
+            for (const { path } of transcoderResult.report.skipped) {
               skipped.add(path.replace(/\[\d+\]/g, '[]'))
             }
             logger?.log?.(`[@sanity/preview-kit]: List of skipped paths`, [
@@ -82,6 +89,10 @@ function transcodeResponse({
           }
         }
 
+        const body = {
+          ...response.body,
+          result: transcoderResult.result,
+        }
         return { ...response, body }
       }
 

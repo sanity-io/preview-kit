@@ -93,8 +93,12 @@ const resultEditLinksTestCases = [
 test.each(resultEditLinksTestCases)(
   'mapToEditLinks $name',
   ({ queryResult, expected }) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const response = mapToEditLinks(queryResult as any, 'test.sanity.studio/')
+    const response = mapToEditLinks(
+      queryResult.result,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      queryResult.resultSourceMap as any,
+      'test.sanity.studio/',
+    )
     expect(response).toEqual(expected)
   },
 )

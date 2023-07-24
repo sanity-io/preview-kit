@@ -1,21 +1,9 @@
 import type { ClientConfig } from '@sanity/client'
 import type { RawQueryResponse } from '@sanity/client'
 
-/** @public */
-export type PathSegment = string | number
+import type { FilterDefault, PathSegment, StudioUrl } from '../csm/types'
 
-/** @public */
-export type StudioUrl =
-  | `/${string}`
-  | `${string}.sanity.studio`
-  | `https://${string}`
-  | string
-
-/** @public */
-export type FilterDefault = (props: {
-  path: PathSegment[]
-  filterDefault: FilterDefault
-}) => boolean
+export type { FilterDefault, PathSegment, StudioUrl }
 
 export type Logger =
   | typeof console
