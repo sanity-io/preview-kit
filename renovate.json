@@ -11,6 +11,10 @@
       "description": "Group all dependencies from the app directory",
       "matchFileNames": ["apps/**/package.json", "packages/ui/package.json"],
       "groupName": "App dependencies"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "rangeStrategy": "bump"
     }
   ]
 }
