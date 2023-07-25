@@ -8,11 +8,13 @@ import type { PathSegment, StudioUrl } from './types'
 
 /** @alpha */
 export type EditLink = `/intent/edit/id=${string};path=${string}`
+
 /** @alpha */
 export interface EditLinkProps {
   studioUrl: StudioUrl
   document: ContentSourceMapDocument
 }
+
 /** @alpha */
 export type DefineEditLink = (
   studioUrl: StudioUrl,

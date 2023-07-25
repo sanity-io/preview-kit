@@ -3,8 +3,6 @@ import { createClient as _createClient, SanityClient } from '@sanity/client'
 import { createHttpRequest } from './request'
 import type { PreviewKitClientConfig } from './types'
 
-export type * from './mapToEditLinks'
-export { mapToEditLinks } from './mapToEditLinks'
 export type * from './types'
 export type * from '@sanity/client'
 

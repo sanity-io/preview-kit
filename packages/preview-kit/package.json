@@ -60,6 +60,17 @@
       "import": "./dist/groq-store.js",
       "default": "./dist/groq-store.js"
     },
+    "./csm": {
+      "types": "./dist/csm.d.ts",
+      "source": "./src/csm/index.ts",
+      "require": "./dist/csm.cjs",
+      "node": {
+        "import": "./dist/csm.cjs.js",
+        "require": "./dist/csm.cjs"
+      },
+      "import": "./dist/csm.js",
+      "default": "./dist/csm.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
@@ -73,6 +84,9 @@
       ],
       "groq-store": [
         "./dist/groq-store.d.ts"
+      ],
+      "csm": [
+        "./dist/csm.d.ts"
       ]
     }
   },
@@ -80,7 +94,8 @@
     "dist",
     "src",
     "client.js",
-    "groq-store.js"
+    "groq-store.js",
+    "csm.js"
   ],
   "scripts": {
     "prebuild": "rimraf dist coverage",

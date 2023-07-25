@@ -19,9 +19,9 @@ import {
   useSyncExternalStore,
 } from 'react'
 
-import { parseNormalisedJsonPath } from '../client/jsonpath'
-import { resolveMapping, walkMap } from '../client/sourcemap'
 import { defineListenerContext as Context } from '../context'
+import { parseNormalisedJsonPath } from '../csm/jsonpath'
+import { resolveMapping, walkMap } from '../csm/sourcemap'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,

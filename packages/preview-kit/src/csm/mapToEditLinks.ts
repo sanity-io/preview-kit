@@ -1,14 +1,16 @@
+import type { ContentSourceMap } from '@sanity/client'
+
 import { defineEditLink } from './editIntent'
 import { encodeIntoResult } from './sourcemap'
-import type { ContentSourceMapQueryResponse } from './types'
 
 /** @alpha */
-export function mapToEditLinks(
-  response: ContentSourceMapQueryResponse,
+export function mapToEditLinks<R>(
+  result: R,
+  csm: ContentSourceMap,
   studioUrl: string,
-): unknown {
+): R {
   const createEditLink = defineEditLink(studioUrl)
-  return encodeIntoResult(response, (_, sourceDocument, path) => {
+  return encodeIntoResult(result, csm, (_, sourceDocument, path) => {
     return createEditLink(sourceDocument, path)
-  })
+  }) as R
 }
