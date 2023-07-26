@@ -42,7 +42,7 @@ jobs:
       TURBO_TEAM: sanity-io
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@0b715c7ebbf3cf2174d1386336c5f6d3d8d5504a # v2.3.0
+      - uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
       - uses: actions/setup-node@v3
         with:
           cache: pnpm
@@ -85,7 +85,7 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@0b715c7ebbf3cf2174d1386336c5f6d3d8d5504a # v2.3.0
+      - uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
       - uses: actions/setup-node@v3
         with:
           cache: pnpm
@@ -111,7 +111,7 @@ jobs:
           # Need to fetch entire commit history to
           # analyze every commit since last release
           fetch-depth: 0
-      - uses: pnpm/action-setup@0b715c7ebbf3cf2174d1386336c5f6d3d8d5504a # v2.3.0
+      - uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
       - uses: actions/setup-node@v3
         with:
           cache: pnpm
