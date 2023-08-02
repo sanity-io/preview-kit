@@ -8,10 +8,9 @@ import { vercelStegaCombine } from '@vercel/stega'
 import { defineEditLink } from './editIntent'
 import { encode } from './sourcemap'
 import type {
+  CreateTranscoderConfig,
   FilterDefault,
-  Logger,
   PathSegment,
-  StudioUrl,
   Transcoder,
 } from './types'
 
@@ -66,11 +65,9 @@ const filterDefault: FilterDefault = ({ path }) => {
 const TRUNCATE_LENGTH = 20
 
 /** @alpha */
-export function createTranscoder(
-  studioUrl: StudioUrl,
-  encodeSourceMapAtPath?: FilterDefault,
-  logger?: Logger,
-): Transcoder {
+export function createTranscoder(config: CreateTranscoderConfig): Transcoder {
+  const { studioUrl, encodeSourceMapAtPath, logger } = config
+
   const createEditLink = defineEditLink(studioUrl)
   const report: Record<
     'encoded' | 'skipped',

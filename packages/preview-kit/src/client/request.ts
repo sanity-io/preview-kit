@@ -27,11 +27,11 @@ function transcodeResponse({
   logger,
 }: TranscodeResponseConfig) {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const transcoder = createTranscoder(
-    studioUrl!,
+  const transcoder = createTranscoder({
+    studioUrl: studioUrl!,
     encodeSourceMapAtPath,
-    logger!,
-  )
+    logger: logger!,
+  })
   return {
     onResponse: (response: unknown) => {
       if (!isBodyResponse(response)) {

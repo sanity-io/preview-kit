@@ -88,11 +88,11 @@ test('transcoder encodes strings within result with stega using csm', () => {
     JSON.stringify(queryResult),
   ) as typeof queryResult
 
-  const transcoder = createTranscoder(
-    'https://admin.sanity.studio',
-    undefined,
-    console,
-  )
+  const transcoder = createTranscoder({
+    studioUrl: 'https://admin.sanity.studio',
+    logger: console,
+  })
+
   const transcoderResult = transcoder(queryResultCopy, csm)
 
   expect(transcoderResult.result.text).toContain(queryResultCopy.text)
@@ -137,11 +137,10 @@ test('transcoder correctly reports processing', () => {
     JSON.stringify(queryResult),
   ) as typeof queryResult
 
-  const transcoder = createTranscoder(
-    'https://admin.sanity.studio',
-    undefined,
-    console,
-  )
+  const transcoder = createTranscoder({
+    studioUrl: 'https://admin.sanity.studio',
+    logger: console,
+  })
   const transcoderResult = transcoder(queryResultCopy, csm)
 
   expect(transcoderResult.report).toMatchInlineSnapshot(`
