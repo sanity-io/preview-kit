@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.0](https://github.com/sanity-io/preview-kit/compare/v2.3.3...v2.4.0) (2023-08-02)
+
+### Features
+
+- **csm:** extracts content source maps encoding ([#429](https://github.com/sanity-io/preview-kit/issues/429)) ([7d93ab8](https://github.com/sanity-io/preview-kit/commit/7d93ab823fda3f5c1ccbea4462c3d71cee139faf))
+
 ## [2.3.3](https://github.com/sanity-io/preview-kit/compare/v2.3.2...v2.3.3) (2023-07-13)
 
 ### Bug Fixes
