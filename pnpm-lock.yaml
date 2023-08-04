@@ -693,8 +693,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       '@sanity/groq-store':
-        specifier: 2.3.4
-        version: 2.3.4
+        specifier: 3.0.0
+        version: 3.0.0
       '@vercel/stega':
         specifier: 0.1.0
         version: 0.1.0
@@ -3901,8 +3901,8 @@ packages:
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
     dev: false
 
-  /@sanity/groq-store@2.3.4:
-    resolution: {integrity: sha512-7W3ROK858YuAjyoPp9+OfHj00BkJX172b6LyV9peL8DcbMIG0G621Tv+oULLaizkA4y2D+b1sx+AYHWtdtIrew==}
+  /@sanity/groq-store@3.0.0:
+    resolution: {integrity: sha512-SY9OTdQVXC5oh+T1JHiO+FescUpz5OFmw6bPiVvsgoA4T2f9gSWU+ao/DV8AG/gs8/D4PnfRmYDfPDLhGYe3Ug==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
@@ -3910,7 +3910,7 @@ packages:
       fast-deep-equal: 3.1.3
       groq: 3.14.5
       groq-js: 1.1.10
-      mendoza: 2.1.2
+      mendoza: 3.0.0
       simple-get: 4.0.1
       split2: 4.2.0
       throttle-debounce: 5.0.0
