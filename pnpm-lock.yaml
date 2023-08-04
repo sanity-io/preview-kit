@@ -708,8 +708,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0
       mendoza:
-        specifier: 3.0.2
-        version: 3.0.2
+        specifier: 3.0.3-canary.0
+        version: 3.0.3-canary.0
       react-fast-compare:
         specifier: 3.2.2
         version: 3.2.2
@@ -10331,6 +10331,11 @@ packages:
 
   /mendoza@3.0.2:
     resolution: {integrity: sha512-Zps9/yexUX8Sv25gmd56o+7dIvL5gBezvNOGjB8T64LXrdl83bAVMhPy2MPComX6TbL5p8VuRf+436+/6Vgl6g==}
+    engines: {node: '>=14.18'}
+    dev: false
+
+  /mendoza@3.0.3-canary.0:
+    resolution: {integrity: sha512-lNOyi4gTYIgjs+ccUook98WwD9CmguZIc+Z/9DQ4IkLrbyKrxekaE/QIRa15rrgOPAokEyGqSuBGGKTugCPl0Q==}
     engines: {node: '>=14.18'}
     dev: false
 
