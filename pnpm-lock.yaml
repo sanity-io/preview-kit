@@ -708,8 +708,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0
       mendoza:
-        specifier: 2.1.2
-        version: 2.1.2
+        specifier: 3.0.0
+        version: 3.0.0
       react-fast-compare:
         specifier: 3.2.2
         version: 3.2.2
@@ -10334,14 +10334,14 @@ packages:
     resolution: {integrity: sha512-mXfNXte0RSWl0rEIsQhXutfM2R2Oa7UyKDD7XoZMEbKeucTRms04y5y41U8gLqPzRx7ViN/QyYnTR2TX/5tawA==}
     dev: false
 
-  /mendoza@2.1.1:
-    resolution: {integrity: sha512-8f3Se8HDfobXCsdESXZBSSYcVzIRi+cMIEmz/SR4bjgFEjHJaXzrsBYr+vyrFGEtK5xTpCcU+DiwxWJV6hCuhQ==}
-    engines: {node: '>=10'}
-    dev: false
-
   /mendoza@2.1.2:
     resolution: {integrity: sha512-Z2orUYO/RR7hJ2WdMtE1+u7X3/FiZrUpZqdctjxjxAfRODHfSvHKH+5tdEq/dXCf3W3CXSqWM46Ye7ww+KMrtQ==}
     engines: {node: '>=10'}
+    dev: false
+
+  /mendoza@3.0.0:
+    resolution: {integrity: sha512-rL5+prEqhGJLIFh5JDVh302krZJS1nItbQeuJrtjAmtFfBa01lh4GHe5U4eQQFfW90DHieow8wsiMjBPGJHK0w==}
+    engines: {node: '>=14.18'}
     dev: false
 
   /meow@8.1.2:
