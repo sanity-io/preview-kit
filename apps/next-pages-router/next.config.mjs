@@ -2,7 +2,6 @@
 const nextConfig = {
   experimental: {
     logging: 'verbose',
-    serverActions: true,
   },
   productionBrowserSourceMaps: true,
 }

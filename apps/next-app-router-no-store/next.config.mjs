@@ -4,6 +4,7 @@ const nextConfig = {
     logging: 'verbose',
     serverActions: true,
   },
+  productionBrowserSourceMaps: true,
 }
 
 export default nextConfig
