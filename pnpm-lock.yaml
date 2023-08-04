@@ -736,7 +736,7 @@ importers:
         specifier: ^4.0.7
         version: 4.0.7
       '@types/node':
-        specifier: ^18.17.1
+        specifier: ^18.17.2
         version: 18.17.2
       '@types/react':
         specifier: ^18.2.18
@@ -4033,8 +4033,8 @@ packages:
       outdent: 0.8.0
       parse-git-config: 3.0.0
       pkg-up: 3.1.0
-      prettier: 3.0.0
-      prettier-plugin-packagejson: 2.4.5(prettier@3.0.0)
+      prettier: 3.0.1
+      prettier-plugin-packagejson: 2.4.5(prettier@3.0.1)
       pretty-bytes: 5.6.0
       prompts: 2.4.2
       recast: 0.23.3
@@ -11877,19 +11877,6 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier-plugin-packagejson@2.4.5(prettier@3.0.0):
-    resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
-    peerDependencies:
-      prettier: '>= 1.16.0'
-    peerDependenciesMeta:
-      prettier:
-        optional: true
-    dependencies:
-      prettier: 3.0.0
-      sort-package-json: 2.5.1
-      synckit: 0.8.5
-    dev: true
-
   /prettier-plugin-packagejson@2.4.5(prettier@3.0.1):
     resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
     peerDependencies:
@@ -11906,12 +11893,6 @@ packages:
   /prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
-    hasBin: true
-    dev: true
-
-  /prettier@3.0.0:
-    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
-    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
