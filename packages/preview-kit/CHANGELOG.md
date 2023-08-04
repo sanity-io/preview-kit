@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/sanity-io/preview-kit/compare/v2.4.1...v2.4.2) (2023-08-04)
+
+### Bug Fixes
+
+- reduce logger noise ([4fd91d2](https://github.com/sanity-io/preview-kit/commit/4fd91d2fa5e2d81d9396f7c987bcd5f1555fceca))
+
 ## [2.4.1](https://github.com/sanity-io/preview-kit/compare/v2.4.0...v2.4.1) (2023-08-04)
 
 ### Bug Fixes
