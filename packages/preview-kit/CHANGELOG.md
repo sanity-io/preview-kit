@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/sanity-io/preview-kit/compare/v2.4.0...v2.4.1) (2023-08-04)
+
+### Bug Fixes
+
+- **deps:** bump `@sanity/client` to v6.4 ([d2c31fb](https://github.com/sanity-io/preview-kit/commit/d2c31fbe8e901e51ef27d214c91a447f35be5ff7))
+- **deps:** Update dependency @sanity/groq-store to v2.3.3 ([#447](https://github.com/sanity-io/preview-kit/issues/447)) ([a97b334](https://github.com/sanity-io/preview-kit/commit/a97b334ddd4537b12df7c4d3e58b621d36b38acd))
+- **deps:** update peer dependency @sanity/client to v6.2.0 ([273d094](https://github.com/sanity-io/preview-kit/commit/273d09458b7edc9f48fd123e6d87b3f72ad303c0))
+- don't warn on missing CSM on API endpoints that don't have them ([ac79eb9](https://github.com/sanity-io/preview-kit/commit/ac79eb90135b252bbe76b1ba8d5e83d004133ad1))
+- gracefully handle a missing `studioUrl` ([48b7d8d](https://github.com/sanity-io/preview-kit/commit/48b7d8d9844a4b1b1d53af8e814edd6b23b9fa5a))
+
 ## [2.4.0](https://github.com/sanity-io/preview-kit/compare/v2.3.3...v2.4.0) (2023-08-02)
 
 ### Features
