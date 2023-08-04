@@ -44,7 +44,7 @@ function transcodeResponse({
         isPlainObject(response.body)
       ) {
         if (!isContentSourceMapBody(response.body)) {
-          if (logger) {
+          if (logger && !isResultBody(response.body)) {
             logger?.error?.(
               '[@sanity/preview-kit]: Missing Content Source Map from response body',
               response.body,
@@ -115,7 +115,8 @@ export function createHttpRequest({
 
   // Apply the transcoder middleware
   superRequester.use(
-    transcodeResponse({ studioUrl, encodeSourceMapAtPath, logger }),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- support the improved get-it typings
+    transcodeResponse({ studioUrl, encodeSourceMapAtPath, logger }) as any,
   )
 
   function httpRequest(
@@ -133,6 +134,13 @@ export function createHttpRequest({
 
 function isBodyResponse(response: unknown): response is { body?: unknown } {
   return typeof response === 'object' && response !== null
+}
+
+/** @alpha */
+export function isResultBody(
+  body: unknown,
+): body is ContentSourceMapQueryResponse {
+  return typeof body === 'object' && body !== null && 'result' in body
 }
 
 /** @alpha */
