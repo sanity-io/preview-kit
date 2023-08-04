@@ -9,13 +9,13 @@ importers:
   .:
     devDependencies:
       '@sanity/cli':
-        specifier: 3.14.4
+        specifier: ^3.14.4
         version: 3.14.4
       prettier:
-        specifier: 3.0.0
+        specifier: ^3.0.0
         version: 3.0.0
       prettier-plugin-packagejson:
-        specifier: 2.4.5
+        specifier: ^2.4.5
         version: 2.4.5(prettier@3.0.0)
       turbo:
         specifier: 1.10.12
@@ -350,7 +350,7 @@ importers:
         version: 0.15.7
       isbot:
         specifier: latest
-        version: 3.6.12
+        version: 3.6.13
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -411,7 +411,7 @@ importers:
         version: 0.15.7
       isbot:
         specifier: latest
-        version: 3.6.12
+        version: 3.6.13
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -472,7 +472,7 @@ importers:
         version: 0.15.7
       isbot:
         specifier: latest
-        version: 3.6.12
+        version: 3.6.13
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -533,7 +533,7 @@ importers:
         version: 0.15.7
       isbot:
         specifier: latest
-        version: 3.6.12
+        version: 3.6.13
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -594,7 +594,7 @@ importers:
         version: 0.15.7
       isbot:
         specifier: latest
-        version: 3.6.12
+        version: 3.6.13
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -9727,11 +9727,6 @@ packages:
   /isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
-
-  /isbot@3.6.12:
-    resolution: {integrity: sha512-dGc3jRIORywaaqs4G5wj+58i5/l1eoI75q7XNiyW9Sgfoyr3QkyDZUXw+cuB7AOFq/0aruCQrGLrnKJlQarP/g==}
-    engines: {node: '>=12'}
-    dev: false
 
   /isbot@3.6.13:
     resolution: {integrity: sha512-uoP4uK5Dc2CrabmK+Gue1jTL+scHiCc1c9rblRpJwG8CPxjLIv8jmGyyGRGkbPOweayhkskdZsEQXG6p+QCQrg==}
