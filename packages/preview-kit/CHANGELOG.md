@@ -5,6 +5,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/sanity-io/preview-kit/compare/v2.4.3...v2.4.4) (2023-08-04)
+
+### Bug Fixes
+
+- **deps:** Update dependency @sanity/groq-store to v3 ([#454](https://github.com/sanity-io/preview-kit/issues/454)) ([3b1282c](https://github.com/sanity-io/preview-kit/commit/3b1282ce2870d7e534a717e2447f3af0b35ce16b))
+- **deps:** update dependency `@sanity/groq-store` to v4.0.0 ([a9bee66](https://github.com/sanity-io/preview-kit/commit/a9bee662252756378475a0f8c10d1e958aad5eae))
+- **deps:** Update dependency mendoza to v3 ([#453](https://github.com/sanity-io/preview-kit/issues/453)) ([e9f96a9](https://github.com/sanity-io/preview-kit/commit/e9f96a91728eeea8a1d4ae1a5d0b64d6de847825))
+- **deps:** update dependency mendoza to v3.0.1 ([5c6781b](https://github.com/sanity-io/preview-kit/commit/5c6781b0e62cbb58df5a31a155207446abe4565c))
+
 ## [2.4.3](https://github.com/sanity-io/preview-kit/compare/v2.4.2...v2.4.3) (2023-08-04)
 
 ### Bug Fixes
