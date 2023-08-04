@@ -8,7 +8,6 @@ import {
   type RequestOptions,
 } from '@sanity/client'
 import isPlainObject from 'lodash.isplainobject'
-import invariant from 'tiny-invariant'
 
 import { createTranscoder } from '../csm/transcode'
 import type {
@@ -110,7 +109,6 @@ export function createHttpRequest({
   PreviewKitClientConfig,
   'studioUrl' | 'encodeSourceMapAtPath' | 'logger'
 >): HttpRequest {
-  invariant(studioUrl, 'Missing studioUrl in client config')
   const superRequester = originalRequester.clone()
 
   // Apply the transcoder middleware

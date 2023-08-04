@@ -33,6 +33,13 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
 
   try {
     if (shouldEncodeSourceMap && config.resultSourceMap !== false) {
+      if (!studioUrl) {
+        logger?.error?.(
+          '[@sanity/preview-kit]: Content source map enabled client is enabled, but no studioUrl is provided. Falling back to @sanity/client',
+        )
+        return _createClient(options)
+      }
+
       logger?.debug?.(
         '[@sanity/preview-kit]: Creating source map enabled client',
       )
