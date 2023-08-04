@@ -43,7 +43,7 @@ function transcodeResponse({
         isPlainObject(response.body)
       ) {
         if (!isContentSourceMapBody(response.body)) {
-          if (logger && !isResultBody(response.body)) {
+          if (logger && isResultBody(response.body)) {
             logger?.error?.(
               '[@sanity/preview-kit]: Missing Content Source Map from response body',
               response.body,
