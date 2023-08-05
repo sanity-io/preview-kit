@@ -11,8 +11,8 @@
       "source": "./src/index.ts",
       "require": "./dist/index.cjs",
       "node": {
-        "import": "./dist/index.cjs.js",
-        "require": "./dist/index.cjs"
+        "module": "./dist/index.js",
+        "import": "./dist/index.cjs.js"
       },
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -20,8 +20,8 @@
     "./react": {
       "types": "./dist/react.d.ts",
       "source": "./src/react/index.ts",
-      "require": "./dist/react.cjs",
       "import": "./dist/react.js",
+      "require": "./dist/react.cjs",
       "default": "./dist/react.js"
     },
     "./package.json": "./package.json"
@@ -64,7 +64,7 @@
     "groqd": "0.15.7"
   },
   "devDependencies": {
-    "@sanity/pkg-utils": "^2.3.10",
+    "@sanity/pkg-utils": "2.3.13-canary.1",
     "@types/react": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
