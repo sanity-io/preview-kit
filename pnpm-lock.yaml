@@ -693,8 +693,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       '@sanity/groq-store':
-        specifier: 4.0.2
-        version: 4.0.2
+        specifier: 4.0.3
+        version: 4.0.3
       '@vercel/stega':
         specifier: 0.1.0
         version: 0.1.0
@@ -3901,15 +3901,15 @@ packages:
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
     dev: false
 
-  /@sanity/groq-store@4.0.2:
-    resolution: {integrity: sha512-YjWjU1uxYMoTFa1UDbDLu6MMIGUqdEQ8udNITzBki1tXjod/sZF9FnH2UQQHCkUqISfRbzKfmJfJ2M2viY0AJQ==}
+  /@sanity/groq-store@4.0.3:
+    resolution: {integrity: sha512-6mXBUvOrsSG9G7OP52VQMd114+s1AjkrJZCUIaFlZGJTamFvd8viCgZuykEt5wURIm3nVnx3MmWDZPFCvLvNuQ==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
       '@sanity/types': 3.14.5
       fast-deep-equal: 3.1.3
       groq: 3.14.5
-      groq-js: 1.1.10
+      groq-js: 1.1.11
       mendoza: 3.0.3
       simple-get: 4.0.1
       split2: 4.2.0
@@ -8842,8 +8842,8 @@ packages:
   /graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  /groq-js@1.1.10:
-    resolution: {integrity: sha512-cYZMSCuBZ5KPB7hDRzkIwTB6qTDtcfqXxcejJPWumSw5gCOInTSvVtfccp0GM7TE1HkF7bF1PR2iSnliFDSSJg==}
+  /groq-js@1.1.11:
+    resolution: {integrity: sha512-LLYg7+nuOOcbQD7FKJjZj442W4ws+j/yggJV474VS6kmeIpBxfNGNMnBsfGSaJ/iDIhknjL4OcDgJ60FL+UJXA==}
     engines: {node: '>= 14'}
     dev: false
 
@@ -12753,7 +12753,7 @@ packages:
       framer-motion: 10.13.1(react-dom@18.2.0)(react@18.2.0)
       get-it: 8.3.1
       get-random-values-esm: 1.0.0
-      groq-js: 1.1.10
+      groq-js: 1.1.11
       hashlru: 2.3.0
       history: 5.3.0
       import-fresh: 3.3.0
