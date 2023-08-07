@@ -32,8 +32,8 @@
       "source": "./src/index.ts",
       "require": "./dist/index.cjs",
       "node": {
-        "import": "./dist/index.cjs.js",
-        "require": "./dist/index.cjs"
+        "module": "./dist/index.js",
+        "import": "./dist/index.cjs.js"
       },
       "import": "./dist/index.js",
       "default": "./dist/index.js"
@@ -43,8 +43,8 @@
       "source": "./src/client/index.ts",
       "require": "./dist/client.cjs",
       "node": {
-        "import": "./dist/client.cjs.js",
-        "require": "./dist/client.cjs"
+        "module": "./dist/client.js",
+        "import": "./dist/client.cjs.js"
       },
       "import": "./dist/client.js",
       "default": "./dist/client.js"
@@ -54,8 +54,8 @@
       "source": "./src/groq-store/_legacy.ts",
       "require": "./dist/groq-store.cjs",
       "node": {
-        "import": "./dist/groq-store.cjs.js",
-        "require": "./dist/groq-store.cjs"
+        "module": "./dist/groq-store.js",
+        "import": "./dist/groq-store.cjs.js"
       },
       "import": "./dist/groq-store.js",
       "default": "./dist/groq-store.js"
@@ -65,8 +65,8 @@
       "source": "./src/csm/index.ts",
       "require": "./dist/csm.cjs",
       "node": {
-        "import": "./dist/csm.cjs.js",
-        "require": "./dist/csm.cjs"
+        "module": "./dist/csm.js",
+        "import": "./dist/csm.cjs.js"
       },
       "import": "./dist/csm.js",
       "default": "./dist/csm.js"
@@ -130,7 +130,7 @@
   },
   "devDependencies": {
     "@sanity/client": "^6.4.0",
-    "@sanity/pkg-utils": "^2.3.12",
+    "@sanity/pkg-utils": "^2.4.0",
     "@sanity/semantic-release-preset": "^4.1.2",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.isplainobject": "^4.0.7",

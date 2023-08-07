@@ -721,8 +721,8 @@ importers:
         specifier: ^6.4.0
         version: 6.4.0
       '@sanity/pkg-utils':
-        specifier: ^2.3.12
-        version: 2.3.12(@types/node@18.17.3)(typescript@5.1.6)
+        specifier: ^2.4.0
+        version: 2.4.0(@types/node@18.17.3)(typescript@5.1.6)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.2
         version: 4.1.2(semantic-release@21.0.7)
@@ -4034,8 +4034,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sanity/pkg-utils@2.3.12(@types/node@18.17.3)(typescript@5.1.6):
-    resolution: {integrity: sha512-Wmbj+kPcQtIpSUo/Wsvy1Fk8DIEsFmAv8e5iev6kOT58Qn6ZOhjrYdAOZcLmZwp2zmlxymyjIgE+gAei/9Zy3g==}
+  /@sanity/pkg-utils@2.4.0(@types/node@18.17.3)(typescript@5.1.6):
+    resolution: {integrity: sha512-MnxpBf+ACZcmsH7Xkl9Ydj1DSkaj5FV34jcC+r04WHotLQ+G9G+wKTzxFrws9hd/g7j6uj8/ZBwA/S78ZQ461A==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
@@ -4076,6 +4076,7 @@ packages:
       rimraf: 4.4.1
       rollup: 3.27.2
       rollup-plugin-esbuild: 5.0.0(esbuild@0.18.19)(rollup@3.27.2)
+      rollup-plugin-preserve-directives: 0.2.0(rollup@3.27.2)
       rxjs: 7.8.1
       treeify: 1.1.0
       typescript: 5.1.6
@@ -12601,6 +12602,15 @@ packages:
       rollup: 3.27.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /rollup-plugin-preserve-directives@0.2.0(rollup@3.27.2):
+    resolution: {integrity: sha512-KUwbBaFvD1zFIDNnOkR+u64sSod3m0l6q46/SzTOa4GTQ6hp6w0FRr2u7x99YkY9qhlna5panmTmuLWeJ/2KWw==}
+    peerDependencies:
+      rollup: 2.x || 3.x
+    dependencies:
+      magic-string: 0.30.1
+      rollup: 3.27.2
     dev: true
 
   /rollup@3.27.2:
