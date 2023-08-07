@@ -27,8 +27,8 @@ importers:
   apps/next-app-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -70,8 +70,8 @@ importers:
   apps/next-app-router-groq-store:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -113,8 +113,8 @@ importers:
   apps/next-app-router-live-store:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -156,8 +156,8 @@ importers:
   apps/next-app-router-no-store:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -199,8 +199,8 @@ importers:
   apps/next-pages-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -242,8 +242,8 @@ importers:
   apps/next-pages-router-groq-store:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -285,8 +285,8 @@ importers:
   apps/next-pages-router-live-store:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -334,8 +334,8 @@ importers:
         specifier: 1.19.2
         version: 1.19.2(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -395,8 +395,8 @@ importers:
         specifier: 1.19.2
         version: 1.19.2(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -456,8 +456,8 @@ importers:
         specifier: 1.19.2
         version: 1.19.2(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -517,8 +517,8 @@ importers:
         specifier: 1.19.2
         version: 1.19.2(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -578,8 +578,8 @@ importers:
         specifier: 1.19.2
         version: 1.19.2(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -636,8 +636,8 @@ importers:
         specifier: 8.0.2
         version: 8.0.2
       '@sanity/client':
-        specifier: 6.4.2
-        version: 6.4.2
+        specifier: 6.4.3
+        version: 6.4.3
       '@sanity/icons':
         specifier: 2.4.1
         version: 2.4.1(react@18.2.0)
@@ -3851,17 +3851,6 @@ packages:
       pkg-dir: 5.0.0
     transitivePeerDependencies:
       - supports-color
-
-  /@sanity/client@6.4.2:
-    resolution: {integrity: sha512-oD+0tNC7dyK3qqy/EtLUD/MEvgI+ZL+zRUYT7DDI37eSIPuZhDm3/wgWE9XHgrTkJ1FAyldeHJr3yYSZr2Nvqg==}
-    engines: {node: '>=14.18'}
-    dependencies:
-      '@sanity/eventsource': 5.0.0
-      get-it: 8.4.1
-      rxjs: 7.8.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /@sanity/client@6.4.3:
     resolution: {integrity: sha512-wGocCYxf9PIqbZ3hZwgufkao9Ig+gS/nxWQuWOPSL1i5nYR/fMYodosFabzrBCKsiIpFnZqJcp94RQrZRZWDBg==}
