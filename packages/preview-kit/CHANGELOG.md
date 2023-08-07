@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.8](https://github.com/sanity-io/preview-kit/compare/v2.4.7...v2.4.8) (2023-08-07)
+
+### Bug Fixes
+
+- add `node.module` export condition ([2dd6e6c](https://github.com/sanity-io/preview-kit/commit/2dd6e6ccc7f10defc3b311e40bd8bdf2a06b3bca))
+- **deps:** update dependency @sanity/client to ^6.4.2 ([b3c464d](https://github.com/sanity-io/preview-kit/commit/b3c464de1622529065b37c5db2481c2821dfd504))
+- **deps:** Update dependency @sanity/groq-store to v4.0.3 ([#468](https://github.com/sanity-io/preview-kit/issues/468)) ([4113bf7](https://github.com/sanity-io/preview-kit/commit/4113bf736d9555345c50cdb16492b4bd97221362))
+
 ## [2.4.7](https://github.com/sanity-io/preview-kit/compare/v2.4.6...v2.4.7) (2023-08-04)
 
 ### Bug Fixes
