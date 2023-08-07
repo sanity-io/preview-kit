@@ -9,19 +9,15 @@
     ".": {
       "types": "./dist/index.d.ts",
       "source": "./src/index.ts",
-      "require": "./dist/index.cjs",
-      "node": {
-        "import": "./dist/index.cjs.js",
-        "require": "./dist/index.cjs"
-      },
       "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
     "./react": {
       "types": "./dist/react.d.ts",
       "source": "./src/react/index.ts",
-      "require": "./dist/react.cjs",
       "import": "./dist/react.js",
+      "require": "./dist/react.cjs",
       "default": "./dist/react.js"
     },
     "./package.json": "./package.json"
