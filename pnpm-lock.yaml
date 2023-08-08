@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@sanity/cli':
-        specifier: ^3.14.5
-        version: 3.14.5
+        specifier: ^3.15.0
+        version: 3.15.0
       prettier:
         specifier: ^3.0.1
         version: 3.0.1
@@ -3851,6 +3851,25 @@ packages:
       pkg-dir: 5.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@sanity/cli@3.15.0:
+    resolution: {integrity: sha512-uSUtr3YZoA1y/LnAF4I1I7csj1RFrNnt2iW9Fq3w14SSNcSCSzi7DtncRcCF5AsvBsMl6w5/bIDmtit5+6R66Q==}
+    engines: {node: '>=14.18.0'}
+    hasBin: true
+    dependencies:
+      '@babel/traverse': 7.22.8(supports-color@5.5.0)
+      '@vercel/frameworks': 1.5.0
+      '@vercel/fs-detectors': 4.1.1
+      chalk: 4.1.2
+      esbuild: 0.18.19
+      esbuild-register: 3.4.2(esbuild@0.18.19)
+      get-it: 8.4.1
+      golden-fleece: 1.0.9
+      pkg-dir: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /@sanity/client@6.4.3:
     resolution: {integrity: sha512-wGocCYxf9PIqbZ3hZwgufkao9Ig+gS/nxWQuWOPSL1i5nYR/fMYodosFabzrBCKsiIpFnZqJcp94RQrZRZWDBg==}
