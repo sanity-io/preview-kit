@@ -1,11 +1,7 @@
 import { groqdPlaygroundTool } from 'groqd-playground'
 
 import { visionTool } from '@sanity/vision'
-import {
-  defineConfig,
-  defineField,
-  defineType,
-} from 'sanity'
+import { defineConfig, defineField, defineType } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { benchmarkTool } from './src/benchmark'
 import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
