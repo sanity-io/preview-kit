@@ -23,6 +23,12 @@
     {
       "matchDepTypes": ["dependencies"],
       "rangeStrategy": "bump"
+    },
+    {
+      "matchDepTypes": ["peerDependencies"],
+      "matchPackageNames": ["@sanity/client"],
+      "rangeStrategy": "bump",
+      "semanticCommitType": "fix"
     }
   ]
 }
