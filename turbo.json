@@ -4,7 +4,13 @@
   "globalEnv": ["RUNNER_OS", "NODE_VERSION"],
   "pipeline": {
     "build": {
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**", "public/**"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**",
+        "build/**",
+        "public/**"
+      ],
       "dependsOn": ["^build"]
     },
     "test": {
