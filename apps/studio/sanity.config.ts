@@ -6,6 +6,12 @@ import { deskTool } from 'sanity/desk'
 import { benchmarkTool } from './src/benchmark'
 import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
 
+const iframeOptions = {
+  reload: {
+    button: true,
+    revision: true,
+},
+} satisfies Omit<IframeOptions, 'url'>
 
 let defineGetPreviewUrl = (base: string) => function getPreviewUrl(doc: SanityDocumentLike) {
   const url = new URL(base)
@@ -28,9 +34,24 @@ const config = defineConfig({
           S.view
             .component(Iframe)
             .options({
-              url: defineGetPreviewUrl('https://preview-kit-next-app-router.sanity.build'),
+              ...iframeOptions,
+              url: defineGetPreviewUrl('https://preview-kit-next-app-router.sanity.build/api/draft'),
             } satisfies IframeOptions)
             .title('next-app-router'),
+            S.view
+            .component(Iframe)
+            .options({
+              ...iframeOptions,
+              url: defineGetPreviewUrl('https://preview-kit-next-pages-router.sanity.build/api/draft'),
+            } satisfies IframeOptions)
+            .title('next-pages-router'),
+            S.view
+            .component(Iframe)
+            .options({
+              ...iframeOptions,
+              url: defineGetPreviewUrl('https://preview-kit-remix.sanity.build/api/preview'),
+            } satisfies IframeOptions)
+            .title('remix'),
         ])
       default:
         return S.document().views([S.view.form()])
