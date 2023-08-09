@@ -5,41 +5,35 @@ import {
   defineConfig,
   defineField,
   defineType,
-  SanityDocumentLike,
 } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { benchmarkTool } from './src/benchmark'
-import { IframeOptions, Iframe, UrlResolver } from 'sanity-plugin-iframe-pane'
-import { createElement } from 'react'
+import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
 
 const iframeOptions = {
   reload: {
     button: true,
-    revision: true,
   },
 } satisfies Omit<IframeOptions, 'url'>
 
-let defineGetPreviewUrl = (base: string) =>
-  function getPreviewUrl(doc: SanityDocumentLike) {
-    const url = new URL(base)
-    if (doc?._rev) {
-      url.searchParams.set('rev', doc._rev)
-    }
-    return url.toString()
-  }
-
-const iframes: [typeof Iframe, UrlResolver, string][] = [
-  'https://preview-kit-next-app-router.sanity.build/api/draft',
-  'https://preview-kit-next-pages-router.sanity.build/api/draft',
-  'https://preview-kit-remix.sanity.build/api/preview',
-].map((url) => [
+const iframes: [typeof Iframe, string, string][] = [
+  'next-app-router',
+  'next-pages-router',
+  'remix',
+  'next-app-router-groq-store',
+  'next-pages-router-groq-store',
+  'remix-groq-store',
+  'remix-groq-store-lazy',
+  'next-app-router-live-store',
+  'next-pages-router-live-store',
+  'remix-live-store',
+  'remix-live-store-lazy',
+  'next-app-router-no-store',
+].map((title) => [
   Iframe.bind({}),
-  defineGetPreviewUrl(url),
-  new URL(url).host
-    .replace('preview-kit-', '')
-    .replace('.sanity.build', ''),
+  `https://preview-kit-${title}.sanity.build`,
+  title,
 ])
-
 
 const config = defineConfig({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
