@@ -5,6 +5,7 @@ import { defineConfig, defineField, defineType,SanityDocumentLike } from 'sanity
 import { deskTool } from 'sanity/desk'
 import { benchmarkTool } from './src/benchmark'
 import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
+import { createElement } from 'react'
 
 const iframeOptions = {
   reload: {
@@ -32,21 +33,21 @@ const config = defineConfig({
         return S.document().views([
           S.view.form(),
           S.view
-            .component(Iframe)
+            .component(props => createElement(Iframe, {...props, key: 'next-app-router'}))
             .options({
               ...iframeOptions,
               url: defineGetPreviewUrl('https://preview-kit-next-app-router.sanity.build/api/draft'),
             } satisfies IframeOptions)
             .title('next-app-router'),
             S.view
-            .component(Iframe)
+            .component(props => createElement(Iframe, {...props, key: 'next-pages-router'}))
             .options({
               ...iframeOptions,
               url: defineGetPreviewUrl('https://preview-kit-next-pages-router.sanity.build/api/draft'),
             } satisfies IframeOptions)
             .title('next-pages-router'),
             S.view
-            .component(Iframe)
+            .component(props => createElement(Iframe, {...props, key: 'remix'}))
             .options({
               ...iframeOptions,
               url: defineGetPreviewUrl('https://preview-kit-remix.sanity.build/api/preview'),
