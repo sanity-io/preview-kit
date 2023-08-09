@@ -55,8 +55,8 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -98,8 +98,8 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -141,8 +141,8 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -184,8 +184,8 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -227,8 +227,8 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -270,8 +270,8 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -313,8 +313,8 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -725,7 +725,7 @@ importers:
         version: 6.4.3
       '@sanity/pkg-utils':
         specifier: ^2.4.0
-        version: 2.4.0(@types/node@18.17.3)(typescript@5.1.6)
+        version: 2.4.0(@types/node@18.17.4)(typescript@5.1.6)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.3
         version: 4.1.3(semantic-release@21.0.7)
@@ -736,8 +736,8 @@ importers:
         specifier: ^4.0.7
         version: 4.0.7
       '@types/node':
-        specifier: ^18.17.3
-        version: 18.17.3
+        specifier: ^18.17.4
+        version: 18.17.4
       '@types/react':
         specifier: ^18.2.18
         version: 18.2.18
@@ -3022,12 +3022,12 @@ packages:
       - '@types/node'
     dev: true
 
-  /@microsoft/api-extractor-model@7.27.5(@types/node@18.17.3):
+  /@microsoft/api-extractor-model@7.27.5(@types/node@18.17.4):
     resolution: {integrity: sha512-9/tBzYMJitR+o+zkPr1lQh2+e8ClcaTF6eZo7vZGDqRt2O5XmXWPbYJZmxyM3wb5at6lfJNEeGZrQXLjsQ0Nbw==}
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.59.6(@types/node@18.17.3)
+      '@rushstack/node-core-library': 3.59.6(@types/node@18.17.4)
     transitivePeerDependencies:
       - '@types/node'
     dev: true
@@ -3052,14 +3052,14 @@ packages:
       - '@types/node'
     dev: true
 
-  /@microsoft/api-extractor@7.36.3(@types/node@18.17.3):
+  /@microsoft/api-extractor@7.36.3(@types/node@18.17.4):
     resolution: {integrity: sha512-u0H6362AQq+r55X8drHx4npgkrCfJnMzRRHfQo8PMNKB8TcBnrTLfXhXWi+xnTM6CzlU/netEN8c4bq581Rnrg==}
     hasBin: true
     dependencies:
-      '@microsoft/api-extractor-model': 7.27.5(@types/node@18.17.3)
+      '@microsoft/api-extractor-model': 7.27.5(@types/node@18.17.4)
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.59.6(@types/node@18.17.3)
+      '@rushstack/node-core-library': 3.59.6(@types/node@18.17.4)
       '@rushstack/rig-package': 0.4.0
       '@rushstack/ts-command-line': 4.15.1
       colors: 1.2.5
@@ -3785,7 +3785,7 @@ packages:
       z-schema: 5.0.5
     dev: true
 
-  /@rushstack/node-core-library@3.59.6(@types/node@18.17.3):
+  /@rushstack/node-core-library@3.59.6(@types/node@18.17.4):
     resolution: {integrity: sha512-bMYJwNFfWXRNUuHnsE9wMlW/mOB4jIwSUkRKtu02CwZhQdmzMsUbxE0s1xOLwTpNIwlzfW/YT7OnOHgDffLgYg==}
     peerDependencies:
       '@types/node': '*'
@@ -3793,7 +3793,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
       colors: 1.2.5
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -4058,7 +4058,7 @@ packages:
       - supports-color
     dev: true
 
-  /@sanity/pkg-utils@2.4.0(@types/node@18.17.3)(typescript@5.1.6):
+  /@sanity/pkg-utils@2.4.0(@types/node@18.17.4)(typescript@5.1.6):
     resolution: {integrity: sha512-MnxpBf+ACZcmsH7Xkl9Ydj1DSkaj5FV34jcC+r04WHotLQ+G9G+wKTzxFrws9hd/g7j6uj8/ZBwA/S78ZQ461A==}
     engines: {node: '>=16.0.0'}
     hasBin: true
@@ -4068,7 +4068,7 @@ packages:
       '@babel/core': 7.22.9
       '@babel/preset-env': 7.22.9(@babel/core@7.22.9)
       '@babel/types': 7.22.5
-      '@microsoft/api-extractor': 7.36.3(@types/node@18.17.3)
+      '@microsoft/api-extractor': 7.36.3(@types/node@18.17.4)
       '@microsoft/tsdoc-config': 0.16.2
       '@rollup/plugin-alias': 5.0.0(rollup@3.27.2)
       '@rollup/plugin-babel': 6.0.3(@babel/core@7.22.9)(rollup@3.27.2)
@@ -4209,7 +4209,7 @@ packages:
       '@sanity/color': 2.2.5
       '@sanity/icons': 2.4.1(react@18.2.0)
       csstype: 3.1.2
-      framer-motion: 10.13.1(react-dom@18.2.0)(react@18.2.0)
+      framer-motion: 10.15.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-is: 18.2.0
@@ -4526,7 +4526,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
       '@types/responselike': 1.0.0
     dev: true
 
@@ -4579,7 +4579,7 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
 
   /@types/hast@2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
@@ -4616,7 +4616,7 @@ packages:
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
     dev: true
 
   /@types/lodash.get@4.4.7:
@@ -4658,15 +4658,15 @@ packages:
   /@types/node-fetch@2.6.3:
     resolution: {integrity: sha512-ETTL1mOEdq/sxUtgtOhKjyB2Irra4cjxksvcMUR5Zr4n+PxVhsCD9WS46oPbHL3et9Zde7CNRr+WUNlcHvsX+w==}
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
       form-data: 3.0.1
     dev: true
 
   /@types/node@14.18.33:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
 
-  /@types/node@18.17.3:
-    resolution: {integrity: sha512-2x8HWtFk0S99zqVQABU9wTpr8wPoaDHZUcAkoTKH+nL7kPv3WUI9cRi/Kk5Mz4xdqXSqTkKP7IWNoQQYCnDsTA==}
+  /@types/node@18.17.4:
+    resolution: {integrity: sha512-ATL4WLgr7/W40+Sp1WnNTSKbgVn6Pvhc/2RHAdt8fl6NsQyp4oPCi2eKcGOvA494bwf1K/W6nGgZ9TwDqvpjdw==}
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -4706,7 +4706,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
     dev: true
 
   /@types/scheduler@0.16.3:
@@ -8370,24 +8370,6 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
     dev: true
-
-  /framer-motion@10.13.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-uiKsaLEoySeln3eOPy8wUB3FkNtRRiVga5xJOkgs7C0sHVyvpJajXJFSoabt+emBojgnMQY0epnjl0ppoYPxkQ==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      tslib: 2.5.3
-    optionalDependencies:
-      '@emotion/is-prop-valid': 0.8.8
-    dev: false
 
   /framer-motion@10.15.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-6avJj/Uftblw0fMmo6jDHkKRH4TBdkMX/FiyR3G/hFe3hQHE4BUNJCqlMPKg9EzfI5jyqDOwO5oDnU+bW5y0eg==}
@@ -12812,7 +12794,7 @@ packages:
       esbuild-register: 3.4.2(esbuild@0.18.19)
       execa: 2.1.0
       exif-component: 1.0.1
-      framer-motion: 10.13.1(react-dom@18.2.0)(react@18.2.0)
+      framer-motion: 10.15.1(react-dom@18.2.0)(react@18.2.0)
       get-it: 8.4.1
       get-random-values-esm: 1.0.0
       groq-js: 1.1.11
@@ -14395,7 +14377,7 @@ packages:
       - terser
     dev: true
 
-  /vite-node@0.34.1(@types/node@18.17.3):
+  /vite-node@0.34.1(@types/node@18.17.4):
     resolution: {integrity: sha512-odAZAL9xFMuAg8aWd7nSPT+hU8u2r9gU3LRm9QKjxBEF2rRdWpMuqkrkjvyVQEdNFiBctqr2Gg4uJYizm5Le6w==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -14405,7 +14387,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.6(@types/node@18.17.3)
+      vite: 4.4.6(@types/node@18.17.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -14452,7 +14434,7 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
-  /vite@4.4.6(@types/node@18.17.3):
+  /vite@4.4.6(@types/node@18.17.4):
     resolution: {integrity: sha512-EY6Mm8vJ++S3D4tNAckaZfw3JwG3wa794Vt70M6cNJ6NxT87yhq7EC8Rcap3ahyHdo8AhCmV9PTk+vG1HiYn1A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -14480,7 +14462,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
       esbuild: 0.18.19
       postcss: 8.4.27
       rollup: 3.27.2
@@ -14531,7 +14513,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
-      '@types/node': 18.17.3
+      '@types/node': 18.17.4
       '@vitest/expect': 0.34.1
       '@vitest/runner': 0.34.1
       '@vitest/snapshot': 0.34.1
@@ -14550,8 +14532,8 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.4.6(@types/node@18.17.3)
-      vite-node: 0.34.1(@types/node@18.17.3)
+      vite: 4.4.6(@types/node@18.17.4)
+      vite-node: 0.34.1(@types/node@18.17.4)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
