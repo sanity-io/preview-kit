@@ -1,28 +1,44 @@
 import { draftMode } from 'next/headers'
-import { Footer, Table, footerQuery, tableQuery } from 'ui/react'
+import {
+  Footer,
+  FooterProps,
+  Table,
+  TableProps,
+  footerQuery,
+  tableQuery,
+} from 'ui/react'
 import { getClient } from './sanity.client'
+import { QueryParams } from '@sanity/client'
 
-export default async function DefaultVariant() {
+async function sanityFetch<R>(
+  query: string,
+  params: QueryParams = {},
+  tags?: string[],
+): Promise<R> {
   const token = process.env.SANITY_API_READ_TOKEN!
   const preview = draftMode().isEnabled ? { token } : undefined
   const client = getClient(preview)
-  const [table, footer] = await Promise.all([
-    client.fetch(
-      tableQuery,
-      {},
-      { cache: 'force-cache', next: { tags: ['pages'] } },
-    ),
-    client.fetch(
-      footerQuery,
-      {},
-      { cache: 'force-cache', next: { tags: ['pages'] } },
-    ),
+  return client.fetch(query, params, { cache: 'force-cache', next: { tags } })
+}
+
+async function DynamicTable() {
+  const data = await sanityFetch<TableProps['data']>(tableQuery, {}, ['pages'])
+
+  return <Table data={data} />
+}
+async function DynamicFooter() {
+  const data = await sanityFetch<FooterProps['data']>(footerQuery, {}, [
+    'pages',
   ])
-  console.log('default')
+
+  return <Footer data={data} />
+}
+
+export default function DefaultVariant() {
   return (
     <>
-      <Table data={table} />
-      <Footer data={footer} />
+      <DynamicTable />
+      <DynamicFooter />
     </>
   )
 }

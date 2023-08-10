@@ -1,8 +1,10 @@
 import { draftMode } from 'next/headers'
 import { Footer, Table, footerQuery, tableQuery } from 'ui/react'
-import PreviewFooter from './PreviewFooter'
-import PreviewTable from './PreviewTable'
+import dynamic from 'next/dynamic'
 import { getClient } from './sanity.client'
+
+const PreviewTable = dynamic(() => import('../../PreviewTable'))
+const PreviewFooter = dynamic(() => import('../../PreviewFooter'))
 
 export default async function Page() {
   const token = process.env.SANITY_API_READ_TOKEN!
@@ -20,7 +22,7 @@ export default async function Page() {
       { cache: 'force-cache', next: { tags: ['pages'] } },
     ),
   ])
-  console.log('no-store')
+
   return (
     <>
       {preview ? (

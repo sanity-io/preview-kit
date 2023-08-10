@@ -6,7 +6,6 @@ export default function DefaultVariant({
   table,
   footer,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log('default')
   return (
     <>
       <Table data={table} />

@@ -1,4 +1,4 @@
-import type { QueryParams } from '@sanity/client'
+import type { QueryParams, SanityClient } from '@sanity/client'
 
 /**
  * @internal
@@ -34,3 +34,42 @@ export type ListenerStatus = 'loading' | 'success'
 export type Logger =
   | typeof console
   | Pick<typeof console, 'warn' | 'error' | 'log'>
+
+/** @public */
+export interface CacheOptions {
+  /**
+   * Uses a `Listen` API call with EventSource to stream updates in real-time to the documents cache
+   * @defaultValue true
+   */
+  listen?: boolean
+  /**
+   * The maximum number of documents to keep in the in-memory
+   * @defaultValue 3000
+   */
+  maxDocuments?: number
+  /**
+   * Set it to an array over document `_type` names to filter the cache to, set it to an empty array to cache any type
+   * @defaultValue []
+   */
+  includeTypes?: string[]
+}
+
+/** @public */
+export interface LiveQueryProviderProps {
+  children: React.ReactNode
+  client: SanityClient
+  cache?: CacheOptions
+  /**
+   * Uses a `Listen` API call with EventSource to stream updates in real-time to the documents cache, powered by `Content Source Map` metadata
+   * @defaultValue true
+   */
+  turboSourceMap?: boolean
+  /**
+   * The interval in millieseconds to refetch in the background, when the tab is active.
+   * It's only used if `turboSourceMap` is set to `true` or there are too many documents to fit in the local cache.
+   * Set it to `0` to disable background refresh.
+   * @defaultValue 10000
+   */
+  refreshInterval?: number
+  logger?: Logger
+}

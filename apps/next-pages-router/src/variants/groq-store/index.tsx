@@ -1,11 +1,12 @@
 import type { InferGetStaticPropsType } from 'next'
+import dynamic from 'next/dynamic'
+import { Table, Footer } from 'ui/react'
 
-import { lazy } from 'react'
-import Footer from './Footer'
-import Table from './Table'
 import { getStaticProps } from '../../pages'
 
-const PreviewProvider = lazy(() => import('./PreviewProvider'))
+const PreviewProvider = dynamic(() => import('./PreviewProvider'))
+const PreviewTable = dynamic(() => import('../../PreviewTable'))
+const PreviewFooter = dynamic(() => import('../../PreviewFooter'))
 
 export default function Page({
   draftMode,
@@ -13,13 +14,12 @@ export default function Page({
   table,
   footer,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log('groq-store')
   return (
     <>
       {draftMode ? (
         <PreviewProvider token={token!}>
-          <Table data={table} />
-          <Footer data={footer} />
+          <PreviewTable data={table} />
+          <PreviewFooter data={footer} />
         </PreviewProvider>
       ) : (
         <>
