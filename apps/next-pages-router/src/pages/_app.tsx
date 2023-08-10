@@ -8,7 +8,5 @@ export default function App({
   Component,
   pageProps,
 }: AppProps<InferGetStaticPropsType<typeof getStaticProps>>) {
-  return (
-    <Component {...pageProps} />
-  )
+  return <Component {...pageProps} />
 }

@@ -20,7 +20,6 @@ import DefaultVariant from '~/variants/default'
 import GroqStoreVariant from '~/variants/groq-store'
 import LiveStoreVariant from '~/variants/live-store'
 
-
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get('Cookie'))
   const preview = session.get('view') === 'previewDrafts'
@@ -60,12 +59,7 @@ function Variant(props: SerializeFrom<typeof loader>) {
 
 export default function Index() {
   const props = useLoaderData<typeof loader>()
-  const {
-    preview,
-    timestamp,
-    server__adapter,
-    server__environment,
-  } = props
+  const { preview, timestamp, server__adapter, server__environment } = props
 
   useEffect(() => {
     console.log({
