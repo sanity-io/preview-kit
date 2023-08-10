@@ -19,11 +19,9 @@ const iframes: [typeof Iframe, string, string][] = [
   'next-app-router-groq-store',
   'next-pages-router-groq-store',
   'remix-groq-store',
-  'remix-groq-store-lazy',
   'next-app-router-live-store',
   'next-pages-router-live-store',
   'remix-live-store',
-  'remix-live-store-lazy',
   'next-app-router-no-store',
 ].map((title) => [
   Iframe.bind({}),

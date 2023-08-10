@@ -1,15 +1,13 @@
-import type { LoaderArgs } from '@vercel/remix'
+import type { LoaderArgs, SerializeFrom } from '@vercel/remix'
 import { useLoaderData, useRevalidator } from '@remix-run/react'
 
 import {
-  Table,
   Timestamp,
   tableQuery,
   Button,
   ViewPublishedButton,
   PreviewDraftsButton,
   footerQuery,
-  Footer,
 } from 'ui/react'
 import {
   unstable__adapter as adapter,
@@ -17,37 +15,11 @@ import {
 } from '@sanity/client'
 import { getSession } from '~/sessions'
 import { useEffect } from 'react'
-import { createClient, type SanityClient } from '@sanity/preview-kit/client'
+import { getClient } from '~/getClient'
+import DefaultVariant from '~/variants/default'
+import GroqStoreVariant from '~/variants/groq-store'
+import LiveStoreVariant from '~/variants/live-store'
 
-const projectId = process.env.SANITY_PROJECT_ID || 'pv8y60vp'
-const dataset = process.env.SANITY_DATASET || 'production'
-const apiVersion = process.env.SANITY_API_VERSION || '2022-11-15'
-const useCdn = true
-const studioUrl = 'https://preview-kit-test-studio.sanity.build/'
-
-function getClient(preview?: { token: string }): SanityClient {
-  const client = createClient({
-    projectId,
-    dataset,
-    apiVersion,
-    useCdn,
-    studioUrl,
-    logger: console,
-    encodeSourceMap: true,
-    perspective: 'published',
-  })
-  if (preview) {
-    if (!preview.token) {
-      throw new Error('You must provide a token to preview drafts')
-    }
-    return client.withConfig({
-      perspective: 'previewDrafts',
-      token: preview.token,
-      useCdn: false,
-    })
-  }
-  return client
-}
 
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get('Cookie'))
@@ -62,7 +34,9 @@ export async function loader({ request }: LoaderArgs) {
   const timestamp = new Date().toJSON()
 
   return {
+    variant: process.env.VARIANT || 'default',
     preview,
+    token,
     table,
     footer,
     timestamp,
@@ -71,15 +45,27 @@ export async function loader({ request }: LoaderArgs) {
   }
 }
 
+function Variant(props: SerializeFrom<typeof loader>) {
+  switch (props.variant) {
+    case 'default':
+      return <DefaultVariant {...props} />
+    case 'groq-store':
+      return <GroqStoreVariant {...props} />
+    case 'live-store':
+      return <LiveStoreVariant {...props} />
+    default:
+      throw new Error(`Unknown variant: ${props.variant}`)
+  }
+}
+
 export default function Index() {
+  const props = useLoaderData<typeof loader>()
   const {
     preview,
-    table,
-    footer,
     timestamp,
     server__adapter,
     server__environment,
-  } = useLoaderData<typeof loader>()
+  } = props
 
   useEffect(() => {
     console.log({
@@ -89,14 +75,13 @@ export default function Index() {
   }, [])
 
   const button = preview ? <ViewPublishedButton /> : <PreviewDraftsButton />
-  const action = preview ? '/api/exit-preview' : '/api/preview'
+  const action = preview ? '/api/disable-draft' : '/api/draft'
 
   return (
     <>
       <form action={action} style={{ display: 'contents' }}>
         {button}
-        <Table data={table} />
-        <Footer data={footer} />
+        <Variant {...props} />
         <Timestamp date={timestamp} />
       </form>
       <RefreshButton />
