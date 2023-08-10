@@ -5,7 +5,7 @@ import type { loader } from '~/routes'
 export default function DefaultVariant({
   table,
   footer,
-}:  SerializeFrom<typeof loader>) {
+}: SerializeFrom<typeof loader>) {
   console.log('default')
   return (
     <>

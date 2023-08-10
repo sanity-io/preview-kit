@@ -1,4 +1,4 @@
-import type {  SerializeFrom } from '@vercel/remix'
+import type { SerializeFrom } from '@vercel/remix'
 
 import Footer from './Footer'
 import PreviewProvider from './PreviewProvider'
@@ -10,7 +10,7 @@ export default function LiveStoreVariant({
   table,
   footer,
   preview,
-}:  SerializeFrom<typeof loader>) {
+}: SerializeFrom<typeof loader>) {
   console.log('live-store')
   return preview ? (
     <PreviewProvider token={token!}>
