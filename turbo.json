@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["RUNNER_OS", "NODE_VERSION"],
+  "globalEnv": ["RUNNER_OS", "NODE_VERSION", "VARIANT"],
   "pipeline": {
     "build": {
       "outputs": [

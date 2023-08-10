@@ -198,7 +198,7 @@ const { query: tableQuery, schema: tableSchema } = q('*')
     }),
   })
   .order('title asc')
-  .slice(0, 10)
+  .slice(0, 9)
 export { tableQuery }
 
 export type TableProps = {
@@ -218,7 +218,7 @@ const thead = (
 export const Table = memo(function Table(props: TableProps) {
   const data = tableSchema.parse(props.data || [])
   return (
-    <div className="table-container is-flex-shrink-0">
+    <div className="table-container is-flex-shrink-0" style={{ width: '100%' }}>
       <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         {thead}
         <tbody>
@@ -265,7 +265,7 @@ export const TableFallback = memo(function TableFallback({
   const trs = Array(rows).fill('')
 
   return (
-    <div className="table-container is-flex-shrink-0">
+    <div className="table-container is-flex-shrink-0" style={{ width: '100%' }}>
       <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         {thead}
         <tbody>
