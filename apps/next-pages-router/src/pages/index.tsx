@@ -6,8 +6,14 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useEffect } from 'react'
 import {
   Button,
-  Container, FooterProps, PreviewDraftsButton, TableProps, Timestamp,
-  ViewPublishedButton, footerQuery, tableQuery
+  Container,
+  FooterProps,
+  PreviewDraftsButton,
+  TableProps,
+  Timestamp,
+  ViewPublishedButton,
+  footerQuery,
+  tableQuery,
 } from 'ui/react'
 import { getClient } from '../sanity.client'
 import DefaultVariant from '../variants/default'
@@ -46,9 +52,7 @@ export const getStaticProps: GetStaticProps<{
   }
 }
 
-function Variant(
-  props: InferGetStaticPropsType<typeof getStaticProps>,
-) {
+function Variant(props: InferGetStaticPropsType<typeof getStaticProps>) {
   switch (props.variant) {
     case 'default':
       return <DefaultVariant {...props} />
@@ -64,8 +68,7 @@ function Variant(
 export default function Page(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const { draftMode, timestamp, server__adapter, server__environment } =
-    props
+  const { draftMode, timestamp, server__adapter, server__environment } = props
   useEffect(() => {
     console.log({
       client__adapter: adapter,
@@ -94,7 +97,6 @@ export default function Page(
     </Container>
   )
 }
-
 
 function RefreshButton() {
   return (
