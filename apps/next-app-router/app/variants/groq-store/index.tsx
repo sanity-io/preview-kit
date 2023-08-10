@@ -10,9 +10,18 @@ export default async function GroqStoreVariant() {
   const preview = draftMode().isEnabled ? { token } : undefined
   const client = getClient(preview)
   const [table, footer] = await Promise.all([
-    client.fetch(tableQuery),
-    client.fetch(footerQuery),
+    client.fetch(
+      tableQuery,
+      {},
+      { cache: 'force-cache', next: { tags: ['pages'] } },
+    ),
+    client.fetch(
+      footerQuery,
+      {},
+      { cache: 'force-cache', next: { tags: ['pages'] } },
+    ),
   ])
+  console.log('groq-store')
   return (
     <>
       {preview ? (

@@ -2,6 +2,10 @@
   "private": true,
   "scripts": {
     "build": "turbo run build --filter=./packages/*",
+    "dev": "turbo run dev --filter=./apps/*",
+    "dev:groq-store": "VARIANT=groq-store pnpm dev",
+    "dev:live-store": "VARIANT=live-store pnpm dev",
+    "dev:no-store": "VARIANT=no-store pnpm dev",
     "format": "prettier --cache --write .",
     "lint": "turbo run lint",
     "test": "turbo run test",

@@ -7,9 +7,18 @@ export default async function DefaultVariant() {
   const preview = draftMode().isEnabled ? { token } : undefined
   const client = getClient(preview)
   const [table, footer] = await Promise.all([
-    client.fetch(tableQuery, {}, {cache: 'force-cache',  next: {tags: ['pages']}}),
-    client.fetch(footerQuery, {}, { cache: 'force-cache', next: {tags: ['pages']}}),
+    client.fetch(
+      tableQuery,
+      {},
+      { cache: 'force-cache', next: { tags: ['pages'] } },
+    ),
+    client.fetch(
+      footerQuery,
+      {},
+      { cache: 'force-cache', next: { tags: ['pages'] } },
+    ),
   ])
+  console.log('default')
   return (
     <>
       <Table data={table} />
