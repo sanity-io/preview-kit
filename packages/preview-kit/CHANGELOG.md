@@ -5,6 +5,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.11](https://github.com/sanity-io/preview-kit/compare/v2.4.10...v2.4.11) (2023-08-11)
+
+### Bug Fixes
+
+- better lazy loading of the provider ([#489](https://github.com/sanity-io/preview-kit/issues/489)) ([c37fd93](https://github.com/sanity-io/preview-kit/commit/c37fd935f0a5c01e2b555e093e11c60c1fc67019))
+- **deps:** update dependency @sanity/client to ^6.4.5 ([#482](https://github.com/sanity-io/preview-kit/issues/482)) ([9bbf18c](https://github.com/sanity-io/preview-kit/commit/9bbf18cb0e05a6c4336c90776297d1c52aedada3))
+- **deps:** Update dependency @sanity/groq-store to v4.0.4 ([#483](https://github.com/sanity-io/preview-kit/issues/483)) ([7b14059](https://github.com/sanity-io/preview-kit/commit/7b140594985e2d15f2f0be2c678b0e8633b12144))
+- **deps:** Update dependency lru-cache to v10.0.1 ([#490](https://github.com/sanity-io/preview-kit/issues/490)) ([5ec4035](https://github.com/sanity-io/preview-kit/commit/5ec40355b574b1ae0b226d1f14371ad9e4986d3e))
+
 ## [2.4.10](https://github.com/sanity-io/preview-kit/compare/v2.4.9...v2.4.10) (2023-08-09)
 
 ### Bug Fixes
