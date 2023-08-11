@@ -8,7 +8,8 @@
     "build:analyze": "ANALYZE=true next build",
     "dev": "next",
     "init": "sanity init -y --project pv8y60vp --dataset production --env .env.local --output-path .",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
     "@sanity/client": "6.4.5",

@@ -6,7 +6,6 @@ export default function DefaultVariant({
   table,
   footer,
 }: SerializeFrom<typeof loader>) {
-  console.log('default')
   return (
     <>
       <Table data={table} />

@@ -1,9 +1,11 @@
-import DefaultVariant from './variants/default'
-import GroqStoreVariant from './variants/groq-store'
-import LiveStoreVariant from './variants/live-store'
-import NoStoreVariant from './variants/no-store'
+import dynamic from 'next/dynamic'
 
-export default async function Page() {
+const DefaultVariant = dynamic(() => import('./variants/default'))
+const GroqStoreVariant = dynamic(() => import('./variants/groq-store'))
+const LiveStoreVariant = dynamic(() => import('./variants/live-store'))
+const NoStoreVariant = dynamic(() => import('./variants/no-store'))
+
+export default function Page() {
   switch (process.env.VARIANT || 'default') {
     case 'default':
       return <DefaultVariant />

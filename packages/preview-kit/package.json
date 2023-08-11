@@ -29,7 +29,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "source": "./src/index.ts",
+      "source": "./src/_exports/index.ts",
       "require": "./dist/index.cjs",
       "node": {
         "module": "./dist/index.js",
@@ -38,9 +38,53 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./internals/create-live-query": {
+      "types": "./dist/internals/create-live-query.d.ts",
+      "source": "./src/_exports/internals/_create-live-query.ts",
+      "require": "./dist/internals/create-live-query.cjs",
+      "node": {
+        "module": "./dist/internals/create-live-query.js",
+        "import": "./dist/internals/create-live-query.cjs.js"
+      },
+      "import": "./dist/internals/create-live-query.js",
+      "default": "./dist/internals/create-live-query.js"
+    },
+    "./internals/groq-store-provider": {
+      "types": "./dist/internals/groq-store-provider.d.ts",
+      "source": "./src/_exports/internals/_groq-store-provider.ts",
+      "require": "./dist/internals/groq-store-provider.cjs",
+      "node": {
+        "module": "./dist/internals/groq-store-provider.js",
+        "import": "./dist/internals/groq-store-provider.cjs.js"
+      },
+      "import": "./dist/internals/groq-store-provider.js",
+      "default": "./dist/internals/groq-store-provider.js"
+    },
+    "./internals/live-query-provider": {
+      "types": "./dist/internals/live-query-provider.d.ts",
+      "source": "./src/_exports/internals/_live-query-provider.ts",
+      "require": "./dist/internals/live-query-provider.cjs",
+      "node": {
+        "module": "./dist/internals/live-query-provider.js",
+        "import": "./dist/internals/live-query-provider.cjs.js"
+      },
+      "import": "./dist/internals/live-query-provider.js",
+      "default": "./dist/internals/live-query-provider.js"
+    },
+    "./internals/live-store-provider": {
+      "types": "./dist/internals/live-store-provider.d.ts",
+      "source": "./src/_exports/internals/_live-store-provider.ts",
+      "require": "./dist/internals/live-store-provider.cjs",
+      "node": {
+        "module": "./dist/internals/live-store-provider.js",
+        "import": "./dist/internals/live-store-provider.cjs.js"
+      },
+      "import": "./dist/internals/live-store-provider.js",
+      "default": "./dist/internals/live-store-provider.js"
+    },
     "./client": {
       "types": "./dist/client.d.ts",
-      "source": "./src/client/index.ts",
+      "source": "./src/_exports/client.ts",
       "require": "./dist/client.cjs",
       "node": {
         "module": "./dist/client.js",
@@ -49,20 +93,9 @@
       "import": "./dist/client.js",
       "default": "./dist/client.js"
     },
-    "./groq-store": {
-      "types": "./dist/groq-store.d.ts",
-      "source": "./src/groq-store/_legacy.ts",
-      "require": "./dist/groq-store.cjs",
-      "node": {
-        "module": "./dist/groq-store.js",
-        "import": "./dist/groq-store.cjs.js"
-      },
-      "import": "./dist/groq-store.js",
-      "default": "./dist/groq-store.js"
-    },
     "./csm": {
       "types": "./dist/csm.d.ts",
-      "source": "./src/csm/index.ts",
+      "source": "./src/_exports/csm.ts",
       "require": "./dist/csm.cjs",
       "node": {
         "module": "./dist/csm.js",
@@ -71,34 +104,103 @@
       "import": "./dist/csm.js",
       "default": "./dist/csm.js"
     },
+    "./groq-store": {
+      "types": "./dist/groq-store.d.ts",
+      "source": "./src/_exports/groq-store.ts",
+      "require": "./dist/groq-store.cjs",
+      "node": {
+        "module": "./dist/groq-store.js",
+        "import": "./dist/groq-store.cjs.js"
+      },
+      "import": "./dist/groq-store.js",
+      "default": "./dist/groq-store.js"
+    },
+    "./live-query": {
+      "types": "./dist/live-query.d.ts",
+      "source": "./src/_exports/live-query.ts",
+      "require": "./dist/live-query.cjs",
+      "node": {
+        "module": "./dist/live-query.js",
+        "import": "./dist/live-query.cjs.js"
+      },
+      "import": "./dist/live-query.js",
+      "default": "./dist/live-query.js"
+    },
+    "./use-is-enabled": {
+      "types": "./dist/use-is-enabled.d.ts",
+      "source": "./src/_exports/use-is-enabled.ts",
+      "require": "./dist/use-is-enabled.cjs",
+      "node": {
+        "module": "./dist/use-is-enabled.js",
+        "import": "./dist/use-is-enabled.cjs.js"
+      },
+      "import": "./dist/use-is-enabled.js",
+      "default": "./dist/use-is-enabled.js"
+    },
+    "./use-live-query": {
+      "types": "./dist/use-live-query.d.ts",
+      "source": "./src/_exports/use-live-query.ts",
+      "require": "./dist/use-live-query.cjs",
+      "node": {
+        "module": "./dist/use-live-query.js",
+        "import": "./dist/use-live-query.cjs.js"
+      },
+      "import": "./dist/use-live-query.js",
+      "default": "./dist/use-live-query.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "source": "./src/index.ts",
+  "source": "./src/_exports/index.ts",
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
+      "internals/create-live-query": [
+        "./dist/internals/create-live-query.d.ts"
+      ],
+      "internals/groq-store-provider": [
+        "./dist/internals/groq-store-provider.d.ts"
+      ],
+      "internals/live-query-provider": [
+        "./dist/internals/live-query-provider.d.ts"
+      ],
+      "internals/live-store-provider": [
+        "./dist/internals/live-store-provider.d.ts"
+      ],
       "client": [
         "./dist/client.d.ts"
+      ],
+      "csm": [
+        "./dist/csm.d.ts"
       ],
       "groq-store": [
         "./dist/groq-store.d.ts"
       ],
-      "csm": [
-        "./dist/csm.d.ts"
+      "live-query": [
+        "./dist/live-query.d.ts"
+      ],
+      "use-is-enabled": [
+        "./dist/use-is-enabled.d.ts"
+      ],
+      "use-live-query": [
+        "./dist/use-live-query.d.ts"
       ]
     }
   },
   "files": [
     "dist",
-    "src",
+    "internals",
+    "!internals/.gitkeep",
     "client.js",
+    "csm.js",
     "groq-store.js",
-    "csm.js"
+    "live-query.js",
+    "use-is-enabled.js",
+    "use-live-query.js"
   ],
   "scripts": {
-    "prebuild": "rimraf dist coverage",
+    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js groq-store.js live-query.js use-is-enabled.js use-live-query.js",
     "build": "pkg build --strict && pkg --strict",
     "watch": "pnpm build watch",
     "coverage": "vitest run --coverage",

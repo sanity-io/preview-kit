@@ -14,7 +14,7 @@ const { createClient } = previewKitClient
 const previewKitGroqStore = require('@sanity/preview-kit/groq-store')
 const { GroqStoreProvider } = previewKitGroqStore
 
-assert.equal(typeof LiveQueryProvider, 'object')
+assert.equal(typeof LiveQueryProvider, 'function')
 assert.equal(typeof useListeningQuery, 'function')
 assert.equal(typeof useListeningQueryStatus, 'function')
 assert.equal(typeof useLiveQuery, 'function')

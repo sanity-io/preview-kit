@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "dev": "next",
     "init": "sanity init --project pv8y60vp --dataset production --env .env.local",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
     "@sanity/client": "6.4.5",
@@ -21,6 +23,7 @@
     "ui": "workspace:*"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.4.13",
     "@types/node": "^18.17.4",
     "@types/react": "^18.2.20",
     "eslint-config-next": "13.4.13",

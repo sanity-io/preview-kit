@@ -15,10 +15,12 @@ import {
   footerQuery,
   tableQuery,
 } from 'ui/react'
+import dynamic from 'next/dynamic'
 import { getClient } from '../sanity.client'
-import DefaultVariant from '../variants/default'
-import GroqStoreVariant from '../variants/groq-store'
-import LiveStoreVariant from '../variants/live-store'
+
+const DefaultVariant = dynamic(() => import('../variants/default'))
+const GroqStoreVariant = dynamic(() => import('../variants/groq-store'))
+const LiveStoreVariant = dynamic(() => import('../variants/live-store'))
 
 export const getStaticProps: GetStaticProps<{
   draftMode: boolean

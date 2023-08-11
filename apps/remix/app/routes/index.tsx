@@ -14,11 +14,12 @@ import {
   unstable__environment as environment,
 } from '@sanity/client'
 import { getSession } from '~/sessions'
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
 import { getClient } from '~/getClient'
-import DefaultVariant from '~/variants/default'
-import GroqStoreVariant from '~/variants/groq-store'
-import LiveStoreVariant from '~/variants/live-store'
+
+const DefaultVariant = lazy(() => import('~/variants/default'))
+const GroqStoreVariant = lazy(() => import('~/variants/groq-store'))
+const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
 
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get('Cookie'))

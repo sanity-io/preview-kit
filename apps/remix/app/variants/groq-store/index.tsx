@@ -1,9 +1,12 @@
 import type { SerializeFrom } from '@vercel/remix'
+import { Footer, Table } from 'ui/react'
+import { lazy } from 'react'
 
-import Footer from './Footer'
-import PreviewProvider from './PreviewProvider'
-import Table from './Table'
 import type { loader } from '~/routes'
+
+const PreviewProvider = lazy(() => import('./PreviewProvider'))
+const PreviewTable = lazy(() => import('../../PreviewTable'))
+const PreviewFooter = lazy(() => import('../../PreviewFooter'))
 
 export default function GroqStoreVariant({
   preview,
@@ -11,11 +14,10 @@ export default function GroqStoreVariant({
   footer,
   token,
 }: SerializeFrom<typeof loader>) {
-  console.log('groq-store')
   return preview ? (
     <PreviewProvider token={token!}>
-      <Table data={table} />
-      <Footer data={footer} />
+      <PreviewTable data={table} />
+      <PreviewFooter data={footer} />
     </PreviewProvider>
   ) : (
     <>

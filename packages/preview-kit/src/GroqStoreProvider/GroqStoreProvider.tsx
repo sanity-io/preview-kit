@@ -11,6 +11,7 @@ import type {
   DefineListenerContext,
   ListenerGetSnapshot,
   ListenerSubscribe,
+  LiveQueryProviderProps,
   Logger,
 } from '../types'
 import {
@@ -20,10 +21,13 @@ import {
   useLoadingListenersContext,
 } from '../utils'
 
+export type { LiveQueryProviderProps, Logger }
+export type { CacheOptions } from '../types'
+
 /**
  * @public
  */
-export interface GroqStoreProviderProps extends Config {
+export interface GroqStoreProviderInternalProps extends Config {
   children: React.ReactNode
   /**
    * @defaultValue true
@@ -43,8 +47,8 @@ export interface GroqStoreProviderProps extends Config {
  * Caches the store instance, if the config changes you need to pass a new `key` prop to apply it and trigger a re-render
  * @public
  */
-export const GroqStoreProvider = memo(function GroqStoreProvider(
-  props: GroqStoreProviderProps,
+export const GroqStoreProviderInternal = memo(function GroqStoreProvider(
+  props: GroqStoreProviderInternalProps,
 ) {
   const {
     children,
@@ -152,5 +156,40 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
         {children}
       </LoadedListenersContext.Provider>
     </ListenerContext.Provider>
+  )
+})
+
+/**
+ * Handles live query updates using `@sanity/groq-store`
+ * @internal
+ */
+export const GroqStoreProvider = memo(function GroqStoreProvider(
+  props: LiveQueryProviderProps,
+) {
+  const { children, client, cache, logger } = props
+  const {
+    projectId,
+    dataset,
+    token,
+    // eslint-disable-next-line no-warning-comments
+    // @TODO @sanity/groq-store should handle `perspective` directly
+    perspective = 'previewDrafts',
+    requestTagPrefix,
+  } = useMemo(() => client.config(), [client])
+
+  return (
+    <GroqStoreProviderInternal
+      projectId={projectId!}
+      dataset={dataset!}
+      token={token}
+      logger={logger}
+      listen={cache?.listen ?? true}
+      documentLimit={cache?.maxDocuments}
+      overlayDrafts={perspective === 'previewDrafts'}
+      includeTypes={cache?.includeTypes}
+      requestTagPrefix={requestTagPrefix}
+    >
+      {children}
+    </GroqStoreProviderInternal>
   )
 })

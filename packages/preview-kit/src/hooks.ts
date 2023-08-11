@@ -154,3 +154,11 @@ function useParams(
   )
   return useMemo(() => JSON.parse(stringifiedParams), [stringifiedParams])
 }
+
+/**
+ * @internal
+ * @deprecated not implemented yet
+ */
+export function useIsEnabled(): void {
+  throw new Error('useIsEnabled is not implemented')
+}

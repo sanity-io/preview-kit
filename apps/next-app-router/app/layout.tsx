@@ -1,10 +1,13 @@
 import 'bulma/css/bulma.min.css'
-import { Container } from 'ui/react'
+import { Container, Timestamp } from 'ui/react'
 import { unstable__adapter, unstable__environment } from '@sanity/client'
-import { Timestamp } from 'ui/react'
 import DraftModeButton from './DraftModeButton'
 import RefreshButton from './RefreshButton'
-import { Suspense } from 'react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: `next-app-router-${process.env.VARIANT || 'default'}`,
+}
 
 export default function RootLayout({
   children,
@@ -17,7 +20,7 @@ export default function RootLayout({
       <body>
         <Container>
           <DraftModeButton />
-          <Suspense>{children}</Suspense>
+          {children}
           <Timestamp date={new Date()} />
           <RefreshButton />
           <script
