@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.12](https://github.com/sanity-io/preview-kit/compare/v2.4.11...v2.4.12) (2023-08-11)
+
+### Bug Fixes
+
+- add back `ClientQueryParams` type export ([172ec03](https://github.com/sanity-io/preview-kit/commit/172ec03870c3cc50617c2427625669abfe1812d2))
+
 ## [2.4.11](https://github.com/sanity-io/preview-kit/compare/v2.4.10...v2.4.11) (2023-08-11)
 
 ### Bug Fixes
