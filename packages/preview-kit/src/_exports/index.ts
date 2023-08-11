@@ -1,4 +1,5 @@
 export {
+  type ClientQueryParams,
   type isEqualFn,
   type ListenerStatus,
   type ListeningQueryHookOptions,
