@@ -200,7 +200,7 @@
     "use-live-query.js"
   ],
   "scripts": {
-    "prebuild": "npx rimraf coverage dist 'internals/*.js' client.js csm.js groq-store.js live-query.js use-is-enabled.js use-live-query.js",
+    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js groq-store.js live-query.js use-is-enabled.js use-live-query.js",
     "build": "pkg build --strict && pkg --strict",
     "watch": "pnpm build watch",
     "coverage": "vitest run --coverage",
