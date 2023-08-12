@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.0](https://github.com/sanity-io/preview-kit/compare/v2.4.12...v2.5.0) (2023-08-12)
+
+### Features
+
+- add `useIsEnabled` hook ([d0f6b2d](https://github.com/sanity-io/preview-kit/commit/d0f6b2dbdf4d5d1403dd1e912f2b627f002eb25b))
+
 ## [2.4.12](https://github.com/sanity-io/preview-kit/compare/v2.4.11...v2.4.12) (2023-08-11)
 
 ### Bug Fixes
