@@ -79,3 +79,4 @@ export const SelectStoreProvider = memo(function SelectStoreProvider(
 
   return <GroqStoreProvider {...props}>{children}</GroqStoreProvider>
 })
+SelectStoreProvider.displayName = 'SelectStoreProvider'

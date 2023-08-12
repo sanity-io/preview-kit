@@ -67,3 +67,4 @@ export const LiveQueryProviderInternal = memo(
     )
   },
 )
+LiveQueryProviderInternal.displayName = 'LiveQueryProviderInternal'

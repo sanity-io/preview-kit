@@ -5,6 +5,7 @@ import { useEffect, useTransition } from 'react'
 import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 import { Button } from 'ui/react'
 import { revalidate } from './actions'
+import { useIsEnabled } from '@sanity/preview-kit'
 
 function useRefresh() {
   const { pending } = useFormStatus()
@@ -21,10 +22,21 @@ function useRefresh() {
 
 export default function RefreshButton() {
   const loading = useRefresh()
+  const isLive = useIsEnabled()
 
   return (
-    <form action={revalidate} className="section">
-      <Button isLoading={loading}>Refresh</Button>
+    <form
+      action={revalidate}
+      className="section"
+      title={
+        isLive
+          ? 'Live queries are enabled and refreshes queries automatically, refreshing manually is unnecessary'
+          : undefined
+      }
+    >
+      <Button isLoading={loading} disabled={isLive}>
+        Refresh
+      </Button>
     </form>
   )
 }

@@ -15,6 +15,7 @@ function DynamicGroqStoreProvider(props: LiveQueryProviderProps) {
     </Suspense>
   )
 }
+DynamicGroqStoreProvider.displayName = 'DynamicGroqStoreProvider'
 function DynamicLiveStoreProvider(props: LiveQueryProviderProps) {
   return (
     <Suspense fallback={props.children}>
@@ -22,6 +23,7 @@ function DynamicLiveStoreProvider(props: LiveQueryProviderProps) {
     </Suspense>
   )
 }
+DynamicLiveStoreProvider.displayName = 'DynamicLiveStoreProvider'
 
 export function LiveQueryProvider(
   props: LiveQueryProviderProps,
@@ -36,3 +38,4 @@ export function LiveQueryProvider(
     </Suspense>
   )
 }
+LiveQueryProvider.displayName = 'LiveQueryProvider'

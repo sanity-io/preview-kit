@@ -17,6 +17,7 @@ import {
 } from 'ui/react'
 import dynamic from 'next/dynamic'
 import { getClient } from '../sanity.client'
+import { useIsEnabled } from '@sanity/preview-kit'
 
 const DefaultVariant = dynamic(() => import('../variants/default'))
 const GroqStoreVariant = dynamic(() => import('../variants/groq-store'))
@@ -54,7 +55,10 @@ export const getStaticProps: GetStaticProps<{
   }
 }
 
-function Variant(props: InferGetStaticPropsType<typeof getStaticProps>) {
+function Variant(
+  props: InferGetStaticPropsType<typeof getStaticProps> &
+    React.PropsWithChildren,
+) {
   switch (props.variant) {
     case 'default':
       return <DefaultVariant {...props} />
@@ -87,9 +91,10 @@ export default function Page(
           <PreviewDraftsButton formAction="/api/draft" />
         )}
       </form>
-      <Variant {...props} />
-      {timestamp && <Timestamp date={timestamp} />}
-      <RefreshButton />
+      <Variant {...props}>
+        {timestamp && <Timestamp date={timestamp} />}
+        <RefreshButton />
+      </Variant>
       <script
         type="application/json"
         dangerouslySetInnerHTML={{
@@ -101,9 +106,18 @@ export default function Page(
 }
 
 function RefreshButton() {
+  const isLive = useIsEnabled()
   return (
-    <form action="/api/revalidate" className="section">
-      <Button>Refresh</Button>
+    <form
+      action="/api/revalidate"
+      className="section"
+      title={
+        isLive
+          ? 'Live queries are enabled and refreshes queries automatically, refreshing manually is unnecessary'
+          : undefined
+      }
+    >
+      <Button disabled={isLive}>Refresh</Button>
     </form>
   )
 }

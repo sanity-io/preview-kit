@@ -6,7 +6,7 @@ import { getClient } from './sanity.client'
 const PreviewTable = dynamic(() => import('../../PreviewTable'))
 const PreviewFooter = dynamic(() => import('../../PreviewFooter'))
 
-export default async function Page() {
+export default async function Page({ children }: React.PropsWithChildren) {
   const token = process.env.SANITY_API_READ_TOKEN!
   const preview = draftMode().isEnabled ? { token } : undefined
   const client = getClient(preview)
@@ -29,11 +29,13 @@ export default async function Page() {
         <>
           <PreviewTable data={table} />
           <PreviewFooter data={footer} />
+          {children}
         </>
       ) : (
         <>
           <Table data={table} />
           <Footer data={footer} />
+          {children}
         </>
       )}
     </>

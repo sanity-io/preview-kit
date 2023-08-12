@@ -115,16 +115,19 @@ import { memo } from 'react'
 
 export function Button({
   children,
+  disabled,
   isLoading,
   formAction,
 }: {
   children?: React.ReactNode
+  disabled?: boolean
   isLoading?: boolean
   formAction?: JSX.IntrinsicElements['button']['formAction']
 }) {
   return (
     <button
       type="submit"
+      disabled={disabled}
       formAction={formAction}
       className={`button is-light ${isLoading ? 'is-loading' : ''}`}
     >

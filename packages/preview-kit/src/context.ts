@@ -17,3 +17,10 @@ export const defineListenerContext =
 export const LoadedListenersContext = createContext<QueryCacheKey[] | null>(
   null,
 )
+
+/**
+ * Aids in debugging, notifying if the parent has a GroqStoreProvider, or a LiveStoreProvider, and is thus `live`.
+ * This is helpful as the `useLiveQuery` hook itself works even if no provider is present, but it will not be `live`.
+ * @internal
+ */
+export const IsEnabledContext = createContext<boolean>(false)

@@ -5,6 +5,7 @@ export {
   type ListeningQueryHookOptions,
   type LiveQueryHookOptions,
   type QueryLoading,
+  useIsEnabled,
   useListeningQuery,
   useListeningQueryStatus,
   useLiveQuery,

@@ -1,8 +1,7 @@
 import 'bulma/css/bulma.min.css'
-import { Container, Timestamp } from 'ui/react'
+import { Container } from 'ui/react'
 import { unstable__adapter, unstable__environment } from '@sanity/client'
 import DraftModeButton from './DraftModeButton'
-import RefreshButton from './RefreshButton'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -21,8 +20,6 @@ export default function RootLayout({
         <Container>
           <DraftModeButton />
           {children}
-          <Timestamp date={new Date()} />
-          <RefreshButton />
           <script
             type="application/json"
             dangerouslySetInnerHTML={{

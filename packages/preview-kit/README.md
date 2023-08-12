@@ -361,6 +361,8 @@ export default function PreviewProvider({
 
 Only the `client` prop is required. For debugging you can pass a `logger={console}` prop.
 
+You can also use the `useIsEnabled` hook to debug wether you have a parent `<LiveQueryProvider />` in your React tree or not.
+
 ### 3. Making a Remix route conditionally preview draft
 
 Here's the Remix route we'll be adding live preview of drafts, it's pretty basic:
@@ -707,6 +709,42 @@ export const UsersList = memo(function UsersList(props: UsersListProps) {
 ```
 
 ### Advanced usage
+
+#### Trouble-shooting and debugging
+
+As the nature of live queries is that they're real-time, it can be hard to debug issues. Is nothing happening because no edits happened? Or because something isn't setup correctly?
+To aid in understanding what's going on, you can pass a `logger` prop to `LiveQueryProvider`:
+
+```tsx
+<LiveQueryProvider client={client} logger={console}>
+  {children}
+</LiveQueryProvider>
+```
+
+You'll now get detailed reports on how it's setup and what to expect in terms of how it responds to updates. For example in large datasets it may use a polling interval instead of running GROQ queries on a complete local cache of your dataset.
+
+You can also use the `useIsEnabled` hook to determine of a live component (something that uses `useLiveQuery`) has a `LiveQueryProvider` in the parent tree or not:
+
+```tsx
+import { useLiveQuery, useIsEnabled } from '@sanity/preview-kit'
+
+export function PreviewUsersList(props) {
+  const [data] = useLiveQuery(props.data, query, params)
+  const isLive = useIsEnabled()
+
+  if (!isLive) {
+    throw new TypeError('UsersList is not wrapped in a LiveQueryProvider')
+  }
+
+  return <UsersList data={data} />
+}
+```
+
+If it's always `false` it's an indicator that you may need to lift your `LiveQueryProvider` higher up in the tree. Depending on the framework it's recommended that you put it in:
+
+- Remix: `src/app/routes/index.tsx`
+- Next App Router: `src/app/layout.tsx`
+- Next Pages Router: `src/pages/_app.tsx`
 
 #### Fine-tuning `cache`
 

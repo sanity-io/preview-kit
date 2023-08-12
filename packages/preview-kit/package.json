@@ -38,17 +38,6 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
-    "./internals/create-live-query": {
-      "types": "./dist/internals/create-live-query.d.ts",
-      "source": "./src/_exports/internals/_create-live-query.ts",
-      "require": "./dist/internals/create-live-query.cjs",
-      "node": {
-        "module": "./dist/internals/create-live-query.js",
-        "import": "./dist/internals/create-live-query.cjs.js"
-      },
-      "import": "./dist/internals/create-live-query.js",
-      "default": "./dist/internals/create-live-query.js"
-    },
     "./internals/groq-store-provider": {
       "types": "./dist/internals/groq-store-provider.d.ts",
       "source": "./src/_exports/internals/_groq-store-provider.ts",
@@ -126,28 +115,6 @@
       "import": "./dist/live-query.js",
       "default": "./dist/live-query.js"
     },
-    "./use-is-enabled": {
-      "types": "./dist/use-is-enabled.d.ts",
-      "source": "./src/_exports/use-is-enabled.ts",
-      "require": "./dist/use-is-enabled.cjs",
-      "node": {
-        "module": "./dist/use-is-enabled.js",
-        "import": "./dist/use-is-enabled.cjs.js"
-      },
-      "import": "./dist/use-is-enabled.js",
-      "default": "./dist/use-is-enabled.js"
-    },
-    "./use-live-query": {
-      "types": "./dist/use-live-query.d.ts",
-      "source": "./src/_exports/use-live-query.ts",
-      "require": "./dist/use-live-query.cjs",
-      "node": {
-        "module": "./dist/use-live-query.js",
-        "import": "./dist/use-live-query.cjs.js"
-      },
-      "import": "./dist/use-live-query.js",
-      "default": "./dist/use-live-query.js"
-    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
@@ -156,9 +123,6 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
-      "internals/create-live-query": [
-        "./dist/internals/create-live-query.d.ts"
-      ],
       "internals/groq-store-provider": [
         "./dist/internals/groq-store-provider.d.ts"
       ],
@@ -179,12 +143,6 @@
       ],
       "live-query": [
         "./dist/live-query.d.ts"
-      ],
-      "use-is-enabled": [
-        "./dist/use-is-enabled.d.ts"
-      ],
-      "use-live-query": [
-        "./dist/use-live-query.d.ts"
       ]
     }
   },
@@ -195,12 +153,10 @@
     "client.js",
     "csm.js",
     "groq-store.js",
-    "live-query.js",
-    "use-is-enabled.js",
-    "use-live-query.js"
+    "live-query.js"
   ],
   "scripts": {
-    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js groq-store.js live-query.js use-is-enabled.js use-live-query.js",
+    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js groq-store.js live-query.js",
     "build": "pkg build --strict && pkg --strict",
     "watch": "pnpm build watch",
     "coverage": "vitest run --coverage",

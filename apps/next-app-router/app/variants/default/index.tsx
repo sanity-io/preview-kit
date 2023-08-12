@@ -34,11 +34,12 @@ async function DynamicFooter() {
   return <Footer data={data} />
 }
 
-export default function DefaultVariant() {
+export default function DefaultVariant({ children }: React.PropsWithChildren) {
   return (
     <>
       <DynamicTable />
       <DynamicFooter />
+      {children}
     </>
   )
 }

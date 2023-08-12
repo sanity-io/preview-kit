@@ -5,6 +5,7 @@ import { memo, useEffect, useMemo, useState } from 'react'
 
 import {
   defineListenerContext as ListenerContext,
+  IsEnabledContext,
   LoadedListenersContext,
 } from '../context'
 import type {
@@ -153,11 +154,12 @@ export const GroqStoreProviderInternal = memo(function GroqStoreProvider(
   return (
     <ListenerContext.Provider value={listenerContext}>
       <LoadedListenersContext.Provider value={loadedListenersContext}>
-        {children}
+        <IsEnabledContext.Provider value>{children}</IsEnabledContext.Provider>
       </LoadedListenersContext.Provider>
     </ListenerContext.Provider>
   )
 })
+GroqStoreProviderInternal.displayName = 'GroqStoreProviderInternal'
 
 /**
  * Handles live query updates using `@sanity/groq-store`
@@ -193,3 +195,4 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
     </GroqStoreProviderInternal>
   )
 })
+GroqStoreProvider.displayName = 'GroqStoreProvider'

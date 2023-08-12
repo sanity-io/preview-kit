@@ -19,7 +19,7 @@ import {
   useSyncExternalStore,
 } from 'react'
 
-import { defineListenerContext as Context } from '../context'
+import { defineListenerContext as Context, IsEnabledContext } from '../context'
 import { parseNormalisedJsonPath } from '../csm/jsonpath'
 import { resolveMapping, walkMap } from '../csm/sourcemap'
 import type {
@@ -160,7 +160,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
 
   return (
     <Context.Provider value={context}>
-      {children}
+      <IsEnabledContext.Provider value>{children}</IsEnabledContext.Provider>
       {turboSourceMap && (
         <Turbo
           cache={hooks.cache}
@@ -190,6 +190,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
     </Context.Provider>
   )
 })
+LiveStoreProvider.displayName = 'LiveStoreProvider'
 
 interface QuerySubscriptionProps
   extends Required<Pick<LiveStoreProviderProps, 'client' | 'refreshInterval'>> {
@@ -289,6 +290,7 @@ const QuerySubscription = memo(function QuerySubscription(
 
   return null
 })
+QuerySubscription.displayName = 'QuerySubscription'
 
 type QuerySnapshotsCache = Map<
   QueryCacheKey,
@@ -614,6 +616,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
     </>
   )
 })
+Turbo.displayName = 'Turbo'
 
 interface GetDocumentsProps extends Pick<LiveStoreProviderProps, 'client'> {
   projectId: string
@@ -640,6 +643,7 @@ const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
 
   return null
 })
+GetDocuments.displayName = 'GetDocuments'
 
 function turboChargeResultIfSourceMap(
   projectId: string,

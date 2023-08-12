@@ -3,7 +3,11 @@ import { useCallback, useContext, useMemo, useState } from 'react'
 import isFastEqual from 'react-fast-compare'
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector'
 
-import { defineListenerContext, LoadedListenersContext } from './context'
+import {
+  defineListenerContext,
+  IsEnabledContext,
+  LoadedListenersContext,
+} from './context'
 import type { ListenerStatus } from './types'
 import { getQueryCacheKey } from './utils'
 
@@ -156,9 +160,12 @@ function useParams(
 }
 
 /**
- * @internal
- * @deprecated not implemented yet
+ * The `useLiveQuery` hook is designed to work in environments where the parent `LiveQueryProvider` may be lazy loaded.
+ * Thus if it can't "know" if it's "live" or not, or of it will be later. When everything is setup correctly this is fine.
+ * This hook on the other hand does know. If it returns `false` then sibling `useLiveQuery` hooks are not "live".
+ * If it returns `true` then sibling `useLiveQuery` hooks are "live" as there is a parent `LiveQueryProvider` in the tree that is loaded and active.
+ * @public
  */
-export function useIsEnabled(): void {
-  throw new Error('useIsEnabled is not implemented')
+export function useIsEnabled(): boolean {
+  return useContext(IsEnabledContext)
 }

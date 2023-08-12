@@ -16,6 +16,7 @@ import {
 import { getSession } from '~/sessions'
 import { lazy, useEffect } from 'react'
 import { getClient } from '~/getClient'
+import { useIsEnabled } from '@sanity/preview-kit'
 
 const DefaultVariant = lazy(() => import('~/variants/default'))
 const GroqStoreVariant = lazy(() => import('~/variants/groq-store'))
@@ -76,10 +77,11 @@ export default function Index() {
     <>
       <form action={action} style={{ display: 'contents' }}>
         {button}
-        <Variant {...props} />
-        <Timestamp date={timestamp} />
+        <Variant {...props}>
+          <Timestamp date={timestamp} />
+          <RefreshButton />
+        </Variant>
       </form>
-      <RefreshButton />
       <script
         type="application/json"
         dangerouslySetInnerHTML={{
@@ -92,7 +94,7 @@ export default function Index() {
 
 function RefreshButton() {
   const revalidator = useRevalidator()
-
+  const isLive = useIsEnabled()
   return (
     <form
       onSubmit={(event) => {
@@ -100,8 +102,13 @@ function RefreshButton() {
         revalidator.revalidate()
       }}
       className="section"
+      title={
+        isLive
+          ? 'Live queries are enabled and refreshes queries automatically, refreshing manually is unnecessary'
+          : undefined
+      }
     >
-      <Button>Refresh</Button>
+      <Button disabled={isLive}>Refresh</Button>
     </form>
   )
 }
