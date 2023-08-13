@@ -9,7 +9,7 @@ import {
   LoadedListenersContext,
 } from './context'
 import type { ListenerStatus } from './types'
-import { getQueryCacheKey } from './utils'
+import { getQueryCacheKey, useParams } from './utils'
 
 // Re-export types we use that are needed externally
 export type { ClientQueryParams, ListenerStatus }
@@ -143,20 +143,6 @@ export function useListeningQueryStatus<
   const loading = useLiveQueryIsLoading(query, params)
 
   return loading ? 'loading' : 'success'
-}
-
-/**
- * Return params that are stable with deep equal as long as the key order is the same
- * @internal
- */
-function useParams(
-  params?: undefined | null | ClientQueryParams,
-): ClientQueryParams {
-  const stringifiedParams = useMemo(
-    () => JSON.stringify(params || {}),
-    [params],
-  )
-  return useMemo(() => JSON.parse(stringifiedParams), [stringifiedParams])
 }
 
 /**

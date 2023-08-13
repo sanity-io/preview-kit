@@ -319,7 +319,8 @@ export const client = createClient({
 })
 
 // Only defined on the server, passed to the browser via a `loader`
-export const token = process.env.SANITY_API_READ_TOKEN!
+export const token =
+  typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
 
 const DEFAULT_PARAMS = {} as QueryParams
 

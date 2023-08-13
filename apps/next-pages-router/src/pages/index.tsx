@@ -7,8 +7,10 @@ import { useEffect } from 'react'
 import {
   Button,
   Container,
+  Footer,
   FooterProps,
   PreviewDraftsButton,
+  Table,
   TableProps,
   Timestamp,
   ViewPublishedButton,
@@ -17,6 +19,7 @@ import {
 } from 'ui/react'
 import dynamic from 'next/dynamic'
 import { useIsEnabled } from '@sanity/preview-kit'
+import { LiveQuery } from '@sanity/preview-kit/live-query'
 import { sanityFetch, token } from '../sanity.fetch'
 
 const DefaultVariant = dynamic(() => import('../variants/default'))
@@ -90,6 +93,20 @@ export default function Page(
         )}
       </form>
       <Variant {...props}>
+        <LiveQuery
+          enabled={draftMode}
+          initialData={props.table}
+          query={tableQuery}
+        >
+          <Table data={props.table} />
+        </LiveQuery>
+        <LiveQuery
+          enabled={draftMode}
+          initialData={props.footer}
+          query={footerQuery}
+        >
+          <Footer data={props.footer} />
+        </LiveQuery>
         {timestamp && <Timestamp date={timestamp} />}
         <RefreshButton />
       </Variant>

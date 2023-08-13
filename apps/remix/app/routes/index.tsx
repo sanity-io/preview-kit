@@ -9,6 +9,8 @@ import {
   ViewPublishedButton,
   PreviewDraftsButton,
   footerQuery,
+  Table,
+  Footer,
 } from 'ui/react'
 import {
   unstable__adapter as adapter,
@@ -17,6 +19,7 @@ import {
 import { getSession } from '~/sessions'
 import { lazy, useEffect } from 'react'
 import { useIsEnabled } from '@sanity/preview-kit'
+import { LiveQuery } from '@sanity/preview-kit/live-query'
 import { sanityFetch, token } from '~/sanity'
 
 const DefaultVariant = lazy(() => import('~/variants/default'))
@@ -76,6 +79,7 @@ export default function Index() {
     <PreviewDraftsButton />
   )
   const action = previewDrafts ? '/api/disable-draft' : '/api/draft'
+  const { table, footer } = props
 
   return (
     <>
@@ -83,6 +87,20 @@ export default function Index() {
         {button}
       </form>
       <Variant {...props}>
+        <LiveQuery
+          enabled={previewDrafts}
+          initialData={table}
+          query={tableQuery}
+        >
+          <Table data={table} />
+        </LiveQuery>
+        <LiveQuery
+          enabled={previewDrafts}
+          initialData={footer}
+          query={footerQuery}
+        >
+          <Footer data={footer} />
+        </LiveQuery>
         <Timestamp date={timestamp} />
         <RefreshButton />
       </Variant>
