@@ -58,6 +58,13 @@ export interface CacheOptions {
 export interface LiveQueryProviderProps {
   children: React.ReactNode
   client: SanityClient
+  /**
+   * Reconfigures `client` with the provided `token`, as well as changing its configuration to
+   * have `perspective: 'previewDrafts'`, `useCdn: false` and `ignoreBrowserTokenWarning: true`.
+   * If you want to use a different configuration, then use just the `client` prop and set the token yourself,
+   * for example by: `client={client.withConfig({token})}`
+   */
+  token?: string
   cache?: CacheOptions
   /**
    * Uses a `Listen` API call with EventSource to stream updates in real-time to the documents cache, powered by `Content Source Map` metadata

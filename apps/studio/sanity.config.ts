@@ -22,7 +22,6 @@ const iframes: [typeof Iframe, string, string][] = [
   'next-app-router-live-store',
   'next-pages-router-live-store',
   'remix-live-store',
-  'next-app-router-no-store',
 ].map((title) => [
   Iframe.bind({}),
   `https://preview-kit-${title}.sanity.build`,

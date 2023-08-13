@@ -19,6 +19,7 @@ export const LiveQueryProviderInternal = memo(
       LiveStoreProvider,
       children,
       refreshInterval = 10000,
+      token,
     } = props
 
     if (!props.client) {
@@ -31,6 +32,13 @@ export const LiveQueryProviderInternal = memo(
     const [client] = useState(() =>
       props.client.withConfig({
         requestTagPrefix: props.client.config().requestTagPrefix || DEFAULT_TAG,
+        // Set the recommended defaults, this is a convenience to make it easier to share a client config from a server component to the client component
+        ...(token && {
+          token,
+          useCdn: false,
+          perspective: 'previewDrafts',
+          ignoreBrowserTokenWarning: true,
+        }),
       }),
     )
     const [cache] = useState(() => props.cache)

@@ -1,7 +1,14 @@
 import { draftMode } from 'next/headers'
-import { Footer, Table, footerQuery, tableQuery } from 'ui/react'
+import {
+  Footer,
+  FooterProps,
+  Table,
+  TableProps,
+  footerQuery,
+  tableQuery,
+} from 'ui/react'
 import dynamic from 'next/dynamic'
-import { getClient } from './sanity.client'
+import { sanityFetch, token } from './sanity.fetch'
 
 const PreviewProvider = dynamic(() => import('./PreviewProvider'))
 const PreviewTable = dynamic(() => import('../../PreviewTable'))
@@ -10,26 +17,15 @@ const PreviewFooter = dynamic(() => import('../../PreviewFooter'))
 export default async function LiveStoreVariant({
   children,
 }: React.PropsWithChildren) {
-  const token = process.env.SANITY_API_READ_TOKEN!
-  const preview = draftMode().isEnabled ? { token } : undefined
-  const client = getClient(preview)
   const [table, footer] = await Promise.all([
-    client.fetch(
-      tableQuery,
-      {},
-      { cache: 'force-cache', next: { tags: ['pages'] } },
-    ),
-    client.fetch(
-      footerQuery,
-      {},
-      { cache: 'force-cache', next: { tags: ['pages'] } },
-    ),
+    sanityFetch<TableProps['data']>({ query: tableQuery, tags: ['pages'] }),
+    sanityFetch<FooterProps['data']>({ query: footerQuery, tags: ['pages'] }),
   ])
 
   return (
     <>
-      {preview ? (
-        <PreviewProvider token={preview.token!}>
+      {draftMode().isEnabled ? (
+        <PreviewProvider token={token}>
           <PreviewTable data={table} />
           <PreviewFooter data={footer} />
           {children}

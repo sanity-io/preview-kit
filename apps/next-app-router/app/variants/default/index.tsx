@@ -1,4 +1,3 @@
-import { draftMode } from 'next/headers'
 import {
   Footer,
   FooterProps,
@@ -7,29 +6,21 @@ import {
   footerQuery,
   tableQuery,
 } from 'ui/react'
-import { getClient } from './sanity.client'
-import { QueryParams } from '@sanity/client'
-
-async function sanityFetch<R>(
-  query: string,
-  params: QueryParams = {},
-  tags?: string[],
-): Promise<R> {
-  const token = process.env.SANITY_API_READ_TOKEN!
-  const preview = draftMode().isEnabled ? { token } : undefined
-  const client = getClient(preview)
-  return client.fetch(query, params, { cache: 'force-cache', next: { tags } })
-}
+import { sanityFetch } from './sanity.fetch'
 
 async function DynamicTable() {
-  const data = await sanityFetch<TableProps['data']>(tableQuery, {}, ['pages'])
+  const data = await sanityFetch<TableProps['data']>({
+    query: tableQuery,
+    tags: ['pages'],
+  })
 
   return <Table data={data} />
 }
 async function DynamicFooter() {
-  const data = await sanityFetch<FooterProps['data']>(footerQuery, {}, [
-    'pages',
-  ])
+  const data = await sanityFetch<FooterProps['data']>({
+    query: footerQuery,
+    tags: ['pages'],
+  })
 
   return <Footer data={data} />
 }

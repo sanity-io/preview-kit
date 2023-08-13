@@ -77,11 +77,11 @@ export default function Index() {
     <>
       <form action={action} style={{ display: 'contents' }}>
         {button}
-        <Variant {...props}>
-          <Timestamp date={timestamp} />
-          <RefreshButton />
-        </Variant>
       </form>
+      <Variant {...props}>
+        <Timestamp date={timestamp} />
+        <RefreshButton />
+      </Variant>
       <script
         type="application/json"
         dangerouslySetInnerHTML={{
