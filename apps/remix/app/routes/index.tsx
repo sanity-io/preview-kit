@@ -49,11 +49,11 @@ export async function loader({ request }: LoaderArgs) {
 function Variant(props: SerializeFrom<typeof loader>) {
   switch (props.variant) {
     case 'default':
-      return <DefaultVariant {...props} />
+      return <DefaultVariant key="default" {...props} />
     case 'groq-store':
-      return <GroqStoreVariant {...props} />
+      return <GroqStoreVariant key="groq-store" {...props} />
     case 'live-store':
-      return <LiveStoreVariant {...props} />
+      return <LiveStoreVariant key="live-store" {...props} />
     default:
       throw new Error(`Unknown variant: ${props.variant}`)
   }

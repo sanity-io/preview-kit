@@ -1,5 +1,11 @@
 import type { QueryParams as ClientQueryParams } from '@sanity/client'
-import { useCallback, useContext, useMemo, useState } from 'react'
+import {
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  useSyncExternalStore,
+} from 'react'
 import isFastEqual from 'react-fast-compare'
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector'
 
@@ -167,5 +173,13 @@ function useParams(
  * @public
  */
 export function useIsEnabled(): boolean {
-  return useContext(IsEnabledContext)
+  const isEnabled = useContext(IsEnabledContext)
+  // Workaround SSR hydration, when rendering on the server this will always be false but in the
+  // browser it will be true if the parent `LiveQueryProvider` is loaded and active.
+  return useSyncExternalStore(
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useCallback(() => () => {}, [isEnabled]),
+    () => isEnabled,
+    () => false,
+  )
 }
