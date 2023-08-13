@@ -16,8 +16,8 @@ import {
   tableQuery,
 } from 'ui/react'
 import dynamic from 'next/dynamic'
-import { getClient } from '../sanity.client'
 import { useIsEnabled } from '@sanity/preview-kit'
+import { sanityFetch, token } from '../sanity.fetch'
 
 const DefaultVariant = dynamic(() => import('../variants/default'))
 const GroqStoreVariant = dynamic(() => import('../variants/groq-store'))
@@ -33,11 +33,9 @@ export const getStaticProps: GetStaticProps<{
   server__environment: typeof environment
   variant: string
 }> = async ({ draftMode = false }) => {
-  const token = process.env.SANITY_API_READ_TOKEN!
-  const client = getClient(draftMode ? { token } : undefined)
   const [table, footer] = await Promise.all([
-    client.fetch(tableQuery),
-    client.fetch(footerQuery),
+    sanityFetch<TableProps['data']>({draftMode,query: tableQuery}),
+    sanityFetch<FooterProps['data']>({draftMode, query: footerQuery}),
   ])
   const timestamp = new Date().toJSON()
 
@@ -45,8 +43,8 @@ export const getStaticProps: GetStaticProps<{
     props: {
       draftMode,
       token,
-      table: await table,
-      footer: await footer,
+      table,
+      footer,
       timestamp,
       server__adapter: adapter,
       server__environment: environment,

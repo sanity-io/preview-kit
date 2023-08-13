@@ -294,12 +294,12 @@ Requires React 18, support for other libraries like Solid, Svelte, Vue etc are p
 
 Get started in 3 steps:
 
-1. Create a `getClient` utility that returns a `@sanity/client` instance.
+1. Create a `client` instance of `@sanity/client` that can be shared on the server and browser.
 2. Define a `<LiveQueryProvider />` configuration.
 3. Refactor the root layout of your app to conditionally wrap it in `<LiveQueryProvider />` when it's asked to preview drafts.
 4. Use the `useLiveQuery` hook in components that you want to re-render in real-time as your documents are edited.
 
-### 1. Create a `getClient` utility
+### 1. Create a `client` instance
 
 As `<LiveQueryProvider />` is configured with a `@sanity/client` instance it makes sense to create a utility for it. Doing so makes it easy to ensure the server-side and client-side client are configured the same way.
 
@@ -307,32 +307,47 @@ As `<LiveQueryProvider />` is configured with a `@sanity/client` instance it mak
 
 ```ts
 import { createClient } from '@sanity/client'
-import type { SanityClient } from '@sanity/client'
+import type { QueryParams } from '@sanity/client'
 
-export function getClient({
-  preview,
+// Shared on the server and the browser
+export const client = createClient({
+  projectId: 'your-project-id',
+  dataset: 'production',
+  apiVersion: '2023-06-20',
+  useCdn: false,
+  perspective: 'published',
+})
+
+// Only defined on the server, passed to the browser via a `loader`
+export const token = process.env.SANITY_API_READ_TOKEN!
+
+const DEFAULT_PARAMS = {} as QueryParams
+
+// Utility for fetching data on the server, that can toggle between published and preview drafts
+export async function sanityFetch<QueryResponse>({
+  previewDrafts,
+  query,
+  params = DEFAULT_PARAMS,
 }: {
-  preview?: { token: string }
-}): SanityClient {
-  const client = createClient({
-    projectId: 'your-project-id',
-    dataset: 'production',
-    apiVersion: '2023-06-20',
-    useCdn: true,
-    perspective: 'published',
-  })
-  if (preview) {
-    if (!preview.token) {
-      throw new Error('You must provide a token to preview drafts')
-    }
-    return client.withConfig({
-      token: preview.token,
-      useCdn: false,
-      ignoreBrowserTokenWarning: true,
-      perspective: 'previewDrafts',
-    })
+  previewDrafts?: boolean
+  query: string
+  params?: QueryParams
+}): Promise<QueryResponse> {
+  if (previewDrafts && !token) {
+    throw new Error(
+      'The `SANITY_API_READ_TOKEN` environment variable is required.',
+    )
   }
-  return client
+  return client.fetch<QueryResponse>(
+    query,
+    params,
+    previewDrafts
+      ? {
+          token,
+          perspective: 'previewDrafts',
+        }
+      : {},
+  )
 }
 ```
 
@@ -344,8 +359,7 @@ Create a new file for the provider, so it can be loaded with `React.lazy` and av
 
 ```tsx
 import { LiveQueryProvider } from '@sanity/preview-kit'
-import { useMemo } from 'react'
-import { getClient } from '~/lib/sanity'
+import { client } from '~/lib/sanity'
 
 export default function PreviewProvider({
   children,
@@ -354,16 +368,20 @@ export default function PreviewProvider({
   children: React.ReactNode
   token: string
 }) {
-  const client = useMemo(() => getClient({ preview: { token } }), [token])
-  return <LiveQueryProvider client={client}>{children}</LiveQueryProvider>
+  if (!token) throw new TypeError('Missing token')
+  return (
+    <LiveQueryProvider client={client} token={token}>
+      {children}
+    </LiveQueryProvider>
+  )
 }
 ```
 
-Only the `client` prop is required. For debugging you can pass a `logger={console}` prop.
+Only the `client` and `token` props are required. For debugging you can pass a `logger={console}` prop.
 
 You can also use the `useIsEnabled` hook to debug wether you have a parent `<LiveQueryProvider />` in your React tree or not.
 
-### 3. Making a Remix route conditionally preview draft
+### 3. Making a Remix route conditionally preview drafts
 
 Here's the Remix route we'll be adding live preview of drafts, it's pretty basic:
 
@@ -372,13 +390,12 @@ Here's the Remix route we'll be adding live preview of drafts, it's pretty basic
 import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
 
-import { getClient } from '~/lib/sanity'
+import { client } from '~/lib/sanity'
 import type { UsersResponse } from '~/UsersList'
 import { UsersList, usersQuery } from '~/UsersList'
 import { Layout } from '~/ui'
 
 export async function loader({ request }: LoaderArgs) {
-  const client = getClient({})
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
@@ -408,37 +425,41 @@ const PreviewProvider = lazy(() => import('~/PreviewProvider'))
 
 Before we can add `<PreviewProvider />` to the layout we need to update the `loader` to include the props it needs. We'll use an environment variable called `SANITY_API_PREVIEW_DRAFTS` to control when to live preview drafts, and store a `viewer` API token in `SANITY_API_READ_TOKEN`.
 
-Update the `const client = getClient({})` call to:
+Update the `client.fetch` call to use the new `sanityFetch` utility we created earlier, as well as the `token`:
 
 ```tsx
-const token = process.env.SANITY_API_READ_TOKEN
-const preview =
-  process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
-const client = getClient({ preview })
+import { token, sanityFetch } from '~/lib/sanity'
+
+const previewDrafts = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
+const users = await sanityFetch<UsersResponse>({
+  previewDrafts,
+  query: usersQuery,
+  params: { lastId },
+})
 ```
 
 Update the `loader` return statement from `return {users, lastId}` to:
 
 ```tsx
-return { preview, users, lastId }
+return { previewDrafts, token, users, lastId }
 ```
 
-And add `preview` to `useLoaderData`:
+And add `previewDrafts`, and `token`, to `useLoaderData`:
 
 ```tsx
-const { preview, users, lastId } = useLoaderData<typeof loader>()
+const { previewDrafts, token, users, lastId } = useLoaderData<typeof loader>()
 ```
 
-Then make the render conditional based on wether `preview` is set:
+Then make the render conditional based on wether `previewDrafts` is set:
 
 ```tsx
 const children = <UsersList data={users} lastId={lastId} />
 
 return (
   <Layout>
-    {preview ? (
+    {previewDrafts ? (
       <Suspense fallback={children}>
-        <PreviewProvider token={preview.token}>{children}</PreviewProvider>
+        <PreviewProvider token={token}>{children}</PreviewProvider>
       </Suspense>
     ) : (
       children
@@ -455,7 +476,7 @@ import type { LoaderArgs } from '@vercel/remix'
 import { useLoaderData } from '@remix-run/react'
 import { lazy, Suspense } from 'react'
 
-import { getClient } from '~/lib/sanity'
+import { token, sanityFetch } from '~/lib/sanity'
 import type { UsersResponse } from '~/UsersList'
 import { UsersList, usersQuery } from '~/UsersList'
 import { Layout } from '~/ui'
@@ -463,28 +484,30 @@ import { Layout } from '~/ui'
 const PreviewProvider = lazy(() => import('~/PreviewProvider'))
 
 export async function loader({ request }: LoaderArgs) {
-  const token = process.env.SANITY_API_READ_TOKEN
-  const preview =
+  const previewDrafts =
     process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
-  const client = getClient({ preview })
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
-  const users = await client.fetch<UsersResponse>(usersQuery, { lastId })
+  const users = await sanityFetch<UsersResponse>({
+    previewDrafts,
+    query: usersQuery,
+    params: { lastId },
+  })
 
-  return { preview, users, lastId }
+  return { previewDrafts, token, users, lastId }
 }
 
 export default function Index() {
-  const { preview, users, lastId } = useLoaderData<typeof loader>()
+  const { previewDrafts, token, users, lastId } = useLoaderData<typeof loader>()
 
   const children = <UsersList data={users} lastId={lastId} />
 
   return (
     <Layout>
-      {preview ? (
+      {previewDrafts ? (
         <Suspense fallback={children}>
-          <PreviewProvider token={preview.token!}>{children}</PreviewProvider>
+          <PreviewProvider token={token!}>{children}</PreviewProvider>
         </Suspense>
       ) : (
         children
@@ -716,7 +739,7 @@ As the nature of live queries is that they're real-time, it can be hard to debug
 To aid in understanding what's going on, you can pass a `logger` prop to `LiveQueryProvider`:
 
 ```tsx
-<LiveQueryProvider client={client} logger={console}>
+<LiveQueryProvider client={client} token={token} logger={console}>
   {children}
 </LiveQueryProvider>
 ```
@@ -757,6 +780,7 @@ import { LiveQueryProvider } from '@sanity/preview-kit'
 return (
   <LiveQueryProvider
     client={client}
+    token={token}
     cache={{
       // default: 3000, increased to 10000 for this example app as each document is small
       maxDocuments: 10000,
@@ -791,6 +815,7 @@ import { LiveQueryProvider } from '@sanity/preview-kit'
 return (
   <LiveQueryProvider
     client={client}
+    token={token}
     turboSourceMap={false}
     // Passing a logger gives you more information on what to expect based on your configuration
     logger={console}
@@ -808,6 +833,7 @@ import { LiveQueryProvider } from '@sanity/preview-kit'
 return (
   <LiveQueryProvider
     client={client}
+    token={token}
     // Refetch all queries every minute instead of the default 10 seconds
     refreshInterval={1000 * 60}
     // Passing a logger gives you more information on what to expect based on your configuration

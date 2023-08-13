@@ -1,13 +1,16 @@
 import type { LoaderArgs, SerializeFrom } from '@vercel/remix'
 import { useLoaderData, useRevalidator } from '@remix-run/react'
 
+import type {
+  TableProps,
+  FooterProps} from 'ui/react';
 import {
   Timestamp,
   tableQuery,
   Button,
   ViewPublishedButton,
   PreviewDraftsButton,
-  footerQuery,
+  footerQuery
 } from 'ui/react'
 import {
   unstable__adapter as adapter,
@@ -15,8 +18,9 @@ import {
 } from '@sanity/client'
 import { getSession } from '~/sessions'
 import { lazy, useEffect } from 'react'
-import { getClient } from '~/getClient'
 import { useIsEnabled } from '@sanity/preview-kit'
+import { sanityFetch, token} from '~/sanity'
+
 
 const DefaultVariant = lazy(() => import('~/variants/default'))
 const GroqStoreVariant = lazy(() => import('~/variants/groq-store'))
@@ -24,19 +28,17 @@ const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
 
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request.headers.get('Cookie'))
-  const preview = session.get('view') === 'previewDrafts'
+  const previewDrafts = session.get('view') === 'previewDrafts'
 
-  const token = process.env.SANITY_API_READ_TOKEN!
-  const client = getClient(preview ? { token } : undefined)
   const [table, footer] = await Promise.all([
-    client.fetch(tableQuery),
-    client.fetch(footerQuery),
+    sanityFetch<TableProps['data']>({previewDrafts, query: tableQuery}),
+    sanityFetch<FooterProps['data']>({previewDrafts, query: footerQuery}),
   ])
   const timestamp = new Date().toJSON()
 
   return {
     variant: process.env.VARIANT || 'default',
-    preview,
+    previewDrafts,
     token,
     table,
     footer,
@@ -61,7 +63,7 @@ function Variant(props: SerializeFrom<typeof loader>) {
 
 export default function Index() {
   const props = useLoaderData<typeof loader>()
-  const { preview, timestamp, server__adapter, server__environment } = props
+  const { previewDrafts, timestamp, server__adapter, server__environment } = props
 
   useEffect(() => {
     console.log({
@@ -70,8 +72,8 @@ export default function Index() {
     })
   }, [])
 
-  const button = preview ? <ViewPublishedButton /> : <PreviewDraftsButton />
-  const action = preview ? '/api/disable-draft' : '/api/draft'
+  const button = previewDrafts ? <ViewPublishedButton /> : <PreviewDraftsButton />
+  const action = previewDrafts ? '/api/disable-draft' : '/api/draft'
 
   return (
     <>

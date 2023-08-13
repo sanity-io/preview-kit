@@ -31,7 +31,6 @@ export async function sanityFetch<QueryResponse>({
     cache,
     ...(isDraftMode && {
       token,
-      useCdn: false,
       perspective: 'previewDrafts',
     }),
     next: {
