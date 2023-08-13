@@ -4,4 +4,4 @@
 
 console.log('_exports.ts')
 
-export {Table, Footer} from 'ui/react'
+export { Table, Footer } from 'ui/react'

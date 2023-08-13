@@ -13,7 +13,6 @@ export type {
   LiveQueryServerComponentProps,
 } from '@sanity/preview-kit/internals/live-query-server'
 
-
 export interface LiveQueryProps<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,

@@ -2,8 +2,7 @@ import { createClient, type QueryParams } from '@sanity/preview-kit/client'
 
 const projectId = 'pv8y60vp'
 const dataset = 'production'
-const apiVersion = 
-  '2022-11-15'
+const apiVersion = '2022-11-15'
 const useCdn = false
 const studioUrl = 'https://preview-kit-test-studio.sanity.build/'
 export const client = createClient({
@@ -17,7 +16,8 @@ export const client = createClient({
   perspective: 'published',
 })
 
-export const token = typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
+export const token =
+  typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
 
 const DEFAULT_PARAMS = {} as QueryParams
 export async function sanityFetch<QueryResponse>({

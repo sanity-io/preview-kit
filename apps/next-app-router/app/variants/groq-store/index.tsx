@@ -7,14 +7,13 @@ const PreviewProvider = dynamic(() => import('./PreviewProvider'))
 export default async function GroqStoreVariant({
   children,
 }: React.PropsWithChildren) {
-
   return (
     <>
       {draftMode().isEnabled ? (
-        <PreviewProvider token={token}>
-          {children}
-        </PreviewProvider>
-      ) : children}
+        <PreviewProvider token={token}>{children}</PreviewProvider>
+      ) : (
+        children
+      )}
     </>
   )
 }
