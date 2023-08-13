@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.0](https://github.com/sanity-io/preview-kit/compare/v2.5.0...v2.6.0) (2023-08-13)
+
+### Features
+
+- **LiveQueryProvider:** add `token` prop ([616ca7e](https://github.com/sanity-io/preview-kit/commit/616ca7eb5e998a338daffcc6c370d91989cd5b08))
+
+### Bug Fixes
+
+- **deps:** bump `@sanity/client` ([9cd0b47](https://github.com/sanity-io/preview-kit/commit/9cd0b478d98b8b58d1d4e8d84c4354495ce01a7e))
+
 ## [2.5.0](https://github.com/sanity-io/preview-kit/compare/v2.4.12...v2.5.0) (2023-08-12)
 
 ### Features
