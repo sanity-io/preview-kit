@@ -115,17 +115,6 @@
       "import": "./dist/csm.js",
       "default": "./dist/csm.js"
     },
-    "./groq-store": {
-      "types": "./dist/groq-store.d.ts",
-      "source": "./src/_exports/groq-store.ts",
-      "require": "./dist/groq-store.cjs",
-      "node": {
-        "module": "./dist/groq-store.js",
-        "import": "./dist/groq-store.cjs.js"
-      },
-      "import": "./dist/groq-store.js",
-      "default": "./dist/groq-store.js"
-    },
     "./live-query": {
       "types": "./dist/live-query.d.ts",
       "source": "./src/_exports/live-query.ts",
@@ -166,9 +155,6 @@
       "csm": [
         "./dist/csm.d.ts"
       ],
-      "groq-store": [
-        "./dist/groq-store.d.ts"
-      ],
       "live-query": [
         "./dist/live-query.d.ts"
       ]
@@ -180,11 +166,10 @@
     "!internals/.gitkeep",
     "client.js",
     "csm.js",
-    "groq-store.js",
     "live-query.js"
   ],
   "scripts": {
-    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js groq-store.js live-query.js",
+    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js live-query.js",
     "build": "pkg build --strict && pkg --strict",
     "watch": "pnpm build watch",
     "coverage": "vitest run --coverage",

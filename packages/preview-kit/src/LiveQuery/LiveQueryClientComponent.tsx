@@ -15,9 +15,6 @@ export type LiveQueryClientComponentProps<QueryResult, QueryParams> =
     params?: QueryParams | undefined
   }>
 
-// eslint-disable-next-line no-console
-console.log('LiveQueryClientComponent.tsx')
-
 // Browser-only preview component, overwrites the data prop with live data on-demand
 export default function LiveQueryClientComponent<
   QueryResult,

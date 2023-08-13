@@ -14,6 +14,7 @@ export type {
 
 const ClientComponent = lazy(() => import('./LiveQueryClientComponent'))
 
+/** @alpha */
 export interface LiveQueryProps<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,
@@ -22,6 +23,7 @@ export interface LiveQueryProps<
     'ClientComponent'
   > {}
 
+/** @alpha */
 export function LiveQuery<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,
