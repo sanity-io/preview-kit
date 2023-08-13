@@ -502,7 +502,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
     >
   }, [client])
 
-  // Keep track of document ids that the active `useListeningQuery` hooks care about
+  // Keep track of document ids that the active `useLiveQuery` hooks care about
   useEffect(() => {
     const nextTurboIds = new Set<string>()
     for (const { query, params } of cache.values()) {

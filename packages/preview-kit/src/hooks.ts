@@ -8,11 +8,10 @@ import {
   IsEnabledContext,
   LoadedListenersContext,
 } from './context'
-import type { ListenerStatus } from './types'
 import { getQueryCacheKey, useParams } from './utils'
 
 // Re-export types we use that are needed externally
-export type { ClientQueryParams, ListenerStatus }
+export type { ClientQueryParams }
 
 /**
  * By default 'react-fast-compare' is used to check if the query result has changed.
@@ -99,50 +98,6 @@ function useLiveQueryIsLoading(
     }
     return false
   }, [key, loadedListeners])
-}
-
-/**
- * @public
- * @deprecated use `LiveQueryHookOptions` instead
- */
-export interface ListeningQueryHookOptions<QueryResult> {
-  isEqual?: isEqualFn<QueryResult>
-}
-
-/**
- * @public
- * @deprecated use `useLiveQuery` instead
- */
-export function useListeningQuery<
-  QueryResult,
-  QueryParams extends ClientQueryParams = ClientQueryParams,
->(
-  initialSnapshot: QueryResult,
-  query: string,
-  queryParams?: QueryParams,
-  options?: ListeningQueryHookOptions<QueryResult>,
-): QueryResult {
-  const [snapshot] = useLiveQuery<QueryResult, QueryParams>(
-    initialSnapshot,
-    query,
-    queryParams,
-    options,
-  )
-  return snapshot
-}
-
-/**
- * Wether a particular query is loading or not.
- * @public
- * @deprecated use `useLiveQuery` instead
- */
-export function useListeningQueryStatus<
-  QueryParams extends ClientQueryParams = ClientQueryParams,
->(query: string, queryParams?: QueryParams): ListenerStatus {
-  const params = useParams(queryParams)
-  const loading = useLiveQueryIsLoading(query, params)
-
-  return loading ? 'loading' : 'success'
 }
 
 /**

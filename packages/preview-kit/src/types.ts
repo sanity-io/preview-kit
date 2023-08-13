@@ -23,11 +23,6 @@ export type DefineListenerContext = <QueryResult>(
 }
 
 /**
- * @public
- */
-export type ListenerStatus = 'loading' | 'success'
-
-/**
  * Specify a `console.log` compatible logger to aid debugging
  * @public
  */

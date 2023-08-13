@@ -1,4 +1,4 @@
-// This is the default, fallback store, that allows using useListeningQuery without a provider.
+// This is the default, fallback store, that allows using useLiveQuery without a provider.
 import type { QueryParams } from '@sanity/client'
 
 import type {
