@@ -7,13 +7,13 @@ const useCdn = false
 const studioUrl = 'https://preview-kit-test-studio.sanity.build/'
 export const client = createClient({
   projectId,
-    dataset,
-    apiVersion,
-    useCdn,
-    studioUrl,
-    logger: console,
-    encodeSourceMap: true,
-    perspective: 'published',
+  dataset,
+  apiVersion,
+  useCdn,
+  studioUrl,
+  logger: console,
+  encodeSourceMap: true,
+  perspective: 'published',
 })
 
 export const token = process.env.SANITY_API_READ_TOKEN!
@@ -33,8 +33,14 @@ export async function sanityFetch<QueryResponse>({
       'The `SANITY_API_READ_TOKEN` environment variable is required.',
     )
   }
-  return client.fetch<QueryResponse>(query, params, previewDrafts ? {
-    token,
-    perspective: 'previewDrafts',
-  } : {})
+  return client.fetch<QueryResponse>(
+    query,
+    params,
+    previewDrafts
+      ? {
+          token,
+          perspective: 'previewDrafts',
+        }
+      : {},
+  )
 }

@@ -6,8 +6,8 @@ const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2022-11-15'
 const useCdn = false
 export const client = createClient({
   projectId,
-    dataset,
-    apiVersion,
-    useCdn,
-    perspective: 'published',
+  dataset,
+  apiVersion,
+  useCdn,
+  perspective: 'published',
 })

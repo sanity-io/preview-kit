@@ -34,8 +34,8 @@ export const getStaticProps: GetStaticProps<{
   variant: string
 }> = async ({ draftMode = false }) => {
   const [table, footer] = await Promise.all([
-    sanityFetch<TableProps['data']>({draftMode,query: tableQuery}),
-    sanityFetch<FooterProps['data']>({draftMode, query: footerQuery}),
+    sanityFetch<TableProps['data']>({ draftMode, query: tableQuery }),
+    sanityFetch<FooterProps['data']>({ draftMode, query: footerQuery }),
   ])
   const timestamp = new Date().toJSON()
 

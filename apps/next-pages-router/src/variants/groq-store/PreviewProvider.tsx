@@ -8,7 +8,7 @@ export default function PreviewProvider({
   children: React.ReactNode
   token: string
 }) {
-  if(!token) throw new TypeError('Missing token')
+  if (!token) throw new TypeError('Missing token')
   return (
     <LiveQueryProvider
       client={client}

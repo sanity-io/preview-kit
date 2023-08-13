@@ -11,8 +11,7 @@ export const client = createClient({
   apiVersion,
   useCdn,
   studioUrl,
-    logger: console,
-    encodeSourceMap: true,
-    perspective: 'published',
+  logger: console,
+  encodeSourceMap: true,
+  perspective: 'published',
 })
-

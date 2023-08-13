@@ -7,13 +7,11 @@ const useCdn = false
 const studioUrl = 'https://preview-kit-test-studio.sanity.build/'
 export const client = createClient({
   projectId,
-    dataset,
-    apiVersion,
-    useCdn,
-    studioUrl,
-    logger: console,
-    encodeSourceMap: true,
-    perspective: 'published',
+  dataset,
+  apiVersion,
+  useCdn,
+  studioUrl,
+  logger: console,
+  encodeSourceMap: true,
+  perspective: 'published',
 })
-
-

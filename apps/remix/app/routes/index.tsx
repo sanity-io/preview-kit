@@ -1,16 +1,14 @@
 import type { LoaderArgs, SerializeFrom } from '@vercel/remix'
 import { useLoaderData, useRevalidator } from '@remix-run/react'
 
-import type {
-  TableProps,
-  FooterProps} from 'ui/react';
+import type { TableProps, FooterProps } from 'ui/react'
 import {
   Timestamp,
   tableQuery,
   Button,
   ViewPublishedButton,
   PreviewDraftsButton,
-  footerQuery
+  footerQuery,
 } from 'ui/react'
 import {
   unstable__adapter as adapter,
@@ -19,8 +17,7 @@ import {
 import { getSession } from '~/sessions'
 import { lazy, useEffect } from 'react'
 import { useIsEnabled } from '@sanity/preview-kit'
-import { sanityFetch, token} from '~/sanity'
-
+import { sanityFetch, token } from '~/sanity'
 
 const DefaultVariant = lazy(() => import('~/variants/default'))
 const GroqStoreVariant = lazy(() => import('~/variants/groq-store'))
@@ -31,8 +28,8 @@ export async function loader({ request }: LoaderArgs) {
   const previewDrafts = session.get('view') === 'previewDrafts'
 
   const [table, footer] = await Promise.all([
-    sanityFetch<TableProps['data']>({previewDrafts, query: tableQuery}),
-    sanityFetch<FooterProps['data']>({previewDrafts, query: footerQuery}),
+    sanityFetch<TableProps['data']>({ previewDrafts, query: tableQuery }),
+    sanityFetch<FooterProps['data']>({ previewDrafts, query: footerQuery }),
   ])
   const timestamp = new Date().toJSON()
 
@@ -63,7 +60,8 @@ function Variant(props: SerializeFrom<typeof loader>) {
 
 export default function Index() {
   const props = useLoaderData<typeof loader>()
-  const { previewDrafts, timestamp, server__adapter, server__environment } = props
+  const { previewDrafts, timestamp, server__adapter, server__environment } =
+    props
 
   useEffect(() => {
     console.log({
@@ -72,7 +70,11 @@ export default function Index() {
     })
   }, [])
 
-  const button = previewDrafts ? <ViewPublishedButton /> : <PreviewDraftsButton />
+  const button = previewDrafts ? (
+    <ViewPublishedButton />
+  ) : (
+    <PreviewDraftsButton />
+  )
   const action = previewDrafts ? '/api/disable-draft' : '/api/draft'
 
   return (

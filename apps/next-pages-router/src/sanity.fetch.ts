@@ -19,9 +19,14 @@ export async function sanityFetch<QueryResponse>({
       'The `SANITY_API_READ_TOKEN` environment variable is required.',
     )
   }
-  return client.fetch<QueryResponse>(query, params, draftMode ? {
-    token,
-    perspective: 'previewDrafts',
-  } : {},
+  return client.fetch<QueryResponse>(
+    query,
+    params,
+    draftMode
+      ? {
+          token,
+          perspective: 'previewDrafts',
+        }
+      : {},
   )
 }
