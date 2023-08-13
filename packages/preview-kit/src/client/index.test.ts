@@ -9,6 +9,7 @@ const title = '🚀 🤯'
 test('it returns stega encoded source maps', async () => {
   expect.assertions(3)
   const client = createClient({
+    useCdn: false,
     studioUrl: 'https://preview-kit-test-studio.sanity.build/',
     encodeSourceMap: true,
     projectId: 'pv8y60vp',
@@ -24,7 +25,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultArray[0].title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
       "origin": "sanity.io",
     }
   `,
@@ -37,7 +38,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultObject.title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
       "origin": "sanity.io",
     }
   `,
@@ -49,7 +50,7 @@ test('it returns stega encoded source maps', async () => {
   )
   expect(vercelStegaDecode(resultString)).toMatchInlineSnapshot(`
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
       "origin": "sanity.io",
     }
   `)
@@ -58,6 +59,7 @@ test('it returns stega encoded source maps', async () => {
 test('it can access the original source map', async () => {
   expect.assertions(2)
   const client = createClient({
+    useCdn: false,
     studioUrl: '/studio',
     encodeSourceMap: true,
     projectId: 'pv8y60vp',
@@ -72,7 +74,7 @@ test('it can access the original source map', async () => {
   )
   expect(vercelStegaDecode(result)).toMatchInlineSnapshot(`
     {
-      "href": "/studio/intent/edit/id=abbba612-5449-42fc-b3f4-f4ec8a98c6ee;path=title",
+      "href": "/studio/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
       "origin": "sanity.io",
     }
   `)
@@ -80,7 +82,7 @@ test('it can access the original source map', async () => {
     {
       "documents": [
         {
-          "_id": "abbba612-5449-42fc-b3f4-f4ec8a98c6ee",
+          "_id": "0074e292-efcf-45c2-aeb8-f680da2277ff",
         },
       ],
       "mappings": {
@@ -103,6 +105,7 @@ test('it can access the original source map', async () => {
 test('it can query the content source map without transcoding', async () => {
   expect.assertions(2)
   const client = createClient({
+    useCdn: false,
     studioUrl: '/studio',
     encodeSourceMap: false,
     resultSourceMap: true,
@@ -121,7 +124,7 @@ test('it can query the content source map without transcoding', async () => {
     {
       "documents": [
         {
-          "_id": "abbba612-5449-42fc-b3f4-f4ec8a98c6ee",
+          "_id": "0074e292-efcf-45c2-aeb8-f680da2277ff",
         },
       ],
       "mappings": {
@@ -144,11 +147,11 @@ test('it can query the content source map without transcoding', async () => {
 test('encodeSourceMapAtPath', async () => {
   expect.assertions(2)
   const client = createClient({
+    useCdn: false,
     studioUrl: 'https://preview-kit-test-studio.sanity.build/',
     encodeSourceMap: true,
     projectId: 'pv8y60vp',
     dataset: 'production',
-    useCdn: true,
     encodeSourceMapAtPath: ({ path }) => path.at(-1) !== 'title',
   })
 

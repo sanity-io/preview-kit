@@ -49,6 +49,17 @@
       "import": "./dist/internals/groq-store-provider.js",
       "default": "./dist/internals/groq-store-provider.js"
     },
+    "./internals/live-query-client": {
+      "types": "./dist/internals/live-query-client.d.ts",
+      "source": "./src/_exports/internals/_live-query-client.ts",
+      "require": "./dist/internals/live-query-client.cjs",
+      "node": {
+        "module": "./dist/internals/live-query-client.js",
+        "import": "./dist/internals/live-query-client.cjs.js"
+      },
+      "import": "./dist/internals/live-query-client.js",
+      "default": "./dist/internals/live-query-client.js"
+    },
     "./internals/live-query-provider": {
       "types": "./dist/internals/live-query-provider.d.ts",
       "source": "./src/_exports/internals/_live-query-provider.ts",
@@ -59,6 +70,17 @@
       },
       "import": "./dist/internals/live-query-provider.js",
       "default": "./dist/internals/live-query-provider.js"
+    },
+    "./internals/live-query-server": {
+      "types": "./dist/internals/live-query-server.d.ts",
+      "source": "./src/_exports/internals/_live-query-server.ts",
+      "require": "./dist/internals/live-query-server.cjs",
+      "node": {
+        "module": "./dist/internals/live-query-server.js",
+        "import": "./dist/internals/live-query-server.cjs.js"
+      },
+      "import": "./dist/internals/live-query-server.js",
+      "default": "./dist/internals/live-query-server.js"
     },
     "./internals/live-store-provider": {
       "types": "./dist/internals/live-store-provider.d.ts",
@@ -126,8 +148,14 @@
       "internals/groq-store-provider": [
         "./dist/internals/groq-store-provider.d.ts"
       ],
+      "internals/live-query-client": [
+        "./dist/internals/live-query-client.d.ts"
+      ],
       "internals/live-query-provider": [
         "./dist/internals/live-query-provider.d.ts"
+      ],
+      "internals/live-query-server": [
+        "./dist/internals/live-query-server.d.ts"
       ],
       "internals/live-store-provider": [
         "./dist/internals/live-store-provider.d.ts"
