@@ -27,8 +27,8 @@ importers:
   apps/next-app-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.5
-        version: 6.4.5
+        specifier: 6.4.6
+        version: 6.4.6
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -79,8 +79,8 @@ importers:
   apps/next-pages-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.4.5
-        version: 6.4.5
+        specifier: 6.4.6
+        version: 6.4.6
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -131,8 +131,8 @@ importers:
         specifier: 1.19.3
         version: 1.19.3(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.4.5
-        version: 6.4.5
+        specifier: 6.4.6
+        version: 6.4.6
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -189,8 +189,8 @@ importers:
         specifier: 8.0.2
         version: 8.0.2
       '@sanity/client':
-        specifier: 6.4.5
-        version: 6.4.5
+        specifier: 6.4.6
+        version: 6.4.6
       '@sanity/icons':
         specifier: 2.4.1
         version: 2.4.1(react@18.2.0)
@@ -274,8 +274,8 @@ importers:
         version: 1.2.0(react@18.2.0)
     devDependencies:
       '@sanity/client':
-        specifier: ^6.4.5
-        version: 6.4.5
+        specifier: ^6.4.6
+        version: 6.4.6
       '@sanity/pkg-utils':
         specifier: ^2.4.5
         version: 2.4.5(@types/node@18.17.5)(typescript@5.1.6)
@@ -3599,8 +3599,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@sanity/client@6.4.5:
-    resolution: {integrity: sha512-IL+fzoZ2ZJKke07fFzq8Y6/NbWHvcQqSc4FLSO2O4xyCdZl6H/hyvOODvWRP01NFS63IJS2GHLjufD9II8pLYQ==}
+  /@sanity/client@6.4.6:
+    resolution: {integrity: sha512-MtSYgmDkYyQSosO2GTtlYa0xl9K5fpQvTA1dcgk2XxIqweZEHVi4iDdsEA3JvyoEaURUtQkng8MdYcMzWxPAUg==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.0
@@ -3932,7 +3932,7 @@ packages:
   /@sanity/types@3.15.1:
     resolution: {integrity: sha512-B24SrVAJfCiF8q+JeTUtUqGjuX9YQj+ytdPcDNVbduIMeQeOmS6keumTvXZ7OS8OK0pgsffP5kUE00KWHgbPxg==}
     dependencies:
-      '@sanity/client': 6.4.5
+      '@sanity/client': 6.4.6
       '@types/react': 18.2.20
     transitivePeerDependencies:
       - supports-color
@@ -12512,7 +12512,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.15.1
       '@sanity/cli': 3.15.1
-      '@sanity/client': 6.4.5
+      '@sanity/client': 6.4.6
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.15.1
       '@sanity/eventsource': 5.0.0
