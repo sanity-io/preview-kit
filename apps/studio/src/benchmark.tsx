@@ -174,9 +174,18 @@ export async function updateDocuments(
   }
 }
 async function deleteDocuments(client: SanityClient) {
-  await client.delete({
-        query: groq`*[_type == "page" && !(_id in path("drafts.**"))]`,
-      })
+  // const count = await client.fetch('*[!(_id in path("drafts.**"))]._id')
+  const count = await client.fetch(
+    groq`count(*[_type == "page" && !(_id in path("drafts.**"))])`,
+  )
+
+  const batch = 1000
+  const iterations = Math.max(1, Math.round(count / batch))
+  for (let i = 1; i <= iterations; i++) {
+    await client.delete({
+      query: groq`*[_type == "page" && !(_id in path("drafts.**"))][0..${batch}]`,
+    })
+  }
 }
 
 function generateNewTitle() {
