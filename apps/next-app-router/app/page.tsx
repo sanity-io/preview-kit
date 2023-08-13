@@ -12,7 +12,7 @@ import { LiveQuery } from './next-sanity/live-query'
 import { sanityFetch } from './sanity.fetch'
 import RefreshButton from './RefreshButton'
 import Variant from './Variant'
-import {PreviewTable, PreviewFooter} from './previews'
+import { PreviewTable, PreviewFooter } from './previews'
 
 export default function Page() {
   return (
