@@ -1,5 +1,3 @@
-'use client'
-
 import type { QueryParams as ClientQueryParams } from '@sanity/client'
 import type { PropsWithChildren } from 'react'
 import { Children, cloneElement, isValidElement } from 'react'
