@@ -198,8 +198,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/ui':
-        specifier: 1.7.6
-        version: 1.7.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+        specifier: 1.7.7
+        version: 1.7.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       '@sanity/vision':
         specifier: 3.15.1
         version: 3.15.1(@babel/runtime@7.22.5)(@codemirror/lint@6.3.0)(@codemirror/state@6.2.1)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.0.3)(codemirror@6.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
@@ -223,7 +223,7 @@ importers:
         version: 3.15.1
       groqd-playground:
         specifier: 0.0.17
-        version: 0.0.17(@sanity/icons@2.4.1)(@sanity/ui@1.7.6)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.15.1)(styled-components@5.3.11)
+        version: 0.0.17(@sanity/icons@2.4.1)(@sanity/ui@1.7.7)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.15.1)(styled-components@5.3.11)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -3938,8 +3938,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/ui@1.7.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11):
-    resolution: {integrity: sha512-qpn7e9ftMX5V17DyKKpear/UtP1dw+BPBe/XYASnnjPf5rYb2Oi0bs2ef2B2FlEP98mhsoa3j0gUuyez900+tA==}
+  /@sanity/ui@1.7.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11):
+    resolution: {integrity: sha512-Qu0an8M/pDl3gGfqW71Ecn7APJEBnIUtzcoJ8STHeBd1mlSJtn7HbJXOhvk81bGXWaRzfogjT2gxPLMqWk1kLA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18
@@ -3951,7 +3951,7 @@ packages:
       '@sanity/color': 2.2.5
       '@sanity/icons': 2.4.1(react@18.2.0)
       csstype: 3.1.2
-      framer-motion: 10.15.1(react-dom@18.2.0)(react@18.2.0)
+      framer-motion: 10.15.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-is: 18.2.0
@@ -3995,7 +3995,7 @@ packages:
       '@rexxars/react-split-pane': 0.1.93(react-dom@18.2.0)(react@18.2.0)
       '@sanity/color': 2.2.5
       '@sanity/icons': 2.4.1(react@18.2.0)
-      '@sanity/ui': 1.7.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      '@sanity/ui': 1.7.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       '@uiw/react-codemirror': 4.21.5(@babel/runtime@7.22.5)(@codemirror/autocomplete@6.8.1)(@codemirror/language@6.8.0)(@codemirror/lint@6.3.0)(@codemirror/search@6.5.0)(@codemirror/state@6.2.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.14.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
       hashlru: 2.3.0
       is-hotkey: 0.1.8
@@ -8141,8 +8141,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /framer-motion@10.15.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-6avJj/Uftblw0fMmo6jDHkKRH4TBdkMX/FiyR3G/hFe3hQHE4BUNJCqlMPKg9EzfI5jyqDOwO5oDnU+bW5y0eg==}
+  /framer-motion@10.15.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-z14GYH4WQXnuTgggwf0qyX0vo98PDE+dw21F7aLzUqEcrsmfLovy4jPiA82Cp/X0juWuEHte7rJGOjds9GAQFA==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -8645,7 +8645,7 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /groqd-playground@0.0.17(@sanity/icons@2.4.1)(@sanity/ui@1.7.6)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.15.1)(styled-components@5.3.11):
+  /groqd-playground@0.0.17(@sanity/icons@2.4.1)(@sanity/ui@1.7.7)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.15.1)(styled-components@5.3.11):
     resolution: {integrity: sha512-+a4TBIs06yrUW2OqLzF5OIrUieiM0PzTNmF+djZFRGt1S2DaTziZ1gBhelKZWl6xaOjv7dqjIb+ZVVgVOD49sA==}
     peerDependencies:
       '@sanity/icons': ^2.3.1
@@ -8657,7 +8657,7 @@ packages:
       styled-components: ^5.3.9
     dependencies:
       '@sanity/icons': 2.4.1(react@18.2.0)
-      '@sanity/ui': 1.7.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      '@sanity/ui': 1.7.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       '@uiw/react-split': 5.8.10(react-dom@18.2.0)(react@18.2.0)
       groqd: 0.15.9
       lodash.has: 4.5.2
@@ -12482,8 +12482,8 @@ packages:
     dependencies:
       '@sanity/icons': 2.4.1(react@18.2.0)
       '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
-      '@sanity/ui': 1.7.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
-      framer-motion: 10.15.1(react-dom@18.2.0)(react@18.2.0)
+      '@sanity/ui': 1.7.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      framer-motion: 10.15.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       sanity: 3.15.1(@types/node@14.18.33)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       styled-components: 5.3.11(@babel/core@7.22.10)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -12526,7 +12526,7 @@ packages:
       '@sanity/portable-text-editor': 3.15.1(react-dom@18.2.0)(react@18.2.0)(rxjs@7.8.1)(styled-components@5.3.11)
       '@sanity/schema': 3.15.1
       '@sanity/types': 3.15.1
-      '@sanity/ui': 1.7.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      '@sanity/ui': 1.7.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
       '@sanity/util': 3.15.1
       '@sanity/uuid': 3.0.1
       '@tanstack/react-virtual': 3.0.0-beta.54(react@18.2.0)
@@ -12552,7 +12552,7 @@ packages:
       esbuild-register: 3.4.2(esbuild@0.18.19)
       execa: 2.1.0
       exif-component: 1.0.1
-      framer-motion: 10.15.1(react-dom@18.2.0)(react@18.2.0)
+      framer-motion: 10.15.2(react-dom@18.2.0)(react@18.2.0)
       get-it: 8.4.2
       get-random-values-esm: 1.0.0
       groq-js: 1.1.12
