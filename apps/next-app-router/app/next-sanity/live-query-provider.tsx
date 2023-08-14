@@ -18,7 +18,4 @@ const LiveStoreProvider = dynamic(
   () => import('@sanity/preview-kit/internals/live-store-provider'),
 )
 
-
-export default createLiveQueryProvider({GroqStoreProvider,
-  LiveStoreProvider,
-})
+export default createLiveQueryProvider({ GroqStoreProvider, LiveStoreProvider })
