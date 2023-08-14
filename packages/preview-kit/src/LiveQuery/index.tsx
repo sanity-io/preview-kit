@@ -23,7 +23,9 @@ export interface LiveQueryProps<
     'ClientComponent'
   > {}
 
-/** @alpha */
+/**
+ * This is an experimental new API that might have breaking changes in minor versions.
+ * @alpha */
 export function LiveQuery<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,

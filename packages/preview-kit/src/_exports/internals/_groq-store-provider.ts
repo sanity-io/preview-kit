@@ -1,6 +1,2 @@
-export {
-  type CacheOptions,
-  GroqStoreProvider as default,
-  type LiveQueryProviderProps,
-  type Logger,
-} from '../../GroqStoreProvider/GroqStoreProvider'
+export * from '../../GroqStoreProvider'
+export { default } from '../../GroqStoreProvider'

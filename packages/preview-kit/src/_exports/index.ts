@@ -6,9 +6,4 @@ export {
   useIsEnabled,
   useLiveQuery,
 } from '../hooks'
-export {
-  type CacheOptions,
-  LiveQueryProvider,
-  type LiveQueryProviderProps,
-  type Logger,
-} from '../LiveQueryProvider'
+export * from '../LiveQueryProvider'

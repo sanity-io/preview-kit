@@ -1,2 +1,2 @@
-export type * from './GroqStoreProvider'
-export { GroqStoreProvider } from './GroqStoreProvider'
+export * from './GroqStoreProvider'
+export { default } from './GroqStoreProvider'

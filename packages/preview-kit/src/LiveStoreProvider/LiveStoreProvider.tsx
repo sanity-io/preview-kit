@@ -64,7 +64,7 @@ export interface LiveStoreProviderProps {
 /**
  * @internal
  */
-export const LiveStoreProvider = memo(function LiveStoreProvider(
+const LiveStoreProvider = memo(function LiveStoreProvider(
   props: LiveStoreProviderProps,
 ) {
   const {
@@ -191,6 +191,7 @@ export const LiveStoreProvider = memo(function LiveStoreProvider(
   )
 })
 LiveStoreProvider.displayName = 'LiveStoreProvider'
+export default LiveStoreProvider
 
 interface QuerySubscriptionProps
   extends Required<Pick<LiveStoreProviderProps, 'client' | 'refreshInterval'>> {

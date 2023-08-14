@@ -38,6 +38,17 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./internals/create-live-query-provider": {
+      "types": "./dist/internals/create-live-query-provider.d.ts",
+      "source": "./src/_exports/internals/_create-live-query-provider.ts",
+      "require": "./dist/internals/create-live-query-provider.cjs",
+      "node": {
+        "module": "./dist/internals/create-live-query-provider.js",
+        "import": "./dist/internals/create-live-query-provider.cjs.js"
+      },
+      "import": "./dist/internals/create-live-query-provider.js",
+      "default": "./dist/internals/create-live-query-provider.js"
+    },
     "./internals/groq-store-provider": {
       "types": "./dist/internals/groq-store-provider.d.ts",
       "source": "./src/_exports/internals/_groq-store-provider.ts",
@@ -59,17 +70,6 @@
       },
       "import": "./dist/internals/live-query-client.js",
       "default": "./dist/internals/live-query-client.js"
-    },
-    "./internals/live-query-provider": {
-      "types": "./dist/internals/live-query-provider.d.ts",
-      "source": "./src/_exports/internals/_live-query-provider.ts",
-      "require": "./dist/internals/live-query-provider.cjs",
-      "node": {
-        "module": "./dist/internals/live-query-provider.js",
-        "import": "./dist/internals/live-query-provider.cjs.js"
-      },
-      "import": "./dist/internals/live-query-provider.js",
-      "default": "./dist/internals/live-query-provider.js"
     },
     "./internals/live-query-server": {
       "types": "./dist/internals/live-query-server.d.ts",

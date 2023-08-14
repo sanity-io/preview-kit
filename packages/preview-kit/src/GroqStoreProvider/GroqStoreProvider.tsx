@@ -48,7 +48,7 @@ export interface GroqStoreProviderInternalProps extends Config {
  * Caches the store instance, if the config changes you need to pass a new `key` prop to apply it and trigger a re-render
  * @public
  */
-export const GroqStoreProviderInternal = memo(function GroqStoreProvider(
+const GroqStoreProviderInternal = memo(function GroqStoreProvider(
   props: GroqStoreProviderInternalProps,
 ) {
   const {
@@ -159,13 +159,12 @@ export const GroqStoreProviderInternal = memo(function GroqStoreProvider(
     </ListenerContext.Provider>
   )
 })
-GroqStoreProviderInternal.displayName = 'GroqStoreProviderInternal'
 
 /**
  * Handles live query updates using `@sanity/groq-store`
  * @internal
  */
-export const GroqStoreProvider = memo(function GroqStoreProvider(
+const GroqStoreProvider = memo(function GroqStoreProvider(
   props: LiveQueryProviderProps,
 ) {
   const { children, client, cache, logger } = props
@@ -196,3 +195,5 @@ export const GroqStoreProvider = memo(function GroqStoreProvider(
   )
 })
 GroqStoreProvider.displayName = 'GroqStoreProvider'
+
+export default GroqStoreProvider
