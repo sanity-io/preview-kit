@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/sanity-io/preview-kit/compare/v3.0.1...v3.0.2) (2023-08-14)
+
+### Bug Fixes
+
+- **LiveQueryProvider:** add convenience export for lazy loading ([e27487e](https://github.com/sanity-io/preview-kit/commit/e27487e8375414cb0eb9bfdfe6c498d28d7c6a0a))
+
 ## [3.0.1](https://github.com/sanity-io/preview-kit/compare/v3.0.0...v3.0.1) (2023-08-14)
 
 ### Bug Fixes
