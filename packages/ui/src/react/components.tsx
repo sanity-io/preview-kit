@@ -218,7 +218,7 @@ const thead = (
   </thead>
 )
 
-export const Table = memo(function Table(props: TableProps) {
+function _Table(props: TableProps) {
   const data = tableSchema.parse(props.data || [])
   return (
     <div className="table-container is-flex-shrink-0" style={{ width: '100%' }}>
@@ -256,7 +256,9 @@ export const Table = memo(function Table(props: TableProps) {
       </table>
     </div>
   )
-})
+}
+_Table.displayName = 'Table'
+export const Table = memo(_Table)
 
 // @OTOD rewrite to use groqd, and pagination like footerQuery
 export const tableFallbackQuery = groq`count(*[_type == 'page'] | order(_updatedAt desc) [0...10])`
@@ -298,7 +300,7 @@ export type FooterProps = {
   data: number
 }
 
-export const Footer = memo(function Footer({ data }: FooterProps) {
+function _Footer({ data }: FooterProps) {
   return (
     <span className="tag is-light">
       Documents:{' '}
@@ -307,7 +309,9 @@ export const Footer = memo(function Footer({ data }: FooterProps) {
       </span>
     </span>
   )
-})
+}
+_Footer.displayName = 'Footer'
+export const Footer = memo(_Footer)
 
 export function Timestamp(props: { date: Date | string }) {
   const date =
