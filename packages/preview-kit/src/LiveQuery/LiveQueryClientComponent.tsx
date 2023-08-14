@@ -31,7 +31,7 @@ export default function LiveQueryClientComponent<
 
   return <Slot data={data}>{children}</Slot>
 }
-LiveQueryClientComponent.displayName = 'LiveQueryClientComponent'
+LiveQueryClientComponent.displayName = 'LiveQuery'
 
 /**
  * Original source for `Slot` is `@radix-ui/react-slot`: https://github.com/radix-ui/primitives/blob/3e0642e40038386d58da9fb1d812c2fbfe9f67c1/packages/react/slot/src/Slot.tsx

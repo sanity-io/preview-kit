@@ -6,5 +6,5 @@ import dynamic from 'next/dynamic'
 // and isn't preloaded in the client bundle, instead it's loaded only on demand.
 
 export default dynamic(
-  () => import('@sanity/preview-kit/internals/live-query-client'),
-) as typeof import('@sanity/preview-kit/internals/live-query-client').default
+  () => import('@sanity/preview-kit/internals/live-query'),
+) as typeof import('@sanity/preview-kit/internals/live-query').default
