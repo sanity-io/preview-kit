@@ -12,7 +12,8 @@ export interface LiveQueryProps<
   enabled: boolean
   // eslint-disable-next-line no-warning-comments
   // @TODO fix typing of this
-  as?: React.ComponentType
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  as?: React.ComponentType<any>
 }
 
 const DEFAULT_PARAMS = {} as ClientQueryParams
