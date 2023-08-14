@@ -63,14 +63,16 @@ export function createLiveQueryProvider(options: {
 
     if (refreshInterval && documentsCount >= maxDocuments) {
       return (
-        <LiveStoreProvider
-          client={client}
-          refreshInterval={refreshInterval}
-          turboSourceMap={false}
-          logger={logger}
-        >
-          {children}
-        </LiveStoreProvider>
+        <Suspense fallback={children}>
+          <LiveStoreProvider
+            client={client}
+            refreshInterval={refreshInterval}
+            turboSourceMap={false}
+            logger={logger}
+          >
+            {children}
+          </LiveStoreProvider>
+        </Suspense>
       )
     }
 
@@ -80,7 +82,11 @@ export function createLiveQueryProvider(options: {
       )
     }
 
-    return <GroqStoreProvider {...props}>{children}</GroqStoreProvider>
+    return (
+      <Suspense fallback={children}>
+        <GroqStoreProvider {...props}>{children}</GroqStoreProvider>
+      </Suspense>
+    )
   })
   SelectStoreProvider.displayName = 'SelectStoreProvider'
 

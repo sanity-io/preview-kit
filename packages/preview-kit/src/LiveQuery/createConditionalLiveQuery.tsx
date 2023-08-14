@@ -1,5 +1,5 @@
 import type { QueryParams as ClientQueryParams } from '@sanity/client'
-import { Children, isValidElement, Suspense } from 'react'
+import { Children, isValidElement } from 'react'
 
 import type { LiveQueryClientComponentProps } from './LiveQueryClientComponent'
 
@@ -58,27 +58,6 @@ export function createConditionalLiveQuery<
       }
 
       return (
-        <Suspense fallback={props.children}>
-          <ClientComponent
-            // eslint-disable-next-line no-warning-comments
-            // @TODO improve the typing of this
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            initialData={initialData as any}
-            query={query}
-            // eslint-disable-next-line no-warning-comments
-            // @TODO improve the typing of this
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            params={params as any}
-          >
-            <LiveComponent {...props.children.props} />
-          </ClientComponent>
-        </Suspense>
-      )
-    }
-
-    // Setup a `useLiveQuery` wrapper and override the `data` prop on the children component
-    return (
-      <Suspense fallback={props.children}>
         <ClientComponent
           // eslint-disable-next-line no-warning-comments
           // @TODO improve the typing of this
@@ -90,9 +69,26 @@ export function createConditionalLiveQuery<
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           params={params as any}
         >
-          {props.children}
+          <LiveComponent {...props.children.props} />
         </ClientComponent>
-      </Suspense>
+      )
+    }
+
+    // Setup a `useLiveQuery` wrapper and override the `data` prop on the children component
+    return (
+      <ClientComponent
+        // eslint-disable-next-line no-warning-comments
+        // @TODO improve the typing of this
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        initialData={initialData as any}
+        query={query}
+        // eslint-disable-next-line no-warning-comments
+        // @TODO improve the typing of this
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        params={params as any}
+      >
+        {props.children}
+      </ClientComponent>
     )
   }
   ConditionalLiveQuery.displayName = 'ConditionalLiveQuery'

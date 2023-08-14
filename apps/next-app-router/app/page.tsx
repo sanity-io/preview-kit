@@ -6,19 +6,35 @@ import {
   footerQuery,
   tableQuery,
   Timestamp,
+  TableFallback,
 } from 'ui/react'
 import { draftMode } from 'next/headers'
-import { LiveQuery } from './next-sanity/live-query'
+import { LiveQuery } from '@sanity/preview-kit/live-query'
 import { sanityFetch } from './sanity.fetch'
 import RefreshButton from './RefreshButton'
 import Variant from './Variant'
 import { PreviewTable, PreviewFooter } from './previews'
+import { Suspense } from 'react'
 
-export default function Page() {
+export default async function Page() {
+  const footer = await sanityFetch<FooterProps['data']>({
+    query: footerQuery,
+    tags: ['pages'],
+  })
+
   return (
     <Variant>
+      <Suspense fallback={<TableFallback rows={Math.min(10, footer)} />}>
       <ServerTable />
-      <ServerFooter />
+      </Suspense>
+      <LiveQuery
+      enabled={draftMode().isEnabled }
+      initialData={footer}
+      query={footerQuery}
+      as={PreviewFooter}
+    >
+      <Footer data={footer} />
+    </LiveQuery>
       <Timestamp date={new Date()} />
       <RefreshButton />
     </Variant>
@@ -33,29 +49,12 @@ async function ServerTable() {
 
   return (
     <LiveQuery
-      enabled={draftMode().isEnabled}
+      enabled={draftMode().isEnabled }
       initialData={data}
       query={tableQuery}
       as={PreviewTable}
     >
       <Table data={data} />
-    </LiveQuery>
-  )
-}
-async function ServerFooter() {
-  const data = await sanityFetch<FooterProps['data']>({
-    query: footerQuery,
-    tags: ['pages'],
-  })
-
-  return (
-    <LiveQuery
-      enabled={draftMode().isEnabled}
-      initialData={data}
-      query={footerQuery}
-      as={PreviewFooter}
-    >
-      <Footer data={data} />
     </LiveQuery>
   )
 }
