@@ -174,12 +174,9 @@ export function Container({ children }: { children: React.ReactNode }) {
         style={{
           display: 'flex',
           alignItems: 'center',
-          minHeight: '100svh',
           justifyContent: 'center',
           flexDirection: 'column',
           overflow: 'auto',
-          padding: '20px',
-          marginBottom: '100px',
         }}
       >
         {children}
