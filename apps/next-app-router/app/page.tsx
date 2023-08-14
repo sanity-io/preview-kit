@@ -25,16 +25,16 @@ export default async function Page() {
   return (
     <Variant>
       <Suspense fallback={<TableFallback rows={Math.min(10, footer)} />}>
-      <ServerTable />
+        <ServerTable />
       </Suspense>
       <LiveQuery
-      enabled={draftMode().isEnabled }
-      initialData={footer}
-      query={footerQuery}
-      as={PreviewFooter}
-    >
-      <Footer data={footer} />
-    </LiveQuery>
+        enabled={draftMode().isEnabled}
+        initialData={footer}
+        query={footerQuery}
+        as={PreviewFooter}
+      >
+        <Footer data={footer} />
+      </LiveQuery>
       <Timestamp date={new Date()} />
       <RefreshButton />
     </Variant>
@@ -49,7 +49,7 @@ async function ServerTable() {
 
   return (
     <LiveQuery
-      enabled={draftMode().isEnabled }
+      enabled={draftMode().isEnabled}
       initialData={data}
       query={tableQuery}
       as={PreviewTable}
