@@ -5,6 +5,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/sanity-io/preview-kit/compare/v2.6.0...v3.0.0) (2023-08-14)
+
+### ⚠ BREAKING CHANGES
+
+- remove deprecated `useListeningQuery ` and `useListeningQueryStatus` hooks
+- remove deprecated `/groq-store` export
+
+### Features
+
+- add `LiveQuery` component ([#495](https://github.com/sanity-io/preview-kit/issues/495)) ([66efd7d](https://github.com/sanity-io/preview-kit/commit/66efd7dac5befafb52b8d83061127946646ea561))
+
+### Bug Fixes
+
+- remove deprecated `/groq-store` export ([240c17b](https://github.com/sanity-io/preview-kit/commit/240c17bc2ec9b19f318cd5da50cb28450c48ba00))
+- remove deprecated `useListeningQuery ` and `useListeningQueryStatus` hooks ([ea3efd2](https://github.com/sanity-io/preview-kit/commit/ea3efd21415125ceeeece38411d46fc92c6bb5e3))
+
 ## [2.6.0](https://github.com/sanity-io/preview-kit/compare/v2.5.0...v2.6.0) (2023-08-13)
 
 ### Features
