@@ -49,28 +49,6 @@
       "import": "./dist/internals/create-conditional-live-query.js",
       "default": "./dist/internals/create-conditional-live-query.js"
     },
-    "./internals/create-live-query-provider": {
-      "types": "./dist/internals/create-live-query-provider.d.ts",
-      "source": "./src/_exports/internals/_create-live-query-provider.ts",
-      "require": "./dist/internals/create-live-query-provider.cjs",
-      "node": {
-        "module": "./dist/internals/create-live-query-provider.js",
-        "import": "./dist/internals/create-live-query-provider.cjs.js"
-      },
-      "import": "./dist/internals/create-live-query-provider.js",
-      "default": "./dist/internals/create-live-query-provider.js"
-    },
-    "./internals/groq-store-provider": {
-      "types": "./dist/internals/groq-store-provider.d.ts",
-      "source": "./src/_exports/internals/_groq-store-provider.ts",
-      "require": "./dist/internals/groq-store-provider.cjs",
-      "node": {
-        "module": "./dist/internals/groq-store-provider.js",
-        "import": "./dist/internals/groq-store-provider.cjs.js"
-      },
-      "import": "./dist/internals/groq-store-provider.js",
-      "default": "./dist/internals/groq-store-provider.js"
-    },
     "./internals/live-query": {
       "types": "./dist/internals/live-query.d.ts",
       "source": "./src/_exports/internals/_live-query.ts",
@@ -81,17 +59,6 @@
       },
       "import": "./dist/internals/live-query.js",
       "default": "./dist/internals/live-query.js"
-    },
-    "./internals/live-store-provider": {
-      "types": "./dist/internals/live-store-provider.d.ts",
-      "source": "./src/_exports/internals/_live-store-provider.ts",
-      "require": "./dist/internals/live-store-provider.cjs",
-      "node": {
-        "module": "./dist/internals/live-store-provider.js",
-        "import": "./dist/internals/live-store-provider.cjs.js"
-      },
-      "import": "./dist/internals/live-store-provider.js",
-      "default": "./dist/internals/live-store-provider.js"
     },
     "./client": {
       "types": "./dist/client.d.ts",
@@ -137,17 +104,8 @@
       "internals/create-conditional-live-query": [
         "./dist/internals/create-conditional-live-query.d.ts"
       ],
-      "internals/create-live-query-provider": [
-        "./dist/internals/create-live-query-provider.d.ts"
-      ],
-      "internals/groq-store-provider": [
-        "./dist/internals/groq-store-provider.d.ts"
-      ],
       "internals/live-query": [
         "./dist/internals/live-query.d.ts"
-      ],
-      "internals/live-store-provider": [
-        "./dist/internals/live-store-provider.d.ts"
       ],
       "client": [
         "./dist/client.d.ts"
