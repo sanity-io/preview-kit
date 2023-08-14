@@ -218,7 +218,7 @@ const thead = (
   </thead>
 )
 
-function _Table(props: TableProps) {
+export function _Table(props: TableProps) {
   const data = tableSchema.parse(props.data || [])
   return (
     <div className="table-container is-flex-shrink-0" style={{ width: '100%' }}>
@@ -300,7 +300,7 @@ export type FooterProps = {
   data: number
 }
 
-function _Footer({ data }: FooterProps) {
+export function _Footer({ data }: FooterProps) {
   return (
     <span className="tag is-light">
       Documents:{' '}
