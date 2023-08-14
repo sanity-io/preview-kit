@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/sanity-io/preview-kit/compare/v3.0.0...v3.0.1) (2023-08-14)
+
+### Bug Fixes
+
+- **live-query:** relax typings for `as` ([2ff3dac](https://github.com/sanity-io/preview-kit/commit/2ff3dacfd221d4d81a45916521b52e460c7383df))
+
 ## [3.0.0](https://github.com/sanity-io/preview-kit/compare/v2.6.0...v3.0.0) (2023-08-14)
 
 ### ⚠ BREAKING CHANGES
