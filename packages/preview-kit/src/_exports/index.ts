@@ -7,3 +7,4 @@ export {
   useLiveQuery,
 } from '../hooks'
 export * from '../LiveQueryProvider'
+export { LiveQueryProvider as default } from '../LiveQueryProvider'
