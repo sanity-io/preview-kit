@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/sanity-io/preview-kit/compare/v3.0.2...v3.0.3) (2023-08-14)
+
+### Bug Fixes
+
+- remove experimental internals ([633bf81](https://github.com/sanity-io/preview-kit/commit/633bf81760405dc536f71579788c3149336163a6))
+
 ## [3.0.2](https://github.com/sanity-io/preview-kit/compare/v3.0.1...v3.0.2) (2023-08-14)
 
 ### Bug Fixes
