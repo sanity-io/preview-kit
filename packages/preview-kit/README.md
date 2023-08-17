@@ -734,6 +734,115 @@ export const UsersList = memo(function UsersList(props: UsersListProps) {
 
 ### Advanced usage
 
+#### Using the `LiveQuery` wrapper component instead of the `useLiveQuery` hook
+
+The main benefit of the `LiveQuery` wrapper, over the `useLiveQuery` hook, is that it implements lazy loading. Unless `enabled` the code for `useLiveQuery` isn't loaded and your application's bundlesize isn't increased in production.
+
+```tsx
+import { LiveQuery } from '@sanity/preview-kit/live-query'
+
+const UsersList = memo(function UsersList(props: UsersListProps) {
+  const { data, lastId } = props
+
+  return (
+    <>
+      <ListView list={data.list} />
+      <ListPagination total={data.total} lastId={lastId} />
+    </>
+  )
+})
+
+export default function Layout(props: LayoutProps) {
+  return (
+    <LiveQuery
+      enabled={props.preview}
+      query={usersQuery}
+      params={{ lastId: props.lastId }}
+      initialData={props.data}
+    >
+      <UsersList
+        // LiveQuery will override the `data` prop with the real-time data when live previews are enabled
+        data={props.data}
+        // But other props will be passed through
+        lastId={props.lastId}
+      />
+    </LiveQuery>
+  )
+}
+```
+
+For React Server Components it's important to note that the `children` of `LiveQuery` must be a `use client` component. Otherwise it won't be able to re-render as the `data` prop changes. The `as` prop can be used to make sure the component is only used as a client component when live previews are enabled, below is an example of how this is done in the Next.js App Router, using 3 separate files:
+`app/users/[lastId]/UsersList.tsx`:
+
+```tsx
+// This component in itself doesn't have any interactivity and can be rendered on the server, and avoid adding to the browser bundle.
+
+export default function UsersList(props: UsersListProps) {
+  const { data, lastId } = props
+
+  return (
+    <>
+      <ListView list={data.list} />
+      <ListPagination total={data.total} lastId={lastId} />
+    </>
+  )
+}
+```
+
+`app/users/[lastId]/UsersListPreview.tsx`:
+
+```tsx
+'use client'
+
+import dynamic from 'next/dynamic'
+
+// Re-exported components using next/dynamic ensures they're not bundled
+// and sent to the browser unless actually used, with draftMode().enabled.
+
+export default dynamic(() => import('./UsersList'))
+```
+
+`app/users/[lastId]/page.tsx`
+
+```tsx
+import { createClient } from '@sanity/client'
+import { LiveQuery } from '@sanity/preview-kit/live-query'
+import { draftMode } from 'next/headers'
+import UsersList from './UsersList'
+import UsersListPreview from './UsersListPreview'
+
+const client = createClient({
+  // standard client config
+})
+
+export default async function UsersPage(params) {
+  const { lastId } = params
+  const data = await client.fetch(
+    usersQuery,
+    { lastId },
+    { perspective: draftMode().isEnabled ? 'previewDrafts' : 'published' },
+  )
+
+  return (
+    <LiveQuery
+      enabled={draftMode().isEnabled}
+      query={usersQuery}
+      params={{ lastId }}
+      initialData={data}
+      as={UsersListPreview}
+    >
+      <UsersList
+        data={data}
+        // LiveQuery ensures that the `lastId` prop used here is applied to `UsersListPreview` as well
+        lastId={lastId}
+      />
+    </LiveQuery>
+  )
+}
+```
+
+What's great about this setup is that `UsersList` is rendering only on the server by default, but when live previews are enabled the `UsersListPreview` repackages it to a client component so it's able to re-render in the browser in real-time as the data changes. It's the closest thing to having your cake and eating it too.
+
 #### Trouble-shooting and debugging
 
 As the nature of live queries is that they're real-time, it can be hard to debug issues. Is nothing happening because no edits happened? Or because something isn't setup correctly?
