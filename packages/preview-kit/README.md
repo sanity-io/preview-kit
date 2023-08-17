@@ -775,6 +775,7 @@ export default function Layout(props: LayoutProps) {
 ```
 
 For React Server Components it's important to note that the `children` of `LiveQuery` must be a `use client` component. Otherwise it won't be able to re-render as the `data` prop changes. The `as` prop can be used to make sure the component is only used as a client component when live previews are enabled, below is an example of how this is done in the Next.js App Router, using 3 separate files:
+
 `app/users/[lastId]/UsersList.tsx`:
 
 ```tsx
