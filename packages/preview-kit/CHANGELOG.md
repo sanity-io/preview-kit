@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/sanity-io/preview-kit/compare/v3.1.1...v3.1.2) (2023-08-17)
+
+### Bug Fixes
+
+- **docs:** add usage for `LiveQuery` ([d0d84c7](https://github.com/sanity-io/preview-kit/commit/d0d84c7cb655b73ce60351cf3e44a3044dd31245))
+
 ## [3.1.1](https://github.com/sanity-io/preview-kit/compare/v3.1.0...v3.1.1) (2023-08-17)
 
 ### Bug Fixes
