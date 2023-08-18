@@ -3,18 +3,6 @@
 [Sanity.io](https://www.sanity.io/?utm_source=github&utm_medium=readme&utm_campaign=preview-kit) toolkit for building live-as-you-type content preview experiences and visual editing.
 
 - [Installation](#installation)
-- [`@sanity/preview-kit/client`](#sanitypreview-kitclient)
-  - [Visual Editing with Content Source Maps](#visual-editing-with-content-source-maps)
-    - [Enhanced Sanity client with `createClient`](#enhanced-sanity-client-with-createclient)
-      - [`studioUrl`](#studiourl)
-      - [`encodeSourceMap`](#encodesourcemap)
-      - [`encodeSourceMapAtPath`](#encodesourcemapatpath)
-      - [`logger`](#logger)
-      - [`resultSourceMap`](#resultsourcemap)
-  - [Using the Content Source Map with custom logic](#using-the-content-source-map-with-custom-logic)
-  - [Using Perspectives](#using-perspectives)
-- [`@sanity/preview-kit/csm`](#sanitypreview-kitcsm)
-  - [Transcoding](#transcoding)
 - [`@sanity/preview-kit`](#sanitypreview-kit-1)
   - [Live real-time preview for React](#live-real-time-preview-for-react)
     - [1. Create a `client` instance](#1-create-a-client-instance)
@@ -28,7 +16,19 @@
       - [Trouble-shooting and debugging](#trouble-shooting-and-debugging)
       - [Fine-tuning `cache`](#fine-tuning-cache)
       - [Content Source Map features](#content-source-map-features)
-  - [Release new version](#release-new-version)
+- [`@sanity/preview-kit/client`](#sanitypreview-kitclient)
+  - [Visual Editing with Content Source Maps](#visual-editing-with-content-source-maps)
+    - [Enhanced Sanity client with `createClient`](#enhanced-sanity-client-with-createclient)
+      - [`studioUrl`](#studiourl)
+      - [`encodeSourceMap`](#encodesourcemap)
+      - [`encodeSourceMapAtPath`](#encodesourcemapatpath)
+      - [`logger`](#logger)
+      - [`resultSourceMap`](#resultsourcemap)
+  - [Using the Content Source Map with custom logic](#using-the-content-source-map-with-custom-logic)
+  - [Using Perspectives](#using-perspectives)
+- [`@sanity/preview-kit/csm`](#sanitypreview-kitcsm)
+  - [Transcoding](#transcoding)
+- [Release new version](#release-new-version)
 - [License](#license)
 
 # Installation
@@ -43,236 +43,6 @@ pnpm i @sanity/preview-kit @sanity/client
 
 ```bash
 yarn add @sanity/preview-kit @sanity/client
-```
-
-# `@sanity/preview-kit/client`
-
-## Visual Editing with Content Source Maps
-
-> **Note**
->
-> [Content Source Maps][content-source-maps-intro] are available [as an API][content-source-maps] for select [Sanity enterprise customers][enterprise-cta]. [Contact our sales team for more information.][sales-cta]
-
-You can use [Visual Editing][visual-editing-intro] with any framework, not just React. [Read our guide for how to get started.][visual-editing]
-
-### Enhanced Sanity client with `createClient`
-
-Preview Kit's enhanced Sanity client is built on top of `@sanity/client` and is designed to be a drop-in replacement. It extends the client configuration with options for returning encoded metadata from Content Source Maps.
-
-```ts
-// Remove your vanilla `@sanity/client` import
-// import {createClient, type ClientConfig} from '@sanity/client'
-
-// Use the enhanced client instead
-import { createClient, type ClientConfig } from '@sanity/preview-kit/client'
-
-const config: ClientConfig = {
-  // ...base config options
-
-  // Required: when "encodeSourceMap" is enabled
-  // Set it to relative or absolute URL of your Sanity Studio
-  studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
-
-  // Required: for encoded metadata from Content Source Maps
-  // 'auto' is the default, you can also use `true` or `false`
-  encodeSourceMap: 'auto',
-}
-
-const client = createClient(config)
-```
-
-#### `studioUrl`
-
-**Required** when `encodeSourceMap` is active, and can either be an absolute URL:
-
-```ts
-import { createClient } from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  studioUrl: 'https://your-company.com/studio',
-})
-```
-
-Or a relative path if the Studio is hosted on the same deployment, or embedded in the same app:
-
-```ts
-import { createClient } from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  studioUrl: '/studio',
-})
-```
-
-#### `encodeSourceMap`
-
-Accepts `"auto"`, the default, or a `boolean`. Controls when to encode the content source map into strings using `@vercel/stega` encoding. When `"auto"` is used a best-effort environment detection is used to see if the environment is a Vercel Preview deployment. On a different hosting provider, or in local development, configure this option to make sure it is only enabled in non-production deployments.
-
-```tsx
-import { createClient } from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  encodeSourceMap: process.env.VERCEL_ENV === 'preview',
-})
-```
-
-#### `encodeSourceMapAtPath`
-
-By default source maps are encoded into all strings that can be traced back to a document field, except for URLs and ISO dates. We also make some exceptions for fields like, `document._type`, `document._id` and `document.slug.current`, that we've seen leading to breakage if the string is altered as well as for Portable Text.
-
-You can customize this behavior using `encodeSourceMapAtPath`:
-
-```tsx
-import { createClient } from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  encodeSourceMapAtPath: (props) => {
-    if (props.path[0] === 'externalUrl') {
-      return false
-    }
-    // The default behavior is packaged into `filterDefault`, allowing you enable encoding fields that are skipped by default
-    return props.filterDefault(props)
-  },
-})
-```
-
-#### `logger`
-
-Pass a `console` into `logger` to get detailed debug info and reports on which fields are encoded and which are skipped:
-
-```tsx
-import { createClient } from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  logger: console,
-})
-```
-
-An example report:
-
-```bash
-[@sanity/preview-kit]: Creating source map enabled client
-[@sanity/preview-kit]: Stega encoding source map into result
-  [@sanity/preview-kit]: Paths encoded: 3, skipped: 17
-  [@sanity/preview-kit]: Table of encoded paths
-  ┌─────────┬──────────────────────────────┬───────────────────────────┬────────┐
-  │ (index) │              path            │           value           │ length │
-  ├─────────┼──────────────────────────────┼───────────────────────────┼────────┤
-  │    0    │ "footer[0].children[0].text" │ '"The future is alrea...' │   67   │
-  │    1    │ "footer[1].children[0].text" │     'Robin Williams'      │   14   │
-  │    2    │            "title"           │     'Visual Editing'      │   14   │
-  └─────────┴──────────────────────────────┴───────────────────────────┴────────┘
-  [@sanity/preview-kit]: List of skipped paths [
-    'footer[]._key',
-    'footer[].children[]._key',
-    'footer[].children[]._type',
-    'footer[]._type',
-    'footer[].style',
-    '_type',
-    'slug.current',
-  ]
-```
-
-#### `resultSourceMap`
-
-This option is always enabled if `encodeSourceMap`. It's exposed here to be [compatible with `@sanity/client`](https://github.com/sanity-io/client/#get-started-with-content-source-maps) and custom use cases where you want content source maps, but not the encoding.
-
-```ts
-const client = createClient({
-  ...config,
-  // This option can only enable content source maps, not disable it when `encodeSourceMap` resolves to `true`
-  resultSourceMap: true,
-})
-
-const { result, resultSourceMap } = await client.fetch(query, params, {
-  filterResponse: false,
-})
-
-console.log(resultSourceMap) // `resultSourceMap` is now available, even if `encodeSourceMap` is `false`
-```
-
-## Using the Content Source Map with custom logic
-
-If you're building your own custom preview logic you can use `mapToEditLinks` to skip encoding hidden metadata into strings, and access the edit links directly:
-
-```tsx
-import { createClient } from '@sanity/preview-kit/client'
-import { mapToEditLinks } from '@sanity/preview-kit/csm'
-
-const client = createClient({
-  ...config,
-  resultSourceMap: true, // Tells Content Lake to include content source maps in the response
-  encodeSourceMap: false, // Disable the default encoding behavior
-})
-
-// const result = await client.fetch(query, params)
-const { result, resultSourceMap } = await client.fetch(
-  query,
-  params,
-  { filterResponse: false }, // This option is returns the entire API response instead of selecting just `result`
-)
-const studioUrl = 'https://your-company.com/studio'
-const editLinks = mapToEditLinks(result, resultSourceMap, studioUrl)
-
-const title = result.title
-const titleEditLink = editLinks.title
-
-console.log(title, titleEditLink)
-```
-
-## Using Perspectives
-
-The `perspective` option can be used to specify special filtering behavior for queries. The default value is `raw`, which means no special filtering is applied, while [`published`](#published) and [`previewDrafts`](#previewdrafts) can be used to optimize for specific use cases. Read more about this option:
-
-- [Perspectives in Sanity docs][perspectives-docs]
-- [Perspectives in @sanity/client README][perspectives-readme]
-
-# `@sanity/preview-kit/csm`
-
-[Content Source Maps][content-source-maps-intro] (CSM) package provides utilities for processing CSM and encoding metadata into results.
-
-## Transcoding
-
-Transcoding is the process of taking an input and encoding CSM strings using `@vercel/stega` encoding.
-
-```ts
-import {
-  createTranscoder,
-  type CreateTranscoderConfig,
-} from '@sanity/preview-kit/csm'
-
-const config: CreateTranscoderConfig = {
-  // Required. Set it to relative or absolute URL of your Sanity Studio
-  studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
-
-  // Optional. Customize which paths are encoded
-  encodeSourceMapAtPath: (props) => {
-    if (props.path[0] === 'externalUrl') {
-      return false
-    }
-    // The default behavior is packaged into `filterDefault`, allowing you enable encoding fields that are skipped by default
-    return props.filterDefault(props)
-  },
-
-  // Optional. Detailed debug info and reports on which fields are encoded and which are skipped:
-  logger: console,
-}
-
-// Fetch data with CSM
-const { result, csm } = await fetchDataWithCSM()
-
-// Create a transcoder
-const transcoder = createTranscoder(config)
-
-// Transcode the CSM into the result with `@vercel/stega` encoding.
-const transcoderResult = transcoder(result, csm)
-
-// transcoderResult.result contains the transcoded result
-return transcoderResult.result
 ```
 
 # `@sanity/preview-kit`
@@ -958,7 +728,237 @@ return (
 )
 ```
 
-## Release new version
+# `@sanity/preview-kit/client`
+
+## Visual Editing with Content Source Maps
+
+> **Note**
+>
+> [Content Source Maps][content-source-maps-intro] are available [as an API][content-source-maps] for select [Sanity enterprise customers][enterprise-cta]. [Contact our sales team for more information.][sales-cta]
+
+You can use [Visual Editing][visual-editing-intro] with any framework, not just React. [Read our guide for how to get started.][visual-editing]
+
+### Enhanced Sanity client with `createClient`
+
+Preview Kit's enhanced Sanity client is built on top of `@sanity/client` and is designed to be a drop-in replacement. It extends the client configuration with options for returning encoded metadata from Content Source Maps.
+
+```ts
+// Remove your vanilla `@sanity/client` import
+// import {createClient, type ClientConfig} from '@sanity/client'
+
+// Use the enhanced client instead
+import { createClient, type ClientConfig } from '@sanity/preview-kit/client'
+
+const config: ClientConfig = {
+  // ...base config options
+
+  // Required: when "encodeSourceMap" is enabled
+  // Set it to relative or absolute URL of your Sanity Studio
+  studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
+
+  // Required: for encoded metadata from Content Source Maps
+  // 'auto' is the default, you can also use `true` or `false`
+  encodeSourceMap: 'auto',
+}
+
+const client = createClient(config)
+```
+
+#### `studioUrl`
+
+**Required** when `encodeSourceMap` is active, and can either be an absolute URL:
+
+```ts
+import { createClient } from '@sanity/preview-kit/client'
+
+const client = createClient({
+  ...config,
+  studioUrl: 'https://your-company.com/studio',
+})
+```
+
+Or a relative path if the Studio is hosted on the same deployment, or embedded in the same app:
+
+```ts
+import { createClient } from '@sanity/preview-kit/client'
+
+const client = createClient({
+  ...config,
+  studioUrl: '/studio',
+})
+```
+
+#### `encodeSourceMap`
+
+Accepts `"auto"`, the default, or a `boolean`. Controls when to encode the content source map into strings using `@vercel/stega` encoding. When `"auto"` is used a best-effort environment detection is used to see if the environment is a Vercel Preview deployment. On a different hosting provider, or in local development, configure this option to make sure it is only enabled in non-production deployments.
+
+```tsx
+import { createClient } from '@sanity/preview-kit/client'
+
+const client = createClient({
+  ...config,
+  encodeSourceMap: process.env.VERCEL_ENV === 'preview',
+})
+```
+
+#### `encodeSourceMapAtPath`
+
+By default source maps are encoded into all strings that can be traced back to a document field, except for URLs and ISO dates. We also make some exceptions for fields like, `document._type`, `document._id` and `document.slug.current`, that we've seen leading to breakage if the string is altered as well as for Portable Text.
+
+You can customize this behavior using `encodeSourceMapAtPath`:
+
+```tsx
+import { createClient } from '@sanity/preview-kit/client'
+
+const client = createClient({
+  ...config,
+  encodeSourceMapAtPath: (props) => {
+    if (props.path[0] === 'externalUrl') {
+      return false
+    }
+    // The default behavior is packaged into `filterDefault`, allowing you enable encoding fields that are skipped by default
+    return props.filterDefault(props)
+  },
+})
+```
+
+#### `logger`
+
+Pass a `console` into `logger` to get detailed debug info and reports on which fields are encoded and which are skipped:
+
+```tsx
+import { createClient } from '@sanity/preview-kit/client'
+
+const client = createClient({
+  ...config,
+  logger: console,
+})
+```
+
+An example report:
+
+```bash
+[@sanity/preview-kit]: Creating source map enabled client
+[@sanity/preview-kit]: Stega encoding source map into result
+  [@sanity/preview-kit]: Paths encoded: 3, skipped: 17
+  [@sanity/preview-kit]: Table of encoded paths
+  ┌─────────┬──────────────────────────────┬───────────────────────────┬────────┐
+  │ (index) │              path            │           value           │ length │
+  ├─────────┼──────────────────────────────┼───────────────────────────┼────────┤
+  │    0    │ "footer[0].children[0].text" │ '"The future is alrea...' │   67   │
+  │    1    │ "footer[1].children[0].text" │     'Robin Williams'      │   14   │
+  │    2    │            "title"           │     'Visual Editing'      │   14   │
+  └─────────┴──────────────────────────────┴───────────────────────────┴────────┘
+  [@sanity/preview-kit]: List of skipped paths [
+    'footer[]._key',
+    'footer[].children[]._key',
+    'footer[].children[]._type',
+    'footer[]._type',
+    'footer[].style',
+    '_type',
+    'slug.current',
+  ]
+```
+
+#### `resultSourceMap`
+
+This option is always enabled if `encodeSourceMap`. It's exposed here to be [compatible with `@sanity/client`](https://github.com/sanity-io/client/#get-started-with-content-source-maps) and custom use cases where you want content source maps, but not the encoding.
+
+```ts
+const client = createClient({
+  ...config,
+  // This option can only enable content source maps, not disable it when `encodeSourceMap` resolves to `true`
+  resultSourceMap: true,
+})
+
+const { result, resultSourceMap } = await client.fetch(query, params, {
+  filterResponse: false,
+})
+
+console.log(resultSourceMap) // `resultSourceMap` is now available, even if `encodeSourceMap` is `false`
+```
+
+## Using the Content Source Map with custom logic
+
+If you're building your own custom preview logic you can use `mapToEditLinks` to skip encoding hidden metadata into strings, and access the edit links directly:
+
+```tsx
+import { createClient } from '@sanity/preview-kit/client'
+import { mapToEditLinks } from '@sanity/preview-kit/csm'
+
+const client = createClient({
+  ...config,
+  resultSourceMap: true, // Tells Content Lake to include content source maps in the response
+  encodeSourceMap: false, // Disable the default encoding behavior
+})
+
+// const result = await client.fetch(query, params)
+const { result, resultSourceMap } = await client.fetch(
+  query,
+  params,
+  { filterResponse: false }, // This option is returns the entire API response instead of selecting just `result`
+)
+const studioUrl = 'https://your-company.com/studio'
+const editLinks = mapToEditLinks(result, resultSourceMap, studioUrl)
+
+const title = result.title
+const titleEditLink = editLinks.title
+
+console.log(title, titleEditLink)
+```
+
+## Using Perspectives
+
+The `perspective` option can be used to specify special filtering behavior for queries. The default value is `raw`, which means no special filtering is applied, while [`published`](#published) and [`previewDrafts`](#previewdrafts) can be used to optimize for specific use cases. Read more about this option:
+
+- [Perspectives in Sanity docs][perspectives-docs]
+- [Perspectives in @sanity/client README][perspectives-readme]
+
+# `@sanity/preview-kit/csm`
+
+[Content Source Maps][content-source-maps-intro] (CSM) package provides utilities for processing CSM and encoding metadata into results.
+
+## Transcoding
+
+Transcoding is the process of taking an input and encoding CSM strings using `@vercel/stega` encoding.
+
+```ts
+import {
+  createTranscoder,
+  type CreateTranscoderConfig,
+} from '@sanity/preview-kit/csm'
+
+const config: CreateTranscoderConfig = {
+  // Required. Set it to relative or absolute URL of your Sanity Studio
+  studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
+
+  // Optional. Customize which paths are encoded
+  encodeSourceMapAtPath: (props) => {
+    if (props.path[0] === 'externalUrl') {
+      return false
+    }
+    // The default behavior is packaged into `filterDefault`, allowing you enable encoding fields that are skipped by default
+    return props.filterDefault(props)
+  },
+
+  // Optional. Detailed debug info and reports on which fields are encoded and which are skipped:
+  logger: console,
+}
+
+// Fetch data with CSM
+const { result, csm } = await fetchDataWithCSM()
+
+// Create a transcoder
+const transcoder = createTranscoder(config)
+
+// Transcode the CSM into the result with `@vercel/stega` encoding.
+const transcoderResult = transcoder(result, csm)
+
+// transcoderResult.result contains the transcoded result
+return transcoderResult.result
+```
+
+# Release new version
 
 Run ["CI & Release" workflow](https://github.com/sanity-io/preview-kit/actions/workflows/main.yml).
 Make sure to select the main branch and check "Release new version".
