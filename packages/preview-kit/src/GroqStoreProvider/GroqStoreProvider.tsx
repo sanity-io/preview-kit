@@ -71,6 +71,7 @@ const GroqStoreProviderInternal = memo(function GroqStoreProvider(
       listen: true,
       overlayDrafts: true,
       documentLimit: DEFAULT_MAX_DOCUMENTS,
+      subscriptionThrottleMs: 1,
       // Spread in the rest
       ...config,
     }),
