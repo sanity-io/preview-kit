@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.5](https://github.com/sanity-io/preview-kit/compare/v3.1.4...v3.1.5) (2023-08-22)
+
+### Bug Fixes
+
+- reduce subscriptionThrottleMs from `50ms` to `1ms` ([14fe012](https://github.com/sanity-io/preview-kit/commit/14fe0122bf045ae98ab055f071f4b24247eeb133))
+
 ## [3.1.4](https://github.com/sanity-io/preview-kit/compare/v3.1.3...v3.1.4) (2023-08-18)
 
 ### Bug Fixes
