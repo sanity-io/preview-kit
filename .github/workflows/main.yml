@@ -51,8 +51,8 @@ jobs:
       - run: pnpm install
       - run: pnpm lint
         if: github.event.inputs.test != 'false'
-      - run: pnpm build
-        if: github.event.inputs.test != 'false'
+      - run: pnpm build --summarize -vvv
+        # if: github.event.inputs.test != 'false'
 
   test:
     needs: build
