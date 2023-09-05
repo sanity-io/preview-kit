@@ -74,11 +74,14 @@ jobs:
             node: lts/*
           - os: windows-latest
             node: lts/*
+    # We want to know ASAP if an upcoming breaking changes in the next LTS will affect us, but since "current" are unstable, 
+    # it sometimes might fail until a new nightly comes out and we don't want to be blocked from merging PRs when this happens.
+    continue-on-error: ${{ matrix.node == 'current' }}
     runs-on: ${{ matrix.os }}
     env:
       NODE_VERSION: ${{ matrix.node }}
-      TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      TURBO_TEAM: sanity-io
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
     steps:
       # It's only necessary to do this for windows, as mac and ubuntu are sane OS's that already use LF
       - if: matrix.os == 'windows-latest'
