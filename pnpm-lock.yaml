@@ -12,8 +12,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       prettier-plugin-packagejson:
-        specifier: ^2.4.5
-        version: 2.4.5(prettier@3.0.3)
+        specifier: ^2.4.6
+        version: 2.4.6(prettier@3.0.3)
       turbo:
         specifier: 1.10.13
         version: 1.10.13
@@ -141,7 +141,7 @@ importers:
         version: 0.15.9
       isbot:
         specifier: latest
-        version: 3.6.13
+        version: 3.7.0
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -3543,7 +3543,7 @@ packages:
       parse-git-config: 3.0.0
       pkg-up: 3.1.0
       prettier: 3.0.3
-      prettier-plugin-packagejson: 2.4.5(prettier@3.0.3)
+      prettier-plugin-packagejson: 2.4.6(prettier@3.0.3)
       pretty-bytes: 5.6.0
       prompts: 2.4.2
       rimraf: 4.4.1
@@ -4503,7 +4503,7 @@ packages:
     dependencies:
       '@remix-run/node': 1.19.3
       '@remix-run/server-runtime': 1.19.3
-      isbot: 3.6.13
+      isbot: 3.7.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -8640,8 +8640,8 @@ packages:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
 
-  /isbot@3.6.13:
-    resolution: {integrity: sha512-uoP4uK5Dc2CrabmK+Gue1jTL+scHiCc1c9rblRpJwG8CPxjLIv8jmGyyGRGkbPOweayhkskdZsEQXG6p+QCQrg==}
+  /isbot@3.7.0:
+    resolution: {integrity: sha512-9BcjlI89966BqWJmYdTnRub85sit931MyCthSIPtgoOsTjoW7A2MVa09HzPpYE2+G4vyAxfDvR0AbUGV0FInQg==}
     engines: {node: '>=12'}
     dev: false
 
@@ -10853,8 +10853,8 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier-plugin-packagejson@2.4.5(prettier@3.0.3):
-    resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
+  /prettier-plugin-packagejson@2.4.6(prettier@3.0.3):
+    resolution: {integrity: sha512-5JGfzkJRL0DLNyhwmiAV9mV0hZLHDwddFCs2lc9CNxOChpoWUQVe8K4qTMktmevmDlMpok2uT10nvHUyU59sNw==}
     peerDependencies:
       prettier: '>= 1.16.0'
     peerDependenciesMeta:
@@ -10862,7 +10862,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.3
-      sort-package-json: 2.5.1
+      sort-package-json: 2.6.0
       synckit: 0.8.5
     dev: true
 
@@ -12102,8 +12102,8 @@ packages:
       sort-object-keys: 1.1.3
     dev: true
 
-  /sort-package-json@2.5.1:
-    resolution: {integrity: sha512-vx/KoZxm8YNMUqdlw7SGTfqR5pqZ/sUfgOuRtDILiOy/3AvzhAibyUe2cY3OpLs3oRSow9up4yLVtQaM24rbDQ==}
+  /sort-package-json@2.6.0:
+    resolution: {integrity: sha512-XSQ+lY9bAYA8ZsoChcEoPlgcSMaheziEp1beox1JVxy1SV4F2jSq9+h2rJ+3mC/Dhu9Ius1DLnInD5AWcsDXZw==}
     hasBin: true
     dependencies:
       detect-indent: 7.0.1
