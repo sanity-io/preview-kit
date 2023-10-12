@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/sanity-io/preview-kit/compare/v3.2.0...v3.2.1) (2023-10-12)
+
+### Bug Fixes
+
+- **deps:** Update dependency @sanity/eventsource to v5.0.1 ([#585](https://github.com/sanity-io/preview-kit/issues/585)) ([3c6ab69](https://github.com/sanity-io/preview-kit/commit/3c6ab69140d0f7ed62b073dc206ffa7baa2271a7))
+- **deps:** Update dependency @sanity/groq-store to v4.1.3 ([#604](https://github.com/sanity-io/preview-kit/issues/604)) ([1288430](https://github.com/sanity-io/preview-kit/commit/12884309159e090c4308fa520cabba676481be12))
+
 ## [3.2.0](https://github.com/sanity-io/preview-kit/compare/v3.1.6...v3.2.0) (2023-10-12)
 
 ### Features
