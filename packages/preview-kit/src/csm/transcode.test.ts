@@ -21,6 +21,7 @@ const csm: ContentSourceMap = {
   documents: [
     {
       _id: '46f04857-2785-493c-bd63-be8fb35a9130',
+      _type: 'page',
     },
   ],
   paths: [
@@ -104,32 +105,32 @@ test('transcoder encodes strings within result with stega using csm', () => {
 
   expect(vercelStegaDecode(transcoderResult.result.text))
     .toMatchInlineSnapshot(`
-    {
-      "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;path=content%5B0%5D.children%5B0%5D.text",
-      "origin": "sanity.io",
-    }
-  `)
+      {
+        "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;type=page;path=content%5B0%5D.children%5B0%5D.text",
+        "origin": "sanity.io",
+      }
+    `)
   expect(vercelStegaDecode(transcoderResult.result.arr[0]))
     .toMatchInlineSnapshot(`
-    {
-      "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;path=someArr%5B0%5D",
-      "origin": "sanity.io",
-    }
-  `)
+      {
+        "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;type=page;path=someArr%5B0%5D",
+        "origin": "sanity.io",
+      }
+    `)
   expect(vercelStegaDecode(transcoderResult.result.arr[1]))
     .toMatchInlineSnapshot(`
-    {
-      "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;path=someArr%5B1%5D",
-      "origin": "sanity.io",
-    }
-  `)
+      {
+        "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;type=page;path=someArr%5B1%5D",
+        "origin": "sanity.io",
+      }
+    `)
   expect(vercelStegaDecode(transcoderResult.result.nested.inner.foo))
     .toMatchInlineSnapshot(`
-    {
-      "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;path=someNestObj.inner.foo",
-      "origin": "sanity.io",
-    }
-  `)
+      {
+        "href": "https://admin.sanity.studio/intent/edit/id=46f04857-2785-493c-bd63-be8fb35a9130;type=page;path=someNestObj.inner.foo",
+        "origin": "sanity.io",
+      }
+    `)
 })
 
 test('transcoder correctly reports processing', () => {

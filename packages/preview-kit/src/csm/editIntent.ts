@@ -31,9 +31,9 @@ export function defineEditLink(
 ) => string {
   const studioUrl = _studioUrl.replace(/\/$/, '')
   return (sourceDocument, path) =>
-    `${studioUrl}/intent/edit/id=${
-      sourceDocument._id
-    };path=${encodeJsonPathToUriComponent(path)}`
+    `${studioUrl}/intent/edit/id=${sourceDocument._id};${
+      sourceDocument._type ? `type=${sourceDocument._type};` : ''
+    }path=${encodeJsonPathToUriComponent(path)}`
 }
 
 /** @alpha */

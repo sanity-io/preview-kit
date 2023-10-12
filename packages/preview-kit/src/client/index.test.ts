@@ -25,7 +25,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultArray[0].title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title",
       "origin": "sanity.io",
     }
   `,
@@ -38,7 +38,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultObject.title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title",
       "origin": "sanity.io",
     }
   `,
@@ -50,7 +50,7 @@ test('it returns stega encoded source maps', async () => {
   )
   expect(vercelStegaDecode(resultString)).toMatchInlineSnapshot(`
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title",
       "origin": "sanity.io",
     }
   `)
@@ -74,7 +74,7 @@ test('it can access the original source map', async () => {
   )
   expect(vercelStegaDecode(result)).toMatchInlineSnapshot(`
     {
-      "href": "/studio/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;path=title",
+      "href": "/studio/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title",
       "origin": "sanity.io",
     }
   `)
@@ -83,6 +83,7 @@ test('it can access the original source map', async () => {
       "documents": [
         {
           "_id": "0074e292-efcf-45c2-aeb8-f680da2277ff",
+          "_type": "page",
         },
       ],
       "mappings": {
@@ -125,6 +126,7 @@ test('it can query the content source map without transcoding', async () => {
       "documents": [
         {
           "_id": "0074e292-efcf-45c2-aeb8-f680da2277ff",
+          "_type": "page",
         },
       ],
       "mappings": {
