@@ -5,6 +5,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.0](https://github.com/sanity-io/preview-kit/compare/v3.1.6...v3.2.0) (2023-10-12)
+
+### Features
+
+- **csm:** support `_type` ([#597](https://github.com/sanity-io/preview-kit/issues/597)) ([38c678b](https://github.com/sanity-io/preview-kit/commit/38c678b7cf226cb91972d608d26e9209493b3921))
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/client to ^6.4.11 ([#570](https://github.com/sanity-io/preview-kit/issues/570)) ([de9cf81](https://github.com/sanity-io/preview-kit/commit/de9cf811cbe7b16844751a3402e25be305812312))
+- **deps:** Update dependency @sanity/groq-store to v4.1.2 ([#601](https://github.com/sanity-io/preview-kit/issues/601)) ([377459f](https://github.com/sanity-io/preview-kit/commit/377459f2c5d1cb3890570ecbe32dfc9c72781c73))
+
 ## [3.1.6](https://github.com/sanity-io/preview-kit/compare/v3.1.5...v3.1.6) (2023-08-23)
 
 ### Bug Fixes
