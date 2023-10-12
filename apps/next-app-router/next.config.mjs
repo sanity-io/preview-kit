@@ -5,7 +5,7 @@ const nextConfig = {
   experimental: {
     logging: {
       level: 'verbose',
-      fullUrl: true
+      fullUrl: true,
     },
     serverActions: true,
   },
