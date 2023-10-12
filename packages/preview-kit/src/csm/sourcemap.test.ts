@@ -27,6 +27,7 @@ const encodeTestCases: {
         documents: [
           {
             _id: 'foo',
+            _type: 'bar',
           },
         ],
         paths: ["$['this']"],
@@ -44,7 +45,7 @@ const encodeTestCases: {
     },
     expected: {
       encoderCalls: 1,
-      encoderArgs: [['that', { _id: 'foo' }, ['this']]],
+      encoderArgs: [['that', { _id: 'foo', _type: 'bar' }, ['this']]],
     },
   },
   {
@@ -64,6 +65,7 @@ const encodeTestCases: {
         documents: [
           {
             _id: 'foo',
+            _type: 'bar',
           },
         ],
         paths: ["$['something']['nested']"],
@@ -82,7 +84,11 @@ const encodeTestCases: {
     expected: {
       encoderCalls: 1,
       encoderArgs: [
-        ['that', { _id: 'foo' }, ['something', 'nested', 'object', 'this']],
+        [
+          'that',
+          { _id: 'foo', _type: 'bar' },
+          ['something', 'nested', 'object', 'this'],
+        ],
       ],
     },
   },
