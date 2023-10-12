@@ -141,7 +141,7 @@ importers:
         version: 0.15.9
       isbot:
         specifier: latest
-        version: 3.6.13
+        version: 3.7.0
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -265,8 +265,8 @@ importers:
         version: 1.2.0(react@18.2.0)
     devDependencies:
       '@sanity/client':
-        specifier: ^6.4.11
-        version: 6.4.11
+        specifier: ^6.6.0
+        version: 6.6.0
       '@sanity/pkg-utils':
         specifier: ^2.4.8
         version: 2.4.8(@types/node@18.17.15)(typescript@5.2.2)
@@ -3364,6 +3364,17 @@ packages:
       rxjs: 7.8.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@sanity/client@6.6.0:
+    resolution: {integrity: sha512-AZNtl1/BSRNOsjy5k/1q1feIHPuExugWsG0ZuNj4/etOddFMaXfUvCHHuv89pHb6l/3CWv+UPysvMNU0+qS2Ig==}
+    engines: {node: '>=14.18'}
+    dependencies:
+      '@sanity/eventsource': 5.0.0
+      get-it: 8.4.3
+      rxjs: 7.8.1
+    transitivePeerDependencies:
+      - supports-color
 
   /@sanity/color@2.2.5:
     resolution: {integrity: sha512-tTi22KoKuER3sldXYl4c1Dq2zU7tMLDkljFiaUKVkBbu4PBvRGCFw75kXZnD2b4Bsp6vin+7sI+AKdCKRhfRuw==}
@@ -3619,7 +3630,7 @@ packages:
   /@sanity/types@3.16.4:
     resolution: {integrity: sha512-hucdBktsM9dPtKNQmAKeBF2pVa81YZ2oJ5+IQbRsnzEKRl5UJEGb6HQ9u/qHr/0Sg4WJzi+RrjltOO7HqZ+rHg==}
     dependencies:
-      '@sanity/client': 6.4.11
+      '@sanity/client': 6.6.0
       '@types/react': 18.2.21
     transitivePeerDependencies:
       - supports-color
@@ -4503,7 +4514,7 @@ packages:
     dependencies:
       '@remix-run/node': 1.19.3
       '@remix-run/server-runtime': 1.19.3
-      isbot: 3.6.13
+      isbot: 3.7.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -8640,8 +8651,8 @@ packages:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
 
-  /isbot@3.6.13:
-    resolution: {integrity: sha512-uoP4uK5Dc2CrabmK+Gue1jTL+scHiCc1c9rblRpJwG8CPxjLIv8jmGyyGRGkbPOweayhkskdZsEQXG6p+QCQrg==}
+  /isbot@3.7.0:
+    resolution: {integrity: sha512-9BcjlI89966BqWJmYdTnRub85sit931MyCthSIPtgoOsTjoW7A2MVa09HzPpYE2+G4vyAxfDvR0AbUGV0FInQg==}
     engines: {node: '>=12'}
     dev: false
 
@@ -11688,7 +11699,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.16.4
       '@sanity/cli': 3.16.4
-      '@sanity/client': 6.4.11
+      '@sanity/client': 6.6.0
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.16.4
       '@sanity/diff-match-patch': 3.1.1
