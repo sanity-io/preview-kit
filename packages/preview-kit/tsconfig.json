@@ -8,6 +8,6 @@
       "@sanity/preview-kit": ["src/"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["dist", "node_modules", "react-server"]
+  "include": ["**/*.ts", "**/*.tsx", "react-server/**/*.js"],
+  "exclude": ["dist", "node_modules"]
 }
