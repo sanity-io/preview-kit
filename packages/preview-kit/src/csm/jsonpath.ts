@@ -19,26 +19,42 @@ const UNESCAPE: Record<string, string> = {
 }
 
 /** @internal */
-export function normalisedJsonPath(path: PathSegment[]): string {
+export function jsonPath(
+  path: PathSegment[],
+  opts?: {
+    keyArraySelectors: boolean
+  },
+): string {
   return `$${path
-    .map((key) => {
-      if (typeof key === 'string') {
-        const escapedKey = key.replace(/[\f\n\r\t'\\]/g, (match) => {
+    .map((segment) => {
+      if (typeof segment === 'string') {
+        const escapedKey = segment.replace(/[\f\n\r\t'\\]/g, (match) => {
           return ESCAPE[match]
         })
         return `['${escapedKey}']`
       }
 
-      return `[${key}]`
+      if (typeof segment === 'number') {
+        return `[${segment}]`
+      }
+
+      if (opts?.keyArraySelectors && segment.key !== '') {
+        const escapedKey = segment.key.replace(/['\\]/g, (match) => {
+          return ESCAPE[match]
+        })
+        return `[?(@._key=='${escapedKey}')]`
+      }
+
+      return `[${segment.index}]`
     })
     .join('')}`
 }
 
-/** @alpha */
-export function parseNormalisedJsonPath(path: string): PathSegment[] {
+/** @internal */
+export function parseJsonPath(path: string): PathSegment[] {
   const parsed: PathSegment[] = []
 
-  const parseRe = /\['(.*?)'\]|\[(\d+)\]/g
+  const parseRe = /\['(.*?)'\]|\[(\d+)\]|\[\?\(@\._key=='(.*?)'\)\]/g
   let match: RegExpExecArray | null
 
   while ((match = parseRe.exec(path)) !== null) {
@@ -53,6 +69,18 @@ export function parseNormalisedJsonPath(path: string): PathSegment[] {
 
     if (match[2] !== undefined) {
       parsed.push(parseInt(match[2], 10))
+      continue
+    }
+
+    if (match[3] !== undefined) {
+      const key = match[3].replace(/\\(\\')/g, (m) => {
+        return UNESCAPE[m]
+      })
+
+      parsed.push({
+        key,
+        index: -1,
+      })
       continue
     }
   }

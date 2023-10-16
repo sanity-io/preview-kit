@@ -38,7 +38,10 @@ export interface CreateTranscoderConfig {
 }
 
 /** @public */
-export type PathSegment = string | number
+export type PathSegment = string | number | KeyedSegment
+
+/** @public */
+export type KeyedSegment = { key: string; index: number }
 
 /** @public */
 export type StudioUrl =

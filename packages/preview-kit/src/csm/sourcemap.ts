@@ -5,7 +5,7 @@ import type {
   ContentSourceMapMapping,
 } from '@sanity/client'
 
-import { normalisedJsonPath, parseNormalisedJsonPath } from './jsonpath'
+import { jsonPath, parseJsonPath } from './jsonpath'
 import type { Logger, PathSegment } from './types'
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -28,8 +28,9 @@ export function encode<R, E>(
   result: R,
   csm: ContentSourceMap,
   encoder: Encoder<E>,
+  options?: { keyArraySelectors: boolean },
 ): R {
-  return encodeIntoResult(result, csm, encoder) as R
+  return encodeIntoResult(result, csm, encoder, options) as R
 }
 
 /** @alpha */
@@ -37,6 +38,7 @@ export function encodeIntoResult<R>(
   result: R,
   csm: ContentSourceMap,
   encoder: Encoder<unknown>,
+  options?: { keyArraySelectors: boolean },
 ): ReturnType<Encoder<unknown>> {
   return walkMap(result, (value, path) => {
     // Only map strings, we could extend this in the future to support other types like integers...
@@ -50,7 +52,7 @@ export function encodeIntoResult<R>(
       return value
     }
 
-    const [mapping, , pathSuffix] = resolveMappingResult
+    const [mapping, matchedPath, pathSuffix] = resolveMappingResult
     if (mapping.type !== 'value') {
       return value
     }
@@ -65,10 +67,22 @@ export function encodeIntoResult<R>(
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const sourcePath = csm.paths[mapping.source.path]
 
+    if (options?.keyArraySelectors) {
+      const matchPathSegments = parseJsonPath(matchedPath)
+      const sourcePathSegments = parseJsonPath(sourcePath)
+      const fullSourceSegments = sourcePathSegments.concat(path.slice(matchPathSegments.length))
+
+      return encoder(
+        value,
+        sourceDocument,
+        fullSourceSegments,
+      )
+    }
+
     return encoder(
       value,
       sourceDocument,
-      parseNormalisedJsonPath(sourcePath + pathSuffix),
+      parseJsonPath(sourcePath + pathSuffix),
     )
   })
 }
@@ -84,7 +98,16 @@ export function walkMap(
   path: PathSegment[] = [],
 ): unknown {
   if (isArray(value)) {
-    return value.map((v, idx) => walkMap(v, mappingFn, path.concat(idx)))
+    return value.map((v, idx) => {
+      if (isRecord(v)) {
+        const key = v['_key']
+        if (typeof key === 'string') {
+          return walkMap(v, mappingFn, path.concat({ key, index: idx }))
+        }
+      }
+
+      return walkMap(v, mappingFn, path.concat(idx))
+    })
   }
 
   if (isRecord(value)) {
@@ -105,7 +128,7 @@ export function resolveMapping(
   csm: ContentSourceMap,
   logger?: Logger,
 ): [ContentSourceMapMapping, string, string] | undefined {
-  const resultJsonPath = normalisedJsonPath(resultPath)
+  const resultJsonPath = jsonPath(resultPath)
 
   if (!csm.mappings) {
     logger?.error?.('Missing mappings', {

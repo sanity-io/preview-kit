@@ -3,7 +3,7 @@ import {
   ContentSourceMapDocuments,
 } from '@sanity/client'
 
-import { parseNormalisedJsonPath } from './jsonpath'
+import { parseJsonPath } from './jsonpath'
 import type { PathSegment, StudioUrl } from './types'
 
 /** @alpha */
@@ -40,7 +40,7 @@ export function defineEditLink(
 export function encodeJsonPathToUriComponent(
   path: string | PathSegment[],
 ): string {
-  const sourcePath = Array.isArray(path) ? path : parseNormalisedJsonPath(path)
+  const sourcePath = Array.isArray(path) ? path : parseJsonPath(path)
   return encodeURIComponent(
     sourcePath
       .map((key, i) =>
