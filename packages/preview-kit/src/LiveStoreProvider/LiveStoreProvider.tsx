@@ -20,7 +20,7 @@ import {
 } from 'react'
 
 import { defineListenerContext as Context, IsEnabledContext } from '../context'
-import { parseNormalisedJsonPath } from '../csm/jsonpath'
+import { parseJsonPath } from '../csm/jsonpath'
 import { resolveMapping, walkMap } from '../csm/sourcemap'
 import type {
   DefineListenerContext,
@@ -679,7 +679,7 @@ function turboChargeResultIfSourceMap(
       const cachedValue = cachedDocument
         ? get(
             cachedDocument,
-            parseNormalisedJsonPath(sourcePath + pathSuffix),
+            parseJsonPath(sourcePath + pathSuffix),
             value,
           )
         : value
