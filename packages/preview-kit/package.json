@@ -1,6 +1,6 @@
 {
   "name": "@sanity/preview-kit",
-  "version": "3.2.3",
+  "version": "3.2.4-canary.0",
   "description": "General purpose utils for live content and visual editing",
   "keywords": [
     "groq",
@@ -130,7 +130,7 @@
     "live-query.js"
   ],
   "scripts": {
-    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js live-query.js",
+    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js live-query.js || true",
     "build": "pkg build --strict && pkg --strict",
     "watch": "pnpm build watch",
     "coverage": "vitest run --coverage",

@@ -97,6 +97,7 @@ export function walkMap(
   return mappingFn(value, path)
 }
 
+/** @alpha */
 export function resolveMapping(
   resultPath: PathSegment[],
   csm: ContentSourceMap,
