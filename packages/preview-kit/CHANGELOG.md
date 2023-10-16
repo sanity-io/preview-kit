@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/sanity-io/preview-kit/compare/v3.2.2...v3.2.3) (2023-10-16)
+
+### Bug Fixes
+
+- fully support `use client` ([c87b9a6](https://github.com/sanity-io/preview-kit/commit/c87b9a6f6b923d59d670c7b1ad7a11aa93e31737))
+
 ## [3.2.2](https://github.com/sanity-io/preview-kit/compare/v3.2.1...v3.2.2) (2023-10-16)
 
 ### Bug Fixes
