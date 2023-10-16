@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.4](https://github.com/sanity-io/preview-kit/compare/v3.2.3...v3.2.4) (2023-10-16)
+
+### Bug Fixes
+
+- export experimental csm utils ([ffef068](https://github.com/sanity-io/preview-kit/commit/ffef06809849f59b8422ae969ff0559b5baf2236))
+
 ## [3.2.3](https://github.com/sanity-io/preview-kit/compare/v3.2.2...v3.2.3) (2023-10-16)
 
 ### Bug Fixes
