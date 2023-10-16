@@ -4,7 +4,7 @@ import type { QueryParams } from '@sanity/client'
 import { client } from './sanity.client'
 import { draftMode } from 'next/headers'
 
-export const token = process.env.SANITY_API_READ_TOKEN!
+export const token = process.env.SANITY_API_READ_TOKEN || ''
 
 const DEFAULT_PARAMS = {} as QueryParams
 const DEFAULT_TAGS = [] as string[]
