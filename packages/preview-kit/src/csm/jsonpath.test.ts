@@ -1,21 +1,21 @@
 import { expect, test } from 'vitest'
 
-import { normalisedJsonPath, parseNormalisedJsonPath } from './jsonpath'
+import { jsonPath, parseJsonPath } from './jsonpath'
 
 test('formats normalised JSON Paths', () => {
-  expect(normalisedJsonPath(['foo', 'bar', 0, 'baz'])).toBe(
+  expect(jsonPath(['foo', 'bar', 0, 'baz'])).toBe(
     "$['foo']['bar'][0]['baz']",
   )
 })
 
 test('formats normalised JSON Paths with escaped characters', () => {
-  expect(normalisedJsonPath(['foo', 'bar', 0, 'baz', "it's a 'test'"])).toBe(
+  expect(jsonPath(['foo', 'bar', 0, 'baz', "it's a 'test'"])).toBe(
     "$['foo']['bar'][0]['baz']['it\\'s a \\'test\\'']",
   )
 })
 
 test('parses normalised JSON Paths', () => {
-  expect(parseNormalisedJsonPath("$['foo']['bar'][0]['baz']")).toEqual([
+  expect(parseJsonPath("$['foo']['bar'][0]['baz']")).toEqual([
     'foo',
     'bar',
     0,
@@ -25,6 +25,16 @@ test('parses normalised JSON Paths', () => {
 
 test('parses normalised JSON Paths with escaped characters', () => {
   expect(
-    parseNormalisedJsonPath("$['foo']['bar'][0]['baz']['it\\'s a \\'test\\'']"),
+    parseJsonPath("$['foo']['bar'][0]['baz']['it\\'s a \\'test\\'']"),
   ).toEqual(['foo', 'bar', 0, 'baz', "it's a 'test'"])
+})
+
+test('parses normalised JSON Paths with key array filter selectors', () => {
+  expect(parseJsonPath("$['foo'][?(@._key=='section-1')][0]['baz'][?(@._key=='section-2')]")).toEqual([
+    'foo',
+    { key: 'section-1', index: -1 },
+    0,
+    'baz',
+    { key: 'section-2', index: -1},
+  ])
 })
