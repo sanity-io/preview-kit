@@ -85,6 +85,7 @@
     "./live-query": {
       "types": "./dist/live-query.d.ts",
       "source": "./src/_exports/live-query.ts",
+      "react-server": "./react-server/live-query/index.js",
       "require": "./dist/live-query.cjs",
       "node": {
         "module": "./dist/live-query.js",
@@ -122,6 +123,7 @@
     "dist",
     "internals",
     "!internals/.gitkeep",
+    "react-server",
     "client.js",
     "csm.js",
     "live-query.js"
