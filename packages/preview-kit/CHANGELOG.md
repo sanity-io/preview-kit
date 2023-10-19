@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.5](https://github.com/sanity-io/preview-kit/compare/v3.2.4...v3.2.5) (2023-10-19)
+
+### Bug Fixes
+
+- **csm:** export `walkMap` ([32e05d2](https://github.com/sanity-io/preview-kit/commit/32e05d2a49af0814f65c3712326366490a43d012))
+
 ## [3.2.4](https://github.com/sanity-io/preview-kit/compare/v3.2.3...v3.2.4) (2023-10-16)
 
 ### Bug Fixes
