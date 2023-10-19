@@ -75,7 +75,9 @@ export function encodeIntoResult<R>(
 
 export type WalkMapFn = (value: unknown, path: PathSegment[]) => unknown
 
-// generic way to walk a nested object or array and apply a mapping function to each value
+/** generic way to walk a nested object or array and apply a mapping function to each value
+ * @alpha
+ */
 export function walkMap(
   value: unknown,
   mappingFn: WalkMapFn,
