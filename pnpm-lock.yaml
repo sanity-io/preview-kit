@@ -265,8 +265,8 @@ importers:
         version: 1.2.0(react@18.2.0)
     devDependencies:
       '@sanity/client':
-        specifier: ^6.6.0
-        version: 6.6.0
+        specifier: ^6.7.0
+        version: 6.7.0
       '@sanity/pkg-utils':
         specifier: ^3.1.1
         version: 3.1.1(@types/node@18.18.6)(typescript@5.2.2)
@@ -3490,6 +3490,17 @@ packages:
       rxjs: 7.8.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@sanity/client@6.7.0:
+    resolution: {integrity: sha512-nQGIuXXhdtP5FDsdBjuPRpeV6jOHU6Eq5xr52KyUUi29SgC5h5XUzRIu7d1sF8N+ONqTngYueFuB8JDsdSo1Ng==}
+    engines: {node: '>=14.18'}
+    dependencies:
+      '@sanity/eventsource': 5.0.1
+      get-it: 8.4.3
+      rxjs: 7.8.1
+    transitivePeerDependencies:
+      - supports-color
 
   /@sanity/color@2.2.5:
     resolution: {integrity: sha512-tTi22KoKuER3sldXYl4c1Dq2zU7tMLDkljFiaUKVkBbu4PBvRGCFw75kXZnD2b4Bsp6vin+7sI+AKdCKRhfRuw==}
@@ -3744,7 +3755,7 @@ packages:
   /@sanity/types@3.18.0:
     resolution: {integrity: sha512-Z6gTUiAVOVM5JVRBr7Vw3HTOMmGP8Kz30eKlW0dFKc9MQhy83kkrATpA21ADXVyL/qKIMC5BTCRxhLtmrmW0Kw==}
     dependencies:
-      '@sanity/client': 6.6.0
+      '@sanity/client': 6.7.0
       '@types/react': 18.2.29
     transitivePeerDependencies:
       - supports-color
@@ -11811,7 +11822,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.18.0
       '@sanity/cli': 3.18.0
-      '@sanity/client': 6.6.0
+      '@sanity/client': 6.7.0
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.18.0
       '@sanity/diff-match-patch': 3.1.1
