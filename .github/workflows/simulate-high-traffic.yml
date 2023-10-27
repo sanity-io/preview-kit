@@ -20,7 +20,7 @@ jobs:
       
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598 # v2.4.0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: pnpm
           node-version: lts/*
