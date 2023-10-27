@@ -1,4 +1,5 @@
 import type { ContentSourceMap } from '@sanity/client'
+import type { PathSegment, StudioUrl } from '@sanity/client/csm'
 
 /** @public */
 export interface CreateTranscoderConfig {
@@ -36,19 +37,6 @@ export interface CreateTranscoderConfig {
    */
   logger?: Logger
 }
-
-/** @public */
-export type PathSegment = string | number | KeyedSegment
-
-/** @public */
-export type KeyedSegment = { key: string; index: number }
-
-/** @public */
-export type StudioUrl =
-  | `/${string}`
-  | `${string}.sanity.studio`
-  | `https://${string}`
-  | string
 
 /** @public */
 export type FilterDefault = (props: {

@@ -27,9 +27,16 @@
       "rangeStrategy": "bump"
     },
     {
-      "matchDepTypes": ["peerDependencies"],
-      "matchPackageNames": ["@sanity/client"],
-      "rangeStrategy": "bump",
+      "matchDepNames": [
+        "@sanity/client"
+      ],
+      "matchFileNames": ["package.json", "packages/**/package.json"],
+      "matchDepTypes": ["dependencies", "peerDependencies"],
+      "followTag": "canary",
+      "schedule": ["at any time"],
+      "rangeStrategy": "pin",
+      "groupSlug": "canary",
+      "automerge": true,
       "semanticCommitType": "fix"
     }
   ]

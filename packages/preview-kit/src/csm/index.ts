@@ -1,6 +1,5 @@
-export { encodeJsonPathToUriComponent } from './editIntent'
-export { parseNormalisedJsonPath } from './jsonpath'
 export * from './mapToEditLinks'
-export { resolveMapping, walkMap, type WalkMapFn } from './sourcemap'
 export * from './transcode'
 export type * from './types'
+export * from '@sanity/client/csm'
+export { jsonPath as parseNormalisedJsonPath } from '@sanity/client/csm'

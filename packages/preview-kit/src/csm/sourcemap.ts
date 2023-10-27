@@ -1,20 +1,13 @@
 /* eslint-disable no-nested-ternary */
-import type {
-  ContentSourceMap,
-  ContentSourceMapDocuments,
-  ContentSourceMapMapping,
-} from '@sanity/client'
+import {
+  type ContentSourceMap,
+  type ContentSourceMapDocuments,
+  type PathSegment,
+  resolveMapping,
+  walkMap,
+} from '@sanity/client/csm'
 
-import { jsonPath, parseJsonPath } from './jsonpath'
-import type { Logger, PathSegment } from './types'
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null
-}
-
-function isArray(value: unknown): value is Array<unknown> {
-  return value !== null && Array.isArray(value)
-}
+import { parseJsonPath } from './jsonpath'
 
 /** @alpha */
 export type Encoder<E> = (
@@ -70,13 +63,11 @@ export function encodeIntoResult<R>(
     if (options?.keyArraySelectors) {
       const matchPathSegments = parseJsonPath(matchedPath)
       const sourcePathSegments = parseJsonPath(sourcePath)
-      const fullSourceSegments = sourcePathSegments.concat(path.slice(matchPathSegments.length))
-
-      return encoder(
-        value,
-        sourceDocument,
-        fullSourceSegments,
+      const fullSourceSegments = sourcePathSegments.concat(
+        path.slice(matchPathSegments.length),
       )
+
+      return encoder(value, sourceDocument, fullSourceSegments)
     }
 
     return encoder(
@@ -85,71 +76,4 @@ export function encodeIntoResult<R>(
       parseJsonPath(sourcePath + pathSuffix),
     )
   })
-}
-
-export type WalkMapFn = (value: unknown, path: PathSegment[]) => unknown
-
-/** generic way to walk a nested object or array and apply a mapping function to each value
- * @alpha
- */
-export function walkMap(
-  value: unknown,
-  mappingFn: WalkMapFn,
-  path: PathSegment[] = [],
-): unknown {
-  if (isArray(value)) {
-    return value.map((v, idx) => {
-      if (isRecord(v)) {
-        const key = v['_key']
-        if (typeof key === 'string') {
-          return walkMap(v, mappingFn, path.concat({ key, index: idx }))
-        }
-      }
-
-      return walkMap(v, mappingFn, path.concat(idx))
-    })
-  }
-
-  if (isRecord(value)) {
-    return Object.fromEntries(
-      Object.entries(value).map(([k, v]) => [
-        k,
-        walkMap(v, mappingFn, path.concat(k)),
-      ]),
-    )
-  }
-
-  return mappingFn(value, path)
-}
-
-/** @alpha */
-export function resolveMapping(
-  resultPath: PathSegment[],
-  csm: ContentSourceMap,
-  logger?: Logger,
-): [ContentSourceMapMapping, string, string] | undefined {
-  const resultJsonPath = jsonPath(resultPath)
-
-  if (!csm.mappings) {
-    logger?.error?.('Missing mappings', {
-      resultSourceMap: csm,
-    })
-    return undefined
-  }
-
-  if (csm.mappings[resultJsonPath] !== undefined) {
-    return [csm.mappings[resultJsonPath], resultJsonPath, '']
-  }
-
-  const mappings = Object.entries(csm.mappings)
-    .filter(([key]) => resultJsonPath.startsWith(key))
-    .sort(([key1], [key2]) => key2.length - key1.length)
-
-  if (mappings.length == 0) {
-    return undefined
-  }
-
-  const [matchedPath, mapping] = mappings[0]
-  const pathSuffix = resultJsonPath.substring(matchedPath.length)
-  return [mapping, matchedPath, pathSuffix]
 }

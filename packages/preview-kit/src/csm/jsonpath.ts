@@ -1,13 +1,4 @@
-import type { PathSegment } from './types'
-
-const ESCAPE: Record<string, string> = {
-  '\f': '\\f',
-  '\n': '\\n',
-  '\r': '\\r',
-  '\t': '\\t',
-  "'": "\\'",
-  '\\': '\\\\',
-}
+import type { PathSegment } from '@sanity/client/csm'
 
 const UNESCAPE: Record<string, string> = {
   '\\f': '\f',
@@ -16,38 +7,6 @@ const UNESCAPE: Record<string, string> = {
   '\\t': '\t',
   "\\'": "'",
   '\\\\': '\\',
-}
-
-/** @internal */
-export function jsonPath(
-  path: PathSegment[],
-  opts?: {
-    keyArraySelectors: boolean
-  },
-): string {
-  return `$${path
-    .map((segment) => {
-      if (typeof segment === 'string') {
-        const escapedKey = segment.replace(/[\f\n\r\t'\\]/g, (match) => {
-          return ESCAPE[match]
-        })
-        return `['${escapedKey}']`
-      }
-
-      if (typeof segment === 'number') {
-        return `[${segment}]`
-      }
-
-      if (opts?.keyArraySelectors && segment.key !== '') {
-        const escapedKey = segment.key.replace(/['\\]/g, (match) => {
-          return ESCAPE[match]
-        })
-        return `[?(@._key=='${escapedKey}')]`
-      }
-
-      return `[${segment.index}]`
-    })
-    .join('')}`
 }
 
 /** @internal */
