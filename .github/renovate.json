@@ -27,9 +27,14 @@
       "rangeStrategy": "bump"
     },
     {
-      "matchDepTypes": ["peerDependencies"],
-      "matchPackageNames": ["@sanity/client"],
-      "rangeStrategy": "bump",
+      "matchDepNames": ["@sanity/client"],
+      "matchFileNames": ["package.json", "packages/**/package.json"],
+      "matchDepTypes": ["dependencies", "devDependencies", "peerDependencies"],
+      "followTag": "pink-lizard",
+      "schedule": ["at any time"],
+      "rangeStrategy": "pin",
+      "groupSlug": "pink-lizard",
+      "automerge": true,
       "semanticCommitType": "fix"
     }
   ]

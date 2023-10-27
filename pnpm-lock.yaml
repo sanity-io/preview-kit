@@ -4,9 +4,16 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@sanity/client': 6.7.1-pink-lizard.2
+
 importers:
 
   .:
+    dependencies:
+      '@sanity/client':
+        specifier: 6.7.1-pink-lizard.2
+        version: 6.7.1-pink-lizard.2
     devDependencies:
       prettier:
         specifier: ^3.0.3
@@ -21,8 +28,8 @@ importers:
   apps/next-app-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1-pink-lizard.2
+        version: 6.7.1-pink-lizard.2
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -76,8 +83,8 @@ importers:
   apps/next-pages-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1-pink-lizard.2
+        version: 6.7.1-pink-lizard.2
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -131,8 +138,8 @@ importers:
         specifier: 1.19.3
         version: 1.19.3(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1-pink-lizard.2
+        version: 6.7.1-pink-lizard.2
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -189,8 +196,8 @@ importers:
         specifier: 8.2.0
         version: 8.2.0
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1-pink-lizard.2
+        version: 6.7.1-pink-lizard.2
       '@sanity/icons':
         specifier: 2.6.0
         version: 2.6.0(react@18.2.0)
@@ -254,9 +261,6 @@ importers:
       '@vercel/stega':
         specifier: 0.1.0
         version: 0.1.0
-      lodash.get:
-        specifier: 4.4.2
-        version: 4.4.2
       lodash.isplainobject:
         specifier: 4.0.6
         version: 4.0.6
@@ -274,17 +278,14 @@ importers:
         version: 1.2.0(react@18.2.0)
     devDependencies:
       '@sanity/client':
-        specifier: ^6.7.0
-        version: 6.7.0
+        specifier: 6.7.1-pink-lizard.2
+        version: 6.7.1-pink-lizard.2
       '@sanity/pkg-utils':
         specifier: ^3.2.2
         version: 3.2.2(@types/node@18.18.8)(typescript@5.2.2)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.6
         version: 4.1.6(semantic-release@22.0.6)
-      '@types/lodash.get':
-        specifier: ^4.4.8
-        version: 4.4.8
       '@types/lodash.isplainobject':
         specifier: ^4.0.8
         version: 4.0.8
@@ -3525,11 +3526,12 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.7.0:
-    resolution: {integrity: sha512-nQGIuXXhdtP5FDsdBjuPRpeV6jOHU6Eq5xr52KyUUi29SgC5h5XUzRIu7d1sF8N+ONqTngYueFuB8JDsdSo1Ng==}
+  /@sanity/client@6.7.1-pink-lizard.2:
+    resolution: {integrity: sha512-UTTwMjxZYCZz8TVmQ+1P2nWCo4yeMau38pUt3bZOjT2sYh67ydw1L2rgtetJuKrxXrcfMrPSOJNhwOGBFK4oew==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.1
+      '@vercel/stega': 0.1.0
       get-it: 8.4.4
       rxjs: 7.8.1
     transitivePeerDependencies:
@@ -3788,7 +3790,7 @@ packages:
   /@sanity/types@3.19.0:
     resolution: {integrity: sha512-g6DVsQ6rlfuUE8Kh4svcfIjr70HM5W2qXBec1sOmMXtYdyoELe1SAU2xF3MyDL4h5Pbyu2FsqS60HymVvZn7Uw==}
     dependencies:
-      '@sanity/client': 6.7.0
+      '@sanity/client': 6.7.1-pink-lizard.2
       '@types/react': 18.2.33
     transitivePeerDependencies:
       - supports-color
@@ -4208,12 +4210,6 @@ packages:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
       '@types/node': 18.18.8
-    dev: true
-
-  /@types/lodash.get@4.4.8:
-    resolution: {integrity: sha512-XK+co6sBkJxh1vaVP8al6cAA17dX//RNCknGG8JhpHFJfxq/GXKAYB9NKheG22pu2xpWpxfFd65W08EhH2IFlg==}
-    dependencies:
-      '@types/lodash': 4.14.200
     dev: true
 
   /@types/lodash.isplainobject@4.0.8:
@@ -4708,7 +4704,6 @@ packages:
 
   /@vercel/stega@0.1.0:
     resolution: {integrity: sha512-5b0PkOJsFBX5alChuIO3qpkt5vIZBevzLPhUQ1UP8UzVjL3F1VllnZxp/thfD8R5ol7D7WHkgZHIjdUBX4tDpQ==}
-    dev: false
 
   /@vitejs/plugin-react@4.1.0(vite@4.5.0):
     resolution: {integrity: sha512-rM0SqazU9iqPUraQ2JlIvReeaxOoRj6n+PzB1C0cBzIbd8qP336nC39/R9yPi3wVcah7E7j/kdU1uCUqMEU4OQ==}
@@ -9241,6 +9236,7 @@ packages:
 
   /lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    dev: true
 
   /lodash.has@4.5.2:
     resolution: {integrity: sha512-rnYUdIo6xRCJnQmbVFEwcxF144erlD+M3YcJUVesflU9paQaE8p+fJDcIQrlMYbxoANFL+AB9hZrzSBBk5PL+g==}
@@ -11816,7 +11812,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.19.0
       '@sanity/cli': 3.19.0
-      '@sanity/client': 6.7.0
+      '@sanity/client': 6.7.1-pink-lizard.2
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.19.0
       '@sanity/diff-match-patch': 3.1.1
