@@ -12,12 +12,10 @@ const DEFAULT_TAGS = [] as string[]
 export async function sanityFetch<QueryResponse>({
   query,
   params = DEFAULT_PARAMS,
-  cache = 'force-cache',
   tags = DEFAULT_TAGS,
 }: {
   query: string
   params?: QueryParams
-  cache?: RequestCache
   tags: string[]
 }): Promise<QueryResponse> {
   const isDraftMode = draftMode().isEnabled
@@ -28,13 +26,12 @@ export async function sanityFetch<QueryResponse>({
   }
 
   return client.fetch<QueryResponse>(query, params, {
-    cache,
     ...(isDraftMode && {
       token,
       perspective: 'previewDrafts',
     }),
     next: {
-      ...(isDraftMode && { revalidate: 0 }),
+      revalidate: isDraftMode ? 0 : false,
       tags,
     },
   })

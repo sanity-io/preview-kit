@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useEffect, useTransition } from 'react'
-import { experimental_useFormStatus as useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom'
 import { Button } from 'ui/react'
 import { revalidate } from './actions'
 import { useIsEnabled } from '@sanity/preview-kit'
