@@ -1,24 +1,12 @@
 import type { ClientConfig } from '@sanity/client'
-import type { RawQueryResponse } from '@sanity/client'
+import type { Logger, Path, StudioUrl } from '@sanity/client/stega'
 
-import type { FilterDefault, PathSegment, StudioUrl } from '../csm/types'
+export type { Logger, Path, StudioUrl } from '@sanity/client/stega'
 
-export type { FilterDefault, PathSegment, StudioUrl }
-
-export type Logger =
-  | typeof console
-  | Partial<
-      Pick<
-        typeof console,
-        'debug' | 'error' | 'groupCollapsed' | 'groupEnd' | 'log' | 'table'
-      >
-    >
-
-/** @public */
-export type ContentSourceMapQueryResponse =
-  | RawQueryResponse<unknown>
-  | Pick<RawQueryResponse<unknown>, 'result' | 'resultSourceMap'>
-
+/**
+ * @public
+ * @deprecated - migrate to `@sanity/client/stega`
+ */
 export interface PreviewKitClientConfig extends ClientConfig {
   /**
      * Some strings shouldn't be encoded, for example if you store internal URLs the stega characters will break routing.
@@ -34,7 +22,6 @@ export interface PreviewKitClientConfig extends ClientConfig {
         }
       })
      * ```
-     * @alpha
      */
   encodeSourceMapAtPath?: FilterDefault
   /**
@@ -46,7 +33,6 @@ export interface PreviewKitClientConfig extends ClientConfig {
    * - false
    *   disables encoding of sourcemaps, regardless of environment.
    * @defaultValue import.meta.env.SANITY_SOURCE_MAP || process.env.SANITY_SOURCE_MAP || 'auto'
-   * @alpha
    */
   encodeSourceMap?: 'auto' | string | true | false
   /**
@@ -87,12 +73,19 @@ export interface PreviewKitClientConfig extends ClientConfig {
    * await getStudioURL(process.env.SANITY_API_TOKEN, '3do82whm')
    *```
    * @defaultValue import.meta.env.SANITY_STUDIO_URL || process.env.SANITY_STUDIO_URL
-   * @alpha
    */
   studioUrl?: StudioUrl
   /**
    * Specify a `console.log` compatible logger to see debug logs, which keys are encoded and which are not.
-   * @alpha
    */
   logger?: Logger
 }
+
+/**
+ * @public
+ * @deprecated - migrate to `@sanity/client/stega`
+ */
+export type FilterDefault = (props: {
+  path: Path
+  filterDefault: FilterDefault
+}) => boolean

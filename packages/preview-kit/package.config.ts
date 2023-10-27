@@ -5,8 +5,8 @@ export default defineConfig({
   legacyExports: true,
   extract: {
     rules: {
-      'ae-missing-release-tag': 'off',
-      'ae-internal-missing-underscore': 'off',
+      'ae-forgotten-export': 'error',
+      'ae-missing-release-tag': 'error',
     },
   },
 })

@@ -71,17 +71,6 @@
       "import": "./dist/client.js",
       "default": "./dist/client.js"
     },
-    "./csm": {
-      "types": "./dist/csm.d.ts",
-      "source": "./src/_exports/csm.ts",
-      "require": "./dist/csm.cjs",
-      "node": {
-        "module": "./dist/csm.js",
-        "import": "./dist/csm.cjs.js"
-      },
-      "import": "./dist/csm.js",
-      "default": "./dist/csm.js"
-    },
     "./live-query": {
       "types": "./dist/live-query.d.ts",
       "source": "./src/_exports/live-query.ts",
@@ -111,9 +100,6 @@
       "client": [
         "./dist/client.d.ts"
       ],
-      "csm": [
-        "./dist/csm.d.ts"
-      ],
       "live-query": [
         "./dist/live-query.d.ts"
       ]
@@ -126,11 +112,10 @@
     "react-server",
     "!react-server/**/*.d.ts",
     "client.js",
-    "csm.js",
     "live-query.js"
   ],
   "scripts": {
-    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js live-query.js || true",
+    "prebuild": "rimraf coverage dist internals/*.js client.js live-query.js || true",
     "build": "pkg build --strict && pkg --strict",
     "watch": "pnpm build watch",
     "coverage": "vitest run --coverage",
@@ -153,7 +138,6 @@
     "@sanity/eventsource": "5.0.1",
     "@sanity/groq-store": "4.1.3",
     "@vercel/stega": "0.1.0",
-    "lodash.get": "4.4.2",
     "lodash.isplainobject": "4.0.6",
     "lru-cache": "10.0.1",
     "mendoza": "3.0.3",
@@ -161,10 +145,9 @@
     "use-sync-external-store": "1.2.0"
   },
   "devDependencies": {
-    "@sanity/client": "^6.7.1",
+    "@sanity/client": "6.7.1-pink-lizard.5",
     "@sanity/pkg-utils": "^3.2.3",
     "@sanity/semantic-release-preset": "^4.1.6",
-    "@types/lodash.get": "^4.4.8",
     "@types/lodash.isplainobject": "^4.0.8",
     "@types/node": "^18.18.6",
     "@types/react": "^18.2.34",
@@ -189,7 +172,7 @@
     "vitest-github-actions-reporter": "^0.10.0"
   },
   "peerDependencies": {
-    "@sanity/client": "^6.7.1",
+    "@sanity/client": "6.7.1-pink-lizard.5",
     "react": "^18.0.0"
   },
   "peerDependenciesMeta": {

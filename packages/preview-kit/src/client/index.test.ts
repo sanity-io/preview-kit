@@ -25,7 +25,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultArray[0].title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=",
       "origin": "sanity.io",
     }
   `,
@@ -38,7 +38,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultObject.title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=",
       "origin": "sanity.io",
     }
   `,

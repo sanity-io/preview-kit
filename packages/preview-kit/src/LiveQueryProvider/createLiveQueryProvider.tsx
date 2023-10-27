@@ -115,7 +115,7 @@ export function createLiveQueryProvider(options: {
     const [cache] = useState(() => props.cache)
     const [logger] = useState(() => props.logger)
     const turboSourceMap = useMemo(
-      () => props.turboSourceMap ?? client.config().resultSourceMap,
+      () => props.turboSourceMap ?? !!client.config().resultSourceMap,
       [client, props.turboSourceMap],
     )
 

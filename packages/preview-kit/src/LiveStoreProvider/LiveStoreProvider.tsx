@@ -5,8 +5,8 @@ import type {
   SanityClient,
   SanityDocument,
 } from '@sanity/client'
+import { applySourceDocuments } from '@sanity/client/csm'
 import { vercelStegaSplit } from '@vercel/stega'
-import get from 'lodash.get'
 import { LRUCache } from 'lru-cache'
 import { applyPatch } from 'mendoza'
 import {
@@ -20,8 +20,6 @@ import {
 } from 'react'
 
 import { defineListenerContext as Context, IsEnabledContext } from '../context'
-import { parseJsonPath } from '../csm/jsonpath'
-import { resolveMapping, walkMap } from '../csm/sourcemap'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
@@ -33,7 +31,10 @@ import { getQueryCacheKey, type QueryCacheKey } from '../utils'
 export type { Logger }
 
 // Documents share the same cache even if there are nested providers, with a Least Recently Used (LRU) cache
-const documentsCache = new LRUCache({
+const documentsCache = new LRUCache<
+  ReturnType<typeof getTurboCacheKey>,
+  SanityDocument
+>({
   // Max 500 documents in memory, no big deal if a document is evicted it just means the eventual consistency might take longer
   max: 500,
 })
@@ -646,6 +647,7 @@ const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
 })
 GetDocuments.displayName = 'GetDocuments'
 
+let warnedAboutCrossDatasetReference = false
 function turboChargeResultIfSourceMap(
   projectId: string,
   dataset: string,
@@ -654,44 +656,39 @@ function turboChargeResultIfSourceMap(
 ) {
   if (!resultSourceMap) return result
 
-  return walkMap(result, (value, path) => {
-    const resolveMappingResult = resolveMapping(path, resultSourceMap)
-    if (!resolveMappingResult) {
-      return value
-    }
-
-    const [mapping, , pathSuffix] = resolveMappingResult
-    if (mapping.type !== 'value') {
-      return value
-    }
-
-    if (mapping.source.type !== 'documentValue') {
-      return value
-    }
-
-    const sourceDocument = resultSourceMap.documents[mapping.source.document]
-    const sourcePath = resultSourceMap.paths[mapping.source.path]
-    if (sourceDocument && sourceDocument._id) {
-      const cachedDocument = documentsCache.get(
+  return applySourceDocuments(
+    result,
+    resultSourceMap,
+    (sourceDocument) => {
+      if (sourceDocument._projectId) {
+        // eslint-disable-next-line no-warning-comments
+        // @TODO Handle cross dataset references
+        if (!warnedAboutCrossDatasetReference) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            'Cross dataset references are not supported yet, ignoring source document',
+            sourceDocument,
+          )
+          warnedAboutCrossDatasetReference = true
+        }
+        return undefined
+      }
+      return documentsCache.get(
         getTurboCacheKey(projectId, dataset, sourceDocument._id),
       )
-
-      const cachedValue = cachedDocument
-        ? get(
-            cachedDocument,
-            parseJsonPath(sourcePath + pathSuffix),
-            value,
-          )
-        : value
-      // Preserve stega encoded strings, if they exist
-      if (typeof cachedValue === 'string' && typeof value === 'string') {
-        const { encoded } = vercelStegaSplit(value)
-        const { cleaned } = vercelStegaSplit(cachedValue)
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (changedValue: any, { previousValue }) => {
+      if (
+        typeof changedValue === 'string' &&
+        typeof previousValue === 'string'
+      ) {
+        // Preserve stega encoded strings, if they exist
+        const { encoded } = vercelStegaSplit(previousValue)
+        const { cleaned } = vercelStegaSplit(changedValue)
         return `${encoded}${cleaned}`
       }
-      return cachedValue
-    }
-
-    return value
-  })
+      return changedValue
+    },
+  )
 }
