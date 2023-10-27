@@ -1,7 +1,6 @@
-import type { ClientConfig } from '@sanity/client'
-import type { RawQueryResponse } from '@sanity/client'
+import type { ClientConfig, RawQueryResponse } from '@sanity/client'
 
-import type { FilterDefault, PathSegment, StudioUrl } from '../csm/types'
+import type { FilterDefault, PathSegment, StudioUrl } from '../csm'
 
 export type { FilterDefault, PathSegment, StudioUrl }
 

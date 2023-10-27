@@ -10,10 +10,18 @@
     "test": "turbo run test",
     "test:esm": "turbo run test:esm"
   },
+  "dependencies": {
+    "@sanity/client": "6.7.1-canary.4"
+  },
   "devDependencies": {
     "prettier": "^3.0.3",
     "prettier-plugin-packagejson": "^2.4.6",
     "turbo": "1.10.16"
   },
-  "packageManager": "pnpm@8.9.2"
+  "packageManager": "pnpm@8.9.2",
+  "pnpm": {
+    "overrides": {
+      "@sanity/client": "$@sanity/client"
+    }
+  }
 }

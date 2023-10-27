@@ -3,6 +3,7 @@ import { vercelStegaDecode } from '@vercel/stega'
 import { expect, test } from 'vitest'
 
 import { createClient } from './createClient'
+import * as pkg from './index'
 
 const title = '🚀 🤯'
 
@@ -163,4 +164,19 @@ test('encodeSourceMapAtPath', async () => {
   )
   expect(resultString).toBe('🚀 🤯')
   expect(vercelStegaDecode(resultString)).toBe(undefined)
+})
+
+test('exports match', () => {
+  expect(pkg).toMatchInlineSnapshot(`
+    {
+      "createClient": [Function],
+      "mapToEditLinks": [Function],
+    }
+  `)
+})
+
+test('backwards compatibility is preserved', () => {
+  expect(Object.keys(pkg).sort()).toEqual(
+    expect.arrayContaining(['createClient', 'mapToEditLinks'].sort()),
+  )
 })

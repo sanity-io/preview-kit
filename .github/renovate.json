@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "baseBranches": ["main", "use-client-csm"],
   "extends": ["github>sanity-io/renovate-config", ":reviewer(team:ecosystem)"],
   "ignorePresets": [
     ":ignoreModulesAndTests",
@@ -26,9 +27,16 @@
       "rangeStrategy": "bump"
     },
     {
-      "matchDepTypes": ["peerDependencies"],
-      "matchPackageNames": ["@sanity/client"],
-      "rangeStrategy": "bump",
+      "matchDepNames": [
+        "@sanity/client"
+      ],
+      "matchFileNames": ["package.json", "packages/**/package.json"],
+      "matchDepTypes": ["dependencies", "peerDependencies"],
+      "followTag": "canary",
+      "schedule": ["at any time"],
+      "rangeStrategy": "pin",
+      "groupSlug": "canary",
+      "automerge": true,
       "semanticCommitType": "fix"
     }
   ]
