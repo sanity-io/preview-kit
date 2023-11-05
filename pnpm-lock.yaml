@@ -21,8 +21,8 @@ importers:
   apps/next-app-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1
+        version: 6.7.1
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -76,8 +76,8 @@ importers:
   apps/next-pages-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1
+        version: 6.7.1
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -131,8 +131,8 @@ importers:
         specifier: 1.19.3
         version: 1.19.3(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1
+        version: 6.7.1
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -189,8 +189,8 @@ importers:
         specifier: 8.2.0
         version: 8.2.0
       '@sanity/client':
-        specifier: 6.7.0
-        version: 6.7.0
+        specifier: 6.7.1
+        version: 6.7.1
       '@sanity/icons':
         specifier: 2.7.0
         version: 2.7.0(react@18.2.0)
@@ -275,7 +275,7 @@ importers:
     devDependencies:
       '@sanity/client':
         specifier: ^6.7.0
-        version: 6.7.0
+        version: 6.7.1
       '@sanity/pkg-utils':
         specifier: ^3.2.3
         version: 3.2.3(@types/node@18.18.8)(typescript@5.2.2)
@@ -3525,8 +3525,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.7.0:
-    resolution: {integrity: sha512-nQGIuXXhdtP5FDsdBjuPRpeV6jOHU6Eq5xr52KyUUi29SgC5h5XUzRIu7d1sF8N+ONqTngYueFuB8JDsdSo1Ng==}
+  /@sanity/client@6.7.1:
+    resolution: {integrity: sha512-rOnTg4MLAFTo8MkeZv2aL5RybHY1xl84L5KhfgKSU53jp0VAVikeCEbknyMJhavaMJmo8MYf1sEq2h4bmYiCKg==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.1
@@ -3788,7 +3788,7 @@ packages:
   /@sanity/types@3.19.1:
     resolution: {integrity: sha512-v6YiiI78V4ea7CsaHeDlV2JnlhuwXkFgSgnWZAunJ0N42FOXw8C7K2+SrmASoltANMPPVljEe5etSVJqLeFsMQ==}
     dependencies:
-      '@sanity/client': 6.7.0
+      '@sanity/client': 6.7.1
       '@types/react': 18.2.35
     transitivePeerDependencies:
       - supports-color
@@ -11856,7 +11856,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.19.1
       '@sanity/cli': 3.19.1
-      '@sanity/client': 6.7.0
+      '@sanity/client': 6.7.1
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.19.1
       '@sanity/diff-match-patch': 3.1.1
