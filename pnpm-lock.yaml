@@ -5,15 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@sanity/client': 6.7.1-pink-lizard.2
+  '@sanity/client': 6.7.1-pink-lizard.5
 
 importers:
 
   .:
     dependencies:
       '@sanity/client':
-        specifier: 6.7.1-pink-lizard.2
-        version: 6.7.1-pink-lizard.2
+        specifier: 6.7.1-pink-lizard.5
+        version: 6.7.1-pink-lizard.5
     devDependencies:
       prettier:
         specifier: ^3.0.3
@@ -28,8 +28,8 @@ importers:
   apps/next-app-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.7.1-pink-lizard.2
-        version: 6.7.1-pink-lizard.2
+        specifier: 6.7.1-pink-lizard.5
+        version: 6.7.1-pink-lizard.5
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -83,8 +83,8 @@ importers:
   apps/next-pages-router:
     dependencies:
       '@sanity/client':
-        specifier: 6.7.1-pink-lizard.2
-        version: 6.7.1-pink-lizard.2
+        specifier: 6.7.1-pink-lizard.5
+        version: 6.7.1-pink-lizard.5
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -138,8 +138,8 @@ importers:
         specifier: 1.19.3
         version: 1.19.3(react-dom@18.2.0)(react@18.2.0)
       '@sanity/client':
-        specifier: 6.7.1-pink-lizard.2
-        version: 6.7.1-pink-lizard.2
+        specifier: 6.7.1-pink-lizard.5
+        version: 6.7.1-pink-lizard.5
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -196,8 +196,8 @@ importers:
         specifier: 8.2.0
         version: 8.2.0
       '@sanity/client':
-        specifier: 6.7.1-pink-lizard.2
-        version: 6.7.1-pink-lizard.2
+        specifier: 6.7.1-pink-lizard.5
+        version: 6.7.1-pink-lizard.5
       '@sanity/icons':
         specifier: 2.6.0
         version: 2.6.0(react@18.2.0)
@@ -278,8 +278,8 @@ importers:
         version: 1.2.0(react@18.2.0)
     devDependencies:
       '@sanity/client':
-        specifier: 6.7.1-pink-lizard.2
-        version: 6.7.1-pink-lizard.2
+        specifier: 6.7.1-pink-lizard.5
+        version: 6.7.1-pink-lizard.5
       '@sanity/pkg-utils':
         specifier: ^3.2.2
         version: 3.2.2(@types/node@18.18.8)(typescript@5.2.2)
@@ -3526,8 +3526,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/client@6.7.1-pink-lizard.2:
-    resolution: {integrity: sha512-UTTwMjxZYCZz8TVmQ+1P2nWCo4yeMau38pUt3bZOjT2sYh67ydw1L2rgtetJuKrxXrcfMrPSOJNhwOGBFK4oew==}
+  /@sanity/client@6.7.1-pink-lizard.5:
+    resolution: {integrity: sha512-CsSoL/vfFlcGQv9Mhl0UK1/BqpDQRTgOhUm6CdRpmvnrQPznJPzMlKaO4wZkxw/fxr20a0bE5S9ASKT/b+hAlg==}
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/eventsource': 5.0.1
@@ -3790,7 +3790,7 @@ packages:
   /@sanity/types@3.19.0:
     resolution: {integrity: sha512-g6DVsQ6rlfuUE8Kh4svcfIjr70HM5W2qXBec1sOmMXtYdyoELe1SAU2xF3MyDL4h5Pbyu2FsqS60HymVvZn7Uw==}
     dependencies:
-      '@sanity/client': 6.7.1-pink-lizard.2
+      '@sanity/client': 6.7.1-pink-lizard.5
       '@types/react': 18.2.34
     transitivePeerDependencies:
       - supports-color
@@ -11812,7 +11812,7 @@ packages:
       '@sanity/bifur-client': 0.3.1
       '@sanity/block-tools': 3.19.0
       '@sanity/cli': 3.19.0
-      '@sanity/client': 6.7.1-pink-lizard.2
+      '@sanity/client': 6.7.1-pink-lizard.5
       '@sanity/color': 2.2.5
       '@sanity/diff': 3.19.0
       '@sanity/diff-match-patch': 3.1.1
