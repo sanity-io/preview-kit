@@ -5,7 +5,7 @@ export const client = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2022-11-15',
   useCdn: false,
-  studioUrl: 'https://preview-kit-test-studio.sanity.build/',
+  studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL || 'http://localhost:3333',
   logger: console,
   encodeSourceMap: true,
   perspective: 'published',

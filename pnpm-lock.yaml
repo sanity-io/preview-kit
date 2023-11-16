@@ -23,6 +23,9 @@ importers:
       '@sanity/client':
         specifier: 6.8.6
         version: 6.8.6
+      '@sanity/overlays':
+        specifier: 2.0.0
+        version: 2.0.0(react-is@18.2.0)
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -78,6 +81,9 @@ importers:
       '@sanity/client':
         specifier: 6.8.6
         version: 6.8.6
+      '@sanity/overlays':
+        specifier: 2.0.0
+        version: 2.0.0(react-is@18.2.0)
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -3919,7 +3925,7 @@ packages:
     resolution: {integrity: sha512-Bc3yhM8zMHakwxscNuz7PMG7+MvTreU6W97yX8+IuWBsdg4a6P5nOEgDvaPod6krCyGrr3f4MmwHWmLRqH9+Qw==}
     peerDependencies:
       react: ^18
-      styled-components: 6.1.1
+      styled-components: ^5.2 || ^6
     dependencies:
       '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.2)(@codemirror/state@6.3.1)(@codemirror/view@6.21.4)(@lezer/common@1.1.0)
       '@codemirror/commands': 6.3.0
