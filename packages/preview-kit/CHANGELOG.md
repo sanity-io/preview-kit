@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.8](https://github.com/sanity-io/preview-kit/compare/v3.2.7...v3.2.8) (2023-11-16)
+
+### Bug Fixes
+
+- **client:** add support for `SanityStegaClient` ([070c2c8](https://github.com/sanity-io/preview-kit/commit/070c2c88f5dc46f5c75d101a1aace0499743acaa))
+- **client:** use `@sanity/client/stega` under the hood ([55c65ff](https://github.com/sanity-io/preview-kit/commit/55c65ff92fb36dfecaa4ab829711a25f7134c76f))
+- **deps:** update dependency @sanity/client to ^6.8.6 (main) ([#664](https://github.com/sanity-io/preview-kit/issues/664)) ([e0ca080](https://github.com/sanity-io/preview-kit/commit/e0ca0805f1d9740b700853f57d8787bbcfae25b0))
+- **deps:** Update dependency lru-cache to v10.0.2 (main) ([#663](https://github.com/sanity-io/preview-kit/issues/663)) ([ceb7061](https://github.com/sanity-io/preview-kit/commit/ceb706161e998621ebeadd1e3e71184b48a4b73b))
+- **turbo:** use `applySourceDocuments` from `@sanity/client/csm` ([ce8463b](https://github.com/sanity-io/preview-kit/commit/ce8463b8ebf66b9fa785fda0cacece8543d93274))
+
 ## [3.2.7](https://github.com/sanity-io/preview-kit/compare/v3.2.6...v3.2.7) (2023-11-06)
 
 ### Bug Fixes
