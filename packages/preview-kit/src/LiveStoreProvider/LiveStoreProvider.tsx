@@ -1,12 +1,13 @@
 import type {
   ClientConfig,
   ContentSourceMap,
+  ContentSourceMapDocuments,
   QueryParams,
   SanityClient,
   SanityDocument,
 } from '@sanity/client'
+import { applySourceDocuments } from '@sanity/client/csm'
 import { vercelStegaSplit } from '@vercel/stega'
-import get from 'lodash.get'
 import { LRUCache } from 'lru-cache'
 import { applyPatch } from 'mendoza'
 import {
@@ -20,8 +21,6 @@ import {
 } from 'react'
 
 import { defineListenerContext as Context, IsEnabledContext } from '../context'
-import { parseNormalisedJsonPath } from '../csm/jsonpath'
-import { resolveMapping, walkMap } from '../csm/sourcemap'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
@@ -33,7 +32,10 @@ import { getQueryCacheKey, type QueryCacheKey } from '../utils'
 export type { Logger }
 
 // Documents share the same cache even if there are nested providers, with a Least Recently Used (LRU) cache
-const documentsCache = new LRUCache({
+const documentsCache = new LRUCache<
+  ReturnType<typeof getTurboCacheKey>,
+  SanityDocument
+>({
   // Max 500 documents in memory, no big deal if a document is evicted it just means the eventual consistency might take longer
   max: 500,
 })
@@ -130,14 +132,19 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
     } satisfies DefineListenerContext
   })
   const [turboIds, setTurboIds] = useState<string[]>([])
+  const [docsInUse] = useState(
+    () => new Map<string, ContentSourceMapDocuments[number]>(),
+  )
   const turboIdsFromSourceMap = useCallback(
     (contentSourceMap: ContentSourceMap) => {
       if (!turboSourceMap) return
       // This handler only adds ids, on each query fetch. But that's ok since <Turbo /> purges ids that are unused
       const nextTurboIds = new Set<string>()
+      docsInUse.clear()
       if (contentSourceMap.documents?.length) {
-        for (const { _id } of contentSourceMap.documents) {
-          nextTurboIds.add(_id)
+        for (const document of contentSourceMap.documents) {
+          nextTurboIds.add(document._id)
+          docsInUse.set(document._id, document)
         }
       }
       startTransition(() =>
@@ -155,7 +162,7 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
         }),
       )
     },
-    [turboSourceMap],
+    [turboSourceMap, docsInUse],
   )
 
   return (
@@ -168,6 +175,7 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
           setTurboIds={setTurboIds}
           snapshots={snapshots}
           turboIds={turboIds}
+          docsInUse={docsInUse}
         />
       )}
       {subscriptions.map((key) => {
@@ -487,6 +495,7 @@ function useHooks(
 
 interface TurboProps extends Pick<LiveStoreProviderProps, 'client'> {
   turboIds: string[]
+  docsInUse: Map<string, ContentSourceMapDocuments[number]>
   setTurboIds: React.Dispatch<React.SetStateAction<string[]>>
   cache: LiveStoreQueryCacheMap
   snapshots: QuerySnapshotsCache
@@ -495,7 +504,7 @@ interface TurboProps extends Pick<LiveStoreProviderProps, 'client'> {
  * A turbo-charged mutation observer that uses Content Source Maps to apply mendoza patches on your queries
  */
 const Turbo = memo(function Turbo(props: TurboProps) {
-  const { client, snapshots, cache, turboIds, setTurboIds } = props
+  const { client, snapshots, cache, turboIds, setTurboIds, docsInUse } = props
   const { projectId, dataset } = useMemo(() => {
     const { projectId, dataset } = client.config()
     return { projectId, dataset } as Required<
@@ -506,12 +515,14 @@ const Turbo = memo(function Turbo(props: TurboProps) {
   // Keep track of document ids that the active `useLiveQuery` hooks care about
   useEffect(() => {
     const nextTurboIds = new Set<string>()
+    docsInUse.clear()
     for (const { query, params } of cache.values()) {
       const key = getQueryCacheKey(query, params)
       const snapshot = snapshots.get(key)
       if (snapshot && snapshot.resultSourceMap?.documents?.length) {
-        for (const { _id } of snapshot.resultSourceMap.documents) {
-          nextTurboIds.add(_id)
+        for (const document of snapshot.resultSourceMap.documents) {
+          nextTurboIds.add(document._id)
+          docsInUse.set(document._id, document)
         }
       }
     }
@@ -519,7 +530,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
     if (JSON.stringify(turboIds) !== JSON.stringify(nextTurboIdsSnapshot)) {
       startTransition(() => setTurboIds(nextTurboIdsSnapshot))
     }
-  }, [cache, setTurboIds, snapshots, turboIds])
+  }, [cache, setTurboIds, snapshots, turboIds, docsInUse])
 
   // Figure out which documents are misssing from the cache
   const [batch, setBatch] = useState<string[][]>([])
@@ -646,6 +657,7 @@ const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
 })
 GetDocuments.displayName = 'GetDocuments'
 
+let warnedAboutCrossDatasetReference = false
 function turboChargeResultIfSourceMap(
   projectId: string,
   dataset: string,
@@ -654,44 +666,39 @@ function turboChargeResultIfSourceMap(
 ) {
   if (!resultSourceMap) return result
 
-  return walkMap(result, (value, path) => {
-    const resolveMappingResult = resolveMapping(path, resultSourceMap)
-    if (!resolveMappingResult) {
-      return value
-    }
-
-    const [mapping, , pathSuffix] = resolveMappingResult
-    if (mapping.type !== 'value') {
-      return value
-    }
-
-    if (mapping.source.type !== 'documentValue') {
-      return value
-    }
-
-    const sourceDocument = resultSourceMap.documents[mapping.source.document]
-    const sourcePath = resultSourceMap.paths[mapping.source.path]
-    if (sourceDocument && sourceDocument._id) {
-      const cachedDocument = documentsCache.get(
+  return applySourceDocuments(
+    result,
+    resultSourceMap,
+    (sourceDocument) => {
+      if (sourceDocument._projectId) {
+        // eslint-disable-next-line no-warning-comments
+        // @TODO Handle cross dataset references
+        if (!warnedAboutCrossDatasetReference) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            'Cross dataset references are not supported yet, ignoring source document',
+            sourceDocument,
+          )
+          warnedAboutCrossDatasetReference = true
+        }
+        return undefined
+      }
+      return documentsCache.get(
         getTurboCacheKey(projectId, dataset, sourceDocument._id),
       )
-
-      const cachedValue = cachedDocument
-        ? get(
-            cachedDocument,
-            parseNormalisedJsonPath(sourcePath + pathSuffix),
-            value,
-          )
-        : value
-      // Preserve stega encoded strings, if they exist
-      if (typeof cachedValue === 'string' && typeof value === 'string') {
-        const { encoded } = vercelStegaSplit(value)
-        const { cleaned } = vercelStegaSplit(cachedValue)
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (changedValue: any, { previousValue }) => {
+      if (
+        typeof changedValue === 'string' &&
+        typeof previousValue === 'string'
+      ) {
+        // Preserve stega encoded strings, if they exist
+        const { encoded } = vercelStegaSplit(previousValue)
+        const { cleaned } = vercelStegaSplit(changedValue)
         return `${encoded}${cleaned}`
       }
-      return cachedValue
-    }
-
-    return value
-  })
+      return changedValue
+    },
+  )
 }
