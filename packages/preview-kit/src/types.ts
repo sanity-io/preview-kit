@@ -1,4 +1,5 @@
 import type { QueryParams, SanityClient } from '@sanity/client'
+import type { SanityStegaClient } from '@sanity/client/stega'
 
 /**
  * @internal
@@ -52,7 +53,7 @@ export interface CacheOptions {
 /** @public */
 export interface LiveQueryProviderProps {
   children: React.ReactNode
-  client: SanityClient
+  client: SanityClient | SanityStegaClient
   /**
    * Reconfigures `client` with the provided `token`, as well as changing its configuration to
    * have `perspective: 'previewDrafts'`, `useCdn: false` and `ignoreBrowserTokenWarning: true`.

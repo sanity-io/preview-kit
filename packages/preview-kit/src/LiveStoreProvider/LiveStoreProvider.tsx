@@ -7,6 +7,7 @@ import type {
   SanityDocument,
 } from '@sanity/client'
 import { applySourceDocuments } from '@sanity/client/csm'
+import type { SanityStegaClient } from '@sanity/client/stega'
 import { vercelStegaSplit } from '@vercel/stega'
 import { LRUCache } from 'lru-cache'
 import { applyPatch } from 'mendoza'
@@ -48,7 +49,7 @@ export interface LiveStoreProviderProps {
   /**
    * The Sanity client to use for fetching data and listening to mutations.
    */
-  client: SanityClient
+  client: SanityClient | SanityStegaClient
   /**
    * How frequently queries should be refetched in the background to refresh the parts of queries that can't be source mapped.
    * Setting it to `0` will disable background refresh.
@@ -555,7 +556,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
   const [lastMutatedDocumentId, setLastMutatedDocumentId] = useState<string>()
   // Use the same listen instance and patch documents as they come in
   useEffect(() => {
-    const subscription = client
+    const subscription = (client as SanityClient)
       .listen(
         `*`,
         {},
