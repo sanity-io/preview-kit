@@ -5,6 +5,7 @@ import { defineConfig, defineField, defineType } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { benchmarkTool } from './src/benchmark'
 import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
+import { presentationTool } from '@sanity/presentation'
 
 const iframeOptions = {
   reload: {
@@ -50,6 +51,33 @@ const config = defineConfig({
             return S.document().views([S.view.form()])
         }
       },
+    }),
+    presentationTool({
+      name: 'remix',
+      previewUrl: {
+        origin: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
+        draftMode: {
+          enable: '/api/draft'
+        }
+      }
+    }),
+    presentationTool({
+      name: 'pages-router',
+      previewUrl: {
+        origin: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3000',
+        draftMode: {
+          enable: '/api/draft'
+        }
+      }
+    }),
+    presentationTool({
+      name: 'app-router',
+      previewUrl: {
+        origin: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
+        draftMode: {
+          enable: '/api/draft'
+        }
+      }
     }),
     benchmarkTool(),
     visionTool(),

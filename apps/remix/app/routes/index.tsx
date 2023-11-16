@@ -38,6 +38,7 @@ export async function loader({ request }: LoaderArgs) {
 
   return {
     variant: process.env.VARIANT || 'default',
+    studioUrl: process.env.STUDIO_URL || 'http://localhost:3333',
     previewDrafts,
     token,
     table,

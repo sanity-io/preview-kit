@@ -4,7 +4,7 @@ const projectId = 'pv8y60vp'
 const dataset = 'production'
 const apiVersion = '2022-11-15'
 const useCdn = false
-const studioUrl = 'https://preview-kit-test-studio.sanity.build/'
+const studioUrl = process.env.STUDIO_URL || 'http://localhost:3333'
 export const client = createClient({
   projectId,
   dataset,

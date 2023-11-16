@@ -9,9 +9,10 @@ export default function LiveStoreVariant({
   previewDrafts,
   children,
   token,
+  studioUrl,
 }: SerializeFrom<typeof loader> & React.PropsWithChildren) {
   return previewDrafts ? (
-    <PreviewProvider token={token!}>{children}</PreviewProvider>
+    <PreviewProvider token={token!} studioUrl={studioUrl}>{children}</PreviewProvider>
   ) : (
     children
   )

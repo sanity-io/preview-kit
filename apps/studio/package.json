@@ -3,17 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "sanity dev",
     "build": "sanity build"
   },
   "dependencies": {
     "@faker-js/faker": "8.3.1",
     "@sanity/client": "6.8.6",
     "@sanity/icons": "2.7.0",
+    "@sanity/presentation": "1.0.0",
     "@sanity/preview-kit": "workspace:*",
     "@sanity/ui": "1.9.3",
     "@sanity/vision": "3.19.3",
-    "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/react": "^18.2.37",
     "esbuild": "^0.19.5",
     "esbuild-register": "^3.5.0",
     "eslint": "^8.53.0",
