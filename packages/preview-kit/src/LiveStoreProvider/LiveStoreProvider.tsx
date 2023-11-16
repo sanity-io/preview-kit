@@ -6,9 +6,9 @@ import type {
   SanityClient,
   SanityDocument,
 } from '@sanity/client'
-import { useDocumentsInUse } from '@sanity/preview-kit-compat'
 import { applySourceDocuments } from '@sanity/client/csm'
 import type { SanityStegaClient, StegaConfig } from '@sanity/client/stega'
+import { useDocumentsInUse } from '@sanity/preview-kit-compat'
 import { vercelStegaSplit } from '@vercel/stega'
 import { LRUCache } from 'lru-cache'
 import { applyPatch } from 'mendoza'
