@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.9](https://github.com/sanity-io/preview-kit/compare/v3.2.8...v3.2.9) (2023-11-16)
+
+### Bug Fixes
+
+- add `@sanity/preview-kit-compat` ([5801d15](https://github.com/sanity-io/preview-kit/commit/5801d15f676906817251f7fb6060388e4409fafd))
+
 ## [3.2.8](https://github.com/sanity-io/preview-kit/compare/v3.2.7...v3.2.8) (2023-11-16)
 
 ### Bug Fixes
