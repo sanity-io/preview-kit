@@ -2,7 +2,6 @@ import { HistoryAdapterNavigate, enableOverlays } from '@sanity/overlays'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 
-
 export default function VisualEditing() {
   const router = useRouter()
   const routerRef = useRef(router)
@@ -14,7 +13,8 @@ export default function VisualEditing() {
   useEffect(() => {
     if (!router.isReady) return
     const disable = enableOverlays({
-      allowStudioOrigin: process.env.NEXT_PUBLIC_STUDIO_URL || 'http://localhost:3333',
+      allowStudioOrigin:
+        process.env.NEXT_PUBLIC_STUDIO_URL || 'http://localhost:3333',
       history: {
         subscribe: (navigate) => {
           setNavigate(() => navigate)
