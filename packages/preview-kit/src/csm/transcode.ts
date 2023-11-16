@@ -137,8 +137,8 @@ function prettyPathForLogging(path: PathSegment[]): string {
       typeof segment === 'number'
         ? `[${segment}]`
         : index > 0
-        ? `.${segment}`
-        : segment,
+          ? `.${segment}`
+          : segment,
     )
     .join('')
 }

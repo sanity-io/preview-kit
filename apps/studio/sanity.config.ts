@@ -57,27 +57,29 @@ const config = defineConfig({
       previewUrl: {
         origin: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
         draftMode: {
-          enable: '/api/draft'
-        }
-      }
+          enable: '/api/draft',
+        },
+      },
     }),
     presentationTool({
       name: 'pages-router',
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3000',
+        origin:
+          process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3000',
         draftMode: {
-          enable: '/api/draft'
-        }
-      }
+          enable: '/api/draft',
+        },
+      },
     }),
     presentationTool({
       name: 'app-router',
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
+        origin:
+          process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
         draftMode: {
-          enable: '/api/draft'
-        }
-      }
+          enable: '/api/draft',
+        },
+      },
     }),
     benchmarkTool(),
     visionTool(),
