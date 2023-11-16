@@ -838,10 +838,10 @@ const client = createClient({
 An example report:
 
 ```bash
-[@sanity/preview-kit]: Creating source map enabled client
-[@sanity/preview-kit]: Stega encoding source map into result
-  [@sanity/preview-kit]: Paths encoded: 3, skipped: 17
-  [@sanity/preview-kit]: Table of encoded paths
+[@sanity/preview-kit/client]: Creating source map enabled client
+[@sanity/client/stega]: Stega encoding source map into result
+  [@sanity/client/stega]: Paths encoded: 3, skipped: 17
+  [@sanity/client/stega]: Table of encoded paths
   ┌─────────┬──────────────────────────────┬───────────────────────────┬────────┐
   │ (index) │              path            │           value           │ length │
   ├─────────┼──────────────────────────────┼───────────────────────────┼────────┤
@@ -849,7 +849,7 @@ An example report:
   │    1    │ "footer[1].children[0].text" │     'Robin Williams'      │   14   │
   │    2    │            "title"           │     'Visual Editing'      │   14   │
   └─────────┴──────────────────────────────┴───────────────────────────┴────────┘
-  [@sanity/preview-kit]: List of skipped paths [
+  [@sanity/client/stega]: List of skipped paths [
     'footer[]._key',
     'footer[].children[]._key',
     'footer[].children[]._type',

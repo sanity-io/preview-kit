@@ -1,6 +1,12 @@
-import { createClient as _createClient, SanityClient } from '@sanity/client'
+import {
+  createClient as createStandardClient,
+  SanityClient,
+} from '@sanity/client'
+import {
+  createClient as createStegaClient,
+  SanityStegaClient,
+} from '@sanity/client/stega'
 
-import { createHttpRequest } from './request'
 import type { PreviewKitClientConfig } from './types'
 
 export type * from './types'
@@ -9,7 +15,9 @@ export type * from '@sanity/client'
 /**
  * @alpha
  */
-export const createClient = (config: PreviewKitClientConfig): SanityClient => {
+export const createClient = (
+  config: PreviewKitClientConfig,
+): SanityClient | SanityStegaClient => {
   const {
     encodeSourceMap = detectEnableSourceMap(),
     encodeSourceMapAtPath,
@@ -37,21 +45,30 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
         logger?.error?.(
           '[@sanity/preview-kit]: Content source map enabled client is enabled, but no studioUrl is provided. Falling back to @sanity/client',
         )
-        return _createClient(options)
+        return createStandardClient(options)
       }
 
       logger?.debug?.(
         '[@sanity/preview-kit]: Creating source map enabled client',
       )
-      const httpRequest = createHttpRequest({
-        encodeSourceMapAtPath,
-        studioUrl,
-        logger,
-      })
-      return new SanityClient(httpRequest, {
+      return createStegaClient({
         ...options,
         // Source maps by Content Lake are required in order to know where to insert the encoded source maps into strings
-        resultSourceMap: true,
+        resultSourceMap: config.resultSourceMap
+          ? config.resultSourceMap
+          : 'withKeyArraySelector',
+        stega: {
+          enabled: true,
+          studioUrl,
+          logger,
+          filter: encodeSourceMapAtPath
+            ? (props) =>
+                encodeSourceMapAtPath({
+                  path: props.sourcePath,
+                  filterDefault: () => props.filterDefault(props),
+                })
+            : undefined,
+        },
       })
     }
   } catch (err) {
@@ -62,7 +79,7 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
       'falling back to non-embedded sourcemap mode',
     )
   }
-  return _createClient(options)
+  return createStandardClient(options)
 }
 
 function isVercelPreviewEnvironment() {

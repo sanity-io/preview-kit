@@ -1,4 +1,7 @@
-import type { ContentSourceMap } from '@sanity/client'
+import type {
+  ContentSourceMap,
+  ContentSourceMapParsedPathKeyedSegment,
+} from '@sanity/client/csm'
 
 /** @public */
 export interface CreateTranscoderConfig {
@@ -38,7 +41,10 @@ export interface CreateTranscoderConfig {
 }
 
 /** @public */
-export type PathSegment = string | number
+export type PathSegment =
+  | string
+  | number
+  | ContentSourceMapParsedPathKeyedSegment
 
 /** @public */
 export type StudioUrl =

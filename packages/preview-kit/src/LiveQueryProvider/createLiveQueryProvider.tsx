@@ -114,10 +114,13 @@ export function createLiveQueryProvider(options: {
     )
     const [cache] = useState(() => props.cache)
     const [logger] = useState(() => props.logger)
-    const turboSourceMap = useMemo(
-      () => props.turboSourceMap ?? client.config().resultSourceMap,
-      [client, props.turboSourceMap],
-    )
+    const turboSourceMap = useMemo(() => {
+      const { resultSourceMap } = client.config()
+      return (
+        props.turboSourceMap ??
+        (resultSourceMap === 'withKeyArraySelector' || resultSourceMap)
+      )
+    }, [client, props.turboSourceMap])
 
     if (turboSourceMap) {
       return (
