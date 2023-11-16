@@ -6,8 +6,9 @@ import type {
   SanityClient,
   SanityDocument,
 } from '@sanity/client'
+import { useDocumentsInUse } from '@sanity/preview-kit-compat'
 import { applySourceDocuments } from '@sanity/client/csm'
-import type { SanityStegaClient } from '@sanity/client/stega'
+import type { SanityStegaClient, StegaConfig } from '@sanity/client/stega'
 import { vercelStegaSplit } from '@vercel/stega'
 import { LRUCache } from 'lru-cache'
 import { applyPatch } from 'mendoza'
@@ -506,6 +507,31 @@ interface TurboProps extends Pick<LiveStoreProviderProps, 'client'> {
  */
 const Turbo = memo(function Turbo(props: TurboProps) {
   const { client, snapshots, cache, turboIds, setTurboIds, docsInUse } = props
+  const [studioUrl] = useState(() => {
+    const { stega = {} as StegaConfig } = (client as SanityStegaClient).config()
+    if (typeof stega?.studioUrl === 'string') {
+      return stega.studioUrl
+    }
+    if (typeof stega?.studioUrl === 'function') {
+      try {
+        const resolvedUrl = stega.studioUrl({ _id: 'test', _type: 'test' })
+        return typeof resolvedUrl === 'string'
+          ? resolvedUrl
+          : resolvedUrl?.baseUrl
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to resolve studioUrl', err)
+        return null
+      }
+    }
+    if (
+      typeof stega?.studioUrl === 'object' &&
+      typeof stega?.studioUrl?.baseUrl === 'string'
+    ) {
+      return stega.studioUrl.baseUrl
+    }
+    return null
+  })
   const { projectId, dataset } = useMemo(() => {
     const { projectId, dataset } = client.config()
     return { projectId, dataset } as Required<
@@ -532,6 +558,8 @@ const Turbo = memo(function Turbo(props: TurboProps) {
       startTransition(() => setTurboIds(nextTurboIdsSnapshot))
     }
   }, [cache, setTurboIds, snapshots, turboIds, docsInUse])
+  // Sync with Presentation Tool if present
+  useDocumentsInUse(docsInUse, studioUrl || '/', projectId, dataset)
 
   // Figure out which documents are misssing from the cache
   const [batch, setBatch] = useState<string[][]>([])
