@@ -878,35 +878,6 @@ const { result, resultSourceMap } = await client.fetch(query, params, {
 console.log(resultSourceMap) // `resultSourceMap` is now available, even if `encodeSourceMap` is `false`
 ```
 
-## Using the Content Source Map with custom logic
-
-If you're building your own custom preview logic you can use `mapToEditLinks` to skip encoding hidden metadata into strings, and access the edit links directly:
-
-```tsx
-import { createClient } from '@sanity/preview-kit/client'
-import { mapToEditLinks } from '@sanity/preview-kit/csm'
-
-const client = createClient({
-  ...config,
-  resultSourceMap: true, // Tells Content Lake to include content source maps in the response
-  encodeSourceMap: false, // Disable the default encoding behavior
-})
-
-// const result = await client.fetch(query, params)
-const { result, resultSourceMap } = await client.fetch(
-  query,
-  params,
-  { filterResponse: false }, // This option is returns the entire API response instead of selecting just `result`
-)
-const studioUrl = 'https://your-company.com/studio'
-const editLinks = mapToEditLinks(result, resultSourceMap, studioUrl)
-
-const title = result.title
-const titleEditLink = editLinks.title
-
-console.log(title, titleEditLink)
-```
-
 ## Using Perspectives
 
 The `perspective` option can be used to specify special filtering behavior for queries. The default value is `raw`, which means no special filtering is applied, while [`published`](#published) and [`previewDrafts`](#previewdrafts) can be used to optimize for specific use cases. Read more about this option:

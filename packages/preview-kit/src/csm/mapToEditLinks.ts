@@ -3,7 +3,7 @@ import type { ContentSourceMap } from '@sanity/client'
 import { defineEditLink } from './editIntent'
 import { encodeIntoResult } from './sourcemap'
 
-/** @alpha */
+/** @deprecated Please use `resolveEditUrl` from `@sanity/preview-kit/csm` instead */
 export function mapToEditLinks<R>(
   result: R,
   csm: ContentSourceMap,

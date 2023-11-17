@@ -2,8 +2,7 @@ import { mapToEditLinks as CSMMapToEditLinks } from '../csm/mapToEditLinks'
 import type { ContentSourceMapQueryResponse } from './types'
 
 /**
- * @deprecated Please use `mapToEditLinks` from `@sanity/preview-kit/csm` instead
- * @alpha
+ * @deprecated Please use `resolveEditUrl` from `@sanity/preview-kit/csm` instead
  */
 export function mapToEditLinks(
   response: ContentSourceMapQueryResponse,
