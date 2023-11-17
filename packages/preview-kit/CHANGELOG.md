@@ -5,6 +5,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/sanity-io/preview-kit/compare/v3.2.11...v4.0.0) (2023-11-17)
+
+### ⚠ BREAKING CHANGES
+
+- **csm:** remove deprecated `createTranscoder` API
+- **csm:** remove deprecated `mapToEditLinks` API
+- **client:** remove deprecated `mapToEditLinks` API
+
+### Bug Fixes
+
+- **client:** remove deprecated `mapToEditLinks` API ([f650780](https://github.com/sanity-io/preview-kit/commit/f650780e48c931df1e2fd85523d0dceef855a5ac))
+- **csm:** remove deprecated `createTranscoder` API ([11d9e3b](https://github.com/sanity-io/preview-kit/commit/11d9e3b34e4d3ef784eb92b396e28f9fe6504419))
+- **csm:** remove deprecated `mapToEditLinks` API ([c19c033](https://github.com/sanity-io/preview-kit/commit/c19c033e0e3dd3c4112a0659fafddd7f7b2986f4))
+
 ## [3.2.11](https://github.com/sanity-io/preview-kit/compare/v3.2.10...v3.2.11) (2023-11-17)
 
 ### Bug Fixes
