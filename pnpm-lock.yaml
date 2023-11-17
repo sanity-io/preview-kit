@@ -243,8 +243,8 @@ importers:
         specifier: 3.20.0
         version: 3.20.0(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.1)
       sanity-plugin-iframe-pane:
-        specifier: 3.1.0
-        version: 3.1.0(@sanity/client@6.8.6)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.20.0)(styled-components@6.1.1)
+        specifier: 3.1.1
+        version: 3.1.1(@sanity/client@6.8.6)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.20.0)(styled-components@6.1.1)
       styled-components:
         specifier: 6.1.1
         version: 6.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -3844,14 +3844,23 @@ packages:
       '@sanity/uuid': 3.0.2
     dev: false
 
-  /@sanity/preview-url-secret@1.1.0(@sanity/client@6.8.6):
-    resolution: {integrity: sha512-LBgoRfbwRti2nk2d1VPAWjGdWcjrYzlbQZfYBqW1o9o6w83vqrcF0vYSi1UP9DKhvWHfU4to9wKTffSzrl1AOg==}
+  /@sanity/preview-url-secret@1.2.0(@sanity/client@6.8.6)(@sanity/icons@2.7.0)(sanity@3.20.0):
+    resolution: {integrity: sha512-w2LIje78OOzbDTF+jtFg89d9Jexs/3Za5uD5leCwc3jvnguD5b0/NB0gE+MOa3rVr8Q8cRxkij3M0qAblHfLfA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@sanity/client': ^6.8.6
+      '@sanity/icons': ^2.7.0
+      sanity: ^3.20.0
+    peerDependenciesMeta:
+      '@sanity/icons':
+        optional: true
+      sanity:
+        optional: true
     dependencies:
       '@sanity/client': 6.8.6
+      '@sanity/icons': 2.7.0(react@18.2.0)
       '@sanity/uuid': 3.0.2
+      sanity: 3.20.0(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.1)
     dev: false
 
   /@sanity/schema@3.20.0:
@@ -11892,8 +11901,8 @@ packages:
       '@sanity/diff-match-patch': 3.1.1
     dev: false
 
-  /sanity-plugin-iframe-pane@3.1.0(@sanity/client@6.8.6)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.20.0)(styled-components@6.1.1):
-    resolution: {integrity: sha512-GdGU/QrQ3oGepBv+l53Vwavkg83OVILwhVukX14BXYdHwrMYrtmLi+9GwUpWcIJH8WtzFaeAjZBGZEwGrORm9w==}
+  /sanity-plugin-iframe-pane@3.1.1(@sanity/client@6.8.6)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.20.0)(styled-components@6.1.1):
+    resolution: {integrity: sha512-buFWmVPdTmFDLycuQKJYTYKTK8nH18WVWAfI1Juak3zxSQ63P61GN0Cl/WE9fx/6ZBP2q00dPnp8RTVahMHKFA==}
     engines: {node: '>=14'}
     peerDependencies:
       react: ^18.2.0
@@ -11902,7 +11911,7 @@ packages:
     dependencies:
       '@sanity/icons': 2.7.0(react@18.2.0)
       '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
-      '@sanity/preview-url-secret': 1.1.0(@sanity/client@6.8.6)
+      '@sanity/preview-url-secret': 1.2.0(@sanity/client@6.8.6)(@sanity/icons@2.7.0)(sanity@3.20.0)
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.1)
       framer-motion: 10.16.5(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
