@@ -1,18 +1,9 @@
-import type { ClientConfig } from '@sanity/client'
-import type { RawQueryResponse } from '@sanity/client'
+import type { ClientConfig, RawQueryResponse } from '@sanity/client'
+import type { StegaConfig } from '@sanity/client/stega'
 
-import type { FilterDefault, PathSegment, StudioUrl } from '../csm/types'
+import type { FilterDefault } from '../csm/types'
 
-export type { FilterDefault, PathSegment, StudioUrl }
-
-export type Logger =
-  | typeof console
-  | Partial<
-      Pick<
-        typeof console,
-        'debug' | 'error' | 'groupCollapsed' | 'groupEnd' | 'log' | 'table'
-      >
-    >
+export type { FilterDefault, StegaConfig }
 
 /** @public */
 export type ContentSourceMapQueryResponse =
@@ -89,10 +80,10 @@ export interface PreviewKitClientConfig extends ClientConfig {
    * @defaultValue import.meta.env.SANITY_STUDIO_URL || process.env.SANITY_STUDIO_URL
    * @alpha
    */
-  studioUrl?: StudioUrl
+  studioUrl?: StegaConfig['studioUrl']
   /**
    * Specify a `console.log` compatible logger to see debug logs, which keys are encoded and which are not.
    * @alpha
    */
-  logger?: Logger
+  logger?: StegaConfig['logger']
 }

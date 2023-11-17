@@ -3,7 +3,9 @@ import type {
   ContentSourceMapParsedPathKeyedSegment,
 } from '@sanity/client/csm'
 
-/** @public */
+/**
+ * @deprecated Please use `import {InitializedStegaConfig} from @sanity/client/stega` instead
+ */
 export interface CreateTranscoderConfig {
   /**
    * Where the Studio is hosted.
@@ -40,20 +42,20 @@ export interface CreateTranscoderConfig {
   logger?: Logger
 }
 
-/** @public */
+/** @deprecated */
 export type PathSegment =
   | string
   | number
   | ContentSourceMapParsedPathKeyedSegment
 
-/** @public */
+/** @deprecated */
 export type StudioUrl =
   | `/${string}`
   | `${string}.sanity.studio`
   | `https://${string}`
   | string
 
-/** @public */
+/** @deprecated */
 export type FilterDefault = (props: {
   path: PathSegment[]
   filterDefault: FilterDefault
@@ -68,13 +70,13 @@ export type Logger =
       >
     >
 
-/** @public */
+/** @deprecated */
 export type Transcoder = <R>(
   result: R,
   csm: ContentSourceMap,
 ) => TranscoderResult<R>
 
-/** @public */
+/** @deprecated */
 export type TranscoderResult<R> = {
   result: R
   report: Record<

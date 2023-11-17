@@ -64,7 +64,9 @@ const filterDefault: FilterDefault = ({ path }) => {
 
 const TRUNCATE_LENGTH = 20
 
-/** @alpha */
+/**
+ * @deprecated - use `import {stegaEncodeSourceMap} from '@sanity/client/stega' instead
+ */
 export function createTranscoder(config: CreateTranscoderConfig): Transcoder {
   const { studioUrl, encodeSourceMapAtPath, logger } = config
 
