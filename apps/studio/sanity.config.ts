@@ -23,25 +23,26 @@ const iframes: [string, string][] = [
   'next-app-router-live-store',
   'next-pages-router-live-store',
   'remix-live-store',
-].map((title) => [
-  `https://preview-kit-${title}.sanity.build`,
-  title,
-])
+].map((title) => [`https://preview-kit-${title}.sanity.build`, title])
 
 const config = defineConfig({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
   dataset: process.env.SANITY_STUDIO_DATASET!,
   plugins: [
     deskTool({
-      defaultDocumentNode: (S, { schemaType }) => {        
+      defaultDocumentNode: (S, { schemaType }) => {
         switch (schemaType) {
           case `page`:
             return S.document().views([
               S.view.form(),
-              ...iframes.map(([ url, title]) =>
+              ...iframes.map(([url, title]) =>
                 S.view
                   .component(Iframe)
-                  .options({ ...iframeOptions, key: title, url } satisfies IframeOptions)
+                  .options({
+                    ...iframeOptions,
+                    key: title,
+                    url,
+                  } satisfies IframeOptions)
                   .title(title),
               ),
             ])
