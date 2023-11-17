@@ -31,6 +31,10 @@
       "types": "./dist/index.d.ts",
       "source": "./src/_exports/index.ts",
       "require": "./dist/index.cjs",
+      "node": {
+        "module": "./dist/index.js",
+        "import": "./dist/index.cjs.js"
+      },
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
@@ -38,6 +42,10 @@
       "types": "./dist/client.d.ts",
       "source": "./src/_exports/client.ts",
       "require": "./dist/client.cjs",
+      "node": {
+        "module": "./dist/client.js",
+        "import": "./dist/client.cjs.js"
+      },
       "import": "./dist/client.js",
       "default": "./dist/client.js"
     },
@@ -45,6 +53,10 @@
       "types": "./dist/csm.d.ts",
       "source": "./src/_exports/csm.ts",
       "require": "./dist/csm.cjs",
+      "node": {
+        "module": "./dist/csm.js",
+        "import": "./dist/csm.cjs.js"
+      },
       "import": "./dist/csm.js",
       "default": "./dist/csm.js"
     },
@@ -53,6 +65,10 @@
       "source": "./src/_exports/live-query.ts",
       "react-server": "./react-server/live-query/index.js",
       "require": "./dist/live-query.cjs",
+      "node": {
+        "module": "./dist/live-query.js",
+        "import": "./dist/live-query.cjs.js"
+      },
       "import": "./dist/live-query.js",
       "default": "./dist/live-query.js"
     },
