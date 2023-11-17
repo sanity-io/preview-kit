@@ -1,4 +1,3 @@
-export { parseNormalisedJsonPath } from './jsonpath'
 export * from './mapToEditLinks'
 export { resolveMapping, walkMap, type WalkMapFn } from './sourcemap'
 export * from './transcode'

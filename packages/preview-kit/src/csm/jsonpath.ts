@@ -34,7 +34,7 @@ export function normalisedJsonPath(path: PathSegment[]): string {
     .join('')}`
 }
 
-/** @alpha */
+/** @internal */
 export function parseNormalisedJsonPath(path: string): PathSegment[] {
   const parsed: PathSegment[] = []
 
