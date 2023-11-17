@@ -5,6 +5,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.10](https://github.com/sanity-io/preview-kit/compare/v3.2.9...v3.2.10) (2023-11-17)
+
+### Bug Fixes
+
+- deprecate `createTranscoder` ([8cff732](https://github.com/sanity-io/preview-kit/commit/8cff732beca00f90ea72954d1deee4717b0c2ede))
+- deprecate `mapToEditLinks` ([5585eb2](https://github.com/sanity-io/preview-kit/commit/5585eb2b696f4509c1011680db3b450dceeaa2b3))
+- mark `createClient` as deprecated, use `@sanity/client/stega` instead ([e5206cc](https://github.com/sanity-io/preview-kit/commit/e5206cc94ee5687af2444af72c4682f7fd93909c))
+- remove unused code ([7eb5924](https://github.com/sanity-io/preview-kit/commit/7eb59247511824400f4d74a05f4b4b6c2b6f677c))
+- stop exporting internal `encodeJsonPathToUriComponent` API ([42485df](https://github.com/sanity-io/preview-kit/commit/42485df13fbba46f876b4811854de5a48766e867))
+- stop exporting internal `parseNormalisedJsonPath` API ([9451119](https://github.com/sanity-io/preview-kit/commit/945111918955bd3e98732f8fed283ea976d5e634))
+- stop exporting internal `resolveMapping` API ([987fe1c](https://github.com/sanity-io/preview-kit/commit/987fe1c45965483386ab8e2f42334da8d7e2eab4))
+- stop exporting internal `walkMap` API ([3587003](https://github.com/sanity-io/preview-kit/commit/3587003b286f27324b73ac6f8fbe00b7b17bc568))
+- stop exporting internals for live query ([6497d23](https://github.com/sanity-io/preview-kit/commit/6497d23d346ccd9bbd2e3abbdd1704b79839530b))
+
 ## [3.2.9](https://github.com/sanity-io/preview-kit/compare/v3.2.8...v3.2.9) (2023-11-16)
 
 ### Bug Fixes
