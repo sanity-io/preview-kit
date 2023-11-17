@@ -100,9 +100,11 @@ export function createLiveQueryProvider(options: {
     }
 
     // Ensure these values are stable even if userland isn't memoizing properly
-    const [client] = useState(() =>
-      props.client.withConfig({
-        requestTagPrefix: props.client.config().requestTagPrefix || DEFAULT_TAG,
+    const [client] = useState(() => {
+      const { requestTagPrefix, resultSourceMap } = props.client.config()
+      return props.client.withConfig({
+        requestTagPrefix: requestTagPrefix || DEFAULT_TAG,
+        resultSourceMap: resultSourceMap || 'withKeyArraySelector',
         // Set the recommended defaults, this is a convenience to make it easier to share a client config from a server component to the client component
         ...(token && {
           token,
@@ -110,8 +112,9 @@ export function createLiveQueryProvider(options: {
           perspective: 'previewDrafts',
           ignoreBrowserTokenWarning: true,
         }),
-      }),
-    )
+      })
+    })
+
     const [cache] = useState(() => props.cache)
     const [logger] = useState(() => props.logger)
     const turboSourceMap = useMemo(() => {

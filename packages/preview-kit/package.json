@@ -1,6 +1,6 @@
 {
   "name": "@sanity/preview-kit",
-  "version": "3.2.9",
+  "version": "3.2.10-canary.0",
   "description": "General purpose utils for live content and visual editing",
   "keywords": [
     "groq",
@@ -31,43 +31,13 @@
       "types": "./dist/index.d.ts",
       "source": "./src/_exports/index.ts",
       "require": "./dist/index.cjs",
-      "node": {
-        "module": "./dist/index.js",
-        "import": "./dist/index.cjs.js"
-      },
       "import": "./dist/index.js",
       "default": "./dist/index.js"
-    },
-    "./internals/create-conditional-live-query": {
-      "types": "./dist/internals/create-conditional-live-query.d.ts",
-      "source": "./src/_exports/internals/_create-conditional-live-query.ts",
-      "require": "./dist/internals/create-conditional-live-query.cjs",
-      "node": {
-        "module": "./dist/internals/create-conditional-live-query.js",
-        "import": "./dist/internals/create-conditional-live-query.cjs.js"
-      },
-      "import": "./dist/internals/create-conditional-live-query.js",
-      "default": "./dist/internals/create-conditional-live-query.js"
-    },
-    "./internals/live-query": {
-      "types": "./dist/internals/live-query.d.ts",
-      "source": "./src/_exports/internals/_live-query.ts",
-      "require": "./dist/internals/live-query.cjs",
-      "node": {
-        "module": "./dist/internals/live-query.js",
-        "import": "./dist/internals/live-query.cjs.js"
-      },
-      "import": "./dist/internals/live-query.js",
-      "default": "./dist/internals/live-query.js"
     },
     "./client": {
       "types": "./dist/client.d.ts",
       "source": "./src/_exports/client.ts",
       "require": "./dist/client.cjs",
-      "node": {
-        "module": "./dist/client.js",
-        "import": "./dist/client.cjs.js"
-      },
       "import": "./dist/client.js",
       "default": "./dist/client.js"
     },
@@ -75,10 +45,6 @@
       "types": "./dist/csm.d.ts",
       "source": "./src/_exports/csm.ts",
       "require": "./dist/csm.cjs",
-      "node": {
-        "module": "./dist/csm.js",
-        "import": "./dist/csm.cjs.js"
-      },
       "import": "./dist/csm.js",
       "default": "./dist/csm.js"
     },
@@ -87,10 +53,6 @@
       "source": "./src/_exports/live-query.ts",
       "react-server": "./react-server/live-query/index.js",
       "require": "./dist/live-query.cjs",
-      "node": {
-        "module": "./dist/live-query.js",
-        "import": "./dist/live-query.cjs.js"
-      },
       "import": "./dist/live-query.js",
       "default": "./dist/live-query.js"
     },
@@ -102,12 +64,6 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
-      "internals/create-conditional-live-query": [
-        "./dist/internals/create-conditional-live-query.d.ts"
-      ],
-      "internals/live-query": [
-        "./dist/internals/live-query.d.ts"
-      ],
       "client": [
         "./dist/client.d.ts"
       ],
@@ -121,8 +77,6 @@
   },
   "files": [
     "dist",
-    "internals",
-    "!internals/.gitkeep",
     "react-server",
     "!react-server/**/*.d.ts",
     "client.js",
@@ -130,7 +84,7 @@
     "live-query.js"
   ],
   "scripts": {
-    "prebuild": "rimraf coverage dist internals/*.js client.js csm.js live-query.js || true",
+    "prebuild": "rimraf coverage dist client.js csm.js live-query.js || true",
     "build": "pkg build --strict && pkg --strict",
     "watch": "pnpm build watch",
     "coverage": "vitest run --coverage",
@@ -195,7 +149,7 @@
     }
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "publishConfig": {
     "access": "public",

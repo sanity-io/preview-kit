@@ -6,6 +6,7 @@ import { useLiveQuery } from './useLiveQuery'
 
 export type { ClientQueryParams }
 
+/** @public */
 export type LiveQueryClientComponentProps<QueryResult, QueryParams> =
   PropsWithChildren<{
     initialData: QueryResult

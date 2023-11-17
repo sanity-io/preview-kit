@@ -5,6 +5,7 @@ import type { LiveQueryClientComponentProps } from './LiveQueryClientComponent'
 
 export type { ClientQueryParams, LiveQueryClientComponentProps }
 
+/** @public */
 export interface LiveQueryProps<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,
