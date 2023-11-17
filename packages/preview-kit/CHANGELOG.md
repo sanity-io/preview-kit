@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.11](https://github.com/sanity-io/preview-kit/compare/v3.2.10...v3.2.11) (2023-11-17)
+
+### Bug Fixes
+
+- correct deprecation message ([4e8094b](https://github.com/sanity-io/preview-kit/commit/4e8094b8b886e450002d5fad6bf7bc113760aeb2))
+
 ## [3.2.10](https://github.com/sanity-io/preview-kit/compare/v3.2.9...v3.2.10) (2023-11-17)
 
 ### Bug Fixes
