@@ -49,17 +49,6 @@
       "import": "./dist/client.js",
       "default": "./dist/client.js"
     },
-    "./csm": {
-      "types": "./dist/csm.d.ts",
-      "source": "./src/_exports/csm.ts",
-      "require": "./dist/csm.cjs",
-      "node": {
-        "module": "./dist/csm.js",
-        "import": "./dist/csm.cjs.js"
-      },
-      "import": "./dist/csm.js",
-      "default": "./dist/csm.js"
-    },
     "./live-query": {
       "types": "./dist/live-query.d.ts",
       "source": "./src/_exports/live-query.ts",
@@ -82,9 +71,6 @@
     "*": {
       "client": [
         "./dist/client.d.ts"
-      ],
-      "csm": [
-        "./dist/csm.d.ts"
       ],
       "live-query": [
         "./dist/live-query.d.ts"

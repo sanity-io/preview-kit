@@ -1,9 +1,20 @@
 import type { ClientConfig, RawQueryResponse } from '@sanity/client'
+import type { ContentSourceMapParsedPathKeyedSegment } from '@sanity/client/csm'
 import type { StegaConfig } from '@sanity/client/stega'
 
-import type { FilterDefault } from '../csm/types'
+export type { StegaConfig }
 
-export type { FilterDefault, StegaConfig }
+/** @public */
+export type PathSegment =
+  | string
+  | number
+  | ContentSourceMapParsedPathKeyedSegment
+
+/** @public */
+export type FilterDefault = (props: {
+  path: PathSegment[]
+  filterDefault: FilterDefault
+}) => boolean
 
 /** @public */
 export type ContentSourceMapQueryResponse =
