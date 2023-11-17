@@ -13,7 +13,7 @@ const iframeOptions = {
   },
 } satisfies Omit<IframeOptions, 'url'>
 
-const iframes: [typeof Iframe, string, string][] = [
+const iframes: [string, string][] = [
   'next-app-router',
   'next-pages-router',
   'remix',
@@ -24,7 +24,6 @@ const iframes: [typeof Iframe, string, string][] = [
   'next-pages-router-live-store',
   'remix-live-store',
 ].map((title) => [
-  Iframe.bind({}),
   `https://preview-kit-${title}.sanity.build`,
   title,
 ])
@@ -34,16 +33,15 @@ const config = defineConfig({
   dataset: process.env.SANITY_STUDIO_DATASET!,
   plugins: [
     deskTool({
-      defaultDocumentNode: (S, { schemaType }) => {
-        // Only show preview pane on `movie` schema type documents
+      defaultDocumentNode: (S, { schemaType }) => {        
         switch (schemaType) {
           case `page`:
             return S.document().views([
               S.view.form(),
-              ...iframes.map(([IframeComponent, url, title]) =>
+              ...iframes.map(([ url, title]) =>
                 S.view
-                  .component(IframeComponent)
-                  .options({ ...iframeOptions, url } satisfies IframeOptions)
+                  .component(Iframe)
+                  .options({ ...iframeOptions, key: title, url } satisfies IframeOptions)
                   .title(title),
               ),
             ])
