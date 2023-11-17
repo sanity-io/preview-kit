@@ -1,6 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "baseBranches": ["main", "use-client-csm"],
   "extends": ["github>sanity-io/renovate-config", ":reviewer(team:ecosystem)"],
   "ignorePresets": [
     ":ignoreModulesAndTests",
