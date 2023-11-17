@@ -36,10 +36,7 @@ export function defineEditLink(
     }path=${encodeJsonPathToUriComponent(path)}`
 }
 
-/** @alpha */
-export function encodeJsonPathToUriComponent(
-  path: string | PathSegment[],
-): string {
+function encodeJsonPathToUriComponent(path: string | PathSegment[]): string {
   const sourcePath = Array.isArray(path) ? path : parseNormalisedJsonPath(path)
   return encodeURIComponent(
     sourcePath
