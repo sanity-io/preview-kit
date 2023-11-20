@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/sanity-io/preview-kit/compare/v4.0.0...v4.0.1) (2023-11-20)
+
+### Bug Fixes
+
+- **deps:** Update dependency lru-cache to v10.0.3 ([#683](https://github.com/sanity-io/preview-kit/issues/683)) ([3c41c56](https://github.com/sanity-io/preview-kit/commit/3c41c56071c650562d628ead9b90633a40b3a598))
+
 ## [4.0.0](https://github.com/sanity-io/preview-kit/compare/v3.2.11...v4.0.0) (2023-11-17)
 
 ### ⚠ BREAKING CHANGES
