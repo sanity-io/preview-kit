@@ -24,8 +24,8 @@ const nextConfig = {
           },
         ],
       },
-    ];
-  }
+    ]
+  },
 }
 
 export default withBundleAnalyzer({
