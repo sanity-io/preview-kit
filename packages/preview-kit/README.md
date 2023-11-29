@@ -17,7 +17,6 @@
     - [Advanced usage](#advanced-usage)
       - [Using the `LiveQuery` wrapper component instead of the `useLiveQuery` hook](#using-the-livequery-wrapper-component-instead-of-the-uselivequery-hook)
       - [Trouble-shooting and debugging](#trouble-shooting-and-debugging)
-      - [Fine-tuning `cache`](#fine-tuning-cache)
       - [Content Source Map features](#content-source-map-features)
 - [`@sanity/preview-kit/client`](#sanitypreview-kitclient)
   - [Visual Editing with Content Source Maps](#visual-editing-with-content-source-maps)
@@ -656,61 +655,7 @@ If it's always `false` it's an indicator that you may need to lift your `LiveQue
 - Next App Router: `src/app/layout.tsx`
 - Next Pages Router: `src/pages/_app.tsx`
 
-#### Fine-tuning `cache`
-
-The defaults set for the `cache` prop are optimized for most use cases, but are conservative since the size of your documents can vary a lot. And your queries might only use some document types and it's not necessary to cache every type.
-Thus you can fine-tune the cache by passing a custom `cache` prop to `LiveQueryProvider`:
-
-```tsx
-import { LiveQueryProvider } from '@sanity/preview-kit'
-
-return (
-  <LiveQueryProvider
-    client={client}
-    token={token}
-    cache={{
-      // default: 3000, increased to 10000 for this example app as each document is small
-      maxDocuments: 10000,
-      // The default cache includes all document types, you can reduce the amount of documents
-      // by only including the ones you need.
-      // You can run the `array::unique(*._type)` GROQ query in `Vision` in your Studio to see how many types are in your dataset.
-      // Just be careful that you don't forget the document types you might be using in strong references, such as `project` or `sanity.imageAsset`
-      includeTypes: ['page', 'product', 'sanity.imageAsset'],
-      // Turn off using a mutation EventSource listener, this means content updates will require a manual refresh
-      listen: false,
-    }}
-    // If the cache is full it'll fallback to a polling interval mode, that refreshes every 10 seconds by default.
-    // You can opt-in to having an error thrown instead by setting this to `0`.
-    refreshInterval={10000}
-    // Passing a logger gives you more information on what to expect based on your configuration
-    logger={console}
-  >
-    {children}
-  </LiveQueryProvider>
-)
-```
-
 #### Content Source Map features
-
-When the `client` instance is configured to `client.config().resultSourceMap == true` the `LiveQueryProvider` will opt-in to a faster and smarter cache than the default mode.
-It'll only listen for mutations on the documents that you are using in your queries, and apply the mutations to the cache in real-time.
-This mode is best-effort, and if you're relying on features such as `upper` you may want to disable this mode.
-
-```tsx
-import { LiveQueryProvider } from '@sanity/preview-kit'
-
-return (
-  <LiveQueryProvider
-    client={client}
-    token={token}
-    turboSourceMap={false}
-    // Passing a logger gives you more information on what to expect based on your configuration
-    logger={console}
-  >
-    {children}
-  </LiveQueryProvider>
-)
-```
 
 For data that can't be traced with Content Source Maps there's a background refresh interval. Depending on your queries you might want to tweak this interval to get the best performance.
 

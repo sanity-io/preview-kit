@@ -254,12 +254,6 @@ importers:
 
   packages/preview-kit:
     dependencies:
-      '@sanity/eventsource':
-        specifier: 5.0.1
-        version: 5.0.1
-      '@sanity/groq-store':
-        specifier: 4.1.3
-        version: 4.1.3
       '@sanity/preview-kit-compat':
         specifier: 1.0.1
         version: 1.0.1(@sanity/client@6.9.1)(react@18.2.0)
@@ -279,12 +273,15 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(react@18.2.0)
     devDependencies:
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.6.0)
       '@sanity/client':
         specifier: ^6.9.1
         version: 6.9.1
       '@sanity/pkg-utils':
-        specifier: ^3.2.5
-        version: 3.2.5(@types/node@18.18.9)(typescript@5.3.2)
+        specifier: 3.2.6-canary.0
+        version: 3.2.6-canary.0(@types/node@18.18.9)(typescript@5.3.2)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.6
         version: 4.1.6(semantic-release@22.0.8)
@@ -372,7 +369,7 @@ importers:
     devDependencies:
       '@sanity/pkg-utils':
         specifier: ^3.2.5
-        version: 3.2.5(@types/node@18.18.9)(typescript@5.3.2)
+        version: 3.2.5(typescript@5.3.2)
       '@types/react':
         specifier: ^18.2.39
         version: 18.2.39
@@ -3591,23 +3588,6 @@ packages:
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
     dev: false
 
-  /@sanity/groq-store@4.1.3:
-    resolution: {integrity: sha512-Yh3zbCkpnrowIG8+tMoZHGxV9HFMWVlZ4zhNfF1Y2rygi14SJteV+ildrlq3/OFq9/Y/cc6iXSD/+U6dErIpNw==}
-    engines: {node: '>= 18'}
-    dependencies:
-      '@sanity/eventsource': 5.0.1
-      '@sanity/types': 3.20.2
-      fast-deep-equal: 3.1.3
-      groq: 3.20.2
-      groq-js: 1.3.0
-      mendoza: 3.0.3
-      simple-get: 4.0.1
-      split2: 4.2.0
-      throttle-debounce: 5.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@sanity/groq-store@5.0.1-experimental(@sanity/client@6.9.1):
     resolution: {integrity: sha512-3qKQVxQW7j0n4DbmiFzEhC9jLK51u2F0d1xGYUWn0dUU5wrot2BfdlINGdCFze9FjvoPrOkihD6rc51Gfnk2xg==}
     engines: {node: '>=18'}
@@ -3717,8 +3697,60 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/pkg-utils@3.2.5(@types/node@18.18.9)(typescript@5.3.2):
+  /@sanity/pkg-utils@3.2.5(typescript@5.3.2):
     resolution: {integrity: sha512-znnS/ACvgtqVmFxcDnq9TtIO5E5nWjB3OP2eT0rqnm5lVsRJkOMPKrlb4lNxXhmJ7JR26sqaEAQ0a8fd5Ny37Q==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
+    peerDependencies:
+      typescript: ^4.7 || ^5
+    dependencies:
+      '@babel/core': 7.23.3
+      '@babel/preset-env': 7.23.3(@babel/core@7.23.3)
+      '@babel/types': 7.23.4
+      '@microsoft/api-extractor': 7.38.3(@types/node@18.18.9)
+      '@microsoft/tsdoc-config': 0.16.2
+      '@rollup/plugin-alias': 5.1.0(rollup@4.6.0)
+      '@rollup/plugin-babel': 6.0.4(@babel/core@7.23.3)(rollup@4.6.0)
+      '@rollup/plugin-commonjs': 25.0.7(rollup@4.6.0)
+      '@rollup/plugin-json': 6.0.1(rollup@4.6.0)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.6.0)
+      '@rollup/plugin-replace': 5.0.5(rollup@4.6.0)
+      '@rollup/plugin-terser': 0.4.4(rollup@4.6.0)
+      browserslist: 4.22.1
+      cac: 6.7.14
+      chalk: 4.1.2
+      chokidar: 3.5.3
+      esbuild: 0.19.8
+      esbuild-register: 3.5.0(esbuild@0.19.8)
+      find-config: 1.0.0
+      get-latest-version: 5.1.0
+      git-url-parse: 13.1.1
+      globby: 11.1.0
+      jsonc-parser: 3.2.0
+      mkdirp: 3.0.1
+      outdent: 0.8.0
+      parse-git-config: 3.0.0
+      pkg-up: 3.1.0
+      prettier: 3.1.0
+      prettier-plugin-packagejson: 2.4.6(prettier@3.1.0)
+      pretty-bytes: 5.6.0
+      prompts: 2.4.2
+      rimraf: 4.4.1
+      rollup: 4.6.0
+      rollup-plugin-esbuild: 6.1.0(esbuild@0.19.8)(rollup@4.6.0)
+      rxjs: 7.8.1
+      treeify: 1.1.0
+      typescript: 5.3.2
+      uuid: 9.0.1
+      zod: 3.22.4
+    transitivePeerDependencies:
+      - '@types/babel__core'
+      - '@types/node'
+      - supports-color
+    dev: true
+
+  /@sanity/pkg-utils@3.2.6-canary.0(@types/node@18.18.9)(typescript@5.3.2):
+    resolution: {integrity: sha512-DsShVufIJ6rJrCkpeaL9EijqOTCUIMdgV1HI0LusGPf3Ir5stOgRlHZD9xLI1bPHwJqIXl8zxQAZN3A2BNJscA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
@@ -6175,6 +6207,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       mimic-response: 3.1.0
+    dev: true
 
   /decompress-response@7.0.0:
     resolution: {integrity: sha512-6IvPrADQyyPGLpMnUh6kfKiqy7SrbXbjoUuZ90WMBJKErzv2pCiwlGEXjRX9/54OnTq+XFVnkOnOMzclLI5aEA==}
@@ -12249,18 +12282,6 @@ packages:
       pkg-conf: 2.1.0
     dev: true
 
-  /simple-concat@1.0.1:
-    resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
-    dev: false
-
-  /simple-get@4.0.1:
-    resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
-    dependencies:
-      decompress-response: 6.0.0
-      once: 1.4.0
-      simple-concat: 1.0.1
-    dev: false
-
   /simple-wcswidth@1.0.1:
     resolution: {integrity: sha512-xMO/8eNREtaROt7tJvWJqHBDTMFN4eiQ5I4JRMuilwfnFcV5W9u7RUkueNkdw0jPqGMX36iCywelS5yilTuOxg==}
     dev: false
@@ -12456,6 +12477,7 @@ packages:
   /split2@4.2.0:
     resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
     engines: {node: '>= 10.x'}
+    dev: true
 
   /sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
@@ -12813,11 +12835,6 @@ packages:
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
-
-  /throttle-debounce@5.0.0:
-    resolution: {integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==}
-    engines: {node: '>=12.22'}
-    dev: false
 
   /through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}

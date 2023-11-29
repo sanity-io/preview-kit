@@ -3,14 +3,7 @@
   "extends": ["//"],
   "pipeline": {
     "build": {
-      "outputs": [
-        "dist/**",
-        "internal/**",
-        "!internal/.gitkeep",
-        "client.js",
-        "csm.js",
-        "live-query.js"
-      ]
+      "outputs": ["dist/**"]
     }
   }
 }

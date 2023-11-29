@@ -10,13 +10,11 @@ import {
   useSyncExternalStore,
 } from 'react'
 
-import { defineListenerContext } from '../context'
-import { useParams } from '../utils'
+import { defineStoreContext } from '../context'
+import { QueryEnabled } from '../types'
+import { useParams } from '../utils/useParams'
 
-// Re-export types we use that are needed externally
-export type { ClientQueryParams }
-
-/** @public */
+/** @internal */
 export function useLiveQuery<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,
@@ -24,11 +22,11 @@ export function useLiveQuery<
   initialData: QueryResult,
   query: string,
   queryParams2?: QueryParams,
-): QueryResult {
-  const defineStore = useContext(defineListenerContext)
+): [QueryResult, QueryEnabled] {
+  const defineStore = useContext(defineStoreContext)
   const queryParams = useParams(queryParams2)
   const store = useMemo(
-    () => defineStore<QueryResult>(initialData, query, queryParams),
+    () => defineStore?.<QueryResult>(initialData, query, queryParams),
     [defineStore, initialData, queryParams, query],
   )
   // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call
@@ -52,9 +50,16 @@ export function useLiveQuery<
   })
   const getServerSnapshot = useCallback(() => serverSnapshot, [serverSnapshot])
 
-  return useSyncExternalStore(
-    store.subscribe,
-    store.getSnapshot,
-    getServerSnapshot,
-  )
+  return [
+    useSyncExternalStore(
+      store?.subscribe || noop,
+      store?.getSnapshot || getServerSnapshot,
+      getServerSnapshot,
+    ),
+    defineStore !== null,
+  ]
+}
+
+function noop() {
+  return () => {}
 }

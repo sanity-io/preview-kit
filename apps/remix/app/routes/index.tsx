@@ -92,6 +92,7 @@ export default function Index() {
           enabled={previewDrafts}
           initialData={table}
           query={tableQuery}
+          throwOnMissingProvider={false}
         >
           <Table data={table} />
         </LiveQuery>
@@ -99,6 +100,7 @@ export default function Index() {
           enabled={previewDrafts}
           initialData={footer}
           query={footerQuery}
+          throwOnMissingProvider={false}
         >
           <Footer data={footer} />
         </LiveQuery>

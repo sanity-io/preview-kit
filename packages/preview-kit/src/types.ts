@@ -31,7 +31,10 @@ export type Logger =
   | typeof console
   | Pick<typeof console, 'warn' | 'error' | 'log'>
 
-/** @public */
+/**
+ * @public
+ * @deprecated these options are no longer used
+ */
 export interface CacheOptions {
   /**
    * Uses a `Listen` API call with EventSource to stream updates in real-time to the documents cache
@@ -53,6 +56,9 @@ export interface CacheOptions {
 /** @public */
 export interface LiveQueryProviderProps {
   children: React.ReactNode
+  /**
+   * The Sanity client to use for fetching data and listening to mutations.
+   */
   client: SanityClient | SanityStegaClient
   /**
    * Reconfigures `client` with the provided `token`, as well as changing its configuration to
@@ -61,18 +67,23 @@ export interface LiveQueryProviderProps {
    * for example by: `client={client.withConfig({token})}`
    */
   token?: string
+  /** @deprecated these options are no longer used */
   cache?: CacheOptions
   /**
-   * Uses a `Listen` API call with EventSource to stream updates in real-time to the documents cache, powered by `Content Source Map` metadata
-   * @defaultValue true
+   * @deprecated this option is now always enabled
    */
   turboSourceMap?: boolean
   /**
-   * The interval in millieseconds to refetch in the background, when the tab is active.
-   * It's only used if `turboSourceMap` is set to `true` or there are too many documents to fit in the local cache.
-   * Set it to `0` to disable background refresh.
+   * How frequently queries should be refetched in the background to refresh the parts of queries that can't be source mapped.
+   * Setting it to `0` will disable background refresh.
    * @defaultValue 10000
    */
   refreshInterval?: number
   logger?: Logger
 }
+
+/** @public */
+export type QueryLoading = boolean
+
+/** @public */
+export type QueryEnabled = boolean

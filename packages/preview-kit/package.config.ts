@@ -1,23 +1,52 @@
+import terser from '@rollup/plugin-terser'
 import { defineConfig } from '@sanity/pkg-utils'
+
+const MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED = [
+  'LiveQueryClientComponent.tsx',
+]
 
 export default defineConfig({
   tsconfig: 'tsconfig.build.json',
-  legacyExports: true,
-  bundles: [
-    {
-      source: './src/_exports/internals/_create-conditional-live-query.ts',
-      import: './dist/internals/create-conditional-live-query.js',
-      runtime: 'node',
+  // Overriding the minify logiic in order to disable `compress: {directives: false}`
+  minify: false,
+  rollup: {
+    plugins: [
+      terser({
+        compress: { directives: false },
+        output: {
+          comments: (_node, comment) => {
+            const text = comment.value
+            const type = comment.type
+
+            // Check if this is a multiline comment
+            if (type == 'comment2') {
+              // Keep licensing comments
+              return /@preserve|@license|@cc_on/i.test(text)
+            }
+
+            return false
+          },
+        },
+      }),
+    ],
+    output: {
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+      banner: (chunkInfo) => {
+        if (
+          MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED.find(
+            (modulePath) => chunkInfo.facadeModuleId?.endsWith(modulePath),
+          )
+        ) {
+          return `"use client"`
+        }
+        return ''
+      },
     },
-    {
-      source: './src/_exports/internals/_live-query.ts',
-      import: './dist/internals/live-query.js',
-      runtime: 'node',
-    },
-  ],
+  },
   extract: {
     rules: {
-      'ae-forgotten-export': 'warn',
+      'ae-forgotten-export': 'error',
       'ae-incompatible-release-tags': 'warn',
       'ae-internal-missing-underscore': 'off',
       'ae-missing-release-tag': 'warn',
