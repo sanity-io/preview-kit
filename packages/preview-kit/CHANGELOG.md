@@ -5,6 +5,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/sanity-io/preview-kit/compare/v4.0.2...v5.0.0) (2023-11-29)
+
+### ⚠ BREAKING CHANGES
+
+- enable turbo mode for everyone (#705)
+
+### Features
+
+- enable turbo mode for everyone ([#705](https://github.com/sanity-io/preview-kit/issues/705)) ([5094cb5](https://github.com/sanity-io/preview-kit/commit/5094cb5025964c22d15024cc06999f7c00e8f7eb))
+
+### Bug Fixes
+
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.0.2 ([#706](https://github.com/sanity-io/preview-kit/issues/706)) ([947ee7d](https://github.com/sanity-io/preview-kit/commit/947ee7d83d9ad0dd0b12f9a7b13dce142a43ce81))
+
 ## [4.0.2](https://github.com/sanity-io/preview-kit/compare/v4.0.1...v4.0.2) (2023-11-28)
 
 ### Bug Fixes
