@@ -22,16 +22,15 @@ import {
   useSyncExternalStore,
 } from 'react'
 
-import { defineListenerContext as Context, IsEnabledContext } from '../context'
+import { defineStoreContext as Context } from '../context'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
   ListenerSubscribe,
-  Logger,
+  LiveQueryProviderProps,
 } from '../types'
-import { getQueryCacheKey, type QueryCacheKey } from '../utils'
 
-export type { Logger }
+const DEFAULT_TAG = 'sanity.preview-kit'
 
 // Documents share the same cache even if there are nested providers, with a Least Recently Used (LRU) cache
 const documentsCache = new LRUCache<
@@ -45,63 +44,44 @@ const documentsCache = new LRUCache<
 /**
  * @internal
  */
-export interface LiveStoreProviderProps {
-  children: React.ReactNode
-  /**
-   * The Sanity client to use for fetching data and listening to mutations.
-   */
-  client: SanityClient | SanityStegaClient
-  /**
-   * How frequently queries should be refetched in the background to refresh the parts of queries that can't be source mapped.
-   * Setting it to `0` will disable background refresh.
-   * @defaultValue 10000
-   */
-  refreshInterval?: number
-  /**
-   * Listen to mutations on the documents used by your queries, and apply patches directly to the result.
-   * Requires Content Source Maps to work.
-   * @defaultValue true
-   */
-  turboSourceMap?: boolean
-  logger?: Logger
-}
-/**
- * @internal
- */
 const LiveStoreProvider = memo(function LiveStoreProvider(
-  props: LiveStoreProviderProps,
+  props: LiveQueryProviderProps,
 ) {
-  const {
-    children,
-    client,
-    refreshInterval = 10000,
-    turboSourceMap = true,
-    logger,
-  } = props
+  const { children, refreshInterval = 10000, token } = props
 
-  // Check if the client is configured to use Content Source Maps if turbo is enabled
-  // It's wrapped inside `useMemo` so it doesn't call `client.config` more than it needs to, but unlike `useEffect` sooner rather than later
-  useMemo(() => {
-    if (turboSourceMap && !client.config().resultSourceMap) {
-      logger?.error(
-        'The client needs to be configured with `resultSourceMap: true` to enable turbo mode.`',
-      )
-    }
-  }, [client, turboSourceMap, logger])
+  if (!props.client) {
+    throw new Error(
+      'Missing a `client` prop with a configured Sanity client instance',
+    )
+  }
 
-  const report = useMemo(() => {
-    if (turboSourceMap && client.config().resultSourceMap) {
-      return `Updates that can be traced using Content Source Maps will be applied in real-time. Other updates will be applied every ${refreshInterval}ms.`
-    }
-    return `Updates will be applied every ${refreshInterval}ms.`
-  }, [client, refreshInterval, turboSourceMap])
+  // Ensure these values are stable even if userland isn't memoizing properly
+  const [client] = useState(() => {
+    const { requestTagPrefix, resultSourceMap } = props.client.config()
+    return props.client.withConfig({
+      requestTagPrefix: requestTagPrefix || DEFAULT_TAG,
+      resultSourceMap:
+        resultSourceMap === 'withKeyArraySelector'
+          ? 'withKeyArraySelector'
+          : true,
+      // Set the recommended defaults, this is a convenience to make it easier to share a client config from a server component to the client component
+      ...(token && {
+        token,
+        useCdn: false,
+        perspective: 'previewDrafts',
+        ignoreBrowserTokenWarning: true,
+      }),
+    })
+  })
+  const [logger] = useState(() => props.logger)
+
   useEffect(() => {
     if (logger) {
       logger.log(
-        `[@sanity/preview-kit]: With the current configuration you can expect that: ${report}`,
+        `[@sanity/preview-kit]: With the current configuration you can expect that: Updates that can be traced using Content Source Maps will be applied in real-time. Other updates will be applied every ${refreshInterval}ms.`,
       )
     }
-  }, [logger, report])
+  }, [logger, refreshInterval])
 
   const [subscriptions, setSubscriptions] = useState<QueryCacheKey[]>([])
   const [snapshots] = useState<QuerySnapshotsCache>(() => new Map())
@@ -139,7 +119,6 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
   )
   const turboIdsFromSourceMap = useCallback(
     (contentSourceMap: ContentSourceMap) => {
-      if (!turboSourceMap) return
       // This handler only adds ids, on each query fetch. But that's ok since <Turbo /> purges ids that are unused
       const nextTurboIds = new Set<string>()
       docsInUse.clear()
@@ -164,22 +143,20 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
         }),
       )
     },
-    [turboSourceMap, docsInUse],
+    [docsInUse],
   )
 
   return (
     <Context.Provider value={context}>
-      <IsEnabledContext.Provider value>{children}</IsEnabledContext.Provider>
-      {turboSourceMap && (
-        <Turbo
-          cache={hooks.cache}
-          client={client}
-          setTurboIds={setTurboIds}
-          snapshots={snapshots}
-          turboIds={turboIds}
-          docsInUse={docsInUse}
-        />
-      )}
+      {children}
+      <Turbo
+        cache={hooks.cache}
+        client={client}
+        setTurboIds={setTurboIds}
+        snapshots={snapshots}
+        turboIds={turboIds}
+        docsInUse={docsInUse}
+      />
       {subscriptions.map((key) => {
         if (!hooks.cache.has(key)) return null
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -204,7 +181,7 @@ LiveStoreProvider.displayName = 'LiveStoreProvider'
 export default LiveStoreProvider
 
 interface QuerySubscriptionProps
-  extends Required<Pick<LiveStoreProviderProps, 'client' | 'refreshInterval'>> {
+  extends Required<Pick<LiveQueryProviderProps, 'client' | 'refreshInterval'>> {
   query: string
   params: QueryParams
   listeners: Set<() => void>
@@ -367,7 +344,7 @@ type RevalidateState = 'hit' | 'stale' | 'refresh' | 'inflight'
  * Keeps track of when queries should revalidate
  */
 function useRevalidate(
-  props: Pick<LiveStoreProviderProps, 'refreshInterval'>,
+  props: Pick<LiveQueryProviderProps, 'refreshInterval'>,
 ): [RevalidateState, () => () => void] {
   const { refreshInterval } = props
 
@@ -495,7 +472,7 @@ function useHooks(
   return useMemo(() => ({ cache, subscribe }), [cache, subscribe])
 }
 
-interface TurboProps extends Pick<LiveStoreProviderProps, 'client'> {
+interface TurboProps extends Pick<LiveQueryProviderProps, 'client'> {
   turboIds: string[]
   docsInUse: Map<string, ContentSourceMapDocuments[number]>
   setTurboIds: React.Dispatch<React.SetStateAction<string[]>>
@@ -659,7 +636,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
 })
 Turbo.displayName = 'Turbo'
 
-interface GetDocumentsProps extends Pick<LiveStoreProviderProps, 'client'> {
+interface GetDocumentsProps extends Pick<LiveQueryProviderProps, 'client'> {
   projectId: string
   dataset: string
   ids: string[]
@@ -730,4 +707,11 @@ function turboChargeResultIfSourceMap(
       return changedValue
     },
   )
+}
+
+/** @internal */
+type QueryCacheKey = `${string}-${string}`
+/** @internal */
+function getQueryCacheKey(query: string, params: QueryParams): QueryCacheKey {
+  return `${query}-${JSON.stringify(params)}`
 }

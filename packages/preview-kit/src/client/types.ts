@@ -21,6 +21,7 @@ export type ContentSourceMapQueryResponse =
   | RawQueryResponse<unknown>
   | Pick<RawQueryResponse<unknown>, 'result' | 'resultSourceMap'>
 
+/** @public */
 export interface PreviewKitClientConfig extends ClientConfig {
   /**
      * Some strings shouldn't be encoded, for example if you store internal URLs the stega characters will break routing.

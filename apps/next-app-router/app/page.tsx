@@ -16,6 +16,8 @@ import Variant from './Variant'
 import { PreviewTable, PreviewFooter } from './previews'
 import { Suspense } from 'react'
 
+export const runtime = 'edge'
+
 export default async function Page() {
   const footer = await sanityFetch<FooterProps['data']>({
     query: footerQuery,
@@ -32,6 +34,7 @@ export default async function Page() {
         initialData={footer}
         query={footerQuery}
         as={PreviewFooter}
+        throwOnMissingProvider={false}
       >
         <Footer data={footer} />
       </LiveQuery>
@@ -53,6 +56,7 @@ async function ServerTable() {
       initialData={data}
       query={tableQuery}
       as={PreviewTable}
+      throwOnMissingProvider={false}
     >
       <Table data={data} />
     </LiveQuery>

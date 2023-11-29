@@ -1,13 +1,12 @@
-import dynamic from 'next/dynamic'
+import { lazy } from 'react'
 
-const DefaultVariant = dynamic(() => import('./variants/default'))
-const GroqStoreVariant = dynamic(() => import('./variants/groq-store'))
-const LiveStoreVariant = dynamic(() => import('./variants/live-store'))
+const GroqStoreVariant = lazy(() => import('./variants/groq-store'))
+const LiveStoreVariant = lazy(() => import('./variants/live-store'))
 
 export default function Variant(props: React.PropsWithChildren) {
   switch (process.env.VARIANT || 'default') {
     case 'default':
-      return <DefaultVariant {...props} />
+      return <>{props.children}</>
     case 'groq-store':
       return <GroqStoreVariant {...props} />
     case 'live-store':

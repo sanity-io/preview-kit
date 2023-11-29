@@ -3,15 +3,14 @@ import { useCallback, useContext, useMemo, useState } from 'react'
 import isFastEqual from 'react-fast-compare'
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector'
 
+import { defineStoreContext } from './context'
 import {
-  defineListenerContext,
-  IsEnabledContext,
-  LoadedListenersContext,
-} from './context'
-import { getQueryCacheKey, useParams } from './utils'
-
-// Re-export types we use that are needed externally
-export type { ClientQueryParams }
+  ListenerGetSnapshot,
+  ListenerSubscribe,
+  QueryEnabled,
+  QueryLoading,
+} from './types'
+import { useParams } from './utils/useParams'
 
 /**
  * By default 'react-fast-compare' is used to check if the query result has changed.
@@ -27,9 +26,6 @@ export interface LiveQueryHookOptions<QueryResult> {
 }
 
 /** @public */
-export type QueryLoading = boolean
-
-/** @public */
 export function useLiveQuery<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,
@@ -38,13 +34,30 @@ export function useLiveQuery<
   query: string,
   queryParams?: QueryParams,
   options?: LiveQueryHookOptions<QueryResult>,
-): [QueryResult, QueryLoading] {
+): [QueryResult, QueryLoading, QueryEnabled] {
   const { isEqual = isFastEqual } = options || {}
 
-  const defineStore = useContext(defineListenerContext)
+  const defineStore = useContext(defineStoreContext)
   const params = useParams(queryParams)
-  const store = useMemo(
-    () => defineStore<QueryResult>(initialData, query, params),
+  const noStore = useMemo(
+    () => ({
+      subscribe: (() => () => {}) satisfies ListenerSubscribe,
+      getSnapshot: () => initialData,
+    }),
+    [initialData],
+  )
+  const store = useMemo<
+    | {
+        subscribe: ListenerSubscribe
+        getSnapshot: ListenerGetSnapshot<QueryResult>
+      }
+    | undefined
+  >(
+    () =>
+      defineStore?.<QueryResult>(initialData, query, params) || {
+        subscribe: (() => () => {}) satisfies ListenerSubscribe,
+        getSnapshot: () => initialData,
+      },
     [defineStore, initialData, params, query],
   )
   // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call
@@ -70,34 +83,16 @@ export function useLiveQuery<
   const selector = useCallback((snapshot: QueryResult) => snapshot, [])
 
   const snapshot = useSyncExternalStoreWithSelector(
-    store.subscribe,
-    store.getSnapshot,
+    store?.subscribe || noStore.subscribe,
+    store?.getSnapshot || noStore.getSnapshot,
     getServerSnapshot,
     selector,
     isEqual,
   )
-  const loading = useLiveQueryIsLoading(query, params)
+  const enabled = defineStore !== null
+  const loading = enabled && serverSnapshot === snapshot
 
-  return [snapshot, loading]
-}
-
-/**
- * Wether a particular query is loading or not.
- * @public
- */
-function useLiveQueryIsLoading(
-  query: string,
-  params: ClientQueryParams,
-): QueryLoading {
-  const loadedListeners = useContext(LoadedListenersContext)
-  const key = useMemo(() => getQueryCacheKey(query, params), [params, query])
-
-  return useMemo(() => {
-    if (Array.isArray(loadedListeners)) {
-      return loadedListeners.includes(key) ? false : true
-    }
-    return false
-  }, [key, loadedListeners])
+  return [snapshot, loading, enabled]
 }
 
 /**
@@ -106,7 +101,8 @@ function useLiveQueryIsLoading(
  * This hook on the other hand does know. If it returns `false` then sibling `useLiveQuery` hooks are not "live".
  * If it returns `true` then sibling `useLiveQuery` hooks are "live" as there is a parent `LiveQueryProvider` in the tree that is loaded and active.
  * @public
+ * @deprecated use `useLiveQuery` instead: `const [,,enabled] = useLiveQuery(initialData, query, params)`
  */
 export function useIsEnabled(): boolean {
-  return useContext(IsEnabledContext)
+  return useContext(defineStoreContext) !== null
 }

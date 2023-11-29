@@ -18,7 +18,7 @@ import {
   tableQuery,
 } from 'ui/react'
 import dynamic from 'next/dynamic'
-import { useIsEnabled } from '@sanity/preview-kit'
+import { useIsEnabled, useLiveQuery } from '@sanity/preview-kit'
 import { LiveQuery } from '@sanity/preview-kit/live-query'
 import { sanityFetch, token } from '../sanity.fetch'
 
@@ -82,6 +82,8 @@ export default function Page(
       client__environment: environment,
     })
   }, [])
+  const [table, , isLive] = useLiveQuery(props.table, tableQuery)
+  const [footer] = useLiveQuery(props.footer, footerQuery)
 
   return (
     <Container>
@@ -93,22 +95,10 @@ export default function Page(
         )}
       </form>
       <Variant {...props}>
-        <LiveQuery
-          enabled={draftMode}
-          initialData={props.table}
-          query={tableQuery}
-        >
-          <Table data={props.table} />
-        </LiveQuery>
-        <LiveQuery
-          enabled={draftMode}
-          initialData={props.footer}
-          query={footerQuery}
-        >
-          <Footer data={props.footer} />
-        </LiveQuery>
+        <Table data={table} />
+        <Footer data={footer} />
         {timestamp && <Timestamp date={timestamp} />}
-        <RefreshButton />
+        <RefreshButton isLive={isLive} />
       </Variant>
       <script
         type="application/json"
@@ -120,8 +110,7 @@ export default function Page(
   )
 }
 
-function RefreshButton() {
-  const isLive = useIsEnabled()
+function RefreshButton({ isLive }: { isLive: boolean }) {
   return (
     <form
       action="/api/revalidate"

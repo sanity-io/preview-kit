@@ -13,6 +13,7 @@ export type * from './types'
 export type * from '@sanity/client'
 
 /**
+ * @public
  * @deprecated - Please use `createClient` from `@sanity/client/stega` instead
  */
 export const createClient = (

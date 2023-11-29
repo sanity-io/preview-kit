@@ -7,6 +7,7 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  reactStrictMode: true,
   productionBrowserSourceMaps: true,
   // Support Vercel Authentication protection
   async headers() {
@@ -20,7 +21,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `frame-ancestors 'self' https://*.sanity.build`,
+            value: `frame-ancestors 'self' https://*.sanity.build http://localhost:3333`,
           },
         ],
       },

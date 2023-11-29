@@ -1,5 +1,5 @@
 import type { SerializeFrom } from '@vercel/remix'
-import { lazy } from 'react'
+import { StrictMode, lazy } from 'react'
 
 import type { loader } from '~/routes'
 
@@ -12,9 +12,11 @@ export default function LiveStoreVariant({
   studioUrl,
 }: SerializeFrom<typeof loader> & React.PropsWithChildren) {
   return previewDrafts ? (
-    <PreviewProvider token={token!} studioUrl={studioUrl}>
-      {children}
-    </PreviewProvider>
+    <StrictMode>
+      <PreviewProvider token={token!} studioUrl={studioUrl}>
+        {children}
+      </PreviewProvider>
+    </StrictMode>
   ) : (
     children
   )
