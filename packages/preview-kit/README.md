@@ -1,5 +1,8 @@
 # @sanity/preview-kit<!-- omit in toc -->
 
+> [!IMPORTANT]  
+> You're looking at the README for v5, the README for [v4 is available here.](https://github.com/sanity-io/preview-kit/tree/v4?tab=readme-ov-file#sanitypreview-kit)
+
 [Sanity.io](https://www.sanity.io/?utm_source=github&utm_medium=readme&utm_campaign=preview-kit) toolkit for building live-as-you-type content preview experiences and visual editing.
 
 - [Installation](#installation)
