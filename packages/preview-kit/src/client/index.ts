@@ -68,17 +68,17 @@ function isVercelPreviewEnvironment() {
 function detectEnableSourceMap(): ClientConfig['encodeSourceMap'] {
   try {
     // @ts-expect-error -- SANITY_SOURCE_MAP is not a declared import.meta.env variable
-    return import.meta.env.SANITY_SOURCE_MAP === 'true' || 'auto'
+    return import.meta.env.SANITY_SOURCE_MAP === 'true'
   } catch {
     // ignore
   }
   try {
     // eslint-disable-next-line no-process-env
-    return process.env.SANITY_SOURCE_MAP === 'true' || 'auto'
+    return process.env.SANITY_SOURCE_MAP === 'true'
   } catch {
     // ignore
   }
-  return 'auto'
+  return false
 }
 
 // eslint-disable-next-line consistent-return

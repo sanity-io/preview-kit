@@ -57,7 +57,7 @@ const config: ClientConfig = {
 + // Required, set it to the URL of your Sanity Studio
 + studioUrl: 'https://your-project-name.sanity.studio',
 + // enable content source map in the response, and encode it into strings
-+ // 'auto' is the default, you can also use `true` or `false`
++ // `false` is the default, you can also use `true` or 'auto'
 + encodeSourceMap: 'auto',
 }
 
