@@ -45,7 +45,7 @@ export interface PreviewKitClientConfig extends ClientConfig {
    *   forces encoding of sourcemaps using `'stega'` encoding, regardless of environment.
    * - false
    *   disables encoding of sourcemaps, regardless of environment.
-   * @defaultValue import.meta.env.SANITY_SOURCE_MAP || process.env.SANITY_SOURCE_MAP || 'auto'
+   * @defaultValue false
    * @alpha
    */
   encodeSourceMap?: 'auto' | string | true | false
