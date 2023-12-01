@@ -71,7 +71,7 @@ const config: ClientConfig = {
   studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
 
   // Required: for encoded metadata from Content Source Maps
-  // 'auto' is the default, you can also use `true` or `false`
+  // `false` is the default, you can also use `true` or 'auto'
   encodeSourceMap: 'auto',
 }
 
