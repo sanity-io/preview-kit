@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/sanity-io/preview-kit/compare/v5.0.0...v5.0.1) (2023-12-01)
+
+### Bug Fixes
+
+- set `encodeSourceMap` to `false` instead of `auto` by default ([#710](https://github.com/sanity-io/preview-kit/issues/710)) ([2162923](https://github.com/sanity-io/preview-kit/commit/21629234130565f82345644c86d8a1a45dbc7621))
+
 ## [5.0.0](https://github.com/sanity-io/preview-kit/compare/v4.0.2...v5.0.0) (2023-11-29)
 
 ### ⚠ BREAKING CHANGES
