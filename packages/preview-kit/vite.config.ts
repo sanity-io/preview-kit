@@ -15,6 +15,9 @@ export default defineConfig({
       ? ['default', new GithubActionsReporter()]
       : 'default',
     // Allow switching test runs from using the source TS or compiled ESM
-    alias: { '@sanity/preview-kit': pkg.exports['.'].source },
+    alias: {
+      '@sanity/preview-kit': new URL(pkg.exports['.'].source, import.meta.url)
+        .pathname,
+    },
   },
 })
