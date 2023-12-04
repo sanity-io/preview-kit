@@ -65,8 +65,8 @@ jobs:
       matrix:
         # https://nodejs.org/en/about/releases/
         # https://pnpm.io/installation#compatibility
-        # Includes the lowest version supported by preview-kit (defined in pkg.engines.node) and the upcoming version in development
-        node: [lts/-1, lts/*, current]
+        # Includes the lowest version supported by preview-kit (defined in pkg.engines.node)
+        node: [lts/-1, lts/*]
         os: [ubuntu-latest]
         # Also test the LTS on mac and windows
         include:
