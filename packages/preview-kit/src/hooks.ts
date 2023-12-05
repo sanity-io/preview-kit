@@ -1,4 +1,5 @@
 import type { QueryParams as ClientQueryParams } from '@sanity/client'
+import { useQueryParams } from '@sanity/preview-kit-compat'
 import { useCallback, useContext, useMemo, useState } from 'react'
 import isFastEqual from 'react-fast-compare'
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector'
@@ -10,7 +11,6 @@ import {
   QueryEnabled,
   QueryLoading,
 } from './types'
-import { useParams } from './utils/useParams'
 
 /**
  * By default 'react-fast-compare' is used to check if the query result has changed.
@@ -38,7 +38,7 @@ export function useLiveQuery<
   const { isEqual = isFastEqual } = options || {}
 
   const defineStore = useContext(defineStoreContext)
-  const params = useParams(queryParams)
+  const params = useQueryParams(queryParams)
   const noStore = useMemo(
     () => ({
       subscribe: (() => () => {}) satisfies ListenerSubscribe,

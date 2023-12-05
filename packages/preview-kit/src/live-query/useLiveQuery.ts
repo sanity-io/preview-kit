@@ -2,6 +2,7 @@
 // need the more advanced features `useLiveQuery`, like the `isEqual` option or the `loading` state
 
 import type { QueryParams as ClientQueryParams } from '@sanity/client'
+import { useQueryParams } from '@sanity/preview-kit-compat'
 import {
   useCallback,
   useContext,
@@ -12,7 +13,6 @@ import {
 
 import { defineStoreContext } from '../context'
 import { QueryEnabled } from '../types'
-import { useParams } from '../utils/useParams'
 
 /** @internal */
 export function useLiveQuery<
@@ -24,7 +24,7 @@ export function useLiveQuery<
   queryParams2?: QueryParams,
 ): [QueryResult, QueryEnabled] {
   const defineStore = useContext(defineStoreContext)
-  const queryParams = useParams(queryParams2)
+  const queryParams = useQueryParams(queryParams2)
   const store = useMemo(
     () => defineStore?.<QueryResult>(initialData, query, queryParams),
     [defineStore, initialData, queryParams, query],
