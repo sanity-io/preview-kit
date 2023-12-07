@@ -16,5 +16,5 @@ export function createLiveQueryProvider(
     LiveStoreProvider: React.ComponentType<LiveQueryProviderProps>
   },
 ): React.ComponentType<LiveQueryProviderProps> {
-  return LiveQueryProvider
+  return LiveQueryProvider as unknown as React.ComponentType<LiveQueryProviderProps>
 }

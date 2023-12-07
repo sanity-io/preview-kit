@@ -54,12 +54,14 @@ export interface CacheOptions {
 }
 
 /** @public */
-export interface LiveQueryProviderProps {
+export interface LiveQueryProviderProps<
+  ClientType = SanityClient | SanityStegaClient,
+> {
   children: React.ReactNode
   /**
    * The Sanity client to use for fetching data and listening to mutations.
    */
-  client: SanityClient | SanityStegaClient
+  client: ClientType
   /**
    * Reconfigures `client` with the provided `token`, as well as changing its configuration to
    * have `perspective: 'previewDrafts'`, `useCdn: false` and `ignoreBrowserTokenWarning: true`.

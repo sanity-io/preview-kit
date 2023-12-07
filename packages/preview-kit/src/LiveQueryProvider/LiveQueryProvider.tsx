@@ -40,12 +40,15 @@ const documentsCache = new LRUCache<
   max: 500,
 })
 
-/**
- * @internal
- */
-const LiveStoreProvider = memo(function LiveStoreProvider(
+function LiveStoreProviderComponent(
+  props: LiveQueryProviderProps<SanityStegaClient>,
+): JSX.Element
+function LiveStoreProviderComponent(
+  props: LiveQueryProviderProps<SanityClient>,
+): JSX.Element
+function LiveStoreProviderComponent(
   props: LiveQueryProviderProps,
-) {
+): JSX.Element {
   const { children, refreshInterval = 10000, token } = props
 
   if (!props.client) {
@@ -175,7 +178,12 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
       })}
     </Context.Provider>
   )
-})
+}
+
+/**
+ * @internal
+ */
+const LiveStoreProvider = memo(LiveStoreProviderComponent)
 LiveStoreProvider.displayName = 'LiveStoreProvider'
 export default LiveStoreProvider
 
@@ -373,7 +381,9 @@ interface TurboProps extends Pick<LiveQueryProviderProps, 'client'> {
 const Turbo = memo(function Turbo(props: TurboProps) {
   const { client, snapshots, cache, turboIds, setTurboIds, docsInUse } = props
   const [studioUrl] = useState(() => {
-    const { stega = {} as StegaConfig } = (client as SanityStegaClient).config()
+    const { stega = {} as StegaConfig } = (
+      client as unknown as SanityStegaClient
+    ).config()
     if (typeof stega?.studioUrl === 'string') {
       return stega.studioUrl
     }
