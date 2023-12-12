@@ -14,8 +14,6 @@ export default function VisualEditing() {
   }, [router])
   useEffect(() => {
     const disable = enableOverlays({
-      allowStudioOrigin:
-        process.env.NEXT_PUBLIC_STUDIO_URL || 'http://localhost:3333',
       history: {
         subscribe: (navigate) => {
           setNavigate(() => navigate)
