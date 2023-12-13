@@ -5,7 +5,7 @@ import { defineConfig, defineField, defineType } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { benchmarkTool } from './src/benchmark'
 import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
-import { presentationTool } from '@sanity/presentation'
+import { presentationTool } from 'sanity/presentation'
 
 const iframeOptions = {
   reload: {
