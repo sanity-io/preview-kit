@@ -28,85 +28,89 @@ const iframes: [string, string][] = [
 
 function createConfig(stable: boolean) {
   const name = stable ? 'stable' : 'experimental'
-  const presentationTool = stable ? stablePresentationTool : experimentalPresentationTool
-const config = defineConfig({
-  name,
-  basePath: `/${name}`,
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
-  dataset: process.env.SANITY_STUDIO_DATASET!,
-  plugins: [
-    deskTool({
-      defaultDocumentNode: (S, { schemaType }) => {
-        switch (schemaType) {
-          case `page`:
-            return S.document().views([
-              S.view.form(),
-              ...iframes.map(([url, title]) =>
-                S.view
-                  .component(Iframe)
-                  .options({
-                    ...iframeOptions,
-                    key: title,
-                    url,
-                  } satisfies IframeOptions)
-                  .title(title),
-              ),
-            ])
-          default:
-            return S.document().views([S.view.form()])
-        }
-      },
-    }),
-    presentationTool({
-      name: 'remix',
-      previewUrl: {
-        origin: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
-        draftMode: {
-          enable: '/api/draft',
+  const presentationTool = stable
+    ? stablePresentationTool
+    : experimentalPresentationTool
+  const config = defineConfig({
+    name,
+    basePath: `/${name}`,
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
+    dataset: process.env.SANITY_STUDIO_DATASET!,
+    plugins: [
+      deskTool({
+        defaultDocumentNode: (S, { schemaType }) => {
+          switch (schemaType) {
+            case `page`:
+              return S.document().views([
+                S.view.form(),
+                ...iframes.map(([url, title]) =>
+                  S.view
+                    .component(Iframe)
+                    .options({
+                      ...iframeOptions,
+                      key: title,
+                      url,
+                    } satisfies IframeOptions)
+                    .title(title),
+                ),
+              ])
+            default:
+              return S.document().views([S.view.form()])
+          }
         },
-      },
-    }),
-    presentationTool({
-      name: 'pages-router',
-      previewUrl: {
-        origin:
-          process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3000',
-        draftMode: {
-          enable: '/api/draft',
-        },
-      },
-    }),
-    presentationTool({
-      name: 'app-router',
-      previewUrl: {
-        origin:
-          process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
-        draftMode: {
-          enable: '/api/draft',
-        },
-      },
-    }),
-    benchmarkTool(),
-    visionTool(),
-    groqdPlaygroundTool(),
-  ],
-  schema: {
-    types: [
-      defineType({
-        name: 'page',
-        title: 'Page',
-        type: 'document' as const,
-        fields: [
-          defineField({
-            name: 'title',
-            type: 'string',
-          }),
-        ],
       }),
+      presentationTool({
+        name: 'remix',
+        previewUrl: {
+          origin:
+            process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
+          draftMode: {
+            enable: '/api/draft',
+          },
+        },
+      }),
+      presentationTool({
+        name: 'pages-router',
+        previewUrl: {
+          origin:
+            process.env.SANITY_STUDIO_PAGES_ROUTER_URL ||
+            'http://localhost:3000',
+          draftMode: {
+            enable: '/api/draft',
+          },
+        },
+      }),
+      presentationTool({
+        name: 'app-router',
+        previewUrl: {
+          origin:
+            process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
+          draftMode: {
+            enable: '/api/draft',
+          },
+        },
+      }),
+      benchmarkTool(),
+      visionTool(),
+      groqdPlaygroundTool(),
     ],
-  },
-})
-return config
+    schema: {
+      types: [
+        defineType({
+          name: 'page',
+          title: 'Page',
+          type: 'document' as const,
+          fields: [
+            defineField({
+              name: 'title',
+              type: 'string',
+            }),
+          ],
+        }),
+      ],
+    },
+  })
+  return config
 }
 
 export default [createConfig(true), createConfig(false)]
