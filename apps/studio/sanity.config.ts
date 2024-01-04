@@ -5,7 +5,8 @@ import { defineConfig, defineField, defineType } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { benchmarkTool } from './src/benchmark'
 import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
-import { presentationTool } from 'sanity/presentation'
+import { presentationTool as stablePresentationTool } from 'sanity/presentation'
+import { presentationTool as experimentalPresentationTool } from '@sanity/presentation'
 
 const iframeOptions = {
   reload: {
@@ -25,7 +26,12 @@ const iframes: [string, string][] = [
   'remix-live-store',
 ].map((title) => [`https://preview-kit-${title}.sanity.build`, title])
 
+function createConfig(stable: boolean) {
+  const name = stable ? 'stable' : 'experimental'
+  const presentationTool = stable ? stablePresentationTool : experimentalPresentationTool
 const config = defineConfig({
+  name,
+  basePath: `/${name}`,
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
   dataset: process.env.SANITY_STUDIO_DATASET!,
   plugins: [
@@ -100,5 +106,7 @@ const config = defineConfig({
     ],
   },
 })
+return config
+}
 
-export default config
+export default [createConfig(true), createConfig(false)]
