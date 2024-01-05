@@ -413,10 +413,10 @@ const Turbo = memo(function Turbo(props: TurboProps) {
         nextBatch.add(turboId)
       }
     }
-    const nextBatchSlice = [...nextBatch].slice(0, 10)
+    const nextBatchSlice = [...nextBatch].slice(0, 100)
     if (nextBatchSlice.length === 0) return
     startTransition(() =>
-      setBatch((prevBatch) => [...prevBatch.slice(-10), nextBatchSlice]),
+      setBatch((prevBatch) => [...prevBatch.slice(-100), nextBatchSlice]),
     )
   }, [batch, dataset, projectId, turboIds])
 
