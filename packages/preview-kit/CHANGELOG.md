@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.9](https://github.com/sanity-io/preview-kit/compare/v5.0.8...v5.0.9) (2024-01-05)
+
+### Bug Fixes
+
+- batch by 100s of documents instead of 10s ([0518e3f](https://github.com/sanity-io/preview-kit/commit/0518e3f7018f2a622978ffadc4b11862feca0fe4))
+
 ## [5.0.8](https://github.com/sanity-io/preview-kit/compare/v5.0.7...v5.0.8) (2024-01-04)
 
 ### Bug Fixes
