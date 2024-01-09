@@ -568,6 +568,7 @@ function turboChargeResultIfSourceMap(
       }
       return changedValue
     },
+    'previewDrafts',
   )
 }
 
