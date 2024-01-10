@@ -258,8 +258,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.3.3
-        version: 1.3.3(@sanity/client@6.11.0)(react@18.2.0)
+        specifier: 1.4.0
+        version: 1.4.0(@sanity/client@6.11.0)(react@18.2.0)
       '@vercel/stega':
         specifier: 0.1.0
         version: 0.1.0
@@ -3968,11 +3968,11 @@ packages:
       - react-is
     dev: false
 
-  /@sanity/preview-kit-compat@1.3.3(@sanity/client@6.11.0)(react@18.2.0):
-    resolution: {integrity: sha512-sfWiRa+oezWsKt3KAoyx0B1Xu9Ukv4JYRdKUqq+P4Z+I7cMT4qPwDkBNRcqsy0FEQYy35HjSD4Vw9ed70DjTSg==}
+  /@sanity/preview-kit-compat@1.4.0(@sanity/client@6.11.0)(react@18.2.0):
+    resolution: {integrity: sha512-n5gwT79ZdoGuMMMU5qDSHRsqMl6XEW0gvaXQYR5kgx6tY9HCr8Mpd0iJ8NHr0sD+/aBU7Rw4/l4i6mB3Z+bS4Q==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@sanity/client': ^6.10.0
+      '@sanity/client': ^6.11.0
       react: ^18.2.0
     dependencies:
       '@sanity/client': 6.11.0
@@ -6052,7 +6052,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
-    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
