@@ -204,8 +204,8 @@ importers:
         specifier: 2.8.0
         version: 2.8.0(react@18.2.0)
       '@sanity/presentation':
-        specifier: 1.5.2
-        version: 1.5.2(@sanity/client@6.11.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.24.2-canary.1)(styled-components@6.1.8)
+        specifier: 1.5.3
+        version: 1.5.3(@sanity/client@6.11.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -3872,45 +3872,6 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/presentation@1.5.2(@sanity/client@6.11.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.24.2-canary.1)(styled-components@6.1.8):
-    resolution: {integrity: sha512-KjEC2LFn2d/qHn2t2e9Yu+JW5AmzCjegz1r0w9NaCBYFniR1k+ZTCx5kZURvr8T4j/FltLtuTVdqKcMecyYgkg==}
-    engines: {node: '>=16.14'}
-    peerDependencies:
-      '@sanity/client': ^6.11.1
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      sanity: ^3.24.1
-      styled-components: ^5.2 || ^6.1.1
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      sanity:
-        optional: true
-      styled-components:
-        optional: true
-    dependencies:
-      '@sanity/client': 6.11.1
-      '@sanity/icons': 2.8.0(react@18.2.0)
-      '@sanity/preview-url-secret': 1.5.1(@sanity/client@6.11.1)(@sanity/icons@2.8.0)(sanity@3.24.2-canary.1)
-      '@sanity/ui': 2.0.0-beta.17(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
-      '@types/lodash.isequal': 4.5.8
-      fast-deep-equal: 3.1.3
-      framer-motion: 10.18.0(react-dom@18.2.0)(react@18.2.0)
-      lodash.isequal: 4.5.0
-      mendoza: 3.0.3
-      mnemonist: 0.39.7
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      rxjs: 7.8.1
-      sanity: 3.24.2-canary.1(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)
-      styled-components: 6.1.8(react-dom@18.2.0)(react@18.2.0)
-      suspend-react: 0.1.3(react@18.2.0)
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
   /@sanity/presentation@1.5.3(@sanity/client@6.11.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
     resolution: {integrity: sha512-A9OiyyPXOkMk3grTtXN6YpyOJ5Gi5pFh8ZKzJ9FJNsZ/8Nv6TeMo0Uthy3s6+tyVUVaR4fQw+kIcS+MJl0kCWA==}
     engines: {node: '>=16.14'}
@@ -3945,25 +3906,6 @@ packages:
     dependencies:
       '@sanity/client': 6.11.1
       react: 18.2.0
-    dev: false
-
-  /@sanity/preview-url-secret@1.5.1(@sanity/client@6.11.1)(@sanity/icons@2.8.0)(sanity@3.24.2-canary.1):
-    resolution: {integrity: sha512-fEag/6qdMelaC25ClEN0w9+QOOzeTuR/oNa+dGBYkDmI/RxlrjXoXU4Rmdzafuo9WrMyS3JesVt4e3zQFyehPw==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@sanity/client': ^6.11.1
-      '@sanity/icons': ^2.8.0
-      sanity: ^3.24.1
-    peerDependenciesMeta:
-      '@sanity/icons':
-        optional: true
-      sanity:
-        optional: true
-    dependencies:
-      '@sanity/client': 6.11.1
-      '@sanity/icons': 2.8.0(react@18.2.0)
-      '@sanity/uuid': 3.0.2
-      sanity: 3.24.2-canary.1(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)
     dev: false
 
   /@sanity/preview-url-secret@1.5.2(@sanity/client@6.11.1):
@@ -11638,7 +11580,7 @@ packages:
     dependencies:
       '@sanity/icons': 2.8.0(react@18.2.0)
       '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
-      '@sanity/preview-url-secret': 1.5.1(@sanity/client@6.11.1)(@sanity/icons@2.8.0)(sanity@3.24.2-canary.1)
+      '@sanity/preview-url-secret': 1.5.2(@sanity/client@6.11.1)
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       framer-motion: 10.18.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
