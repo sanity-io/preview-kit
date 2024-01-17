@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       prettier:
-        specifier: ^3.2.2
-        version: 3.2.2
+        specifier: ^3.2.4
+        version: 3.2.4
       prettier-plugin-packagejson:
         specifier: ^2.4.9
-        version: 2.4.9(prettier@3.2.2)
+        version: 2.4.9(prettier@3.2.4)
       turbo:
         specifier: 1.11.3
         version: 1.11.3
@@ -320,7 +320,7 @@ importers:
         version: 0.1.0(eslint@8.56.0)
       eslint-plugin-prettier:
         specifier: ^5.1.3
-        version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.2.2)
+        version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.2.4)
       eslint-plugin-react:
         specifier: ^7.33.2
         version: 7.33.2(eslint@8.56.0)
@@ -396,7 +396,7 @@ importers:
         version: 0.1.0(eslint@8.56.0)
       eslint-plugin-prettier:
         specifier: ^5.1.3
-        version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.2.2)
+        version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.2.4)
       eslint-plugin-react:
         specifier: ^7.33.2
         version: 7.33.2(eslint@8.56.0)
@@ -3886,8 +3886,8 @@ packages:
       outdent: 0.8.0
       parse-git-config: 3.0.0
       pkg-up: 3.1.0
-      prettier: 3.2.2
-      prettier-plugin-packagejson: 2.4.9(prettier@3.2.2)
+      prettier: 3.2.4
+      prettier-plugin-packagejson: 2.4.9(prettier@3.2.4)
       pretty-bytes: 5.6.0
       prompts: 2.4.2
       rimraf: 4.4.1
@@ -3965,31 +3965,6 @@ packages:
       suspend-react: 0.1.3(react@18.2.0)
     transitivePeerDependencies:
       - react-is
-    dev: false
-
-  /@sanity/presentation@1.5.3(@sanity/client@6.11.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
-    resolution: {integrity: sha512-A9OiyyPXOkMk3grTtXN6YpyOJ5Gi5pFh8ZKzJ9FJNsZ/8Nv6TeMo0Uthy3s6+tyVUVaR4fQw+kIcS+MJl0kCWA==}
-    engines: {node: '>=16.14'}
-    peerDependencies:
-      '@sanity/client': ^6.11.1
-    dependencies:
-      '@sanity/client': 6.11.1
-      '@sanity/icons': 2.8.0(react@18.2.0)
-      '@sanity/preview-url-secret': 1.5.2(@sanity/client@6.11.1)
-      '@sanity/ui': 2.0.0-beta.17(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
-      '@types/lodash.isequal': 4.5.8
-      fast-deep-equal: 3.1.3
-      framer-motion: 10.18.0(react-dom@18.2.0)(react@18.2.0)
-      lodash.isequal: 4.5.0
-      mendoza: 3.0.3
-      mnemonist: 0.39.7
-      rxjs: 7.8.1
-      suspend-react: 0.1.3(react@18.2.0)
-    transitivePeerDependencies:
-      - react
-      - react-dom
-      - react-is
-      - styled-components
     dev: false
 
   /@sanity/presentation@1.6.0(@sanity/client@6.11.1)(react-dom@18.2.0)(react@18.2.0):
@@ -4129,27 +4104,6 @@ packages:
 
   /@sanity/ui@2.0.0-beta.16(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
     resolution: {integrity: sha512-nu+N1ClKv5e3sraBvJnru3/F3Nzl7uI85En3kPWg611GfHlu6x0WGVE/6kB0FQXkwMsaqehduiz9xgE2lKZopg==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: ^18
-      react-dom: ^18
-      react-is: ^18
-      styled-components: ^5.2 || ^6
-    dependencies:
-      '@floating-ui/react-dom': 2.0.4(react-dom@18.2.0)(react@18.2.0)
-      '@sanity/color': 3.0.0-beta.9
-      '@sanity/icons': 2.8.0(react@18.2.0)
-      csstype: 3.1.2
-      framer-motion: 10.18.0(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-is: 18.2.0
-      react-refractor: 2.1.7(react@18.2.0)
-      styled-components: 6.1.8(react-dom@18.2.0)(react@18.2.0)
-    dev: false
-
-  /@sanity/ui@2.0.0-beta.17(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
-    resolution: {integrity: sha512-AUFlObpuewVOKDGQutijJFn3rKtXS85Nl/MsySHwcH5rzCNojJ2/Z4DKLhl8LSXlj/+pOXVj++AFT/hhNtJ6Wg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18
@@ -7100,7 +7054,7 @@ packages:
       semver: 6.3.1
     dev: true
 
-  /eslint-plugin-prettier@5.1.3(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.2.2):
+  /eslint-plugin-prettier@5.1.3(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.2.4):
     resolution: {integrity: sha512-C9GCVAs4Eq7ZC/XFQHITLiHJxQngdtraXaM+LoUFoFp/lHNl2Zn8f3WQbe9HvTBBQ9YnKFB0/2Ajdqwo5D1EAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -7116,7 +7070,7 @@ packages:
     dependencies:
       eslint: 8.56.0
       eslint-config-prettier: 9.1.0(eslint@8.56.0)
-      prettier: 3.2.2
+      prettier: 3.2.4
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.8
     dev: true
@@ -10918,7 +10872,7 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier-plugin-packagejson@2.4.9(prettier@3.2.2):
+  /prettier-plugin-packagejson@2.4.9(prettier@3.2.4):
     resolution: {integrity: sha512-b3Q7agXVqxK3UpYEJr0xLD51SxriYXESWUCjmxOBUGqnPFZOg9jZGZ+Ptzq252I6OqzXN2rj1tJIFq6KOGLLJw==}
     peerDependencies:
       prettier: '>= 1.16.0'
@@ -10926,7 +10880,7 @@ packages:
       prettier:
         optional: true
     dependencies:
-      prettier: 3.2.2
+      prettier: 3.2.4
       sort-package-json: 2.6.0
       synckit: 0.9.0
     dev: true
@@ -10937,8 +10891,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier@3.2.2:
-    resolution: {integrity: sha512-HTByuKZzw7utPiDO523Tt2pLtEyK7OibUD9suEJQrPUCYQqrHr74GGX6VidMrovbf/I50mPqr8j/II6oBAuc5A==}
+  /prettier@3.2.4:
+    resolution: {integrity: sha512-FWu1oLHKCrtpO1ypU6J0SbK2d9Ckwysq6bHj/uaCP26DxrPpppCLQRGVuqAxSTvhF00AcvDRyYrLNW7ocBhFFQ==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
