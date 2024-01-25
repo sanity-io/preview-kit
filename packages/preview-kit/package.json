@@ -91,10 +91,7 @@
     "pretest:esm": "pnpm run build",
     "test:esm": "node test.mjs && node test.cjs"
   },
-  "browserslist": [
-    "> 0.2% and supports es6-module and supports es6-module-dynamic-import and not dead and not IE 11",
-    "maintained node versions"
-  ],
+  "browserslist": "extends @sanity/browserslist-config",
   "prettier": {
     "semi": false,
     "singleQuote": true
@@ -110,7 +107,7 @@
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@sanity/client": "^6.11.3",
-    "@sanity/pkg-utils": "4.0.0",
+    "@sanity/pkg-utils": "4.1.0",
     "@sanity/semantic-release-preset": "^4.1.6",
     "@types/node": "^18.18.6",
     "@types/react": "^18.2.48",
