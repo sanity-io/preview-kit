@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.15](https://github.com/sanity-io/preview-kit/compare/v5.0.14...v5.0.15) (2024-01-25)
+
+### Bug Fixes
+
+- **deps:** Update dependency mendoza to v3.0.4 ([#838](https://github.com/sanity-io/preview-kit/issues/838)) ([1a7d61a](https://github.com/sanity-io/preview-kit/commit/1a7d61a548e580ed79e83b9b1f709d71ec32dd66))
+
 ## [5.0.14](https://github.com/sanity-io/preview-kit/compare/v5.0.13...v5.0.14) (2024-01-25)
 
 ### Bug Fixes
