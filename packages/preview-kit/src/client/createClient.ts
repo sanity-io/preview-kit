@@ -2,7 +2,6 @@ import {
   createClient as createSanityClient,
   type SanityClient,
 } from '@sanity/client'
-import { type SanityStegaClient } from '@sanity/client/stega'
 
 import type { PreviewKitClientConfig } from './types'
 
@@ -15,9 +14,7 @@ export type { FilterDefault } from './types'
  * @public
  * @deprecated - Please use `createClient` from `@sanity/client` instead
  */
-export const createClient = (
-  config: PreviewKitClientConfig,
-): SanityClient | SanityStegaClient => {
+export const createClient = (config: PreviewKitClientConfig): SanityClient => {
   const {
     encodeSourceMap = detectEnableSourceMap(),
     encodeSourceMapAtPath,
