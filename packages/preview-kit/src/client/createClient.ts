@@ -1,20 +1,19 @@
 import {
-  createClient as createStandardClient,
-  SanityClient,
+  createClient as createSanityClient,
+  type SanityClient,
 } from '@sanity/client'
-import {
-  createClient as createStegaClient,
-  SanityStegaClient,
-} from '@sanity/client/stega'
+import { type SanityStegaClient } from '@sanity/client/stega'
 
 import type { PreviewKitClientConfig } from './types'
 
 export type * from './types'
 export type * from '@sanity/client'
+// eslint-disable-next-line simple-import-sort/exports
+export type { FilterDefault } from './types'
 
 /**
  * @public
- * @deprecated - Please use `createClient` from `@sanity/client/stega` instead
+ * @deprecated - Please use `createClient` from `@sanity/client` instead
  */
 export const createClient = (
   config: PreviewKitClientConfig,
@@ -46,13 +45,13 @@ export const createClient = (
         logger?.error?.(
           '[@sanity/preview-kit]: Content source map enabled client is enabled, but no studioUrl is provided. Falling back to @sanity/client',
         )
-        return createStandardClient(options)
+        return createSanityClient(options)
       }
 
       logger?.debug?.(
         '[@sanity/preview-kit]: Creating source map enabled client',
       )
-      return createStegaClient({
+      return createSanityClient({
         ...options,
         // Source maps by Content Lake are required in order to know where to insert the encoded source maps into strings
         resultSourceMap: config.resultSourceMap
@@ -80,7 +79,7 @@ export const createClient = (
       'falling back to non-embedded sourcemap mode',
     )
   }
-  return createStandardClient(options)
+  return createSanityClient(options)
 }
 
 function isVercelPreviewEnvironment() {

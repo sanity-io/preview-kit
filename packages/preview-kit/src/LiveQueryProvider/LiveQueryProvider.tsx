@@ -221,10 +221,14 @@ const QuerySubscription = memo(function QuerySubscription(
     // eslint-disable-next-line no-inner-declarations
     async function effect() {
       const { signal } = controller
-      const { result, resultSourceMap } = await client.fetch(query, params, {
-        signal,
-        filterResponse: false,
-      })
+      const { result, resultSourceMap } = await (client as SanityClient).fetch(
+        query,
+        params,
+        {
+          signal,
+          filterResponse: false,
+        },
+      )
 
       if (!signal.aborted) {
         snapshots.set(getQueryCacheKey(query, params), {

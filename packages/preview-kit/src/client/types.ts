@@ -1,6 +1,9 @@
-import type { ClientConfig, RawQueryResponse } from '@sanity/client'
+import type {
+  ClientConfig,
+  RawQueryResponse,
+  StegaConfig,
+} from '@sanity/client'
 import type { ContentSourceMapParsedPathKeyedSegment } from '@sanity/client/csm'
-import type { StegaConfig } from '@sanity/client/stega'
 
 export type { StegaConfig }
 
