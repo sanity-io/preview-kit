@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.16](https://github.com/sanity-io/preview-kit/compare/v5.0.15...v5.0.16) (2024-01-26)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/client to ^6.12.0 ([3002608](https://github.com/sanity-io/preview-kit/commit/3002608ab3e153d0da62bf590bf018fc84e3acd3))
+- **deps:** update dependency @sanity/client to ^6.12.1 ([#845](https://github.com/sanity-io/preview-kit/issues/845)) ([b2cd27b](https://github.com/sanity-io/preview-kit/commit/b2cd27b55eb9e3f62a3e3c14a9050058c7d6de26))
+- **deps:** Update dependency lru-cache to v10.2.0 ([#841](https://github.com/sanity-io/preview-kit/issues/841)) ([8b821c6](https://github.com/sanity-io/preview-kit/commit/8b821c648cfdca1e3458f750235232b959906423))
+
 ## [5.0.15](https://github.com/sanity-io/preview-kit/compare/v5.0.14...v5.0.15) (2024-01-25)
 
 ### Bug Fixes
