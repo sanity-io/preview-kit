@@ -8,7 +8,6 @@ const nextConfig = {
     },
   },
   reactStrictMode: true,
-  serverActions: true,
   productionBrowserSourceMaps: true,
   // Support Vercel Authentication protection
   async headers() {
