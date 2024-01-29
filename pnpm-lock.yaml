@@ -24,8 +24,8 @@ importers:
         specifier: 6.12.3
         version: 6.12.3
       '@sanity/overlays':
-        specifier: 2.3.8
-        version: 2.3.8
+        specifier: 2.3.9
+        version: 2.3.9
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -82,8 +82,8 @@ importers:
         specifier: 6.12.3
         version: 6.12.3
       '@sanity/overlays':
-        specifier: 2.3.8
-        version: 2.3.8
+        specifier: 2.3.9
+        version: 2.3.9
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -140,8 +140,8 @@ importers:
         specifier: 6.12.3
         version: 6.12.3
       '@sanity/overlays':
-        specifier: 2.3.8
-        version: 2.3.8
+        specifier: 2.3.9
+        version: 2.3.9
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -204,8 +204,8 @@ importers:
         specifier: 2.10.0
         version: 2.10.0(react@18.2.0)
       '@sanity/presentation':
-        specifier: 1.7.1
-        version: 1.7.1(@sanity/client@6.12.3)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 1.7.2
+        version: 1.7.2(@sanity/client@6.12.3)(react-dom@18.2.0)(react@18.2.0)
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -1869,17 +1869,6 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@floating-ui/react-dom@2.0.7(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-B5GJxKUyPcGsvE1vua+Abvw0t6zVMyTbtG+Jk7BoI4hfc5Ahv50dstRIAn0nS0274kR9gnKwxIXyGA8EzBZJrA==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/dom': 1.6.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /@floating-ui/react-dom@2.0.8(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-HOdqOt3R3OGeTKidaLvJKcgg75S6tibQ3Tif4eyd91QnIJWr0NLvoXFpJA/j8HqkFSL68GDca9AuyWEHlhyClw==}
     peerDependencies:
@@ -3116,25 +3105,15 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/overlays@2.3.8:
-    resolution: {integrity: sha512-ty5/LbUGHMBHhDIi7nRWdpThh7lzo64UHusn8wDAqGIElxzfINMhBVJ4suNpUVC1vahJPJh1/q5GaeoBOZ/8Kg==}
+  /@sanity/overlays@2.3.9:
+    resolution: {integrity: sha512-GmZAgB1gCcUcXtAHc7sm2d4m50MGNvj7YpUwdd4xum4pRUQtRs5braw85wqddPh26rgAJ+IGLdhNs8xz9sqaNg==}
     engines: {node: '>=16.14'}
     dependencies:
-      '@floating-ui/react-dom': 2.0.7(react-dom@18.2.0)(react@18.2.0)
-      '@sanity/client': 6.12.3
-      '@sanity/color': 3.0.0
-      '@sanity/icons': 2.10.0(react@18.2.0)
-      '@sanity/ui': 2.0.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@vercel/stega': 0.1.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-is: 18.2.0
-      react-refractor: 2.1.7(react@18.2.0)
       scroll-into-view-if-needed: 3.1.0
-      styled-components: 6.1.8(react-dom@18.2.0)(react@18.2.0)
-      uuid: 9.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /@sanity/pkg-utils@4.1.1(@types/node@18.19.10)(typescript@5.3.3):
@@ -3237,11 +3216,11 @@ packages:
       - react-dom
     dev: false
 
-  /@sanity/presentation@1.7.1(@sanity/client@6.12.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-lMmLvbSg8YEsdw4RrMAfBIgu5wErUp60GsKwzd1h38XDJTvuDcIddIIx3VVXZD69k33vRJVWhmcGw89Cq+GTPA==}
+  /@sanity/presentation@1.7.2(@sanity/client@6.12.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-K3SbHT5NMyhPF4NYp4VTLGdD87PNe0eH6lOkkMJzE8x7CMpAU1s9aKAdOT8bolunP0/hYsNS90/Hb1su+ugy7w==}
     engines: {node: '>=16.14'}
     peerDependencies:
-      '@sanity/client': ^6.12.1
+      '@sanity/client': ^6.12.3
     dependencies:
       '@sanity/client': 6.12.3
       '@sanity/icons': 2.10.0(react@18.2.0)
@@ -12412,6 +12391,7 @@ packages:
   /uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
+    dev: true
 
   /uuidv7@0.4.4:
     resolution: {integrity: sha512-jjRGChg03uGp9f6wQYSO8qXkweJwRbA5WRuEQE8xLIiehIzIIi23qZSzsyvZPCPoFqkeLtZuz7Plt1LGukAInA==}
