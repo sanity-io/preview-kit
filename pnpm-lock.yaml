@@ -283,8 +283,8 @@ importers:
         specifier: ^6.12.1
         version: 6.12.1
       '@sanity/pkg-utils':
-        specifier: 4.1.0
-        version: 4.1.0(@types/node@18.19.10)(typescript@5.3.3)
+        specifier: 4.1.1
+        version: 4.1.1(@types/node@18.19.10)(typescript@5.3.3)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.6
         version: 4.1.6(semantic-release@22.0.12)
@@ -372,7 +372,7 @@ importers:
     devDependencies:
       '@sanity/pkg-utils':
         specifier: ^4.1.0
-        version: 4.1.0(@types/node@18.19.10)(typescript@5.3.3)
+        version: 4.1.1(@types/node@18.19.10)(typescript@5.3.3)
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.48
@@ -1052,7 +1052,6 @@ packages:
     cpu: [ppc64]
     os: [aix]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/android-arm64@0.17.6:
@@ -1087,7 +1086,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/android-arm@0.17.6:
@@ -1122,7 +1120,6 @@ packages:
     cpu: [arm]
     os: [android]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/android-x64@0.17.6:
@@ -1157,7 +1154,6 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/darwin-arm64@0.17.6:
@@ -1192,7 +1188,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/darwin-x64@0.17.6:
@@ -1227,7 +1222,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/freebsd-arm64@0.17.6:
@@ -1262,7 +1256,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/freebsd-x64@0.17.6:
@@ -1297,7 +1290,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-arm64@0.17.6:
@@ -1332,7 +1324,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-arm@0.17.6:
@@ -1367,7 +1358,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-ia32@0.17.6:
@@ -1402,7 +1392,6 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-loong64@0.17.6:
@@ -1437,7 +1426,6 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-mips64el@0.17.6:
@@ -1472,7 +1460,6 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-ppc64@0.17.6:
@@ -1507,7 +1494,6 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-riscv64@0.17.6:
@@ -1542,7 +1528,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-s390x@0.17.6:
@@ -1577,7 +1562,6 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-x64@0.17.6:
@@ -1612,7 +1596,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/netbsd-x64@0.17.6:
@@ -1647,7 +1630,6 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/openbsd-x64@0.17.6:
@@ -1682,7 +1664,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/sunos-x64@0.17.6:
@@ -1717,7 +1698,6 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/win32-arm64@0.17.6:
@@ -1752,7 +1732,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/win32-ia32@0.17.6:
@@ -1787,7 +1766,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/win32-x64@0.17.6:
@@ -1822,7 +1800,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: false
     optional: true
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.56.0):
@@ -3149,8 +3126,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/pkg-utils@4.1.0(@types/node@18.19.10)(typescript@5.3.3):
-    resolution: {integrity: sha512-jdg5w9PCBYN6UQWV1630HDrXGfhld785d6XWGgGhYO+gMNB0R0gs8Si2lzvi7KYzHv7Ff/gOy+vAm63WVoXBvA==}
+  /@sanity/pkg-utils@4.1.1(@types/node@18.19.10)(typescript@5.3.3):
+    resolution: {integrity: sha512-RG8mis311lCInldzorDSai6QfFavMqRUEzl/gY3KcEQzxaB3kBNQ86A6SawjSKBTrtcwFzYpdpddqUQuaE0KbA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
@@ -3172,8 +3149,8 @@ packages:
       cac: 6.7.14
       chalk: 4.1.2
       chokidar: 3.5.3
-      esbuild: 0.19.12
-      esbuild-register: 3.5.0(esbuild@0.19.12)
+      esbuild: 0.20.0
+      esbuild-register: 3.5.0(esbuild@0.20.0)
       find-config: 1.0.0
       get-latest-version: 5.1.0
       git-url-parse: 14.0.0
@@ -3189,7 +3166,7 @@ packages:
       prompts: 2.4.2
       rimraf: 4.4.1
       rollup: 4.9.6
-      rollup-plugin-esbuild: 6.1.1(esbuild@0.19.12)(rollup@4.9.6)
+      rollup-plugin-esbuild: 6.1.1(esbuild@0.20.0)(rollup@4.9.6)
       rxjs: 7.8.1
       treeify: 1.1.0
       typescript: 5.3.3
@@ -5809,6 +5786,7 @@ packages:
       esbuild: 0.19.12
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /esbuild-register@3.5.0(esbuild@0.20.0):
     resolution: {integrity: sha512-+4G/XmakeBAsvJuDugJvtyF1x+XJT4FMocynNpxrvEBViirpfUn2PgNpCHedfWhF4WokNsO/OvMKrmJOIJsI5A==}
@@ -5819,7 +5797,6 @@ packages:
       esbuild: 0.20.0
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /esbuild@0.17.6:
     resolution: {integrity: sha512-TKFRp9TxrJDdRWfSsSERKEovm6v30iHnrjlcGhLBOtReE28Yp1VSBRfO3GTaOFMoxsNerx4TjrhzSuma9ha83Q==}
@@ -5940,7 +5917,6 @@ packages:
       '@esbuild/win32-arm64': 0.20.0
       '@esbuild/win32-ia32': 0.20.0
       '@esbuild/win32-x64': 0.20.0
-    dev: false
 
   /escalade@3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -10790,7 +10766,7 @@ packages:
       glob: 10.3.10
     dev: true
 
-  /rollup-plugin-esbuild@6.1.1(esbuild@0.19.12)(rollup@4.9.6):
+  /rollup-plugin-esbuild@6.1.1(esbuild@0.20.0)(rollup@4.9.6):
     resolution: {integrity: sha512-CehMY9FAqJD5OUaE/Mi1r5z0kNeYxItmRO2zG4Qnv2qWKF09J2lTy5GUzjJR354ZPrLkCj4fiBN41lo8PzBUhw==}
     engines: {node: '>=14.18.0'}
     peerDependencies:
@@ -10800,7 +10776,7 @@ packages:
       '@rollup/pluginutils': 5.1.0(rollup@4.9.6)
       debug: 4.3.4
       es-module-lexer: 1.4.1
-      esbuild: 0.19.12
+      esbuild: 0.20.0
       get-tsconfig: 4.7.2
       rollup: 4.9.6
     transitivePeerDependencies:
