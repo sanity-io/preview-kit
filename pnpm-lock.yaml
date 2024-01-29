@@ -3027,7 +3027,7 @@ packages:
     dependencies:
       '@sanity/client': 6.12.1
       '@sanity/icons': 2.10.0(react@18.2.0)
-      '@sanity/preview-url-secret': 1.5.3(@sanity/client@6.12.1)
+      '@sanity/preview-url-secret': 1.5.4(@sanity/client@6.12.1)
       '@sanity/uuid': 3.0.2
       '@types/lodash.isequal': 4.5.8
       fast-deep-equal: 3.1.3
@@ -3074,16 +3074,6 @@ packages:
     dependencies:
       '@sanity/client': 6.12.1
       react: 18.2.0
-    dev: false
-
-  /@sanity/preview-url-secret@1.5.3(@sanity/client@6.12.1):
-    resolution: {integrity: sha512-aLXzGUJavy82nEYIUj7G9+5VjS5B41JkfJ2A7aT5ZV6i6IGoX2oUvbfUNJehhpsp0/eKwgMJ9Blc5hD2sAEiTg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@sanity/client': ^6.11.1
-    dependencies:
-      '@sanity/client': 6.12.1
-      '@sanity/uuid': 3.0.2
     dev: false
 
   /@sanity/preview-url-secret@1.5.4(@sanity/client@6.12.1):
@@ -5062,7 +5052,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
-    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -10683,7 +10672,7 @@ packages:
     dependencies:
       '@sanity/icons': 2.10.0(react@18.2.0)
       '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
-      '@sanity/preview-url-secret': 1.5.3(@sanity/client@6.12.1)
+      '@sanity/preview-url-secret': 1.5.4(@sanity/client@6.12.1)
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       framer-motion: 10.18.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
