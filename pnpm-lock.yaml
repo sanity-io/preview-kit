@@ -258,8 +258,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.4.3
-        version: 1.4.3(@sanity/client@6.12.3)(react@18.2.0)
+        specifier: 1.4.4
+        version: 1.4.4(@sanity/client@6.12.3)(react@18.2.0)
       '@vercel/stega':
         specifier: 0.1.0
         version: 0.1.0
@@ -3260,11 +3260,11 @@ packages:
       - react-dom
     dev: false
 
-  /@sanity/preview-kit-compat@1.4.3(@sanity/client@6.12.3)(react@18.2.0):
-    resolution: {integrity: sha512-98WwFKzSVnCbpzI7ThCf1mrB1In4aK7WqorF2Jich5a6n28dY5p3QfelVx1LQkYtgkN/QcoOQ7No7tvXm2pKxg==}
+  /@sanity/preview-kit-compat@1.4.4(@sanity/client@6.12.3)(react@18.2.0):
+    resolution: {integrity: sha512-CYO/qFIc2fqV8cpAIYay43SfPIs/SFzT8ke+XgXYlzwXmShdDnKXNttfLDUWvxk6+nJiPRgzRN9kokC8ineP2g==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@sanity/client': ^6.12.1
+      '@sanity/client': ^6.12.3
       react: ^18.2.0
     dependencies:
       '@sanity/client': 6.12.3
