@@ -283,8 +283,8 @@ importers:
         specifier: ^6.12.3
         version: 6.12.3
       '@sanity/pkg-utils':
-        specifier: 4.1.1
-        version: 4.1.1(@types/node@18.19.10)(typescript@5.3.3)
+        specifier: 4.1.2
+        version: 4.1.2(@types/node@18.19.10)(typescript@5.3.3)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.6
         version: 4.1.6(semantic-release@22.0.12)
@@ -372,7 +372,7 @@ importers:
     devDependencies:
       '@sanity/pkg-utils':
         specifier: ^4.1.1
-        version: 4.1.1(@types/node@18.19.10)(typescript@5.3.3)
+        version: 4.1.2(@types/node@18.19.10)(typescript@5.3.3)
       '@types/react':
         specifier: ^18.2.51
         version: 18.2.51
@@ -3144,8 +3144,8 @@ packages:
       scroll-into-view-if-needed: 3.1.0
     dev: false
 
-  /@sanity/pkg-utils@4.1.1(@types/node@18.19.10)(typescript@5.3.3):
-    resolution: {integrity: sha512-RG8mis311lCInldzorDSai6QfFavMqRUEzl/gY3KcEQzxaB3kBNQ86A6SawjSKBTrtcwFzYpdpddqUQuaE0KbA==}
+  /@sanity/pkg-utils@4.1.2(@types/node@18.19.10)(typescript@5.3.3):
+    resolution: {integrity: sha512-p2WLvhPmt8xgZXjzFjV7zeiB61mGbHkEXOsnyfzBUpzBrx+g2zdpoZAAlHVFbaXJR7UVyoljD0XbUKs+lo9qJg==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
