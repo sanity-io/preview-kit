@@ -5,9 +5,9 @@
     "noEmit": true,
     "rootDir": ".",
     "paths": {
-      "@sanity/preview-kit": ["src/"],
-    },
+      "@sanity/preview-kit": ["src/"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["dist", "node_modules"],
+  "exclude": ["dist", "node_modules"]
 }
