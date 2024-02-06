@@ -1,4 +1,4 @@
-import { HistoryAdapterNavigate, enableVisualEditing } from '@sanity/overlays'
+import { HistoryAdapterNavigate, enableVisualEditing } from '@sanity/visual-editing'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 

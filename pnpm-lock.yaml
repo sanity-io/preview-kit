@@ -23,12 +23,12 @@ importers:
       '@sanity/client':
         specifier: 6.12.3
         version: 6.12.3
-      '@sanity/overlays':
-        specifier: 2.3.11
-        version: 2.3.11
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
+      '@sanity/visual-editing':
+        specifier: 1.0.1
+        version: 1.0.1
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -81,12 +81,12 @@ importers:
       '@sanity/client':
         specifier: 6.12.3
         version: 6.12.3
-      '@sanity/overlays':
-        specifier: 2.3.11
-        version: 2.3.11
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
+      '@sanity/visual-editing':
+        specifier: 1.0.1
+        version: 1.0.1
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -139,12 +139,12 @@ importers:
       '@sanity/client':
         specifier: 6.12.3
         version: 6.12.3
-      '@sanity/overlays':
-        specifier: 2.3.11
-        version: 2.3.11
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
+      '@sanity/visual-editing':
+        specifier: 1.0.1
+        version: 1.0.1
       '@vercel/remix':
         specifier: 2.5.1
         version: 2.5.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -3177,14 +3177,6 @@ packages:
       lodash: 4.17.21
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /@sanity/overlays@2.3.11:
-    resolution: {integrity: sha512-wWkAzpaGPdmm0WPAAymhvMCS9eNPoWkmyMzoTDoO31SaZystEU6ShuglR26nXqB+34MQ/jiP8y4NYYK2CogeDg==}
-    engines: {node: '>=16.14'}
-    deprecated: migrate to @sanity/visual-editing
-    dependencies:
-      '@sanity/visual-editing': 1.0.1
     dev: false
 
   /@sanity/pkg-utils@4.1.2(@types/node@18.19.14)(typescript@5.3.3):
