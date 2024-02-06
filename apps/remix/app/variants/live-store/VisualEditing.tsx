@@ -1,5 +1,8 @@
 import { useLocation, useNavigate } from '@remix-run/react'
-import { enableVisualEditing, type HistoryAdapterNavigate } from '@sanity/visual-editing'
+import {
+  enableVisualEditing,
+  type HistoryAdapterNavigate,
+} from '@sanity/visual-editing'
 import { useEffect, useRef, useState } from 'react'
 
 export default function VisualEditing({ studioUrl }: { studioUrl: string }) {

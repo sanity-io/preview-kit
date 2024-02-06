@@ -1,6 +1,9 @@
 'use client'
 
-import { enableVisualEditing, HistoryAdapterNavigate } from '@sanity/visual-editing'
+import {
+  enableVisualEditing,
+  HistoryAdapterNavigate,
+} from '@sanity/visual-editing'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
