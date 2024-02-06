@@ -64,7 +64,7 @@ function createConfig(stable: boolean) {
         previewUrl: {
           origin:
             process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
-          draftMode: {
+          previewMode: {
             enable: '/api/draft',
           },
         },
@@ -75,7 +75,7 @@ function createConfig(stable: boolean) {
           origin:
             process.env.SANITY_STUDIO_PAGES_ROUTER_URL ||
             'http://localhost:3000',
-          draftMode: {
+          previewMode: {
             enable: '/api/draft',
           },
         },
@@ -85,7 +85,7 @@ function createConfig(stable: boolean) {
         previewUrl: {
           origin:
             process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
-          draftMode: {
+          previewMode: {
             enable: '/api/draft',
           },
         },

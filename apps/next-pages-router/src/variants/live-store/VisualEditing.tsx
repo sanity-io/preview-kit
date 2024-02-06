@@ -1,4 +1,4 @@
-import { HistoryAdapterNavigate, enableOverlays } from '@sanity/overlays'
+import { HistoryAdapterNavigate, enableVisualEditing } from '@sanity/overlays'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 
@@ -12,7 +12,7 @@ export default function VisualEditing() {
   }, [router])
   useEffect(() => {
     if (!router.isReady) return
-    const disable = enableOverlays({
+    const disable = enableVisualEditing({
       history: {
         subscribe: (navigate) => {
           setNavigate(() => navigate)
