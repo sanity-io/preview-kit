@@ -204,8 +204,8 @@ importers:
         specifier: 2.10.1
         version: 2.10.1(react@18.2.0)
       '@sanity/presentation':
-        specifier: 1.8.1
-        version: 1.8.1(@sanity/client@6.12.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
+        specifier: 1.8.2
+        version: 1.8.2(@sanity/client@6.12.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -3279,11 +3279,11 @@ packages:
       - react-dom
     dev: false
 
-  /@sanity/presentation@1.8.1(@sanity/client@6.12.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
-    resolution: {integrity: sha512-V8FdiU7IUwWPHycID/iyjkqlgbyqyrIJs4pgXahIwKfciFVECGX2zo0pW+bVEWJm05yndnmxY0r+APiPFsBOog==}
+  /@sanity/presentation@1.8.2(@sanity/client@6.12.4)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
+    resolution: {integrity: sha512-jgLWaHqFaaNqtoNUFOajN5H9CkeIxXtAYAFpcUCbE4lccAHftUOUihWUyncyKocxlGQji0oy2XcyN1x3RsEr0g==}
     engines: {node: '>=16.14'}
     peerDependencies:
-      '@sanity/client': ^6.12.3
+      '@sanity/client': ^6.12.4
     dependencies:
       '@sanity/client': 6.12.4
       '@sanity/icons': 2.10.1(react@18.2.0)
