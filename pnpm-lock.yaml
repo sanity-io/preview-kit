@@ -283,8 +283,8 @@ importers:
         specifier: ^6.12.4
         version: 6.12.4
       '@sanity/pkg-utils':
-        specifier: 4.1.5
-        version: 4.1.5(@types/node@18.19.14)(typescript@5.3.3)
+        specifier: 4.2.0
+        version: 4.2.0(@types/node@18.19.14)(typescript@5.3.3)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.6
         version: 4.1.6(semantic-release@22.0.12)
@@ -372,7 +372,7 @@ importers:
     devDependencies:
       '@sanity/pkg-utils':
         specifier: ^4.1.5
-        version: 4.1.5(@types/node@18.19.14)(typescript@5.3.3)
+        version: 4.2.0(@types/node@18.19.14)(typescript@5.3.3)
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -3179,8 +3179,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/pkg-utils@4.1.5(@types/node@18.19.14)(typescript@5.3.3):
-    resolution: {integrity: sha512-SVxzaoO8rj6gMiIzJOYLtPUVbv5A1YSFg00heWTft2jJj4JZ7W3ymhw3WzNKDYx5DClNQsN6gnm40p4cIBzs7A==}
+  /@sanity/pkg-utils@4.2.0(@types/node@18.19.14)(typescript@5.3.3):
+    resolution: {integrity: sha512-lKMf36gqcpC4AUPiTpRZMuCV/sSGYvxV+SW6fmw3xQlQ26zhwQB88Y+d1wRn/xWarnu8EAYzpMPKJtPO+XRHag==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
@@ -6465,14 +6465,6 @@ packages:
       resolve: 2.0.0-next.5
       semver: 6.3.1
       string.prototype.matchall: 4.0.10
-    dev: true
-
-  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.56.0):
-    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
-    peerDependencies:
-      eslint: '>=5.0.0'
-    dependencies:
-      eslint: 8.56.0
     dev: true
 
   /eslint-plugin-simple-import-sort@11.0.0(eslint@8.56.0):
