@@ -27,8 +27,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 1.2.1
-        version: 1.2.1(next@14.1.0)
+        specifier: 1.2.2
+        version: 1.2.2(next@14.1.0)
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -85,8 +85,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 1.2.1
-        version: 1.2.1(next@14.1.0)
+        specifier: 1.2.2
+        version: 1.2.2(next@14.1.0)
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -143,8 +143,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 1.2.1
-        version: 1.2.1(@remix-run/react@2.6.0)
+        specifier: 1.2.2
+        version: 1.2.2(@remix-run/react@2.6.0)
       '@vercel/remix':
         specifier: 2.5.1
         version: 2.5.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -371,7 +371,7 @@ importers:
         version: 0.15.10
     devDependencies:
       '@sanity/pkg-utils':
-        specifier: ^4.1.5
+        specifier: ^4.2.0
         version: 4.2.0(@types/node@18.19.14)(typescript@5.3.3)
       '@types/react':
         specifier: ^18.2.55
@@ -3473,8 +3473,8 @@ packages:
       - react-is
     dev: false
 
-  /@sanity/visual-editing@1.2.1(@remix-run/react@2.6.0):
-    resolution: {integrity: sha512-mHmt8wJe/J6WEgR5fPT/V/IKN50NbA575/jLZgeGmODq0uEVim7AjdsAj59iL4I3nUPgyMczSM1CwBeLpm78oA==}
+  /@sanity/visual-editing@1.2.2(@remix-run/react@2.6.0):
+    resolution: {integrity: sha512-iR1stYfPPhBJLjwKY3MBgr0DcRADgnRaTJvZ3nUJ2puGVniPoSxJ9Zj4PkspferU8997RKKtupN9m9spFYskXg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@remix-run/react': '>= 2'
@@ -3493,8 +3493,8 @@ packages:
       scroll-into-view-if-needed: 3.1.0
     dev: false
 
-  /@sanity/visual-editing@1.2.1(next@14.1.0):
-    resolution: {integrity: sha512-mHmt8wJe/J6WEgR5fPT/V/IKN50NbA575/jLZgeGmODq0uEVim7AjdsAj59iL4I3nUPgyMczSM1CwBeLpm78oA==}
+  /@sanity/visual-editing@1.2.2(next@14.1.0):
+    resolution: {integrity: sha512-iR1stYfPPhBJLjwKY3MBgr0DcRADgnRaTJvZ3nUJ2puGVniPoSxJ9Zj4PkspferU8997RKKtupN9m9spFYskXg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@remix-run/react': '>= 2'
