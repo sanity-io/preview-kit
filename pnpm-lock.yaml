@@ -156,7 +156,7 @@ importers:
         version: 0.15.10
       isbot:
         specifier: latest
-        version: 4.4.0
+        version: 5.1.0
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -361,8 +361,8 @@ importers:
         specifier: 0.9.4
         version: 0.9.4
       date-fns:
-        specifier: 2.30.0
-        version: 2.30.0
+        specifier: 3.3.1
+        version: 3.3.1
       groq:
         specifier: 3.29.1
         version: 3.29.1
@@ -5564,6 +5564,10 @@ packages:
       '@babel/runtime': 7.23.9
     dev: false
 
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
+    dev: false
+
   /date-now@1.0.1:
     resolution: {integrity: sha512-yiizelQCqYLUEVT4zqYihOW6Ird7Qyc6fD3Pv5xGxk4+Jz0rsB1dMN2KyNV6jgOHYh5K+sPGCSOknQN4Upa3pg==}
     dev: false
@@ -8294,8 +8298,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /isbot@4.4.0:
-    resolution: {integrity: sha512-8ZvOWUA68kyJO4hHJdWjyreq7TYNWTS9y15IzeqVdKxR9pPr3P/3r9AHcoIv9M0Rllkao5qWz2v1lmcyKIVCzQ==}
+  /isbot@5.1.0:
+    resolution: {integrity: sha512-cWTMpcI8G0BjxVg/UH+fMF16yYxPup7QL7v7FuJqCFOTuB0yuLKxonWyEDiKG/DC9LIxEvy0COQkMDNkxpY0jQ==}
     engines: {node: '>=18'}
     dev: false
 
