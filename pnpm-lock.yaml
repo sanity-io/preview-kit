@@ -361,8 +361,8 @@ importers:
         specifier: 0.9.4
         version: 0.9.4
       date-fns:
-        specifier: 2.30.0
-        version: 2.30.0
+        specifier: 3.3.1
+        version: 3.3.1
       groq:
         specifier: 3.29.1
         version: 3.29.1
@@ -5562,6 +5562,10 @@ packages:
     engines: {node: '>=0.11'}
     dependencies:
       '@babel/runtime': 7.23.9
+    dev: false
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
     dev: false
 
   /date-now@1.0.1:
