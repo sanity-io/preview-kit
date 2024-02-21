@@ -280,8 +280,8 @@ importers:
         specifier: ^6.14.0
         version: 6.14.1
       '@sanity/pkg-utils':
-        specifier: 4.2.6
-        version: 4.2.6(@types/node@18.19.17)(typescript@5.3.3)
+        specifier: 4.2.8
+        version: 4.2.8(@types/node@18.19.17)(typescript@5.3.3)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.6
         version: 4.1.6(semantic-release@22.0.12)
@@ -369,7 +369,7 @@ importers:
     devDependencies:
       '@sanity/pkg-utils':
         specifier: ^4.2.6
-        version: 4.2.6(@types/node@18.19.17)(typescript@5.3.3)
+        version: 4.2.8(@types/node@18.19.17)(typescript@5.3.3)
       '@types/react':
         specifier: ^18.2.57
         version: 18.2.57
@@ -2949,8 +2949,8 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /@sanity/browserslist-config@1.0.2:
-    resolution: {integrity: sha512-sIXaQicUu5KLe6kiZfJ02vsKlFfcvgXldU2Vn1SWfC+AYCnPOn0C/gM1/USEjJQTbWbMts/4ZjbJy97M/gihHQ==}
+  /@sanity/browserslist-config@1.0.3:
+    resolution: {integrity: sha512-UkJuiTyROgPcxbvpHYyXwr+T88Np4eLzu3h05gMgeZ2hv3EM7g/4VMyng5HuA1JdPQPEdq8bmmfQDR+u4KC+TA==}
     dev: true
 
   /@sanity/cli@3.30.0:
@@ -3135,8 +3135,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/pkg-utils@4.2.6(@types/node@18.19.17)(typescript@5.3.3):
-    resolution: {integrity: sha512-r6gQj3RWqjlmtaBAkSTPQIaQyf1HQo0qoNZebohh7/bUXqTOA6ErA461/1j1GzlGPolGu3ocrRNk/vDMBmE75w==}
+  /@sanity/pkg-utils@4.2.8(@types/node@18.19.17)(typescript@5.3.3):
+    resolution: {integrity: sha512-0fiNfX1Jg27fkqsEhwZyHu5jzhzc3solOwx6lZ63Srr/ExPipmgO5inRh+jRaE7IJ71zET/moAGUYds/vy5dDA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
@@ -3153,7 +3153,7 @@ packages:
       '@rollup/plugin-node-resolve': 15.2.3(rollup@4.12.0)
       '@rollup/plugin-replace': 5.0.5(rollup@4.12.0)
       '@rollup/plugin-terser': 0.4.4(rollup@4.12.0)
-      '@sanity/browserslist-config': 1.0.2
+      '@sanity/browserslist-config': 1.0.3
       browserslist: 4.23.0
       cac: 6.7.14
       chalk: 4.1.2
