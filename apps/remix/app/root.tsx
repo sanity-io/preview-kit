@@ -16,12 +16,11 @@ export const loader = async () => {
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
-    {charset: 'utf-8'},
-    {viewport: 'width=device-width,initial-scale=1'},
-    {title: data?.title},
+    { charset: 'utf-8' },
+    { viewport: 'width=device-width,initial-scale=1' },
+    { title: data?.title },
   ]
 }
-
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: 'https://esm.sh/bulma/css/bulma.min.css' },

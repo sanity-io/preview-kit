@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client'
 import { LiveQueryProvider } from '@sanity/preview-kit'
 import { useState } from 'react'
-import {VisualEditing} from '@sanity/visual-editing/remix'
+import { VisualEditing } from '@sanity/visual-editing/remix'
 
 export default function PreviewProvider({
   children,

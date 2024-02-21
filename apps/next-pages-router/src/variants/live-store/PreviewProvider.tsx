@@ -1,6 +1,6 @@
 import { LiveQueryProvider } from '@sanity/preview-kit'
 import { client } from './sanity.client'
-import {VisualEditing} from '@sanity/visual-editing/next-pages-router'
+import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
 
 export default function PreviewProvider({
   children,

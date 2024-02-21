@@ -2,7 +2,7 @@
 
 import { suspend } from 'suspend-react'
 import { LiveQueryProvider } from '@sanity/preview-kit'
-import {VisualEditing} from 'next-sanity'
+import { VisualEditing } from 'next-sanity'
 
 // suspend-react cache is global, so we use a unique key to avoid collisions
 const UniqueKey = Symbol('./sanity.client')
