@@ -22,7 +22,6 @@ import { useIsEnabled } from '@sanity/preview-kit'
 import { LiveQuery } from '@sanity/preview-kit/live-query'
 import { sanityFetch, token } from '~/sanity'
 
-
 const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -47,8 +46,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 }
 
-function Variant(props: SerializeFrom<typeof loader> & {children: React.ReactNode}) {
-  if(props.previewDrafts) {
+function Variant(
+  props: SerializeFrom<typeof loader> & { children: React.ReactNode },
+) {
+  if (props.previewDrafts) {
     return <LiveStoreVariant {...props} />
   }
   return <>{props.children}</>
