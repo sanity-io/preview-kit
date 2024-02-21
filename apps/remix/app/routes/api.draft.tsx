@@ -1,8 +1,8 @@
-import type { LoaderArgs } from '@vercel/remix'
+import type { LoaderFunctionArgs } from '@vercel/remix'
 import { token } from '~/sanity'
 import { getSession, commitSession } from '~/sessions'
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get('Cookie'))
 
   if (!token) {

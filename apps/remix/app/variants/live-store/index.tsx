@@ -1,7 +1,7 @@
 import type { SerializeFrom } from '@vercel/remix'
 import { StrictMode, lazy } from 'react'
 
-import type { loader } from '~/routes'
+import type { loader } from '~/routes/_index'
 
 const PreviewProvider = lazy(() => import('./PreviewProvider'))
 

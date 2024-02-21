@@ -14,11 +14,14 @@ export const loader = async () => {
   return json({ title: `remix-${process.env.VARIANT || 'default'}` })
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => ({
-  charset: 'utf-8',
-  viewport: 'width=device-width,initial-scale=1',
-  title: data.title,
-})
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [
+    {charset: 'utf-8'},
+    {viewport: 'width=device-width,initial-scale=1'},
+    {title: data?.title},
+  ]
+}
+
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: 'https://esm.sh/bulma/css/bulma.min.css' },

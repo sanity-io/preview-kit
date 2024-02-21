@@ -1,7 +1,7 @@
-import { createClient } from '@sanity/preview-kit/client'
+import { createClient } from '@sanity/client'
 import { LiveQueryProvider } from '@sanity/preview-kit'
 import { useState } from 'react'
-import VisualEditing from './VisualEditing'
+import {VisualEditing} from '@sanity/visual-editing/remix'
 
 export default function PreviewProvider({
   children,
@@ -24,10 +24,12 @@ export default function PreviewProvider({
       dataset,
       apiVersion,
       useCdn,
-      studioUrl,
-      logger: console,
-      encodeSourceMap: true,
       perspective: 'published',
+      stega: {
+        enabled: true,
+        studioUrl,
+        logger: console,
+      },
     })
   })
   return (
@@ -35,7 +37,7 @@ export default function PreviewProvider({
       <LiveQueryProvider client={client} token={token} logger={console}>
         {children}
       </LiveQueryProvider>
-      <VisualEditing studioUrl={studioUrl} />
+      <VisualEditing />
     </>
   )
 }

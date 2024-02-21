@@ -1,4 +1,4 @@
-import type { LoaderArgs, SerializeFrom } from '@vercel/remix'
+import type { LoaderFunctionArgs, SerializeFrom } from '@vercel/remix'
 import { useLoaderData, useRevalidator } from '@remix-run/react'
 
 import type { TableProps, FooterProps } from 'ui/react'
@@ -22,11 +22,10 @@ import { useIsEnabled } from '@sanity/preview-kit'
 import { LiveQuery } from '@sanity/preview-kit/live-query'
 import { sanityFetch, token } from '~/sanity'
 
-const DefaultVariant = lazy(() => import('~/variants/default'))
-const GroqStoreVariant = lazy(() => import('~/variants/groq-store'))
+
 const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get('Cookie'))
   const previewDrafts = session.get('view') === 'previewDrafts'
 
@@ -37,7 +36,6 @@ export async function loader({ request }: LoaderArgs) {
   const timestamp = new Date().toJSON()
 
   return {
-    variant: process.env.VARIANT || 'default',
     studioUrl: process.env.STUDIO_URL || 'http://localhost:3333',
     previewDrafts,
     token,
@@ -49,17 +47,11 @@ export async function loader({ request }: LoaderArgs) {
   }
 }
 
-function Variant(props: SerializeFrom<typeof loader>) {
-  switch (props.variant) {
-    case 'default':
-      return <DefaultVariant {...props} />
-    case 'groq-store':
-      return <GroqStoreVariant {...props} />
-    case 'live-store':
-      return <LiveStoreVariant {...props} />
-    default:
-      throw new Error(`Unknown variant: ${props.variant}`)
+function Variant(props: SerializeFrom<typeof loader> & {children: React.ReactNode}) {
+  if(props.previewDrafts) {
+    return <LiveStoreVariant {...props} />
   }
+  return <>{props.children}</>
 }
 
 export default function Index() {
