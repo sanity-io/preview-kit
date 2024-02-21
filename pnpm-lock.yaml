@@ -40,7 +40,7 @@ importers:
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
       next-sanity:
         specifier: 8.0.0
-        version: 8.0.0(@sanity/client@6.14.2)(@sanity/icons@2.10.2)(@sanity/types@3.30.0)(@sanity/ui@2.0.7)(next@14.1.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8)
+        version: 8.0.0(@sanity/client@6.14.2)(@sanity/icons@2.10.3)(@sanity/types@3.30.0)(@sanity/ui@2.0.7)(next@14.1.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -131,11 +131,11 @@ importers:
   apps/remix:
     dependencies:
       '@remix-run/node':
-        specifier: 2.7.1
-        version: 2.7.1(typescript@5.3.3)
+        specifier: 2.7.2
+        version: 2.7.2(typescript@5.3.3)
       '@remix-run/react':
-        specifier: 2.7.1
-        version: 2.7.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+        specifier: 2.7.2
+        version: 2.7.2(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@sanity/client':
         specifier: 6.14.2
         version: 6.14.2
@@ -144,10 +144,10 @@ importers:
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
         specifier: 1.4.0
-        version: 1.4.0(@remix-run/react@2.7.1)
+        version: 1.4.0(@remix-run/react@2.7.2)
       '@vercel/remix':
-        specifier: 2.7.1
-        version: 2.7.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+        specifier: 2.7.2
+        version: 2.7.2(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       groq:
         specifier: 3.30.0
         version: 3.30.0
@@ -168,14 +168,14 @@ importers:
         version: link:../../packages/ui
     devDependencies:
       '@remix-run/dev':
-        specifier: 2.7.1
-        version: 2.7.1(@remix-run/serve@2.7.1)(typescript@5.3.3)
+        specifier: 2.7.2
+        version: 2.7.2(@remix-run/serve@2.7.2)(typescript@5.3.3)
       '@remix-run/eslint-config':
-        specifier: 2.7.1
-        version: 2.7.1(eslint@8.56.0)(react@18.2.0)(typescript@5.3.3)
+        specifier: 2.7.2
+        version: 2.7.2(eslint@8.56.0)(react@18.2.0)(typescript@5.3.3)
       '@remix-run/serve':
-        specifier: 2.7.1
-        version: 2.7.1(typescript@5.3.3)
+        specifier: 2.7.2
+        version: 2.7.2(typescript@5.3.3)
       '@types/react':
         specifier: ^18.2.57
         version: 18.2.57
@@ -201,8 +201,8 @@ importers:
         specifier: 6.14.2
         version: 6.14.2
       '@sanity/icons':
-        specifier: 2.10.2
-        version: 2.10.2(react@18.2.0)
+        specifier: 2.10.3
+        version: 2.10.3(react@18.2.0)
       '@sanity/presentation':
         specifier: 1.10.0
         version: 1.10.0(@sanity/client@6.14.2)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
@@ -235,7 +235,7 @@ importers:
         version: 3.30.0
       groqd-playground:
         specifier: 0.0.18
-        version: 0.0.18(@sanity/icons@2.10.2)(@sanity/ui@2.0.7)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8)
+        version: 0.0.18(@sanity/icons@2.10.3)(@sanity/ui@2.0.7)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -368,7 +368,7 @@ importers:
         version: 0.15.10
     devDependencies:
       '@sanity/pkg-utils':
-        specifier: ^4.2.8
+        specifier: ^4.2.9
         version: 4.2.9(@types/node@18.19.17)(typescript@5.3.3)
       '@types/react':
         specifier: ^18.2.57
@@ -2388,12 +2388,12 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
     dev: false
 
-  /@remix-run/dev@2.7.1(@remix-run/serve@2.7.1)(typescript@5.3.3):
-    resolution: {integrity: sha512-G/jtzIvVE+bHHMLS8Iu99sljKFUO51/HTcYE3GoLRDKGrgbZaJHnLvsHiknMLIzqsBBGam1iM+Wf12qHdOy1Dw==}
+  /@remix-run/dev@2.7.2(@remix-run/serve@2.7.2)(typescript@5.3.3):
+    resolution: {integrity: sha512-ejxzcQY5DFl1CNG5+5+y0UeklOqkRBO43lAPnSC8ITLigjZY6UZsBENlex/Y+xJzjIUtaRBxc7mVaWa62FDQOg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
-      '@remix-run/serve': ^2.7.1
+      '@remix-run/serve': ^2.7.2
       typescript: ^5.1.0
       vite: ^5.1.0
       wrangler: ^3.28.2
@@ -2417,10 +2417,10 @@ packages:
       '@babel/types': 7.23.9
       '@mdx-js/mdx': 2.3.0
       '@npmcli/package-json': 4.0.1
-      '@remix-run/node': 2.7.1(typescript@5.3.3)
+      '@remix-run/node': 2.7.2(typescript@5.3.3)
       '@remix-run/router': 1.15.1
-      '@remix-run/serve': 2.7.1(typescript@5.3.3)
-      '@remix-run/server-runtime': 2.7.1(typescript@5.3.3)
+      '@remix-run/serve': 2.7.2(typescript@5.3.3)
+      '@remix-run/server-runtime': 2.7.2(typescript@5.3.3)
       '@types/mdx': 2.0.11
       '@vanilla-extract/integration': 6.5.0
       arg: 5.0.2
@@ -2477,8 +2477,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@remix-run/eslint-config@2.7.1(eslint@8.56.0)(react@18.2.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-LYNg75f6i6R0Zmqsb7edt4EorGQnsO0tFvAUS/23wacn3txt6sCsxsVVdFCiIn9ZTf5NPAuoF22mv1am6MvRJA==}
+  /@remix-run/eslint-config@2.7.2(eslint@8.56.0)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-fAXNlRQQ4DJ0g6GCkUM3sWji18+4i/+FtMA1roSfB9s/+8NEpdZLYJbLo/NGlZUHDC7dXAmTZ3kUZcCCBdOAKw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       eslint: ^8.0.0
@@ -2513,8 +2513,8 @@ packages:
       - supports-color
     dev: true
 
-  /@remix-run/express@2.7.1(express@4.18.2)(typescript@5.3.3):
-    resolution: {integrity: sha512-/keVtsa2Jvh5c1DKHiWmWtpC1khJ0tf4OBxkJPZhOhcnX8+UxY0600PhBWs9MXzFGV3H4t4WzGGnxRzE7GEEwA==}
+  /@remix-run/express@2.7.2(express@4.18.2)(typescript@5.3.3):
+    resolution: {integrity: sha512-wknBXniMr7sUvu0D+iOkxK1IenSM0nfZJai1RgNP0Qs12jrKQA5I1dZuiJdKFfLnhvJLbl/BJ6q40TJ4kqNTPg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       express: ^4.17.1
@@ -2523,13 +2523,13 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@remix-run/node': 2.7.1(typescript@5.3.3)
+      '@remix-run/node': 2.7.2(typescript@5.3.3)
       express: 4.18.2
       typescript: 5.3.3
     dev: true
 
-  /@remix-run/node@2.7.1(typescript@5.3.3):
-    resolution: {integrity: sha512-eFVTEErotfATcxCJuC/bQqIDz0C8TWm0EcjnmlHdEICBMcDKIuzqup6jpEYptAmGwHlbJUicPnD6cjmu+UP91A==}
+  /@remix-run/node@2.7.2(typescript@5.3.3):
+    resolution: {integrity: sha512-smIWI9kNGDnY361WlDOTwxPfUw/KHcS7PCLjHlM/omx3ETD1Y2dc4Rt82LSJt0qsPSPA72ZOww08NoX+YGBvyQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: ^5.1.0
@@ -2537,7 +2537,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@remix-run/server-runtime': 2.7.1(typescript@5.3.3)
+      '@remix-run/server-runtime': 2.7.2(typescript@5.3.3)
       '@remix-run/web-fetch': 4.4.2
       '@remix-run/web-file': 3.1.0
       '@remix-run/web-stream': 1.1.0
@@ -2547,8 +2547,8 @@ packages:
       stream-slice: 0.1.2
       typescript: 5.3.3
 
-  /@remix-run/react@2.7.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-8PfkvSMtdW3JUBo7I0VMcnDZLqRtYKxXCZ9qXNJogJjy0dfaywEoAREfhGyIdwSLAQJ4TFKGz5jyt9L1/EYU3g==}
+  /@remix-run/react@2.7.2(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-Q/gsxJVEYYvkYM/immVFP4rBnGSzEFNJLRt6plO5knAy6NV1NNptsEnvh4GoTVQdTKdVw7wkJW26/YpnHzHiDA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^18.0.0
@@ -2559,7 +2559,7 @@ packages:
         optional: true
     dependencies:
       '@remix-run/router': 1.15.1
-      '@remix-run/server-runtime': 2.7.1(typescript@5.3.3)
+      '@remix-run/server-runtime': 2.7.2(typescript@5.3.3)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.22.1(react@18.2.0)
@@ -2571,13 +2571,13 @@ packages:
     resolution: {integrity: sha512-zcU0gM3z+3iqj8UX45AmWY810l3oUmXM7uH4dt5xtzvMhRtYVhKGOmgOd1877dOPPepfCjUv57w+syamWIYe7w==}
     engines: {node: '>=14.0.0'}
 
-  /@remix-run/serve@2.7.1(typescript@5.3.3):
-    resolution: {integrity: sha512-DSkh48bGEsTplKI/LN1OaPcPc53OnbuOcTA/Zu2V3xTzT7E1YHalWlKbbuX04v2GlnNarNTQx6jrjEDAxnzu+w==}
+  /@remix-run/serve@2.7.2(typescript@5.3.3):
+    resolution: {integrity: sha512-5kR6fuD2MEWqd8DogyHP3fiSjGv56ZBWKntwMeEKh7kuyDhHPX+BAU2UsYvLOTB1VH9Ktg5mNM8l9gMMY6l/Jg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
-      '@remix-run/express': 2.7.1(express@4.18.2)(typescript@5.3.3)
-      '@remix-run/node': 2.7.1(typescript@5.3.3)
+      '@remix-run/express': 2.7.2(express@4.18.2)(typescript@5.3.3)
+      '@remix-run/node': 2.7.2(typescript@5.3.3)
       chokidar: 3.6.0
       compression: 1.7.4
       express: 4.18.2
@@ -2589,8 +2589,8 @@ packages:
       - typescript
     dev: true
 
-  /@remix-run/server-runtime@2.7.1(typescript@5.3.3):
-    resolution: {integrity: sha512-idmg8Tf9w5fZ+Dgq2aRjZDKlLaZt+rB0yAw+Ht5yzI6MLeKI4SKHsdnGlEY/EeFcbbrXhArrrSjf+mKLJfJ8qw==}
+  /@remix-run/server-runtime@2.7.2(typescript@5.3.3):
+    resolution: {integrity: sha512-PGD1SPJttlYI3Nwe8ABk53gHCueWfZ2NOsKx7utD/lKRPFW2BqADpokzQXSzy4WTpk4drAmlagobGVIVH66Tmg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: ^5.1.0
@@ -3044,15 +3044,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@sanity/icons@2.10.2(react@18.2.0):
-    resolution: {integrity: sha512-9lAYAhUpwfa7BIomwAtHpbHdn7GRl1Y1ynoUyV718X10wjcNg49xxxsH/0nfHXdbmdy3Th3pvde0J3vrRg4gjA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: ^18
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /@sanity/icons@2.10.3(react@18.2.0):
     resolution: {integrity: sha512-MH4tSSwkqkPx+L2RjG6/Hcsx80OaESQyl9gBSI4adGh6frZxW8kr4+1GymO5lWoi2IOHgjvxln3XT7BlrRqzLA==}
     engines: {node: '>=14.0.0'}
@@ -3254,7 +3245,7 @@ packages:
       '@sanity/client': ^6.13.3
     dependencies:
       '@sanity/client': 6.14.2
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       '@sanity/preview-url-secret': 1.6.3(@sanity/client@6.14.2)
       '@sanity/ui': 2.0.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@sanity/uuid': 3.0.2
@@ -3386,7 +3377,7 @@ packages:
     dependencies:
       '@floating-ui/react-dom': 2.0.0(react-dom@18.2.0)(react@18.2.0)
       '@sanity/color': 2.2.5
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       csstype: 3.1.3
       framer-motion: 10.18.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
@@ -3407,7 +3398,7 @@ packages:
     dependencies:
       '@floating-ui/react-dom': 2.0.8(react-dom@18.2.0)(react@18.2.0)
       '@sanity/color': 3.0.0
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       csstype: 3.1.3
       framer-motion: 11.0.5(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
@@ -3455,7 +3446,7 @@ packages:
       '@rexxars/react-json-inspector': 8.0.1(react@18.2.0)
       '@rexxars/react-split-pane': 0.1.93(react-dom@18.2.0)(react@18.2.0)
       '@sanity/color': 3.0.0
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       '@sanity/ui': 2.0.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@uiw/react-codemirror': 4.21.22(@babel/runtime@7.23.9)(@codemirror/autocomplete@6.12.0)(@codemirror/language@6.10.1)(@codemirror/lint@6.5.0)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.24.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
       hashlru: 2.3.0
@@ -3494,7 +3485,7 @@ packages:
       scroll-into-view-if-needed: 3.1.0
     dev: false
 
-  /@sanity/visual-editing@1.4.0(@remix-run/react@2.7.1):
+  /@sanity/visual-editing@1.4.0(@remix-run/react@2.7.2):
     resolution: {integrity: sha512-Lcj9gD1zo//TRc8s8i0uJmJiYkw2GnHHg1TdUKYUYNSyRTBtLC9qN0C6nutZVGsrGCpijkqwzYneXnTXF01LVw==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -3506,7 +3497,7 @@ packages:
       next:
         optional: true
     dependencies:
-      '@remix-run/react': 2.7.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@remix-run/react': 2.7.2(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
       '@vercel/stega': 0.1.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -4379,15 +4370,15 @@ packages:
     resolution: {integrity: sha512-17kVyLq3ePTKOkveHxXuIJZtGYs+cSoev7BlP+Lf4916qfDhk/HBjvlYDe8egrea7LNPHKwSZJK/bzZC+Q6AwQ==}
     dev: true
 
-  /@vercel/remix@2.7.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-+HQ36tiMmEUi6dfyR+/n0mZVv43GWLMTV92k+zfbG+TdAT9LFpPc1HYRQaZokQYbAhEe1pcjkp/dY/KPmcM6vw==}
+  /@vercel/remix@2.7.2(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-Cq29Y0XhvOAK9wAggcq6vKua3AZTx/oOKETOe6d8O9YYK7OS1n+W0IQfNzwXURt1ZcIowj4Aor06ahPkSJQfjQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: '*'
       react-dom: '*'
     dependencies:
-      '@remix-run/node': 2.7.1(typescript@5.3.3)
-      '@remix-run/server-runtime': 2.7.1(typescript@5.3.3)
+      '@remix-run/node': 2.7.2(typescript@5.3.3)
+      '@remix-run/server-runtime': 2.7.2(typescript@5.3.3)
       isbot: 3.8.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7755,7 +7746,7 @@ packages:
     engines: {node: '>=18'}
     dev: false
 
-  /groqd-playground@0.0.18(@sanity/icons@2.10.2)(@sanity/ui@2.0.7)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8):
+  /groqd-playground@0.0.18(@sanity/icons@2.10.3)(@sanity/ui@2.0.7)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8):
     resolution: {integrity: sha512-+zAeJDvm8O1A9t5o5D01uSO62/KGLxG4EcGM3VVZAqy1wjJ8V/nXDo6P30A/uYbDmqxPpd0dPXX9rpbysVMsDw==}
     peerDependencies:
       '@sanity/icons': ^2.3.1
@@ -7766,7 +7757,7 @@ packages:
       sanity: ^3.0.0
       styled-components: ^5.3.9
     dependencies:
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       '@sanity/ui': 2.0.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@uiw/react-split': 5.9.3(react-dom@18.2.0)(react@18.2.0)
       groqd: 0.15.10
@@ -9699,7 +9690,7 @@ packages:
     resolution: {integrity: sha512-EZSPZB70jiVsivaBLYDCyntd5eH8NTSMOn3rB+HxwdmKThGELLdYv8qVIMWvZEFy9w8ZZpW9h9OB32l1rGtj7g==}
     dev: true
 
-  /next-sanity@8.0.0(@sanity/client@6.14.2)(@sanity/icons@2.10.2)(@sanity/types@3.30.0)(@sanity/ui@2.0.7)(next@14.1.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8):
+  /next-sanity@8.0.0(@sanity/client@6.14.2)(@sanity/icons@2.10.3)(@sanity/types@3.30.0)(@sanity/ui@2.0.7)(next@14.1.0)(react@18.2.0)(sanity@3.30.0)(styled-components@6.1.8):
     resolution: {integrity: sha512-XT6PTXvivwqUZ7q7qMr+aptyyzXs0MiDIlRLusYlYHsdBrW4iEwfWYNwUqB1r9csczjeEk02X4MxMayrg47Vjg==}
     engines: {node: '>=18.17'}
     peerDependencies:
@@ -9713,7 +9704,7 @@ packages:
       styled-components: ^5.2 || ^6.0
     dependencies:
       '@sanity/client': 6.14.2
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       '@sanity/preview-kit': 5.0.20(@sanity/client@6.14.2)(react@18.2.0)
       '@sanity/types': 3.30.0
       '@sanity/ui': 2.0.7(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
@@ -11416,7 +11407,7 @@ packages:
       sanity: ^3.20.0
       styled-components: ^5.2 || ^6.0.0
     dependencies:
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0)(react@18.2.0)
       '@sanity/preview-url-secret': 1.6.3(@sanity/client@6.14.2)
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
@@ -11459,7 +11450,7 @@ packages:
       '@sanity/eventsource': 5.0.1
       '@sanity/export': 3.30.0
       '@sanity/generate-help-url': 3.0.0
-      '@sanity/icons': 2.10.2(react@18.2.0)
+      '@sanity/icons': 2.10.3(react@18.2.0)
       '@sanity/image-url': 1.0.2
       '@sanity/import': 3.30.0
       '@sanity/logos': 2.1.4(@sanity/color@3.0.0)(react@18.2.0)
