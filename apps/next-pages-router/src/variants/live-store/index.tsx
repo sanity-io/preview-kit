@@ -12,7 +12,10 @@ export default function LiveStoreVariant({
   token,
 }: InferGetStaticPropsType<typeof getStaticProps> & React.PropsWithChildren) {
   return draftMode ? (
-    <><PreviewProvider token={token!}>{children}</PreviewProvider><VisualEditing /></>
+    <>
+      <PreviewProvider token={token!}>{children}</PreviewProvider>
+      <VisualEditing />
+    </>
   ) : (
     children
   )

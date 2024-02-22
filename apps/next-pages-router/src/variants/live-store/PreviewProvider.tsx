@@ -10,8 +10,8 @@ export default function PreviewProvider({
 }) {
   if (!token) throw new TypeError('Missing token')
   return (
-      <LiveQueryProvider client={client} token={token} logger={console}>
-        {children}
-      </LiveQueryProvider>
+    <LiveQueryProvider client={client} token={token} logger={console}>
+      {children}
+    </LiveQueryProvider>
   )
 }

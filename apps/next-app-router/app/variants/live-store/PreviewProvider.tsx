@@ -1,7 +1,7 @@
 'use client'
 
 import { LiveQueryProvider } from '@sanity/preview-kit'
-import {client} from './sanity.client'
+import { client } from './sanity.client'
 
 export default function PreviewProvider({
   children,
@@ -12,8 +12,8 @@ export default function PreviewProvider({
 }) {
   if (!token) throw new TypeError('Missing token')
   return (
-      <LiveQueryProvider client={client} token={token} logger={console}>
-        {children}
-      </LiveQueryProvider>
+    <LiveQueryProvider client={client} token={token} logger={console}>
+      {children}
+    </LiveQueryProvider>
   )
 }

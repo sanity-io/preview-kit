@@ -11,7 +11,10 @@ export default async function LiveStoreVariant({
   return (
     <>
       {draftMode().isEnabled ? (
-        <><PreviewProvider token={token}>{children}</PreviewProvider><VisualEditing /></>
+        <>
+          <PreviewProvider token={token}>{children}</PreviewProvider>
+          <VisualEditing />
+        </>
       ) : (
         children
       )}
