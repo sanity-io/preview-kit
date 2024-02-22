@@ -1,6 +1,5 @@
 import { LiveQueryProvider } from '@sanity/preview-kit'
 import { client } from './sanity.client'
-import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
 
 export default function PreviewProvider({
   children,
@@ -11,11 +10,8 @@ export default function PreviewProvider({
 }) {
   if (!token) throw new TypeError('Missing token')
   return (
-    <>
       <LiveQueryProvider client={client} token={token} logger={console}>
         {children}
       </LiveQueryProvider>
-      <VisualEditing />
-    </>
   )
 }

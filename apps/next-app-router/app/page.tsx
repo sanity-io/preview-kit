@@ -12,9 +12,9 @@ import { draftMode } from 'next/headers'
 import { LiveQuery } from '@sanity/preview-kit/live-query'
 import { sanityFetch } from './sanity.fetch'
 import RefreshButton from './RefreshButton'
-import Variant from './Variant'
 import { PreviewTable, PreviewFooter } from './previews'
 import { Suspense } from 'react'
+import LiveStoreVariant from './variants/live-store'
 
 export const runtime = 'edge'
 
@@ -25,7 +25,7 @@ export default async function Page() {
   })
 
   return (
-    <Variant>
+    <LiveStoreVariant>
       <Suspense fallback={<TableFallback rows={Math.min(10, footer)} />}>
         <ServerTable />
       </Suspense>
@@ -40,7 +40,7 @@ export default async function Page() {
       </LiveQuery>
       <Timestamp date={new Date()} />
       <RefreshButton />
-    </Variant>
+    </LiveStoreVariant>
   )
 }
 

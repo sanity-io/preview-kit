@@ -1,5 +1,6 @@
 import type { SerializeFrom } from '@vercel/remix'
 import { StrictMode, lazy } from 'react'
+import { VisualEditing } from '@sanity/visual-editing/remix'
 
 import type { loader } from '~/routes/_index'
 
@@ -16,6 +17,7 @@ export default function LiveStoreVariant({
       <PreviewProvider token={token!} studioUrl={studioUrl}>
         {children}
       </PreviewProvider>
+      <VisualEditing />
     </StrictMode>
   ) : (
     children

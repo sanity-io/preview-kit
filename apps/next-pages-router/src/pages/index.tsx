@@ -18,12 +18,9 @@ import {
   tableQuery,
 } from 'ui/react'
 import dynamic from 'next/dynamic'
-import { useIsEnabled, useLiveQuery } from '@sanity/preview-kit'
-import { LiveQuery } from '@sanity/preview-kit/live-query'
+import { useLiveQuery } from '@sanity/preview-kit'
 import { sanityFetch, token } from '../sanity.fetch'
 
-const DefaultVariant = dynamic(() => import('../variants/default'))
-const GroqStoreVariant = dynamic(() => import('../variants/groq-store'))
 const LiveStoreVariant = dynamic(() => import('../variants/live-store'))
 
 export const getStaticProps: GetStaticProps<{
@@ -56,22 +53,6 @@ export const getStaticProps: GetStaticProps<{
   }
 }
 
-function Variant(
-  props: InferGetStaticPropsType<typeof getStaticProps> &
-    React.PropsWithChildren,
-) {
-  switch (props.variant) {
-    case 'default':
-      return <DefaultVariant {...props} />
-    case 'groq-store':
-      return <GroqStoreVariant {...props} />
-    case 'live-store':
-      return <LiveStoreVariant {...props} />
-    default:
-      throw new Error(`Unknown variant: ${props.variant}`)
-  }
-}
-
 export default function Page(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
@@ -94,12 +75,12 @@ export default function Page(
           <PreviewDraftsButton formAction="/api/draft" />
         )}
       </form>
-      <Variant {...props}>
+      <LiveStoreVariant {...props}>
         <Table data={table} />
         <Footer data={footer} />
         {timestamp && <Timestamp date={timestamp} />}
         <RefreshButton isLive={isLive} />
-      </Variant>
+      </LiveStoreVariant>
       <script
         type="application/json"
         dangerouslySetInnerHTML={{

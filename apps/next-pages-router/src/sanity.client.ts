@@ -1,4 +1,4 @@
-import { createClient } from '@sanity/preview-kit/client'
+import { createClient } from '@sanity/client'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'pv8y60vp'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
@@ -10,8 +10,10 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn,
-  studioUrl,
-  logger: console,
-  encodeSourceMap: true,
   perspective: 'published',
+  stega: {
+    enabled: true,
+    studioUrl,
+    logger: console,
+  },
 })
