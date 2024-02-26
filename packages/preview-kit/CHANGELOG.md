@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.25](https://github.com/sanity-io/preview-kit/compare/v5.0.24...v5.0.25) (2024-02-26)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/client to ^6.14.3 ([#953](https://github.com/sanity-io/preview-kit/issues/953)) ([6d87d9e](https://github.com/sanity-io/preview-kit/commit/6d87d9e2ee6ba2f440d17330e779e352bde76726))
+- **deps:** update dependency @sanity/client to ^6.14.4 ([#961](https://github.com/sanity-io/preview-kit/issues/961)) ([f1a1578](https://github.com/sanity-io/preview-kit/commit/f1a15781fbb134551f0866d87b257647b4371c06))
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.4.8 ([#950](https://github.com/sanity-io/preview-kit/issues/950)) ([e8a29cb](https://github.com/sanity-io/preview-kit/commit/e8a29cb23cca83a041f7045a4f3ab26d1bc24a60))
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.4.9 ([#966](https://github.com/sanity-io/preview-kit/issues/966)) ([5809657](https://github.com/sanity-io/preview-kit/commit/5809657f9e5e7a491cf9e91cc46a6b5f540b8bec))
+- **deps:** Update dependency mendoza to v3.0.5 ([#963](https://github.com/sanity-io/preview-kit/issues/963)) ([d5e4eb7](https://github.com/sanity-io/preview-kit/commit/d5e4eb7beaace34ddb465061a69b5402abe37408))
+
 ## [5.0.24](https://github.com/sanity-io/preview-kit/compare/v5.0.23...v5.0.24) (2024-02-21)
 
 ### Bug Fixes
