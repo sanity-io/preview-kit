@@ -255,8 +255,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.4.9
-        version: 1.4.9(@sanity/client@6.15.0)(react@18.2.0)
+        specifier: 1.4.10
+        version: 1.4.10(@sanity/client@6.15.0)(react@18.2.0)
       '@vercel/stega':
         specifier: 0.1.0
         version: 0.1.0
@@ -3276,22 +3276,22 @@ packages:
       - styled-components
     dev: false
 
-  /@sanity/preview-kit-compat@1.4.7(@sanity/client@6.15.0)(react@18.2.0):
-    resolution: {integrity: sha512-JZAocZvad4/7GYBKalwGUEM3ijmxgzE1+fIfcjLpkEU0hTy5MW0QqnIzDN9zmwxpjf4Axgw5NltlssaWOG2TBQ==}
+  /@sanity/preview-kit-compat@1.4.10(@sanity/client@6.15.0)(react@18.2.0):
+    resolution: {integrity: sha512-ZRS0+TbxdhRNa8s42z6h8UdYUrS1jT5TSPkpWEaWGdSwKH+++G3cmM1zXcpNkAC8JABn8vmElVvt5b1nWWiEAg==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@sanity/client': ^6.14.2
+      '@sanity/client': ^6.15.0
       react: ^18.2.0
     dependencies:
       '@sanity/client': 6.15.0
       react: 18.2.0
     dev: false
 
-  /@sanity/preview-kit-compat@1.4.9(@sanity/client@6.15.0)(react@18.2.0):
-    resolution: {integrity: sha512-60vGZ1rTPfQFTzUqdoxZjQkkZeHs5tP88ms+/xbc55iRT7VfB7TUVQDACKfHrNfYXZGKAyUBn9/mZQWvV5fxlg==}
+  /@sanity/preview-kit-compat@1.4.7(@sanity/client@6.15.0)(react@18.2.0):
+    resolution: {integrity: sha512-JZAocZvad4/7GYBKalwGUEM3ijmxgzE1+fIfcjLpkEU0hTy5MW0QqnIzDN9zmwxpjf4Axgw5NltlssaWOG2TBQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@sanity/client': ^6.14.4
+      '@sanity/client': ^6.14.2
       react: ^18.2.0
     dependencies:
       '@sanity/client': 6.15.0
