@@ -61,7 +61,7 @@ importers:
         specifier: ^18.18.6
         version: 18.19.18
       '@types/react':
-        specifier: ^18.2.58
+        specifier: ^18.2.59
         version: 18.2.59
       '@types/react-dom':
         specifier: ^18.2.19
@@ -82,8 +82,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 1.5.1
-        version: 1.5.1(next@14.1.0)
+        specifier: 1.5.2
+        version: 1.5.2(next@14.1.0)
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -113,7 +113,7 @@ importers:
         specifier: ^18.18.6
         version: 18.19.18
       '@types/react':
-        specifier: ^18.2.58
+        specifier: ^18.2.59
         version: 18.2.59
       '@types/react-dom':
         specifier: ^18.2.19
@@ -140,8 +140,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 1.5.1
-        version: 1.5.1(@remix-run/react@2.7.2)
+        specifier: 1.5.2
+        version: 1.5.2(@remix-run/react@2.7.2)
       '@vercel/remix':
         specifier: 2.7.2
         version: 2.7.2(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -174,7 +174,7 @@ importers:
         specifier: 2.7.2
         version: 2.7.2(typescript@5.3.3)
       '@types/react':
-        specifier: ^18.2.58
+        specifier: ^18.2.59
         version: 18.2.59
       '@types/react-dom':
         specifier: ^18.2.19
@@ -201,8 +201,8 @@ importers:
         specifier: 2.10.3
         version: 2.10.3(react@18.2.0)
       '@sanity/presentation':
-        specifier: 1.11.1
-        version: 1.11.1(@sanity/client@6.15.0)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
+        specifier: 1.11.2
+        version: 1.11.2(@sanity/client@6.15.0)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@sanity/preview-kit':
         specifier: workspace:*
         version: link:../../packages/preview-kit
@@ -213,7 +213,7 @@ importers:
         specifier: 3.30.0
         version: 3.30.0(@babel/runtime@7.23.9)(@codemirror/lint@6.5.0)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.2.1)(codemirror@6.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
       '@types/react':
-        specifier: ^18.2.58
+        specifier: ^18.2.59
         version: 18.2.59
       '@types/react-dom':
         specifier: ^18.2.19
@@ -368,7 +368,7 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(@types/node@18.19.18)(typescript@5.3.3)
       '@types/react':
-        specifier: ^18.2.58
+        specifier: ^18.2.59
         version: 18.2.59
       '@types/react-dom':
         specifier: ^18.2.19
@@ -3224,11 +3224,11 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/presentation@1.11.1(@sanity/client@6.15.0)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
-    resolution: {integrity: sha512-Z06CEZyAPowa+8oGJR4AOR/F2a2PRAI2RkORJ9Y+kej3Qs7Y1nlCSkSFBwbJA/tk97K4d65KbMgLiiShvHzbgg==}
+  /@sanity/presentation@1.11.2(@sanity/client@6.15.0)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8):
+    resolution: {integrity: sha512-WsjLXFhlUb9M/HIPvLyrAoQtwHAog7SqtkHAMajAwdvHRECRVeAQanE2I2Xgutd/bnA5//OqzB34D2pJ23Z6sA==}
     engines: {node: '>=16.14'}
     peerDependencies:
-      '@sanity/client': ^6.14.4
+      '@sanity/client': ^6.15.0
     dependencies:
       '@sanity/client': 6.15.0
       '@sanity/icons': 2.10.3(react@18.2.0)
@@ -3498,8 +3498,8 @@ packages:
       valibot: 0.29.0
     dev: false
 
-  /@sanity/visual-editing@1.5.1(@remix-run/react@2.7.2):
-    resolution: {integrity: sha512-dED5ErHWn+tqHDgHs8A7aRG5tlYJwMHTXRD01V5o5xqQ8r0jrvF5lHsuHDVaR3Mx39jOO8S3hXgkzB0KTAgTdA==}
+  /@sanity/visual-editing@1.5.2(@remix-run/react@2.7.2):
+    resolution: {integrity: sha512-/eV1AbbvxMxJhgif1NPHptViOKZ2FCp6YDsQRC7A6/6xKDubZ+kFAKiImu2rwF5ZMLYljsWw/xMi20FNRMstlQ==}
     engines: {node: '>=18'}
     peerDependencies:
       '@remix-run/react': '>= 2'
@@ -3519,8 +3519,8 @@ packages:
       valibot: 0.29.0
     dev: false
 
-  /@sanity/visual-editing@1.5.1(next@14.1.0):
-    resolution: {integrity: sha512-dED5ErHWn+tqHDgHs8A7aRG5tlYJwMHTXRD01V5o5xqQ8r0jrvF5lHsuHDVaR3Mx39jOO8S3hXgkzB0KTAgTdA==}
+  /@sanity/visual-editing@1.5.2(next@14.1.0):
+    resolution: {integrity: sha512-/eV1AbbvxMxJhgif1NPHptViOKZ2FCp6YDsQRC7A6/6xKDubZ+kFAKiImu2rwF5ZMLYljsWw/xMi20FNRMstlQ==}
     engines: {node: '>=18'}
     peerDependencies:
       '@remix-run/react': '>= 2'
