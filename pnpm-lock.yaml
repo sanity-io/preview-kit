@@ -82,8 +82,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 1.5.2
-        version: 1.5.2(next@14.1.2)
+        specifier: 1.6.0
+        version: 1.6.0(@sanity/client@6.15.1)(next@14.1.2)
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -140,8 +140,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 1.5.2
-        version: 1.5.2(@remix-run/react@2.8.0)
+        specifier: 1.6.0
+        version: 1.6.0(@remix-run/react@2.8.0)(@sanity/client@6.15.1)
       '@vercel/remix':
         specifier: 2.8.0
         version: 2.8.0(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
@@ -3476,27 +3476,6 @@ packages:
       - react-is
     dev: false
 
-  /@sanity/visual-editing@1.5.2(@remix-run/react@2.8.0):
-    resolution: {integrity: sha512-/eV1AbbvxMxJhgif1NPHptViOKZ2FCp6YDsQRC7A6/6xKDubZ+kFAKiImu2rwF5ZMLYljsWw/xMi20FNRMstlQ==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@remix-run/react': '>= 2'
-      next: '>= 13'
-    peerDependenciesMeta:
-      '@remix-run/react':
-        optional: true
-      next:
-        optional: true
-    dependencies:
-      '@remix-run/react': 2.8.0(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
-      '@vercel/stega': 0.1.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-is: 18.2.0
-      scroll-into-view-if-needed: 3.1.0
-      valibot: 0.29.0
-    dev: false
-
   /@sanity/visual-editing@1.5.2(next@14.1.2):
     resolution: {integrity: sha512-/eV1AbbvxMxJhgif1NPHptViOKZ2FCp6YDsQRC7A6/6xKDubZ+kFAKiImu2rwF5ZMLYljsWw/xMi20FNRMstlQ==}
     engines: {node: '>=18'}
@@ -3509,6 +3488,70 @@ packages:
       next:
         optional: true
     dependencies:
+      '@vercel/stega': 0.1.0
+      next: 14.1.2(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-is: 18.2.0
+      scroll-into-view-if-needed: 3.1.0
+      valibot: 0.29.0
+    dev: false
+
+  /@sanity/visual-editing@1.6.0(@remix-run/react@2.8.0)(@sanity/client@6.15.1):
+    resolution: {integrity: sha512-6WGrbmwfcyVOuuz5VP2gYCtRNaL458R98G+Hd+1FjXVwZ7b/hPwU97/JQ2Qc0lmjCplPMZzHERGcPXBWyrl9SQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@remix-run/react': '>= 2'
+      '@sanity/client': ^6.15.1
+      '@sveltejs/kit': '>= 2'
+      next: '>= 13'
+      svelte: '>= 4'
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sanity/client':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      svelte:
+        optional: true
+    dependencies:
+      '@remix-run/react': 2.8.0(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@sanity/client': 6.15.1
+      '@sanity/preview-url-secret': 1.6.4(@sanity/client@6.15.1)
+      '@vercel/stega': 0.1.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-is: 18.2.0
+      scroll-into-view-if-needed: 3.1.0
+      valibot: 0.29.0
+    dev: false
+
+  /@sanity/visual-editing@1.6.0(@sanity/client@6.15.1)(next@14.1.2):
+    resolution: {integrity: sha512-6WGrbmwfcyVOuuz5VP2gYCtRNaL458R98G+Hd+1FjXVwZ7b/hPwU97/JQ2Qc0lmjCplPMZzHERGcPXBWyrl9SQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@remix-run/react': '>= 2'
+      '@sanity/client': ^6.15.1
+      '@sveltejs/kit': '>= 2'
+      next: '>= 13'
+      svelte: '>= 4'
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sanity/client':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      svelte:
+        optional: true
+    dependencies:
+      '@sanity/client': 6.15.1
+      '@sanity/preview-url-secret': 1.6.4(@sanity/client@6.15.1)
       '@vercel/stega': 0.1.0
       next: 14.1.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
