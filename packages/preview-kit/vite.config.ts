@@ -8,7 +8,7 @@ import pkg from './package.json'
 export default defineConfig({
   test: {
     // don't use vitest to run Bun and Deno tests
-    exclude: [...configDefaults.exclude, 'test.cjs', 'test.mjs'],
+    exclude: [...configDefaults.exclude],
     // Enable rich PR failed test annotation on the CI
     // eslint-disable-next-line no-process-env
     reporters: process.env.GITHUB_ACTIONS

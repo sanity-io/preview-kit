@@ -7,8 +7,7 @@
     "dev:live-store": "VARIANT=live-store pnpm dev",
     "format": "prettier --cache --write .",
     "lint": "turbo run lint",
-    "test": "turbo run test",
-    "test:esm": "turbo run test:esm"
+    "test": "turbo run test"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

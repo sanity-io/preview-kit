@@ -17,9 +17,6 @@
       "dependsOn": ["build"],
       "cache": false
     },
-    "test:esm": {
-      "cache": false
-    },
     "lint": {},
     "dev": {
       "dependsOn": ["^build"],
