@@ -30,34 +30,22 @@
     ".": {
       "types": "./dist/index.d.ts",
       "source": "./src/index.ts",
-      "require": "./dist/index.cjs",
-      "node": {
-        "module": "./dist/index.js",
-        "import": "./dist/index.cjs.js"
-      },
       "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
     "./client": {
       "types": "./dist/client/index.d.ts",
       "source": "./src/client/index.ts",
-      "require": "./dist/client/index.cjs",
-      "node": {
-        "module": "./dist/client/index.js",
-        "import": "./dist/client/index.cjs.js"
-      },
       "import": "./dist/client/index.js",
+      "require": "./dist/client/index.cjs",
       "default": "./dist/client/index.js"
     },
     "./live-query": {
       "types": "./dist/live-query/index.d.ts",
       "source": "./src/live-query/index.ts",
-      "require": "./dist/live-query/index.cjs",
-      "node": {
-        "module": "./dist/live-query/index.js",
-        "import": "./dist/live-query/index.cjs.js"
-      },
       "import": "./dist/live-query/index.js",
+      "require": "./dist/live-query/index.cjs",
       "default": "./dist/live-query/index.js"
     },
     "./package.json": "./package.json"
@@ -106,7 +94,7 @@
   },
   "devDependencies": {
     "@sanity/client": "^6.15.3",
-    "@sanity/pkg-utils": "4.4.1",
+    "@sanity/pkg-utils": "5.0.0",
     "@sanity/semantic-release-preset": "^4.1.7",
     "@types/node": "^18.18.6",
     "@types/react": "^18.2.64",
