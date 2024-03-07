@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.31](https://github.com/sanity-io/preview-kit/compare/v5.0.30...v5.0.31) (2024-03-07)
+
+### Bug Fixes
+
+- remove `node` export conditions ([f4f9857](https://github.com/sanity-io/preview-kit/commit/f4f9857a703cbb6ed9990fe4f5d8bc6f1df19999))
+
 ## [5.0.30](https://github.com/sanity-io/preview-kit/compare/v5.0.29...v5.0.30) (2024-03-07)
 
 ### Bug Fixes
