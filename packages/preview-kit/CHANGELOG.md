@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.32](https://github.com/sanity-io/preview-kit/compare/v5.0.31...v5.0.32) (2024-03-11)
+
+### Bug Fixes
+
+- solve issue with Next.js Pages Router ([1eba217](https://github.com/sanity-io/preview-kit/commit/1eba217ca8cc9768be8628913a75e90cc7b08067))
+
 ## [5.0.31](https://github.com/sanity-io/preview-kit/compare/v5.0.30...v5.0.31) (2024-03-07)
 
 ### Bug Fixes
