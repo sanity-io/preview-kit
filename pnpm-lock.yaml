@@ -39,8 +39,8 @@ importers:
         specifier: 14.1.3
         version: 14.1.3(react-dom@18.2.0)(react@18.2.0)
       next-sanity:
-        specifier: 8.4.1
-        version: 8.4.1(@sanity/client@6.15.5)(@sanity/icons@2.11.2)(@sanity/types@3.34.0)(@sanity/ui@2.0.10)(next@14.1.3)(react@18.2.0)(sanity@3.34.0)(styled-components@6.1.8)
+        specifier: 8.4.2
+        version: 8.4.2(@sanity/client@6.15.5)(@sanity/icons@2.11.2)(@sanity/types@3.34.0)(@sanity/ui@2.0.10)(next@14.1.3)(react@18.2.0)(sanity@3.34.0)(styled-components@6.1.8)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -355,8 +355,8 @@ importers:
         specifier: 0.9.4
         version: 0.9.4
       date-fns:
-        specifier: 3.5.0
-        version: 3.5.0
+        specifier: 3.6.0
+        version: 3.6.0
       groq:
         specifier: 3.34.0
         version: 3.34.0
@@ -2318,26 +2318,26 @@ packages:
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
     dev: true
 
-  /@portabletext/react@3.0.11(react@18.2.0):
-    resolution: {integrity: sha512-LATQQRxvP3TlAnFayjYt7kPJcnpAtWH6XHl4RFU31pKb1G6gZlTWTB+chXXAv0uQG6Be7OEdRzCmsz9XFEVNew==}
+  /@portabletext/react@3.0.12(react@18.2.0):
+    resolution: {integrity: sha512-XyvM9rad7JK9gVt+fg4eK/5LuqmoGSkSabqlEMiuoQ1sRd7dJrNiYAegmjNFuxHIQraDlz3fCrh5FbQP1hryIQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     peerDependencies:
       react: ^17 || ^18
     dependencies:
-      '@portabletext/toolkit': 2.0.10
-      '@portabletext/types': 2.0.8
+      '@portabletext/toolkit': 2.0.11
+      '@portabletext/types': 2.0.9
       react: 18.2.0
     dev: false
 
-  /@portabletext/toolkit@2.0.10:
-    resolution: {integrity: sha512-d+F9JvpnMEx7kd6saZ9OWA4U1Iwuokh6TOht7iqkfWU+0ivh9yM4v+b0Kpu+iiPcElicoabhtXol+yTvWJ1jDw==}
+  /@portabletext/toolkit@2.0.11:
+    resolution: {integrity: sha512-4xdn1jZUZzihTvtJJbtZDsuaHNw9aaf/WZqKriP9306SlSuLFYC8Lw1MzW+Xmh3ZSurIjs+L0M+lTflB2NfYSA==}
     engines: {node: ^14.13.1 || >=16.0.0}
     dependencies:
-      '@portabletext/types': 2.0.8
+      '@portabletext/types': 2.0.9
     dev: false
 
-  /@portabletext/types@2.0.8:
-    resolution: {integrity: sha512-eiq9/kMX2bYezS4/kLFk3xNnruCFjCDdw6aYEv5ECHVKkYROiuLd3/AsP5d7tWF3+kPPy6tB0Wq8aqDG/URHGA==}
+  /@portabletext/types@2.0.9:
+    resolution: {integrity: sha512-1naiVZBrDTUSExPgaUPY8Ip1v9mboLBIsPHSAzvQraVsdj2dyHi6n9qwiXykY4W1JmpJAKz7jYp2rShCnKQ9JA==}
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
     dev: false
 
@@ -5550,8 +5550,8 @@ packages:
       '@babel/runtime': 7.24.0
     dev: false
 
-  /date-fns@3.5.0:
-    resolution: {integrity: sha512-a+DwyXn7NOfdJireCzAA0B9p7jIXEu/Q9JKCyMYvH6+0vPUNbQceA0neXrdfJ/xzl3mhOh5vibQQ3936Tssm6A==}
+  /date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
     dev: false
 
   /date-now@1.0.1:
@@ -9515,8 +9515,8 @@ packages:
     resolution: {integrity: sha512-EZSPZB70jiVsivaBLYDCyntd5eH8NTSMOn3rB+HxwdmKThGELLdYv8qVIMWvZEFy9w8ZZpW9h9OB32l1rGtj7g==}
     dev: true
 
-  /next-sanity@8.4.1(@sanity/client@6.15.5)(@sanity/icons@2.11.2)(@sanity/types@3.34.0)(@sanity/ui@2.0.10)(next@14.1.3)(react@18.2.0)(sanity@3.34.0)(styled-components@6.1.8):
-    resolution: {integrity: sha512-J+DiLTR1os5ABgSv+4mirFfv7bqSQRlw2qpn2jqF2zmvJQg6+3TaGNsXJL1L5xU/Rm+0qXdEq92PFN7e6XHqRg==}
+  /next-sanity@8.4.2(@sanity/client@6.15.5)(@sanity/icons@2.11.2)(@sanity/types@3.34.0)(@sanity/ui@2.0.10)(next@14.1.3)(react@18.2.0)(sanity@3.34.0)(styled-components@6.1.8):
+    resolution: {integrity: sha512-eWuo+Brd/mKeoeGN8wr1ia7u6X0Oiyk9vTquN6LrhvRNT5hn+SJHFaLzlEVaozN+opHZBScfg6x+qQJFCCUk4A==}
     engines: {node: '>=18.17'}
     peerDependencies:
       '@sanity/client': ^6.15.5
@@ -9528,8 +9528,7 @@ packages:
       sanity: ^3.25
       styled-components: ^5.2 || ^6.0
     dependencies:
-      '@portabletext/react': 3.0.11(react@18.2.0)
-      '@portabletext/types': 2.0.8
+      '@portabletext/react': 3.0.12(react@18.2.0)
       '@sanity/client': 6.15.5
       '@sanity/icons': 2.11.2(react@18.2.0)
       '@sanity/preview-kit': 5.0.33(@sanity/client@6.15.5)(react@18.2.0)
@@ -11241,7 +11240,7 @@ packages:
       '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.1.0)(react@18.2.0)
       '@dnd-kit/utilities': 3.2.2(react@18.2.0)
       '@juggle/resize-observer': 3.4.0
-      '@portabletext/react': 3.0.11(react@18.2.0)
+      '@portabletext/react': 3.0.12(react@18.2.0)
       '@rexxars/react-json-inspector': 8.0.1(react@18.2.0)
       '@sanity/asset-utils': 1.3.0
       '@sanity/bifur-client': 0.3.1
