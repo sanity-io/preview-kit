@@ -28,21 +28,18 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "source": "./src/index.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
     "./client": {
-      "types": "./dist/client/index.d.ts",
       "source": "./src/client/index.ts",
       "import": "./dist/client/index.js",
       "require": "./dist/client/index.cjs",
       "default": "./dist/client/index.js"
     },
     "./live-query": {
-      "types": "./dist/live-query/index.d.ts",
       "source": "./src/live-query/index.ts",
       "import": "./dist/live-query/index.js",
       "require": "./dist/live-query/index.cjs",
