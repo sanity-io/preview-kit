@@ -7,11 +7,8 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "module": "preserve",
+    "moduleDetection": "force",
     "jsx": "preserve",
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -22,6 +19,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
   }
 }
