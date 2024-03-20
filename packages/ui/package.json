@@ -7,14 +7,12 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "source": "./src/index.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
     "./react": {
-      "types": "./dist/react.d.ts",
       "source": "./src/react/index.ts",
       "import": "./dist/react.js",
       "require": "./dist/react.cjs",
@@ -57,7 +55,7 @@
     "groqd": "0.15.10"
   },
   "devDependencies": {
-    "@sanity/pkg-utils": "5.1.0",
+    "@sanity/pkg-utils": "5.1.1",
     "@types/react": "^18.2.67",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
