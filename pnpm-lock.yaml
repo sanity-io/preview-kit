@@ -277,8 +277,8 @@ importers:
         specifier: ^6.15.6
         version: 6.15.6
       '@sanity/pkg-utils':
-        specifier: 5.0.4
-        version: 5.0.4(@types/node@18.19.26)(typescript@5.4.2)
+        specifier: 5.1.1
+        version: 5.1.1(@types/node@18.19.26)(typescript@5.4.2)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.7
         version: 4.1.7(semantic-release@23.0.5)
@@ -3999,12 +3999,12 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/pkg-utils@5.0.4(@types/node@18.19.26)(typescript@5.4.2):
-    resolution: {integrity: sha512-QkMQn8bpdHbWvi2GgTpMoYBWHtE2iUL6v+IbWE8yh8SxyMmQHwndyjX9Qb9qRd2qt3LWK9pJKPv9HrgLzMo8JA==}
+  /@sanity/pkg-utils@5.1.0(typescript@5.4.2):
+    resolution: {integrity: sha512-aHWKMlH4ej/xxgXd/AzmKV3LtLVi/LmCl1veu5s7UxSA4+2RfrMGf+OH619WRYFO6WVQqJBAImLI0wKQQEqr7Q==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
-      typescript: ^4.7 || ^5
+      typescript: 5.4.2
     dependencies:
       '@babel/core': 7.24.1
       '@babel/types': 7.24.0
@@ -4051,8 +4051,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sanity/pkg-utils@5.1.0(typescript@5.4.2):
-    resolution: {integrity: sha512-aHWKMlH4ej/xxgXd/AzmKV3LtLVi/LmCl1veu5s7UxSA4+2RfrMGf+OH619WRYFO6WVQqJBAImLI0wKQQEqr7Q==}
+  /@sanity/pkg-utils@5.1.1(@types/node@18.19.26)(typescript@5.4.2):
+    resolution: {integrity: sha512-f6LFtALnRFPoxyhgaqW9IoK5ffdMNe5KbAgxl/SaW39SVcURYDRg9sq7ekmXlt5gDMYnStR2Zpnz7Xw9O6IdmQ==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     peerDependencies:
