@@ -27,8 +27,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       bulma:
-        specifier: 0.9.4
-        version: 0.9.4
+        specifier: 1.0.0
+        version: 1.0.0
       groq:
         specifier: 3.36.2
         version: 3.36.2
@@ -85,8 +85,8 @@ importers:
         specifier: 1.8.4
         version: 1.8.4(@sanity/client@6.15.7)(next@14.1.4)
       bulma:
-        specifier: 0.9.4
-        version: 0.9.4
+        specifier: 1.0.0
+        version: 1.0.0
       groq:
         specifier: 3.36.2
         version: 3.36.2
@@ -352,8 +352,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0
       bulma:
-        specifier: 0.9.4
-        version: 0.9.4
+        specifier: 1.0.0
+        version: 1.0.0
       date-fns:
         specifier: 3.6.0
         version: 3.6.0
@@ -5685,8 +5685,10 @@ packages:
     dependencies:
       semver: 7.6.0
 
-  /bulma@0.9.4:
-    resolution: {integrity: sha512-86FlT5+1GrsgKbPLRRY7cGDg8fsJiP/jzTqXXVqiUZZ2aZT8uemEOHlU1CDU+TxklPEZ11HZNNWclRBBecP4CQ==}
+  /bulma@1.0.0:
+    resolution: {integrity: sha512-7n49v/gdHXaHcU9fVobqGXO2OguiCoMh6CLbeX7jq00XrZ5vOSE4LNS0S/0Q6rlBbckY6kk6W7LwqxS0nu4bug==}
+    dependencies:
+      sass: 1.72.0
     dev: false
 
   /busboy@1.6.0:
@@ -8643,6 +8645,10 @@ packages:
 
   /immer@10.0.4:
     resolution: {integrity: sha512-cuBuGK40P/sk5IzWa9QPUaAdvPHjkk1c+xYsd9oZw+YQQEV+10G0P5uMpGctZZKnyQ+ibRO08bD25nWLmYi2pw==}
+    dev: false
+
+  /immutable@4.3.5:
+    resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
     dev: false
 
   /import-fresh@3.3.0:
@@ -12174,6 +12180,16 @@ packages:
       - supports-color
       - terser
       - utf-8-validate
+    dev: false
+
+  /sass@1.72.0:
+    resolution: {integrity: sha512-Gpczt3WA56Ly0Mn8Sl21Vj94s1axi9hDIzDFn9Ph9x3C3p4nNyvsqJoQyVXKou6cBlfFWEgRW4rT8Tb4i3XnVA==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.6.0
+      immutable: 4.3.5
+      source-map-js: 1.2.0
     dev: false
 
   /saxes@6.0.0:
