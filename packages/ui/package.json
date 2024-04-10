@@ -22,7 +22,6 @@
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "source": "./src/index.ts",
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
@@ -35,9 +34,8 @@
     "dist/**"
   ],
   "scripts": {
-    "prebuild": "rimraf dist coverage",
-    "build": "pkg build --strict && pkg --strict",
-    "clean": "rimraf dist",
+    "build": "pkg build --strict --check --clean",
+    "clean": "rimraf dist coverage",
     "lint": "eslint --max-warnings 0 .",
     "prepublishOnly": "npm run build",
     "type-check": "tsc --noEmit"
