@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.42](https://github.com/sanity-io/preview-kit/compare/v5.0.41...v5.0.42) (2024-04-16)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/client to ^6.15.13 ([#1130](https://github.com/sanity-io/preview-kit/issues/1130)) ([671d95a](https://github.com/sanity-io/preview-kit/commit/671d95ab9edaa137341c3275c7e03c6f3a6e244e))
+- **deps:** update dependency @sanity/client to ^6.15.14 ([#1143](https://github.com/sanity-io/preview-kit/issues/1143)) ([e5e8650](https://github.com/sanity-io/preview-kit/commit/e5e86501bdb7300581bdeb6dc111757c7e85d0be))
+- **deps:** Update dependency mendoza to v3.0.7 ([#1129](https://github.com/sanity-io/preview-kit/issues/1129)) ([43717de](https://github.com/sanity-io/preview-kit/commit/43717defbac16f1eca77c5c3cc90860ea6d0eb5a))
+
 ## [5.0.41](https://github.com/sanity-io/preview-kit/compare/v5.0.40...v5.0.41) (2024-04-07)
 
 ### Bug Fixes
