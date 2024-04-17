@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.44](https://github.com/sanity-io/preview-kit/compare/v5.0.43...v5.0.44) (2024-04-17)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/client to ^6.15.17 ([#1153](https://github.com/sanity-io/preview-kit/issues/1153)) ([30f71a7](https://github.com/sanity-io/preview-kit/commit/30f71a7bb0f4efdfa721ccecc3016a6885ccb909))
+- inline CJS modules to improve ESM interop ([546f857](https://github.com/sanity-io/preview-kit/commit/546f857b36d5ac1fae2f03a9b7eec12bcdd6f6b8))
+
 ## [5.0.43](https://github.com/sanity-io/preview-kit/compare/v5.0.42...v5.0.43) (2024-04-16)
 
 ### Bug Fixes
