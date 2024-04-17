@@ -255,8 +255,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.4.16
-        version: 1.4.16(@sanity/client@6.15.17)(react@18.2.0)
+        specifier: 1.4.17
+        version: 1.4.17(@sanity/client@6.15.17)(react@18.2.0)
       mendoza:
         specifier: 3.0.7
         version: 3.0.7
@@ -2327,11 +2327,11 @@ packages:
       '@sanity/client': ^6.15.11
       react: ^18.2.0
 
-  '@sanity/preview-kit-compat@1.4.16':
-    resolution: {integrity: sha512-NQ5nCepQZw/XYvi9WfsetsJxi0g1jjaF/P7tWW+dMW4AZ4Wb9BhZ9StG3Mdgq9ZpRTPaaqeaAizLGgj8aETREQ==}
+  '@sanity/preview-kit-compat@1.4.17':
+    resolution: {integrity: sha512-zDW/IcsTyROGDKEjixHWTwhnkDZGcqcEL0eu4H/jJ0G5wxMPtxtzSCzAafCKuUgSsiybxBRpjo2h6tjm9/AUIA==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@sanity/client': ^6.15.14
+      '@sanity/client': ^6.15.17
       react: ^18.2.0
 
   '@sanity/preview-kit@5.0.42':
@@ -10187,7 +10187,7 @@ snapshots:
       '@sanity/client': 6.15.17(debug@3.2.7)
       react: 18.2.0
 
-  '@sanity/preview-kit-compat@1.4.16(@sanity/client@6.15.17)(react@18.2.0)':
+  '@sanity/preview-kit-compat@1.4.17(@sanity/client@6.15.17)(react@18.2.0)':
     dependencies:
       '@sanity/client': 6.15.17(debug@3.2.7)
       react: 18.2.0
