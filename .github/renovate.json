@@ -30,6 +30,17 @@
       "matchPackageNames": ["@sanity/client"],
       "rangeStrategy": "bump",
       "semanticCommitType": "fix"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchPackageNames": [
+        "@vercel/stega",
+        "lru-cache",
+        "react-fast-compare", 
+        "use-sync-external-store"
+      ],
+      "rangeStrategy": "bump",
+      "semanticCommitType": "fix"
     }
   ]
 }

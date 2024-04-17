@@ -80,11 +80,7 @@
   },
   "dependencies": {
     "@sanity/preview-kit-compat": "1.4.16",
-    "@vercel/stega": "0.1.0",
-    "lru-cache": "10.2.0",
-    "mendoza": "3.0.7",
-    "react-fast-compare": "3.2.2",
-    "use-sync-external-store": "1.2.0"
+    "mendoza": "3.0.7"
   },
   "devDependencies": {
     "@sanity/client": "^6.15.14",
@@ -96,6 +92,7 @@
     "@types/use-sync-external-store": "^0.0.6",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
+    "@vercel/stega": "0.1.0",
     "@vitest/coverage-v8": "^1.5.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -104,11 +101,14 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
+    "lru-cache": "10.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-fast-compare": "3.2.2",
     "rimraf": "^5.0.1",
     "semantic-release": "^23.0.8",
     "typescript": "5.4.5",
+    "use-sync-external-store": "1.2.0",
     "vitest": "^1.5.0",
     "vitest-github-actions-reporter": "^0.11.1"
   },
