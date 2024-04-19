@@ -265,8 +265,8 @@ importers:
         specifier: ^6.15.17
         version: 6.15.17(debug@3.2.7)
       '@sanity/pkg-utils':
-        specifier: 6.7.0
-        version: 6.7.0(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)
+        specifier: 6.8.1
+        version: 6.8.1(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)
       '@sanity/semantic-release-preset':
         specifier: ^4.1.7
         version: 4.1.7(semantic-release@23.0.8(typescript@5.4.5))
@@ -2295,6 +2295,13 @@ packages:
 
   '@sanity/pkg-utils@6.7.0':
     resolution: {integrity: sha512-E21TIPwmUyTlu8sjJWEFUzdEmDeTp2liv/Z7nawtaH/zBE6HL9bcMzEY7VTnPUZYqaxkUyZuHTaRO3fHY3JmqQ==}
+    engines: {node: '>=18.17.0'}
+    hasBin: true
+    peerDependencies:
+      typescript: 5.4.x
+
+  '@sanity/pkg-utils@6.8.1':
+    resolution: {integrity: sha512-3BG2Rulks3HrG2KxgguoAdV3yCRHQ/0PmZfI3me6WBr9ElcNCNHM0kjtU6UtOVsPBfZ4lTyAFbzJWZSYZu1kbA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -7959,6 +7966,9 @@ packages:
   zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
 
+  zod@3.22.5:
+    resolution: {integrity: sha512-HqnGsCdVZ2xc0qWPLdO25WnseXThh0kEYKIdV5F/hTHO75hNZFp8thxSeHhiPrHZKrFTo1SOgkAj9po5bexZlw==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -9906,7 +9916,7 @@ snapshots:
       groq-js: 1.7.0
       json5: 2.2.3
       tsconfig-paths: 4.2.0
-      zod: 3.22.4
+      zod: 3.22.5
     transitivePeerDependencies:
       - supports-color
 
@@ -10088,6 +10098,54 @@ snapshots:
       uuid: 9.0.1
       zod: 3.22.4
       zod-validation-error: 3.1.0(zod@3.22.4)
+    transitivePeerDependencies:
+      - '@types/babel__core'
+      - '@types/node'
+      - debug
+      - supports-color
+
+  '@sanity/pkg-utils@6.8.1(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)':
+    dependencies:
+      '@babel/core': 7.24.4
+      '@babel/types': 7.24.0
+      '@microsoft/api-extractor': 7.43.1(@types/node@18.19.29)
+      '@microsoft/tsdoc-config': 0.16.2
+      '@optimize-lodash/rollup-plugin': 4.0.4(rollup@4.14.3)
+      '@rollup/plugin-alias': 5.1.0(rollup@4.14.3)
+      '@rollup/plugin-babel': 6.0.4(@babel/core@7.24.4)(@types/babel__core@7.20.5)(rollup@4.14.3)
+      '@rollup/plugin-commonjs': 25.0.7(rollup@4.14.3)
+      '@rollup/plugin-json': 6.1.0(rollup@4.14.3)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.14.3)
+      '@rollup/plugin-replace': 5.0.5(rollup@4.14.3)
+      '@rollup/plugin-terser': 0.4.4(rollup@4.14.3)
+      '@sanity/browserslist-config': 1.0.3
+      browserslist: 4.23.0
+      cac: 6.7.14
+      chalk: 4.1.2
+      chokidar: 3.6.0
+      esbuild: 0.20.2
+      esbuild-register: 3.5.0(esbuild@0.20.2)
+      find-config: 1.0.0
+      get-latest-version: 5.1.0
+      git-url-parse: 14.0.0
+      globby: 11.1.0
+      jsonc-parser: 3.2.1
+      mkdirp: 3.0.1
+      outdent: 0.8.0
+      parse-git-config: 3.0.0
+      pkg-up: 3.1.0
+      prettier: 3.2.5
+      pretty-bytes: 5.6.0
+      prompts: 2.4.2
+      rimraf: 4.4.1
+      rollup: 4.14.3
+      rollup-plugin-esbuild: 6.1.1(esbuild@0.20.2)(rollup@4.14.3)
+      rxjs: 7.8.1
+      treeify: 1.1.0
+      typescript: 5.4.5
+      uuid: 9.0.1
+      zod: 3.22.5
+      zod-validation-error: 3.1.0(zod@3.22.5)
     transitivePeerDependencies:
       - '@types/babel__core'
       - '@types/node'
@@ -13158,7 +13216,7 @@ snapshots:
       react-is: 18.2.0
       sanity: 3.38.0(@types/node@18.19.29)(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.30.3)
       styled-components: 6.1.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      zod: 3.22.4
+      zod: 3.22.5
 
   groqd@0.15.10:
     dependencies:
@@ -16880,6 +16938,12 @@ snapshots:
     dependencies:
       zod: 3.22.4
 
+  zod-validation-error@3.1.0(zod@3.22.5):
+    dependencies:
+      zod: 3.22.5
+
   zod@3.22.4: {}
+
+  zod@3.22.5: {}
 
   zwitch@2.0.4: {}
