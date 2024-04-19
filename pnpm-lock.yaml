@@ -255,8 +255,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.4.17
-        version: 1.4.17(@sanity/client@6.15.19)(react@18.2.0)
+        specifier: 1.4.18
+        version: 1.4.18(@sanity/client@6.15.19)(react@18.2.0)
       mendoza:
         specifier: 3.0.7
         version: 3.0.7
@@ -2325,6 +2325,13 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       '@sanity/client': ^6.15.17
+      react: ^18.2.0
+
+  '@sanity/preview-kit-compat@1.4.18':
+    resolution: {integrity: sha512-7TPWuSRzfNVUAaEsC5L2r/ZQfvUM5SFTBYGzLEO/NtPAn7f8wkO95kReaE/r5Ln4u1E0l+n/lj1zAd4HDLcs9A==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@sanity/client': ^6.15.19
       react: ^18.2.0
 
   '@sanity/preview-kit@5.0.45':
@@ -10178,6 +10185,11 @@ snapshots:
       - styled-components
 
   '@sanity/preview-kit-compat@1.4.17(@sanity/client@6.15.19)(react@18.2.0)':
+    dependencies:
+      '@sanity/client': 6.15.19(debug@3.2.7)
+      react: 18.2.0
+
+  '@sanity/preview-kit-compat@1.4.18(@sanity/client@6.15.19)(react@18.2.0)':
     dependencies:
       '@sanity/client': 6.15.19(debug@3.2.7)
       react: 18.2.0
