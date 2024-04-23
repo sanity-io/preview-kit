@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.47](https://github.com/sanity-io/preview-kit/compare/v5.0.46...v5.0.47) (2024-04-23)
+
+### Bug Fixes
+
+- improve bundling ([ce2bb6a](https://github.com/sanity-io/preview-kit/commit/ce2bb6a3f799474060748389cc13d2827716a2f7))
+
 ## [5.0.46](https://github.com/sanity-io/preview-kit/compare/v5.0.45...v5.0.46) (2024-04-22)
 
 ### Bug Fixes
