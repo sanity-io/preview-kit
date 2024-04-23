@@ -1,9 +1,6 @@
-import {
-  unstable__adapter as adapter,
-  unstable__environment as environment,
-} from '@sanity/client'
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { useEffect } from 'react'
+import {unstable__adapter as adapter, unstable__environment as environment} from '@sanity/client'
+import type {GetStaticProps, InferGetStaticPropsType} from 'next'
+import {useEffect} from 'react'
 import {
   Button,
   Container,
@@ -18,8 +15,8 @@ import {
   tableQuery,
 } from 'ui/react'
 import dynamic from 'next/dynamic'
-import { useLiveQuery } from '@sanity/preview-kit'
-import { sanityFetch, token } from '../sanity.fetch'
+import {useLiveQuery} from '@sanity/preview-kit'
+import {sanityFetch, token} from '../sanity.fetch'
 
 const LiveStoreVariant = dynamic(() => import('../variants/live-store'))
 
@@ -32,10 +29,10 @@ export const getStaticProps: GetStaticProps<{
   server__adapter: typeof adapter
   server__environment: typeof environment
   variant: string
-}> = async ({ draftMode = false }) => {
+}> = async ({draftMode = false}) => {
   const [table, footer] = await Promise.all([
-    sanityFetch<TableProps['data']>({ draftMode, query: tableQuery }),
-    sanityFetch<FooterProps['data']>({ draftMode, query: footerQuery }),
+    sanityFetch<TableProps['data']>({draftMode, query: tableQuery}),
+    sanityFetch<FooterProps['data']>({draftMode, query: footerQuery}),
   ])
   const timestamp = new Date().toJSON()
 
@@ -53,10 +50,8 @@ export const getStaticProps: GetStaticProps<{
   }
 }
 
-export default function Page(
-  props: InferGetStaticPropsType<typeof getStaticProps>,
-) {
-  const { draftMode, timestamp, server__adapter, server__environment } = props
+export default function Page(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const {draftMode, timestamp, server__adapter, server__environment} = props
   useEffect(() => {
     console.log({
       client__adapter: adapter,
@@ -68,7 +63,7 @@ export default function Page(
 
   return (
     <Container>
-      <form style={{ display: 'contents' }}>
+      <form style={{display: 'contents'}}>
         {draftMode ? (
           <ViewPublishedButton formAction="/api/disable-draft" />
         ) : (
@@ -84,14 +79,14 @@ export default function Page(
       <script
         type="application/json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({ server__adapter, server__environment }),
+          __html: JSON.stringify({server__adapter, server__environment}),
         }}
       />
     </Container>
   )
 }
 
-function RefreshButton({ isLive }: { isLive: boolean }) {
+function RefreshButton({isLive}: {isLive: boolean}) {
   return (
     <form
       action="/api/revalidate"

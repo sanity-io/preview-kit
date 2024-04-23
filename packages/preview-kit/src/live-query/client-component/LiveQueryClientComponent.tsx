@@ -1,42 +1,32 @@
-import type { QueryParams as ClientQueryParams } from '@sanity/client'
-import type { PropsWithChildren } from 'react'
-import { Children, cloneElement, isValidElement, memo } from 'react'
+import type {QueryParams as ClientQueryParams} from '@sanity/client'
+import type {PropsWithChildren} from 'react'
+import {Children, cloneElement, isValidElement, memo} from 'react'
 
-import { useLiveQuery } from './useLiveQuery'
+import {useLiveQuery} from './useLiveQuery'
 
 /** @public */
-export type LiveQueryClientComponentProps<QueryResult, QueryParams> =
-  PropsWithChildren<{
-    /**
-     * If a parent <LiveQueryProvider> is missing, then an error is thrown.
-     * If you want to disable this behavior, set this prop to false.
-     * @defaultValue true
-     */
-    throwOnMissingProvider?: boolean
-    initialData: QueryResult
-    query: string
-    params?: QueryParams | undefined
-  }>
+export type LiveQueryClientComponentProps<QueryResult, QueryParams> = PropsWithChildren<{
+  /**
+   * If a parent <LiveQueryProvider> is missing, then an error is thrown.
+   * If you want to disable this behavior, set this prop to false.
+   * @defaultValue true
+   */
+  throwOnMissingProvider?: boolean
+  initialData: QueryResult
+  query: string
+  params?: QueryParams | undefined
+}>
 
-// Browser-only preview component, overwrites the data prop with live data on-demand
+/**
+ * Browser-only preview component, overwrites the data prop with live data on-demand
+ * @public
+ */
 function LiveQueryClientComponent<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,
->(
-  props: LiveQueryClientComponentProps<QueryResult, QueryParams>,
-): React.ReactNode {
-  const {
-    initialData,
-    query,
-    params,
-    children,
-    throwOnMissingProvider = true,
-  } = props
-  const [data, enabled] = useLiveQuery<QueryResult, QueryParams>(
-    initialData,
-    query,
-    params,
-  )
+>(props: LiveQueryClientComponentProps<QueryResult, QueryParams>): React.ReactNode {
+  const {initialData, query, params, children, throwOnMissingProvider = true} = props
+  const [data, enabled] = useLiveQuery<QueryResult, QueryParams>(initialData, query, params)
   // This hook is only used by `LiveQuery` when its `enabled` prop is true,
   // so we can reliably assume that if a parent provider is missing then that's an error
   if (throwOnMissingProvider && !enabled) {
@@ -70,5 +60,9 @@ function LiveQueryClientComponent<
 }
 LiveQueryClientComponent.displayName = 'LiveQueryClientComponent'
 
+/** @public */
+export type {LiveQueryClientComponent}
+
+/** @public */
 const LiveQueryClientComponentMemo = memo(LiveQueryClientComponent)
 export default LiveQueryClientComponentMemo

@@ -1,5 +1,5 @@
-import type { QueryParams } from '@sanity/client'
-import { client } from './sanity.client'
+import type {QueryParams} from '@sanity/client'
+import {client} from './sanity.client'
 
 export const token = process.env.SANITY_API_READ_TOKEN || ''
 
@@ -15,9 +15,7 @@ export async function sanityFetch<QueryResponse>({
   params?: QueryParams
 }): Promise<QueryResponse> {
   if (draftMode && !token) {
-    throw new Error(
-      'The `SANITY_API_READ_TOKEN` environment variable is required.',
-    )
+    throw new Error('The `SANITY_API_READ_TOKEN` environment variable is required.')
   }
   return client.fetch<QueryResponse>(
     query,

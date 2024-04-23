@@ -1,14 +1,20 @@
-import {
-  createClient as createSanityClient,
-  type SanityClient,
-} from '@sanity/client'
+import {createClient as createSanityClient, type SanityClient} from '@sanity/client'
 
-import type { PreviewKitClientConfig } from './types'
+import type {PreviewKitClientConfig} from './types'
 
 export type * from './types'
 export type * from '@sanity/client'
 // eslint-disable-next-line simple-import-sort/exports
-export type { FilterDefault } from './types'
+export type {FilterDefault} from './types'
+
+declare const process: {
+  env: {
+    NODE_ENV: string
+    VERCEL_ENV: string
+    SANITY_SOURCE_MAP: string
+    SANITY_STUDIO_URL: string
+  }
+}
 
 /**
  * @public
@@ -31,9 +37,7 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
   }
 
   if (typeof encodeSourceMap === 'string' && encodeSourceMap !== 'auto') {
-    throw new Error(
-      `Invalid value for encodeSourceMap: ${encodeSourceMap}. Did you mean 'auto'?`,
-    )
+    throw new Error(`Invalid value for encodeSourceMap: ${encodeSourceMap}. Did you mean 'auto'?`)
   }
 
   try {
@@ -45,15 +49,11 @@ export const createClient = (config: PreviewKitClientConfig): SanityClient => {
         return createSanityClient(options)
       }
 
-      logger?.debug?.(
-        '[@sanity/preview-kit]: Creating source map enabled client',
-      )
+      logger?.debug?.('[@sanity/preview-kit]: Creating source map enabled client')
       return createSanityClient({
         ...options,
         // Source maps by Content Lake are required in order to know where to insert the encoded source maps into strings
-        resultSourceMap: config.resultSourceMap
-          ? config.resultSourceMap
-          : 'withKeyArraySelector',
+        resultSourceMap: config.resultSourceMap ? config.resultSourceMap : 'withKeyArraySelector',
         stega: {
           enabled: true,
           studioUrl,

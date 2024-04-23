@@ -5,11 +5,7 @@
 The signature of `usePreview` is:
 
 ```tsx
-function usePreview<
-  QueryResult = any,
-  QueryParams = Record<string, unknown>,
-  QueryString = string,
->(
+function usePreview<QueryResult = any, QueryParams = Record<string, unknown>, QueryString = string>(
   token: string | null,
   query: QueryString,
   params?: QueryParams,
@@ -20,7 +16,7 @@ function usePreview<
 While the signature of `useLiveQuery` is:
 
 ```tsx
-import type { QueryParams as ClientQueryParams } from '@sanity/client'
+import type {QueryParams as ClientQueryParams} from '@sanity/client'
 
 type QueryLoading = boolean
 
@@ -59,7 +55,7 @@ const usePreview = definePreview(config: PreviewConfig)
 While the signature for `<LiveQueryProvider />` is:
 
 ```tsx
-import type { SanityClient } from '@sanity/client'
+import type {SanityClient} from '@sanity/client'
 
 export interface LiveQueryProviderProps {
   children: React.ReactNode
@@ -78,9 +74,7 @@ export interface LiveQueryProviderProps {
   turboSourceMap?: boolean
 }
 
-export function LiveQueryProvider(
-  props: LiveQueryProviderProps,
-): React.JSX.Element
+export function LiveQueryProvider(props: LiveQueryProviderProps): React.JSX.Element
 ```
 
 The main differences between the two APIs are:
@@ -96,21 +90,17 @@ The main differences between the two APIs are:
 Here's what a typical migration looks like, to keep the guide simple more advanced patterns like `React.lazy` are omitted:
 
 ```tsx
-import { createClient, type SanityClient } from '@sanity/client'
-import type { LoaderArgs } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
-import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
+import {createClient, type SanityClient} from '@sanity/client'
+import type {LoaderArgs} from '@vercel/remix'
+import {useLoaderData} from '@remix-run/react'
+import {definePreview, PreviewSuspense} from '@sanity/preview-kit'
 
 const projectId = 'pv8y60vp'
 const dataset = 'production'
 
 const query = `count(*[])`
 
-export function getClient({
-  preview,
-}: {
-  preview?: { token: string }
-}): SanityClient {
+export function getClient({preview}: {preview?: {token: string}}): SanityClient {
   const client = createClient({
     projectId,
     dataset,
@@ -132,19 +122,18 @@ export function getClient({
   return client
 }
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({request}: LoaderArgs) {
   const token = process.env.SANITY_API_READ_TOKEN
-  const preview =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
-  const client = getClient({ preview })
+  const preview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? {token} : undefined
+  const client = getClient({preview})
 
   const data = await client.fetch<number>(query)
 
-  return { preview, data }
+  return {preview, data}
 }
 
 export default function CountPage() {
-  const { preview, data } = useLoaderData<typeof loader>()
+  const {preview, data} = useLoaderData<typeof loader>()
 
   const children = <Count data={data} />
 
@@ -161,14 +150,14 @@ export default function CountPage() {
   )
 }
 
-const Count = ({ data }: { data: number }) => (
+const Count = ({data}: {data: number}) => (
   <>
     Documents: <strong>{data}</strong>
   </>
 )
 
-const usePreview: UsePreview<number> = definePreview({ projectId, dataset })
-const PreviewCount = ({ token }) => {
+const usePreview: UsePreview<number> = definePreview({projectId, dataset})
+const PreviewCount = ({token}) => {
   const data = usePreview(token, query)
   return <Count data={data!} />
 }
@@ -177,22 +166,18 @@ const PreviewCount = ({ token }) => {
 After migration, it looks like this:
 
 ```tsx
-import { useMemo } from 'react'
+import {useMemo} from 'react'
 import createClient from '@sanity/client'
-import type { LoaderArgs } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
-import { useLiveQuery, LiveQueryProvider } from '@sanity/preview-kit'
+import type {LoaderArgs} from '@vercel/remix'
+import {useLoaderData} from '@remix-run/react'
+import {useLiveQuery, LiveQueryProvider} from '@sanity/preview-kit'
 
 const projectId = 'pv8y60vp'
 const dataset = 'production'
 
 const query = `count(*[])`
 
-export function getClient({
-  preview,
-}: {
-  preview?: { token: string }
-}): SanityClient {
+export function getClient({preview}: {preview?: {token: string}}): SanityClient {
   const client = createClient({
     projectId,
     dataset,
@@ -214,34 +199,27 @@ export function getClient({
   return client
 }
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({request}: LoaderArgs) {
   const token = process.env.SANITY_API_READ_TOKEN
-  const preview =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
-  const client = getClient({ preview })
+  const preview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? {token} : undefined
+  const client = getClient({preview})
 
   const data = await client.fetch<number>(query)
 
-  return { preview, data }
+  return {preview, data}
 }
 
 export default function CountPage() {
-  const { preview, data } = useLoaderData<typeof loader>()
+  const {preview, data} = useLoaderData<typeof loader>()
 
   const children = <Count data={data} />
 
   return (
-    <>
-      {preview ? (
-        <PreviewProvider token={preview.token}>{children}</PreviewProvider>
-      ) : (
-        children
-      )}
-    </>
+    <>{preview ? <PreviewProvider token={preview.token}>{children}</PreviewProvider> : children}</>
   )
 }
 
-const Count = ({ data: initialData }: { data: number }) => {
+const Count = ({data: initialData}: {data: number}) => {
   const [data] = useLiveQuery(initialData, query)
   return (
     <>
@@ -250,14 +228,8 @@ const Count = ({ data: initialData }: { data: number }) => {
   )
 }
 
-function PreviewProvider({
-  children,
-  token,
-}: {
-  children: React.ReactNode
-  token: string
-}) {
-  const client = useMemo(() => getClient({ preview: { token } }), [token])
+function PreviewProvider({children, token}: {children: React.ReactNode; token: string}) {
+  const client = useMemo(() => getClient({preview: {token}}), [token])
   return <LiveQueryProvider client={client}>{children}</LiveQueryProvider>
 }
 ```
@@ -268,9 +240,9 @@ In this example a Spinner is displayed until groq-store is booted up and skips f
 
 ```tsx
 import createClient from '@sanity/client'
-import type { LoaderArgs } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
-import { definePreview, PreviewSuspense } from '@sanity/preview-kit'
+import type {LoaderArgs} from '@vercel/remix'
+import {useLoaderData} from '@remix-run/react'
+import {definePreview, PreviewSuspense} from '@sanity/preview-kit'
 
 import Spinner from '~/Spinner'
 
@@ -279,11 +251,7 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export function getClient({
-  preview,
-}: {
-  preview?: { token: string }
-}): SanityClient {
+export function getClient({preview}: {preview?: {token: string}}): SanityClient {
   const client = createClient({
     projectId,
     dataset,
@@ -305,19 +273,18 @@ export function getClient({
   return client
 }
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({request}: LoaderArgs) {
   const token = process.env.SANITY_API_READ_TOKEN
-  const preview =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
-  const client = getClient({ preview })
+  const preview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? {token} : undefined
+  const client = getClient({preview})
 
   const data = preview ? null : await client.fetch<number>(query)
 
-  return { preview, data }
+  return {preview, data}
 }
 
 export default function CountPage() {
-  const { preview, data } = useLoaderData<typeof loader>()
+  const {preview, data} = useLoaderData<typeof loader>()
 
   return (
     <>
@@ -332,14 +299,14 @@ export default function CountPage() {
   )
 }
 
-const Count = ({ data }: { data: number }) => (
+const Count = ({data}: {data: number}) => (
   <>
     Documents: <strong>{data}</strong>
   </>
 )
 
-const usePreview: UsePreview<number> = definePreview({ projectId, dataset })
-const PreviewCount = ({ token }) => {
+const usePreview: UsePreview<number> = definePreview({projectId, dataset})
+const PreviewCount = ({token}) => {
   const data = usePreview(token, query)
   return <Count data={data!} />
 }
@@ -349,9 +316,9 @@ After migration, it looks like this:
 
 ```tsx
 import createClient from '@sanity/client'
-import type { LoaderArgs } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
-import { useLiveQuery, LiveQueryProvider } from '@sanity/preview-kit'
+import type {LoaderArgs} from '@vercel/remix'
+import {useLoaderData} from '@remix-run/react'
+import {useLiveQuery, LiveQueryProvider} from '@sanity/preview-kit'
 
 import Spinner from '~/Spinner'
 
@@ -360,11 +327,7 @@ const dataset = 'production'
 
 const query = `count(*[])`
 
-export function getClient({
-  preview,
-}: {
-  preview?: { token: string }
-}): SanityClient {
+export function getClient({preview}: {preview?: {token: string}}): SanityClient {
   const client = createClient({
     projectId,
     dataset,
@@ -386,19 +349,18 @@ export function getClient({
   return client
 }
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({request}: LoaderArgs) {
   const token = process.env.SANITY_API_READ_TOKEN
-  const preview =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
-  const client = getClient({ preview })
+  const preview = process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? {token} : undefined
+  const client = getClient({preview})
 
   const data = preview ? null : await client.fetch<number>(query)
 
-  return { preview, data }
+  return {preview, data}
 }
 
 export default function CountPage() {
-  const { preview, data } = useLoaderData<typeof loader>()
+  const {preview, data} = useLoaderData<typeof loader>()
 
   return (
     <>
@@ -413,7 +375,7 @@ export default function CountPage() {
   )
 }
 
-const Count = ({ data: initialData }: { data: number | null }) => {
+const Count = ({data: initialData}: {data: number | null}) => {
   const [data, loading] = useLiveQuery(initialData, query)
 
   if (loading) {
@@ -427,14 +389,8 @@ const Count = ({ data: initialData }: { data: number | null }) => {
   )
 }
 
-function PreviewProvider({
-  children,
-  token,
-}: {
-  children: React.ReactNode
-  token: string
-}) {
-  const client = useMemo(() => getClient({ preview: { token } }), [token])
+function PreviewProvider({children, token}: {children: React.ReactNode; token: string}) {
+  const client = useMemo(() => getClient({preview: {token}}), [token])
   return <LiveQueryProvider client={client}>{children}</LiveQueryProvider>
 }
 ```

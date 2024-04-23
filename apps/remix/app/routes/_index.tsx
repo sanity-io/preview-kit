@@ -1,7 +1,7 @@
-import type { LoaderFunctionArgs, SerializeFrom } from '@vercel/remix'
-import { useLoaderData, useRevalidator } from '@remix-run/react'
+import type {LoaderFunctionArgs, SerializeFrom} from '@vercel/remix'
+import {useLoaderData, useRevalidator} from '@remix-run/react'
 
-import type { TableProps, FooterProps } from 'ui/react'
+import type {TableProps, FooterProps} from 'ui/react'
 import {
   Timestamp,
   tableQuery,
@@ -12,25 +12,22 @@ import {
   Table,
   Footer,
 } from 'ui/react'
-import {
-  unstable__adapter as adapter,
-  unstable__environment as environment,
-} from '@sanity/client'
-import { getSession } from '~/sessions'
-import { lazy, useEffect } from 'react'
-import { useIsEnabled } from '@sanity/preview-kit'
-import { LiveQuery } from '@sanity/preview-kit/live-query'
-import { sanityFetch, token } from '~/sanity'
+import {unstable__adapter as adapter, unstable__environment as environment} from '@sanity/client'
+import {getSession} from '~/sessions'
+import {lazy, useEffect} from 'react'
+import {useIsEnabled} from '@sanity/preview-kit'
+import {LiveQuery} from '@sanity/preview-kit/live-query'
+import {sanityFetch, token} from '~/sanity'
 
 const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({request}: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get('Cookie'))
   const previewDrafts = session.get('view') === 'previewDrafts'
 
   const [table, footer] = await Promise.all([
-    sanityFetch<TableProps['data']>({ previewDrafts, query: tableQuery }),
-    sanityFetch<FooterProps['data']>({ previewDrafts, query: footerQuery }),
+    sanityFetch<TableProps['data']>({previewDrafts, query: tableQuery}),
+    sanityFetch<FooterProps['data']>({previewDrafts, query: footerQuery}),
   ])
   const timestamp = new Date().toJSON()
 
@@ -46,9 +43,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 }
 
-function Variant(
-  props: SerializeFrom<typeof loader> & { children: React.ReactNode },
-) {
+function Variant(props: SerializeFrom<typeof loader> & {children: React.ReactNode}) {
   if (props.previewDrafts) {
     return <LiveStoreVariant {...props} />
   }
@@ -57,8 +52,7 @@ function Variant(
 
 export default function Index() {
   const props = useLoaderData<typeof loader>()
-  const { previewDrafts, timestamp, server__adapter, server__environment } =
-    props
+  const {previewDrafts, timestamp, server__adapter, server__environment} = props
 
   useEffect(() => {
     console.log({
@@ -67,17 +61,13 @@ export default function Index() {
     })
   }, [])
 
-  const button = previewDrafts ? (
-    <ViewPublishedButton />
-  ) : (
-    <PreviewDraftsButton />
-  )
+  const button = previewDrafts ? <ViewPublishedButton /> : <PreviewDraftsButton />
   const action = previewDrafts ? '/api/disable-draft' : '/api/draft'
-  const { table, footer } = props
+  const {table, footer} = props
 
   return (
     <>
-      <form action={action} style={{ display: 'contents' }}>
+      <form action={action} style={{display: 'contents'}}>
         {button}
       </form>
       <Variant {...props}>
@@ -103,7 +93,7 @@ export default function Index() {
       <script
         type="application/json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({ server__adapter, server__environment }),
+          __html: JSON.stringify({server__adapter, server__environment}),
         }}
       />
     </>

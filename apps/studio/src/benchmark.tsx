@@ -1,9 +1,9 @@
-import { faker } from '@faker-js/faker'
-import { ActivityIcon } from '@sanity/icons'
-import { Box, Button, Stack, Text } from '@sanity/ui'
-import { useState } from 'react'
-import { SanityClient, definePlugin, useClient } from 'sanity'
-import { route } from 'sanity/router'
+import {faker} from '@faker-js/faker'
+import {ActivityIcon} from '@sanity/icons'
+import {Box, Button, Stack, Text} from '@sanity/ui'
+import {useState} from 'react'
+import {SanityClient, definePlugin, useClient} from 'sanity'
+import {route} from 'sanity/router'
 import styled from 'styled-components'
 import groq from 'groq'
 
@@ -33,7 +33,7 @@ const Container = styled(Box)`
 `
 
 function Benchmark() {
-  const client = useClient({ apiVersion: '2023-05-05' })
+  const client = useClient({apiVersion: '2023-05-05'})
   const [creating, setCreating] = useState(false)
   const [editing, setEditing] = useState(false)
   const [deleting, setDeleting] = useState(false)
@@ -45,12 +45,11 @@ function Benchmark() {
     <Container sizing="border" display="flex">
       <Stack space={5}>
         <Box padding={4}>
-          <Stack space={4} style={{ justifyItems: 'center' }}>
+          <Stack space={4} style={{justifyItems: 'center'}}>
             <Text>
-              Quickly fill up the dataset with documents to test live preview
-              experiences at scale.
+              Quickly fill up the dataset with documents to test live preview experiences at scale.
             </Text>
-            <Box style={{ justifyItems: 'center' }}>
+            <Box style={{justifyItems: 'center'}}>
               <Button
                 tone="positive"
                 loading={creating}
@@ -63,7 +62,7 @@ function Benchmark() {
               >
                 Create 1k pages
               </Button>
-              <span style={{ display: 'inline-block', width: '1rem' }} />
+              <span style={{display: 'inline-block', width: '1rem'}} />
               <Button
                 tone="positive"
                 loading={creating}
@@ -76,7 +75,7 @@ function Benchmark() {
               >
                 Create 10k pages
               </Button>
-              <span style={{ display: 'inline-block', width: '1rem' }} />
+              <span style={{display: 'inline-block', width: '1rem'}} />
               <Button
                 tone="positive"
                 loading={creating}
@@ -93,13 +92,12 @@ function Benchmark() {
           </Stack>
         </Box>
         <Box padding={4}>
-          <Stack space={4} style={{ justifyItems: 'center' }}>
+          <Stack space={4} style={{justifyItems: 'center'}}>
             <Text>
-              Simulate editing activity. You can also start this as a GitHub
-              Action to scale up the load and avoid hitting API rate limits from
-              your own IP address.
+              Simulate editing activity. You can also start this as a GitHub Action to scale up the
+              load and avoid hitting API rate limits from your own IP address.
             </Text>
-            <Box style={{ justifyItems: 'center' }}>
+            <Box style={{justifyItems: 'center'}}>
               <Button
                 tone="caution"
                 loading={editing}
@@ -116,12 +114,9 @@ function Benchmark() {
           </Stack>
         </Box>
         <Box padding={4}>
-          <Stack space={4} style={{ justifyItems: 'center' }}>
-            <Text>
-              Remove all documents that aren't drafts, to quickly remove
-              benchmark pages
-            </Text>
-            <Box style={{ justifyItems: 'center' }}>
+          <Stack space={4} style={{justifyItems: 'center'}}>
+            <Text>Remove all documents that aren't drafts, to quickly remove benchmark pages</Text>
+            <Box style={{justifyItems: 'center'}}>
               <Button
                 tone="critical"
                 loading={deleting}
@@ -147,16 +142,12 @@ async function createDocuments(client: SanityClient, amount: number) {
   for (let i = 1; i <= iterations; i++) {
     const transaction = client.transaction()
     for (let i = 1; i <= 100; i++) {
-      transaction.create({ _type: 'page', title: generateNewTitle() })
+      transaction.create({_type: 'page', title: generateNewTitle()})
     }
-    await transaction.commit({ visibility: 'async' })
+    await transaction.commit({visibility: 'async'})
   }
 }
-export async function updateDocuments(
-  client: SanityClient,
-  minutes: number,
-  batch: number,
-) {
+export async function updateDocuments(client: SanityClient, minutes: number, batch: number) {
   const start = Date.now()
   const end = start + minutes * 60 * 1000
 
@@ -168,16 +159,14 @@ export async function updateDocuments(
       }]._id`,
     )
     for (const documentId of ids) {
-      transaction.patch(documentId, (p) => p.set({ title: generateNewTitle() }))
+      transaction.patch(documentId, (p) => p.set({title: generateNewTitle()}))
     }
-    await transaction.commit({ visibility: 'async' })
+    await transaction.commit({visibility: 'async'})
   }
 }
 async function deleteDocuments(client: SanityClient) {
   // const count = await client.fetch('*[!(_id in path("drafts.**"))]._id')
-  const count = await client.fetch(
-    groq`count(*[_type == "page" && !(_id in path("drafts.**"))])`,
-  )
+  const count = await client.fetch(groq`count(*[_type == "page" && !(_id in path("drafts.**"))])`)
 
   const batch = 1000
   const iterations = Math.max(1, Math.round(count / batch))

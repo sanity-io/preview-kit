@@ -1,8 +1,8 @@
 /* eslint-disable no-irregular-whitespace */
-import { vercelStegaDecode } from '@vercel/stega'
-import { expect, test } from 'vitest'
+import {vercelStegaDecode} from '@vercel/stega'
+import {expect, test} from 'vitest'
 
-import { createClient } from './createClient'
+import {createClient} from './createClient'
 
 const title = '🚀 🤯'
 
@@ -18,10 +18,7 @@ test('it returns stega encoded source maps', async () => {
     logger: console,
   })
 
-  const resultArray = await client.fetch(
-    `*[_type == "page" && title == $title][0..1]`,
-    { title },
-  )
+  const resultArray = await client.fetch(`*[_type == "page" && title == $title][0..1]`, {title})
   expect(vercelStegaDecode(resultArray[0].title)).toMatchInlineSnapshot(
     `
     {
@@ -31,10 +28,7 @@ test('it returns stega encoded source maps', async () => {
   `,
   )
 
-  const resultObject = await client.fetch(
-    `*[_type == "page" && title == $title][0]`,
-    { title },
-  )
+  const resultObject = await client.fetch(`*[_type == "page" && title == $title][0]`, {title})
   expect(vercelStegaDecode(resultObject.title)).toMatchInlineSnapshot(
     `
     {
@@ -44,10 +38,7 @@ test('it returns stega encoded source maps', async () => {
   `,
   )
 
-  const resultString = await client.fetch(
-    `*[_type == "page" && title == $title][0].title`,
-    { title },
-  )
+  const resultString = await client.fetch(`*[_type == "page" && title == $title][0].title`, {title})
   expect(vercelStegaDecode(resultString)).toMatchInlineSnapshot(`
     {
       "href": "https://preview-kit-test-studio.sanity.build/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=https%3A%2F%2Fpreview-kit-test-studio.sanity.build&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title",
@@ -67,10 +58,10 @@ test('it can access the original source map', async () => {
     apiVersion: '2023-05-03',
   })
 
-  const { result, resultSourceMap } = await client.fetch(
+  const {result, resultSourceMap} = await client.fetch(
     `*[_type == "page" && title == $title][0].title`,
-    { title },
-    { filterResponse: false },
+    {title},
+    {filterResponse: false},
   )
   expect(vercelStegaDecode(result)).toMatchInlineSnapshot(`
     {
@@ -115,10 +106,10 @@ test('it can query the content source map without transcoding', async () => {
     dataset: 'production',
   })
 
-  const { result, resultSourceMap } = await client.fetch(
+  const {result, resultSourceMap} = await client.fetch(
     `*[_type == "page" && title == $title][0].title`,
-    { title },
-    { filterResponse: false },
+    {title},
+    {filterResponse: false},
   )
   expect(vercelStegaDecode(result)).toBeUndefined()
   expect(resultSourceMap).toMatchInlineSnapshot(`
@@ -154,13 +145,10 @@ test('encodeSourceMapAtPath', async () => {
     encodeSourceMap: true,
     projectId: 'pv8y60vp',
     dataset: 'production',
-    encodeSourceMapAtPath: ({ path }) => path.at(-1) !== 'title',
+    encodeSourceMapAtPath: ({path}) => path.at(-1) !== 'title',
   })
 
-  const resultString = await client.fetch(
-    `*[_type == "page" && title == $title][0].title`,
-    { title },
-  )
+  const resultString = await client.fetch(`*[_type == "page" && title == $title][0].title`, {title})
   expect(resultString).toBe('🚀 🤯')
   expect(vercelStegaDecode(resultString)).toBe(undefined)
 })

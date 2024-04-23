@@ -81,8 +81,8 @@ As `<LiveQueryProvider />` is configured with a `@sanity/client` instance it mak
 `app/lib/sanity.ts`
 
 ```ts
-import { createClient } from '@sanity/client'
-import type { QueryParams } from '@sanity/client'
+import {createClient} from '@sanity/client'
+import type {QueryParams} from '@sanity/client'
 
 // Shared on the server and the browser
 export const client = createClient({
@@ -94,8 +94,7 @@ export const client = createClient({
 })
 
 // Only defined on the server, passed to the browser via a `loader`
-export const token =
-  typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
+export const token = typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
 
 const DEFAULT_PARAMS = {} as QueryParams
 
@@ -110,9 +109,7 @@ export async function sanityFetch<QueryResponse>({
   params?: QueryParams
 }): Promise<QueryResponse> {
   if (previewDrafts && !token) {
-    throw new Error(
-      'The `SANITY_API_READ_TOKEN` environment variable is required.',
-    )
+    throw new Error('The `SANITY_API_READ_TOKEN` environment variable is required.')
   }
   return client.fetch<QueryResponse>(
     query,
@@ -134,8 +131,8 @@ Create a new file for the provider, so it can be loaded with `React.lazy` and av
 `app/PreviewProvider.tsx`
 
 ```tsx
-import { LiveQueryProvider } from '@sanity/preview-kit'
-import { client } from '~/lib/sanity'
+import {LiveQueryProvider} from '@sanity/preview-kit'
+import {client} from '~/lib/sanity'
 
 export default function PreviewProvider({
   children,
@@ -163,25 +160,25 @@ Here's the Remix route we'll be adding live preview of drafts, it's pretty basic
 
 ```tsx
 // app/routes/index.tsx
-import type { LoaderArgs } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
+import type {LoaderArgs} from '@vercel/remix'
+import {useLoaderData} from '@remix-run/react'
 
-import { client } from '~/lib/sanity'
-import type { UsersResponse } from '~/UsersList'
-import { UsersList, usersQuery } from '~/UsersList'
-import { Layout } from '~/ui'
+import {client} from '~/lib/sanity'
+import type {UsersResponse} from '~/UsersList'
+import {UsersList, usersQuery} from '~/UsersList'
+import {Layout} from '~/ui'
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({request}: LoaderArgs) {
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
-  const users = await client.fetch<UsersResponse>(usersQuery, { lastId })
+  const users = await client.fetch<UsersResponse>(usersQuery, {lastId})
 
-  return { users, lastId }
+  return {users, lastId}
 }
 
 export default function Index() {
-  const { users, lastId } = useLoaderData<typeof loader>()
+  const {users, lastId} = useLoaderData<typeof loader>()
 
   return (
     <Layout>
@@ -194,7 +191,7 @@ export default function Index() {
 Now let's import the `PreviewProvider` component we created in the previous step. To ensure we don't increase the production bundle size, we'll use `React.lazy` to code-split the component. The `React.lazy` API requires a `React.Suspense` boundary, so we'll add that too.
 
 ```tsx
-import { lazy, Suspense } from 'react'
+import {lazy, Suspense} from 'react'
 
 const PreviewProvider = lazy(() => import('~/PreviewProvider'))
 ```
@@ -204,26 +201,26 @@ Before we can add `<PreviewProvider />` to the layout we need to update the `loa
 Update the `client.fetch` call to use the new `sanityFetch` utility we created earlier, as well as the `token`:
 
 ```tsx
-import { token, sanityFetch } from '~/lib/sanity'
+import {token, sanityFetch} from '~/lib/sanity'
 
 const previewDrafts = process.env.SANITY_API_PREVIEW_DRAFTS === 'true'
 const users = await sanityFetch<UsersResponse>({
   previewDrafts,
   query: usersQuery,
-  params: { lastId },
+  params: {lastId},
 })
 ```
 
 Update the `loader` return statement from `return {users, lastId}` to:
 
 ```tsx
-return { previewDrafts, token, users, lastId }
+return {previewDrafts, token, users, lastId}
 ```
 
 And add `previewDrafts`, and `token`, to `useLoaderData`:
 
 ```tsx
-const { previewDrafts, token, users, lastId } = useLoaderData<typeof loader>()
+const {previewDrafts, token, users, lastId} = useLoaderData<typeof loader>()
 ```
 
 Then make the render conditional based on wether `previewDrafts` is set:
@@ -248,34 +245,33 @@ After putting everything together the route should now look like this:
 
 ```tsx
 // app/routes/index.tsx
-import type { LoaderArgs } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
-import { lazy, Suspense } from 'react'
+import type {LoaderArgs} from '@vercel/remix'
+import {useLoaderData} from '@remix-run/react'
+import {lazy, Suspense} from 'react'
 
-import { token, sanityFetch } from '~/lib/sanity'
-import type { UsersResponse } from '~/UsersList'
-import { UsersList, usersQuery } from '~/UsersList'
-import { Layout } from '~/ui'
+import {token, sanityFetch} from '~/lib/sanity'
+import type {UsersResponse} from '~/UsersList'
+import {UsersList, usersQuery} from '~/UsersList'
+import {Layout} from '~/ui'
 
 const PreviewProvider = lazy(() => import('~/PreviewProvider'))
 
-export async function loader({ request }: LoaderArgs) {
-  const previewDrafts =
-    process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? { token } : undefined
+export async function loader({request}: LoaderArgs) {
+  const previewDrafts = process.env.SANITY_API_PREVIEW_DRAFTS === 'true' ? {token} : undefined
   const url = new URL(request.url)
   const lastId = url.searchParams.get('lastId') || ''
 
   const users = await sanityFetch<UsersResponse>({
     previewDrafts,
     query: usersQuery,
-    params: { lastId },
+    params: {lastId},
   })
 
-  return { previewDrafts, token, users, lastId }
+  return {previewDrafts, token, users, lastId}
 }
 
 export default function Index() {
-  const { previewDrafts, token, users, lastId } = useLoaderData<typeof loader>()
+  const {previewDrafts, token, users, lastId} = useLoaderData<typeof loader>()
 
   const children = <UsersList data={users} lastId={lastId} />
 
@@ -301,7 +297,7 @@ Let's look at what the `<UsersList>` component looks like, before we add the hoo
 // app/UsersList.tsx
 import groq from 'groq'
 
-import { ListView, ListPagination } from '~/ui'
+import {ListView, ListPagination} from '~/ui'
 
 export const usersQuery = groq`{
   "list": *[_type == "user" && _id > $lastId] | order(_id) [0...20],
@@ -319,7 +315,7 @@ export interface UsersListProps {
 }
 
 export function UsersList(props: UsersListProps) {
-  const { data, lastId } = props
+  const {data, lastId} = props
 
   return (
     <>
@@ -342,30 +338,30 @@ export function useLiveQuery(initialData) {
 Thus it's fairly easy to add conditional live preview capabilities to `UsersList`, simply add hook to your imports:
 
 ```tsx
-import { useLiveQuery } from '@sanity/preview-kit'
+import {useLiveQuery} from '@sanity/preview-kit'
 ```
 
 And replace this:
 
 ```tsx
-const { data, lastId } = props
+const {data, lastId} = props
 ```
 
 With this:
 
 ```tsx
-const { data: initialData, lastId } = props
-const [data] = useLiveQuery(initialData, usersQuery, { lastId })
+const {data: initialData, lastId} = props
+const [data] = useLiveQuery(initialData, usersQuery, {lastId})
 ```
 
 All together now:
 
 ```tsx
 // app/UsersList.tsx
-import { useLiveQuery } from '@sanity/preview-kit'
+import {useLiveQuery} from '@sanity/preview-kit'
 import groq from 'groq'
 
-import { ListView, ListPagination } from '~/ui'
+import {ListView, ListPagination} from '~/ui'
 
 export const usersQuery = groq`{
   "list": *[_type == "user" && _id > $lastId] | order(_id) [0...20],
@@ -383,8 +379,8 @@ export interface UsersListProps {
 }
 
 export function UsersList(props: UsersListProps) {
-  const { data: initialData, lastId } = props
-  const [data] = useLiveQuery(initialData, usersQuery, { lastId })
+  const {data: initialData, lastId} = props
+  const [data] = useLiveQuery(initialData, usersQuery, {lastId})
 
   return (
     <>
@@ -403,7 +399,7 @@ The best way to do this is to add a wrapper component that is only used in previ
 
 ```tsx
 export function UsersList(props: UsersListProps) {
-  const { data, lastId } = props
+  const {data, lastId} = props
 
   return (
     <>
@@ -414,8 +410,8 @@ export function UsersList(props: UsersListProps) {
 }
 
 export function PreviewUsersList(props: UsersListProps) {
-  const { data: initialData, lastId } = props
-  const [data, loading] = useLiveQuery(initialData, usersQuery, { lastId })
+  const {data: initialData, lastId} = props
+  const [data, loading] = useLiveQuery(initialData, usersQuery, {lastId})
 
   return (
     <>
@@ -470,7 +466,7 @@ Out of the box it'll only trigger a re-render of `UsersList` if the query respon
 const [data] = useLiveQuery(
   initialData,
   usersQuery,
-  { lastId },
+  {lastId},
   {
     // Only re-render in real-time if user ids and names changed, ignore all other differences
     isEqual: (a, b) =>
@@ -485,18 +481,18 @@ const [data] = useLiveQuery(
 You can also use the `React.useDeferredValue` hook and a `React.memo` wrapper to further optimize performance by letting React give other state updates higher priority than the preview updates. It prevents the rest of your app from slowing down should there be too much Studio activity for the previews to keep up with:
 
 ```tsx
-import { memo, useDeferredValue } from 'react'
+import {memo, useDeferredValue} from 'react'
 
 export function PreviewUsersList(props: UsersListProps) {
-  const { data: initialData, lastId } = props
-  const [snapshot] = useLiveQuery(initialData, usersQuery, { lastId })
+  const {data: initialData, lastId} = props
+  const [snapshot] = useLiveQuery(initialData, usersQuery, {lastId})
   const data = useDeferredValue(snapshot)
 
   return <UsersList data={data} lastId={lastId} />
 }
 
 export const UsersList = memo(function UsersList(props: UsersListProps) {
-  const { data, lastId } = props
+  const {data, lastId} = props
 
   return (
     <>
@@ -514,10 +510,10 @@ export const UsersList = memo(function UsersList(props: UsersListProps) {
 The main benefit of the `LiveQuery` wrapper, over the `useLiveQuery` hook, is that it implements lazy loading. Unless `enabled` the code for `useLiveQuery` isn't loaded and your application's bundlesize isn't increased in production.
 
 ```tsx
-import { LiveQuery } from '@sanity/preview-kit/live-query'
+import {LiveQuery} from '@sanity/preview-kit/live-query'
 
 const UsersList = memo(function UsersList(props: UsersListProps) {
-  const { data, lastId } = props
+  const {data, lastId} = props
 
   return (
     <>
@@ -532,7 +528,7 @@ export default function Layout(props: LayoutProps) {
     <LiveQuery
       enabled={props.preview}
       query={usersQuery}
-      params={{ lastId: props.lastId }}
+      params={{lastId: props.lastId}}
       initialData={props.data}
     >
       <UsersList
@@ -554,7 +550,7 @@ For React Server Components it's important to note that the `children` of `LiveQ
 // This component in itself doesn't have any interactivity and can be rendered on the server, and avoid adding to the browser bundle.
 
 export default function UsersList(props: UsersListProps) {
-  const { data, lastId } = props
+  const {data, lastId} = props
 
   return (
     <>
@@ -581,9 +577,9 @@ export default dynamic(() => import('./UsersList'))
 `app/users/[lastId]/page.tsx`
 
 ```tsx
-import { createClient } from '@sanity/client'
-import { LiveQuery } from '@sanity/preview-kit/live-query'
-import { draftMode } from 'next/headers'
+import {createClient} from '@sanity/client'
+import {LiveQuery} from '@sanity/preview-kit/live-query'
+import {draftMode} from 'next/headers'
 import UsersList from './UsersList'
 import UsersListPreview from './UsersListPreview'
 
@@ -592,18 +588,18 @@ const client = createClient({
 })
 
 export default async function UsersPage(params) {
-  const { lastId } = params
+  const {lastId} = params
   const data = await client.fetch(
     usersQuery,
-    { lastId },
-    { perspective: draftMode().isEnabled ? 'previewDrafts' : 'published' },
+    {lastId},
+    {perspective: draftMode().isEnabled ? 'previewDrafts' : 'published'},
   )
 
   return (
     <LiveQuery
       enabled={draftMode().isEnabled}
       query={usersQuery}
-      params={{ lastId }}
+      params={{lastId}}
       initialData={data}
       as={UsersListPreview}
     >
@@ -635,7 +631,7 @@ You'll now get detailed reports on how it's setup and what to expect in terms of
 You can also use the `useIsEnabled` hook to determine of a live component (something that uses `useLiveQuery`) has a `LiveQueryProvider` in the parent tree or not:
 
 ```tsx
-import { useLiveQuery, useIsEnabled } from '@sanity/preview-kit'
+import {useLiveQuery, useIsEnabled} from '@sanity/preview-kit'
 
 export function PreviewUsersList(props) {
   const [data] = useLiveQuery(props.data, query, params)
@@ -660,7 +656,7 @@ If it's always `false` it's an indicator that you may need to lift your `LiveQue
 For data that can't be traced with Content Source Maps there's a background refresh interval. Depending on your queries you might want to tweak this interval to get the best performance.
 
 ```tsx
-import { LiveQueryProvider } from '@sanity/preview-kit'
+import {LiveQueryProvider} from '@sanity/preview-kit'
 
 return (
   <LiveQueryProvider
@@ -695,7 +691,7 @@ Preview Kit's enhanced Sanity client is built on top of `@sanity/client` and is 
 // import {createClient, type ClientConfig} from '@sanity/client'
 
 // Use the enhanced client instead
-import { createClient, type ClientConfig } from '@sanity/preview-kit/client'
+import {createClient, type ClientConfig} from '@sanity/preview-kit/client'
 
 const config: ClientConfig = {
   // ...base config options
@@ -717,7 +713,7 @@ const client = createClient(config)
 **Required** when `encodeSourceMap` is active, and can either be an absolute URL:
 
 ```ts
-import { createClient } from '@sanity/preview-kit/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const client = createClient({
   ...config,
@@ -728,7 +724,7 @@ const client = createClient({
 Or a relative path if the Studio is hosted on the same deployment, or embedded in the same app:
 
 ```ts
-import { createClient } from '@sanity/preview-kit/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const client = createClient({
   ...config,
@@ -741,7 +737,7 @@ const client = createClient({
 Accepts `"auto"`, the default, or a `boolean`. Controls when to encode the content source map into strings using `@vercel/stega` encoding. When `"auto"` is used a best-effort environment detection is used to see if the environment is a Vercel Preview deployment. On a different hosting provider, or in local development, configure this option to make sure it is only enabled in non-production deployments.
 
 ```tsx
-import { createClient } from '@sanity/preview-kit/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const client = createClient({
   ...config,
@@ -756,7 +752,7 @@ By default source maps are encoded into all strings that can be traced back to a
 You can customize this behavior using `encodeSourceMapAtPath`:
 
 ```tsx
-import { createClient } from '@sanity/preview-kit/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const client = createClient({
   ...config,
@@ -775,7 +771,7 @@ const client = createClient({
 Pass a `console` into `logger` to get detailed debug info and reports on which fields are encoded and which are skipped:
 
 ```tsx
-import { createClient } from '@sanity/preview-kit/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const client = createClient({
   ...config,
@@ -819,7 +815,7 @@ const client = createClient({
   resultSourceMap: true,
 })
 
-const { result, resultSourceMap } = await client.fetch(query, params, {
+const {result, resultSourceMap} = await client.fetch(query, params, {
   filterResponse: false,
 })
 

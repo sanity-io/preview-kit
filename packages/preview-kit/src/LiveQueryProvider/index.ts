@@ -1,6 +1,6 @@
-import { lazy } from 'react'
+import {lazy} from 'react'
 
-import type { LiveQueryProviderProps } from '../types'
+import type {LiveQueryProviderProps} from '../types'
 
 /** @public */
 export const LiveQueryProvider = lazy(() => import('./LiveQueryProvider'))

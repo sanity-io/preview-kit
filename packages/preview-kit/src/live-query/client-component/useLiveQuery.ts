@@ -1,18 +1,12 @@
 // This is a smaller version of `useLiveQuery`, as `LiveQuery` doesn't
 // need the more advanced features `useLiveQuery`, like the `isEqual` option or the `loading` state
 
-import type { QueryParams as ClientQueryParams } from '@sanity/client'
-import { useQueryParams } from '@sanity/preview-kit-compat'
-import {
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  useSyncExternalStore,
-} from 'react'
+import type {QueryParams as ClientQueryParams} from '@sanity/client'
+import type {QueryEnabled} from '@sanity/preview-kit'
+import {useQueryParams} from '@sanity/preview-kit-compat'
+import {useCallback, useContext, useMemo, useState, useSyncExternalStore} from 'react'
 
-import { defineStoreContext } from '../context'
-import { QueryEnabled } from '../types'
+import {defineStoreContext} from '../../context'
 
 /** @internal */
 export function useLiveQuery<
@@ -43,7 +37,7 @@ export function useLiveQuery<
       // eslint-disable-next-line no-console
       console.warn(
         "Failed to deep clone initialSnapshot, this is likely an error and an indication that the snapshot isn't JSON serializable",
-        { initialSnapshot: initialData, error },
+        {initialSnapshot: initialData, error},
       )
       return initialData
     }

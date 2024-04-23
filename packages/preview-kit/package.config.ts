@@ -1,7 +1,7 @@
-import { defineConfig } from '@sanity/pkg-utils'
+import {defineConfig} from '@sanity/pkg-utils'
 
 const MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED = [
-  'LiveQueryClientComponent.tsx',
+  'src/live-query/client-component/index.ts',
 ]
 
 export default defineConfig({
@@ -9,12 +9,11 @@ export default defineConfig({
   minify: true,
   rollup: {
     output: {
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       banner: (chunkInfo) => {
         if (
-          MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED.find(
-            (modulePath) => chunkInfo.facadeModuleId?.endsWith(modulePath),
+          chunkInfo.isEntry &&
+          MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED.find((modulePath) =>
+            chunkInfo.facadeModuleId?.endsWith(modulePath),
           )
         ) {
           return `"use client"`

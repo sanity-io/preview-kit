@@ -1,24 +1,15 @@
 {
+  "extends": "@sanity/pkg-utils/tsconfig/strictest.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "preserve",
-    "moduleDetection": "force",
-    "jsx": "preserve",
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "rootDir": ".",
+    "outDir": "dist",
+    "paths": {
+      "@sanity/preview-kit/client": ["./src/client/index.ts"],
+      "@sanity/preview-kit/live-query/client-component": [
+        "./src/live-query/client-component/index.ts"
+      ],
+      "@sanity/preview-kit/live-query": ["./src/live-query/index.ts"],
+      "@sanity/preview-kit": ["./src/"]
+    }
   }
 }

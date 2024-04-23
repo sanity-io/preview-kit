@@ -1,8 +1,8 @@
-import type { LoaderFunctionArgs } from '@vercel/remix'
-import { token } from '~/sanity'
-import { getSession, commitSession } from '~/sessions'
+import type {LoaderFunctionArgs} from '@vercel/remix'
+import {token} from '~/sanity'
+import {getSession, commitSession} from '~/sessions'
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({request}: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get('Cookie'))
 
   if (!token) {
@@ -13,7 +13,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return new Response(null, {
     status: 307,
     headers: {
-      Location: '/',
+      'Location': '/',
       'Set-Cookie': await commitSession(session),
     },
   })

@@ -1,8 +1,8 @@
 import 'bulma/css/bulma.min.css'
-import { Container } from 'ui/react'
-import { unstable__adapter, unstable__environment } from '@sanity/client'
+import {Container} from 'ui/react'
+import {unstable__adapter, unstable__environment} from '@sanity/client'
 import DraftModeButton from './DraftModeButton'
-import type { Metadata } from 'next'
+import type {Metadata} from 'next'
 
 export const runtime = 'edge'
 
@@ -10,11 +10,7 @@ export const metadata: Metadata = {
   title: `next-app-router-${process.env.VARIANT || 'default'}`,
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <head />

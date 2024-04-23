@@ -1,6 +1,6 @@
-import { createClient } from '@sanity/client'
-import { LiveQueryProvider } from '@sanity/preview-kit'
-import { useState } from 'react'
+import {createClient} from '@sanity/client'
+import {LiveQueryProvider} from '@sanity/preview-kit'
+import {useState} from 'react'
 
 export default function PreviewProvider({
   children,

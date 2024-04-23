@@ -1,14 +1,14 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useEffect, useTransition } from 'react'
-import { useFormStatus } from 'react-dom'
-import { Button } from 'ui/react'
-import { revalidate } from './actions'
-import { useIsEnabled } from '@sanity/preview-kit'
+import {useRouter} from 'next/navigation'
+import {useEffect, useTransition} from 'react'
+import {useFormStatus} from 'react-dom'
+import {Button} from 'ui/react'
+import {revalidate} from './actions'
+import {useIsEnabled} from '@sanity/preview-kit'
 
 function useRefresh() {
-  const { pending } = useFormStatus()
+  const {pending} = useFormStatus()
   const router = useRouter()
   const [loading, startTransition] = useTransition()
   useEffect(() => {

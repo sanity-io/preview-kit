@@ -6,21 +6,14 @@ import type {
   SanityClient,
   SanityDocument,
 } from '@sanity/client'
-import { applySourceDocuments } from '@sanity/client/csm'
-import { useDocumentsInUse, useRevalidate } from '@sanity/preview-kit-compat'
-import { vercelStegaSplit } from '@vercel/stega'
-import { LRUCache } from 'lru-cache'
-import { applyPatch } from 'mendoza'
-import {
-  memo,
-  startTransition,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import {applySourceDocuments} from '@sanity/client/csm'
+import {useDocumentsInUse, useRevalidate} from '@sanity/preview-kit-compat'
+import {vercelStegaSplit} from '@vercel/stega'
+import {LRUCache} from 'lru-cache'
+import {applyPatch} from 'mendoza'
+import {memo, startTransition, useCallback, useEffect, useMemo, useState} from 'react'
 
-import { defineStoreContext as Context } from '../context'
+import {defineStoreContext as Context} from '../context'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
@@ -31,10 +24,7 @@ import type {
 const DEFAULT_TAG = 'sanity.preview-kit'
 
 // Documents share the same cache even if there are nested providers, with a Least Recently Used (LRU) cache
-const documentsCache = new LRUCache<
-  ReturnType<typeof getTurboCacheKey>,
-  SanityDocument
->({
+const documentsCache = new LRUCache<ReturnType<typeof getTurboCacheKey>, SanityDocument>({
   // Max 500 documents in memory, no big deal if a document is evicted it just means the eventual consistency might take longer
   max: 500,
 })
@@ -42,26 +32,19 @@ const documentsCache = new LRUCache<
 /**
  * @internal
  */
-const LiveStoreProvider = memo(function LiveStoreProvider(
-  props: LiveQueryProviderProps,
-) {
-  const { children, refreshInterval = 10000, token } = props
+const LiveStoreProvider = memo(function LiveStoreProvider(props: LiveQueryProviderProps) {
+  const {children, refreshInterval = 10000, token} = props
 
   if (!props.client) {
-    throw new Error(
-      'Missing a `client` prop with a configured Sanity client instance',
-    )
+    throw new Error('Missing a `client` prop with a configured Sanity client instance')
   }
 
   // Ensure these values are stable even if userland isn't memoizing properly
   const [client] = useState(() => {
-    const { requestTagPrefix, resultSourceMap } = props.client.config()
+    const {requestTagPrefix, resultSourceMap} = props.client.config()
     return props.client.withConfig({
       requestTagPrefix: requestTagPrefix || DEFAULT_TAG,
-      resultSourceMap:
-        resultSourceMap === 'withKeyArraySelector'
-          ? 'withKeyArraySelector'
-          : true,
+      resultSourceMap: resultSourceMap === 'withKeyArraySelector' ? 'withKeyArraySelector' : true,
       // Set the recommended defaults, this is a convenience to make it easier to share a client config from a server component to the client component
       ...(token && {
         token,
@@ -108,13 +91,11 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
       const getSnapshot: ListenerGetSnapshot<QueryResult> = () =>
         snapshots.get(key)?.result as unknown as QueryResult
 
-      return { subscribe, getSnapshot }
+      return {subscribe, getSnapshot}
     } satisfies DefineListenerContext
   })
   const [turboIds, setTurboIds] = useState<string[]>([])
-  const [docsInUse] = useState(
-    () => new Map<string, ContentSourceMapDocuments[number]>(),
-  )
+  const [docsInUse] = useState(() => new Map<string, ContentSourceMapDocuments[number]>())
   const turboIdsFromSourceMap = useCallback(
     (contentSourceMap: ContentSourceMap) => {
       // This handler only adds ids, on each query fetch. But that's ok since <Turbo /> purges ids that are unused
@@ -128,13 +109,8 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
       }
       startTransition(() =>
         setTurboIds((prevTurboIds) => {
-          const mergedTurboIds = Array.from(
-            new Set([...prevTurboIds, ...nextTurboIds]),
-          )
-          if (
-            JSON.stringify(mergedTurboIds.sort()) ===
-            JSON.stringify(prevTurboIds.sort())
-          ) {
+          const mergedTurboIds = Array.from(new Set([...prevTurboIds, ...nextTurboIds]))
+          if (JSON.stringify(mergedTurboIds.sort()) === JSON.stringify(prevTurboIds.sort())) {
             return prevTurboIds
           }
           return mergedTurboIds
@@ -158,7 +134,7 @@ const LiveStoreProvider = memo(function LiveStoreProvider(
       {subscriptions.map((key) => {
         if (!hooks.cache.has(key)) return null
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const { query, params, listeners } = hooks.cache.get(key)!
+        const {query, params, listeners} = hooks.cache.get(key)!
         return (
           <QuerySubscription
             key={key}
@@ -186,30 +162,19 @@ interface QuerySubscriptionProps
   turboIdsFromSourceMap: (contentSourceMap: ContentSourceMap) => void
   snapshots: QuerySnapshotsCache
 }
-const QuerySubscription = memo(function QuerySubscription(
-  props: QuerySubscriptionProps,
-) {
-  const {
-    client,
-    refreshInterval,
-    query,
-    params,
-    listeners,
-    snapshots,
-    turboIdsFromSourceMap,
-  } = props
-  const { projectId, dataset } = useMemo(() => {
-    const { projectId, dataset } = client.config()
-    return { projectId, dataset } as Required<
-      Pick<ClientConfig, 'projectId' | 'dataset'>
-    >
+const QuerySubscription = memo(function QuerySubscription(props: QuerySubscriptionProps) {
+  const {client, refreshInterval, query, params, listeners, snapshots, turboIdsFromSourceMap} =
+    props
+  const {projectId, dataset} = useMemo(() => {
+    const {projectId, dataset} = client.config()
+    return {projectId, dataset} as Required<Pick<ClientConfig, 'projectId' | 'dataset'>>
   }, [client])
 
   // Make sure any async errors bubble up to the nearest error boundary
   const [error, setError] = useState<unknown>(null)
   if (error) throw error
 
-  const [revalidate, startRefresh] = useRevalidate({ refreshInterval })
+  const [revalidate, startRefresh] = useRevalidate({refreshInterval})
   const shouldRefetch = revalidate === 'refresh' || revalidate === 'inflight'
   useEffect(() => {
     if (!shouldRefetch) {
@@ -220,24 +185,15 @@ const QuerySubscription = memo(function QuerySubscription(
     const controller = new AbortController()
     // eslint-disable-next-line no-inner-declarations
     async function effect() {
-      const { signal } = controller
-      const { result, resultSourceMap } = await (client as SanityClient).fetch(
-        query,
-        params,
-        {
-          signal,
-          filterResponse: false,
-        },
-      )
+      const {signal} = controller
+      const {result, resultSourceMap} = await (client as SanityClient).fetch(query, params, {
+        signal,
+        filterResponse: false,
+      })
 
       if (!signal.aborted) {
         snapshots.set(getQueryCacheKey(query, params), {
-          result: turboChargeResultIfSourceMap(
-            projectId,
-            dataset,
-            result,
-            resultSourceMap,
-          ),
+          result: turboChargeResultIfSourceMap(projectId, dataset, result, resultSourceMap),
           resultSourceMap: resultSourceMap ?? ({} as ContentSourceMap),
         })
 
@@ -282,10 +238,7 @@ const QuerySubscription = memo(function QuerySubscription(
 })
 QuerySubscription.displayName = 'QuerySubscription'
 
-type QuerySnapshotsCache = Map<
-  QueryCacheKey,
-  { result: unknown; resultSourceMap: ContentSourceMap }
->
+type QuerySnapshotsCache = Map<QueryCacheKey, {result: unknown; resultSourceMap: ContentSourceMap}>
 
 function getTurboCacheKey(
   projectId: string,
@@ -297,7 +250,7 @@ function getTurboCacheKey(
 
 type LiveStoreQueryCacheMap = Map<
   QueryCacheKey,
-  { query: string; params: QueryParams; listeners: Set<() => void> }
+  {query: string; params: QueryParams; listeners: Set<() => void>}
 >
 
 /**
@@ -307,9 +260,7 @@ type LiveStoreQueryCacheMap = Map<
  * And since the `onStoreChange` callback, provided to `subscribe`, notifies React when to re-render,
  * there is no need to use `setState` to trigger a re-render. That's why the Map is persisted in `useState` but the state setter isn't used.
  */
-function useHooks(
-  setSubscriptions: React.Dispatch<React.SetStateAction<QueryCacheKey[]>>,
-): {
+function useHooks(setSubscriptions: React.Dispatch<React.SetStateAction<QueryCacheKey[]>>): {
   cache: LiveStoreQueryCacheMap
   subscribe: (
     key: QueryCacheKey,
@@ -320,14 +271,9 @@ function useHooks(
 } {
   const [cache] = useState<LiveStoreQueryCacheMap>(() => new Map())
   const subscribe = useCallback(
-    (
-      key: QueryCacheKey,
-      query: string,
-      params: QueryParams,
-      listener: () => void,
-    ) => {
+    (key: QueryCacheKey, query: string, params: QueryParams, listener: () => void) => {
       if (!cache.has(key)) {
-        cache.set(key, { query, params, listeners: new Set<() => void>() })
+        cache.set(key, {query, params, listeners: new Set<() => void>()})
         startTransition(() =>
           setSubscriptions((prevSubscriptions) => {
             if (prevSubscriptions.includes(key)) {
@@ -341,7 +287,7 @@ function useHooks(
       if (!hook || !hook.listeners) {
         throw new TypeError('Inconsistent cache for key: ' + key)
       }
-      const { listeners } = hook
+      const {listeners} = hook
       listeners.add(listener)
       return () => {
         listeners.delete(listener)
@@ -360,7 +306,7 @@ function useHooks(
     },
     [cache, setSubscriptions],
   )
-  return useMemo(() => ({ cache, subscribe }), [cache, subscribe])
+  return useMemo(() => ({cache, subscribe}), [cache, subscribe])
 }
 
 interface TurboProps extends Pick<LiveQueryProviderProps, 'client'> {
@@ -374,19 +320,17 @@ interface TurboProps extends Pick<LiveQueryProviderProps, 'client'> {
  * A turbo-charged mutation observer that uses Content Source Maps to apply mendoza patches on your queries
  */
 const Turbo = memo(function Turbo(props: TurboProps) {
-  const { client, snapshots, cache, turboIds, setTurboIds, docsInUse } = props
-  const { projectId, dataset } = useMemo(() => {
-    const { projectId, dataset } = client.config()
-    return { projectId, dataset } as Required<
-      Pick<ClientConfig, 'projectId' | 'dataset'>
-    >
+  const {client, snapshots, cache, turboIds, setTurboIds, docsInUse} = props
+  const {projectId, dataset} = useMemo(() => {
+    const {projectId, dataset} = client.config()
+    return {projectId, dataset} as Required<Pick<ClientConfig, 'projectId' | 'dataset'>>
   }, [client])
 
   // Keep track of document ids that the active `useLiveQuery` hooks care about
   useEffect(() => {
     const nextTurboIds = new Set<string>()
     docsInUse.clear()
-    for (const { query, params } of cache.values()) {
+    for (const {query, params} of cache.values()) {
       const key = getQueryCacheKey(query, params)
       const snapshot = snapshots.get(key)
       if (snapshot && snapshot.resultSourceMap?.documents?.length) {
@@ -419,9 +363,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
     }
     const nextBatchSlice = [...nextBatch].slice(0, 100)
     if (nextBatchSlice.length === 0) return
-    startTransition(() =>
-      setBatch((prevBatch) => [...prevBatch.slice(-100), nextBatchSlice]),
-    )
+    startTransition(() => setBatch((prevBatch) => [...prevBatch.slice(-100), nextBatchSlice]))
   }, [batch, dataset, projectId, turboIds])
 
   const [lastMutatedDocumentId, setLastMutatedDocumentId] = useState<string>()
@@ -447,7 +389,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
         const cachedDocument = documentsCache.peek(key)
         if (cachedDocument as SanityDocument) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const patchDoc = { ...cachedDocument } as any
+          const patchDoc = {...cachedDocument} as any
           delete patchDoc._rev
           const patchedDocument = applyPatch(patchDoc, update.effects.apply)
           documentsCache.set(key, patchedDocument)
@@ -460,8 +402,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
 
   // If the last mutated document is in the list over turboIds then lets apply the source map
   useEffect(() => {
-    if (!lastMutatedDocumentId || !turboIds.includes(lastMutatedDocumentId))
-      return
+    if (!lastMutatedDocumentId || !turboIds.includes(lastMutatedDocumentId)) return
 
     const updatedKeys: QueryCacheKey[] = []
     for (const [key, snapshot] of snapshots.entries()) {
@@ -508,7 +449,7 @@ interface GetDocumentsProps extends Pick<LiveQueryProviderProps, 'client'> {
   ids: string[]
 }
 const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
-  const { client, projectId, dataset, ids } = props
+  const {client, projectId, dataset, ids} = props
 
   useEffect(() => {
     const missingIds = ids.filter(
@@ -555,19 +496,14 @@ function turboChargeResultIfSourceMap(
         }
         return undefined
       }
-      return documentsCache.get(
-        getTurboCacheKey(projectId, dataset, sourceDocument._id),
-      )
+      return documentsCache.get(getTurboCacheKey(projectId, dataset, sourceDocument._id))
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (changedValue: any, { previousValue }) => {
-      if (
-        typeof changedValue === 'string' &&
-        typeof previousValue === 'string'
-      ) {
+    (changedValue: any, {previousValue}) => {
+      if (typeof changedValue === 'string' && typeof previousValue === 'string') {
         // Preserve stega encoded strings, if they exist
-        const { encoded } = vercelStegaSplit(previousValue)
-        const { cleaned } = vercelStegaSplit(changedValue)
+        const {encoded} = vercelStegaSplit(previousValue)
+        const {cleaned} = vercelStegaSplit(changedValue)
         return `${encoded}${cleaned}`
       }
       return changedValue

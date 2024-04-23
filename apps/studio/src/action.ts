@@ -1,7 +1,7 @@
 // Used by .github/workflows/simulate-high-traffic.yml
 
-import { createClient } from '@sanity/client'
-import { updateDocuments } from './benchmark'
+import {createClient} from '@sanity/client'
+import {updateDocuments} from './benchmark'
 
 const minutes = Number(process.env.MINUTES) || 15
 const batch = Number(process.env.BATCH) || 10

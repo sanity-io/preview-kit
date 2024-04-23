@@ -1,9 +1,4 @@
-export {
-  type isEqualFn,
-  type LiveQueryHookOptions,
-  useIsEnabled,
-  useLiveQuery,
-} from './hooks'
+export {type isEqualFn, type LiveQueryHookOptions, useIsEnabled, useLiveQuery} from './hooks'
 export {
   createLiveQueryProvider,
   /**

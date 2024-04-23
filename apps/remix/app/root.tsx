@@ -1,29 +1,22 @@
-import { type MetaFunction, type LinksFunction, json } from '@vercel/remix'
+import {type MetaFunction, type LinksFunction, json} from '@vercel/remix'
 
-import { Container } from 'ui/react'
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from '@remix-run/react'
+import {Container} from 'ui/react'
+import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react'
 
 export const loader = async () => {
-  return json({ title: `remix-${process.env.VARIANT || 'default'}` })
+  return json({title: `remix-${process.env.VARIANT || 'default'}`})
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: MetaFunction<typeof loader> = ({data}) => {
   return [
-    { charset: 'utf-8' },
-    { viewport: 'width=device-width,initial-scale=1' },
-    { title: data?.title },
+    {charset: 'utf-8'},
+    {viewport: 'width=device-width,initial-scale=1'},
+    {title: data?.title},
   ]
 }
 
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: 'https://esm.sh/bulma/css/bulma.min.css' },
+  {rel: 'stylesheet', href: 'https://esm.sh/bulma/css/bulma.min.css'},
 ]
 
 export default function App() {

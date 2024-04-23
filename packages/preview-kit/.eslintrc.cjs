@@ -1,9 +1,9 @@
-const { readGitignoreFiles } = require('eslint-gitignore')
+const {readGitignoreFiles} = require('eslint-gitignore')
 
 module.exports = {
   root: true,
-  ignorePatterns: readGitignoreFiles({ cwd: __dirname }),
-  settings: { react: { version: 'detect' } },
+  ignorePatterns: readGitignoreFiles({cwd: __dirname}),
+  settings: {react: {version: 'detect'}},
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -12,13 +12,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint',
-    'react',
-    'react-hooks',
-    'simple-import-sort',
-    'prettier',
-  ],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'simple-import-sort', 'prettier'],
   extends: [
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
@@ -37,10 +31,7 @@ module.exports = {
     '@typescript-eslint/member-delimiter-style': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     'no-console': 'error',
-    'no-warning-comments': [
-      'warn',
-      { location: 'start', terms: ['todo', '@todo', 'fixme'] },
-    ],
+    'no-warning-comments': ['warn', {location: 'start', terms: ['todo', '@todo', 'fixme']}],
     'react/prop-types': 'off',
     'prettier/prettier': 'warn',
   },

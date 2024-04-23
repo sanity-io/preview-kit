@@ -1,9 +1,9 @@
 import 'bulma/css/bulma.min.css'
-import { AppProps } from 'next/app'
+import {AppProps} from 'next/app'
 import Head from 'next/head'
 
-import { getStaticProps } from '.'
-import type { InferGetStaticPropsType } from 'next'
+import {getStaticProps} from '.'
+import type {InferGetStaticPropsType} from 'next'
 
 export default function App({
   Component,

@@ -1,9 +1,8 @@
-import type { QueryParams as ClientQueryParams } from '@sanity/client'
-import { Children, isValidElement, lazy } from 'react'
+import type {QueryParams as ClientQueryParams} from '@sanity/client'
+import type {LiveQueryClientComponentProps} from '@sanity/preview-kit/live-query/client-component'
+import {Children, isValidElement, lazy} from 'react'
 
-import type { LiveQueryClientComponentProps } from './LiveQueryClientComponent'
-
-const ClientComponent = lazy(() => import('./LiveQueryClientComponent'))
+const ClientComponent = lazy(() => import('@sanity/preview-kit/live-query/client-component'))
 
 /** @public */
 export interface LiveQueryProps<
@@ -20,27 +19,19 @@ export interface LiveQueryProps<
 const DEFAULT_PARAMS = {} as ClientQueryParams
 
 /** @public */
-export function LiveQuery<
-  QueryResult,
-  QueryParams extends ClientQueryParams = ClientQueryParams,
->(props: LiveQueryProps<QueryResult, QueryParams>): React.ReactNode {
+export function LiveQuery<QueryResult, QueryParams extends ClientQueryParams = ClientQueryParams>(
+  props: LiveQueryProps<QueryResult, QueryParams>,
+): React.ReactNode {
   // Always passthrough when not enabled
   if (!props.enabled) {
     return props.children
   }
 
-  const {
-    query,
-    params = DEFAULT_PARAMS,
-    initialData,
-    as: LiveComponent,
-  } = props
+  const {query, params = DEFAULT_PARAMS, initialData, as: LiveComponent} = props
   // If we have an `as` prop it means we're likely working around a `children` that is RSC, and the `as` prop provides a Client Component
   if (LiveComponent) {
     if (Children.count(props.children) > 1) {
-      throw new Error(
-        'LiveQuery: `as` prop can only be used with a single child',
-      )
+      throw new Error('LiveQuery: `as` prop can only be used with a single child')
     }
     if (!isValidElement(props.children)) {
       throw new Error('LiveQuery: `as` prop requires a valid `children` prop')

@@ -1,13 +1,5 @@
 {
   "extends": "./tsconfig.base",
-  "compilerOptions": {
-    "incremental": true,
-    "noEmit": true,
-    "rootDir": ".",
-    "paths": {
-      "@sanity/preview-kit": ["src/"]
-    }
-  },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "./src/**/*.test.ts", "./src/**/*.test.tsx"]
 }

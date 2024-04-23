@@ -1,5 +1,5 @@
-import type { QueryParams, SanityClient } from '@sanity/client'
-import type { SanityStegaClient } from '@sanity/client/stega'
+import type {QueryParams, SanityClient} from '@sanity/client'
+import type {SanityStegaClient} from '@sanity/client/stega'
 
 /**
  * @internal
@@ -27,9 +27,7 @@ export type DefineListenerContext = <QueryResult>(
  * Specify a `console.log` compatible logger to aid debugging
  * @public
  */
-export type Logger =
-  | typeof console
-  | Pick<typeof console, 'warn' | 'error' | 'log'>
+export type Logger = typeof console | Pick<typeof console, 'warn' | 'error' | 'log'>
 
 /**
  * @public

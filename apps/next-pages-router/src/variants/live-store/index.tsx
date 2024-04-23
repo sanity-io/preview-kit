@@ -1,8 +1,8 @@
-import type { InferGetStaticPropsType } from 'next'
+import type {InferGetStaticPropsType} from 'next'
 import dynamic from 'next/dynamic'
-import { VisualEditing } from '@sanity/visual-editing/next-pages-router'
+import {VisualEditing} from '@sanity/visual-editing/next-pages-router'
 
-import { getStaticProps } from '../../pages'
+import {getStaticProps} from '../../pages'
 
 const PreviewProvider = dynamic(() => import('./PreviewProvider'))
 

@@ -1,16 +1,11 @@
-import type { QueryParams as ClientQueryParams } from '@sanity/client'
-import { useQueryParams } from '@sanity/preview-kit-compat'
-import { useCallback, useContext, useMemo, useState } from 'react'
+import type {QueryParams as ClientQueryParams} from '@sanity/client'
+import {useQueryParams} from '@sanity/preview-kit-compat'
+import {useCallback, useContext, useMemo, useState} from 'react'
 import isFastEqual from 'react-fast-compare'
-import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector.js'
+import {useSyncExternalStoreWithSelector} from 'use-sync-external-store/with-selector.js'
 
-import { defineStoreContext } from './context'
-import {
-  ListenerGetSnapshot,
-  ListenerSubscribe,
-  QueryEnabled,
-  QueryLoading,
-} from './types'
+import {defineStoreContext} from './context'
+import type {ListenerGetSnapshot, ListenerSubscribe, QueryEnabled, QueryLoading} from './types'
 
 /**
  * By default 'react-fast-compare' is used to check if the query result has changed.
@@ -35,7 +30,7 @@ export function useLiveQuery<
   queryParams?: QueryParams,
   options?: LiveQueryHookOptions<QueryResult>,
 ): [QueryResult, QueryLoading, QueryEnabled] {
-  const { isEqual = isFastEqual } = options || {}
+  const {isEqual = isFastEqual} = options || {}
 
   const defineStore = useContext(defineStoreContext)
   const params = useQueryParams(queryParams)
@@ -74,7 +69,7 @@ export function useLiveQuery<
       // eslint-disable-next-line no-console
       console.warn(
         "Failed to deep clone initialSnapshot, this is likely an error and an indication that the snapshot isn't JSON serializable",
-        { initialSnapshot: initialData, error },
+        {initialSnapshot: initialData, error},
       )
       return initialData
     }

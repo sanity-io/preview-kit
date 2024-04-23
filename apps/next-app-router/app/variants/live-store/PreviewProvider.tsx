@@ -1,7 +1,7 @@
 'use client'
 
-import { LiveQueryProvider } from '@sanity/preview-kit'
-import { client } from './sanity.client'
+import {LiveQueryProvider} from '@sanity/preview-kit'
+import {client} from './sanity.client'
 
 export default function PreviewProvider({
   children,

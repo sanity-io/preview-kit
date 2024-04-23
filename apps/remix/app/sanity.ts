@@ -1,4 +1,4 @@
-import { createClient, type QueryParams } from '@sanity/preview-kit/client'
+import {createClient, type QueryParams} from '@sanity/preview-kit/client'
 
 const projectId = 'pv8y60vp'
 const dataset = 'production'
@@ -16,8 +16,7 @@ export const client = createClient({
   perspective: 'published',
 })
 
-export const token =
-  typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
+export const token = typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
 
 const DEFAULT_PARAMS = {} as QueryParams
 export async function sanityFetch<QueryResponse>({
@@ -30,9 +29,7 @@ export async function sanityFetch<QueryResponse>({
   params?: QueryParams
 }): Promise<QueryResponse> {
   if (previewDrafts && !token) {
-    throw new Error(
-      'The `SANITY_API_READ_TOKEN` environment variable is required.',
-    )
+    throw new Error('The `SANITY_API_READ_TOKEN` environment variable is required.')
   }
   return client.fetch<QueryResponse>(
     query,

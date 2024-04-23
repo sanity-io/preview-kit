@@ -1,10 +1,8 @@
-import { createContext } from 'react'
+import {createContext} from 'react'
 
-import { DefineListenerContext } from './types'
+import type {DefineListenerContext} from './types'
 
 /**
  * @internal
  */
-export const defineStoreContext = createContext<DefineListenerContext | null>(
-  null,
-)
+export const defineStoreContext = createContext<DefineListenerContext | null>(null)

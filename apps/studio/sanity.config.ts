@@ -1,12 +1,12 @@
-import { groqdPlaygroundTool } from 'groqd-playground'
+import {groqdPlaygroundTool} from 'groqd-playground'
 
-import { visionTool } from '@sanity/vision'
-import { defineConfig, defineField, defineType } from 'sanity'
-import { deskTool } from 'sanity/desk'
-import { benchmarkTool } from './src/benchmark'
-import { IframeOptions, Iframe } from 'sanity-plugin-iframe-pane'
-import { presentationTool as stablePresentationTool } from 'sanity/presentation'
-import { presentationTool as experimentalPresentationTool } from '@sanity/presentation'
+import {visionTool} from '@sanity/vision'
+import {defineConfig, defineField, defineType} from 'sanity'
+import {deskTool} from 'sanity/desk'
+import {benchmarkTool} from './src/benchmark'
+import {IframeOptions, Iframe} from 'sanity-plugin-iframe-pane'
+import {presentationTool as stablePresentationTool} from 'sanity/presentation'
+import {presentationTool as experimentalPresentationTool} from '@sanity/presentation'
 
 const iframeOptions = {
   reload: {
@@ -28,9 +28,7 @@ const iframes: [string, string][] = [
 
 function createConfig(stable: boolean) {
   const name = stable ? 'stable' : 'experimental'
-  const presentationTool = stable
-    ? stablePresentationTool
-    : experimentalPresentationTool
+  const presentationTool = stable ? stablePresentationTool : experimentalPresentationTool
   const config = defineConfig({
     name,
     basePath: `/${name}`,
@@ -38,7 +36,7 @@ function createConfig(stable: boolean) {
     dataset: process.env.SANITY_STUDIO_DATASET!,
     plugins: [
       deskTool({
-        defaultDocumentNode: (S, { schemaType }) => {
+        defaultDocumentNode: (S, {schemaType}) => {
           switch (schemaType) {
             case `page`:
               return S.document().views([
@@ -62,8 +60,7 @@ function createConfig(stable: boolean) {
       presentationTool({
         name: 'remix',
         previewUrl: {
-          origin:
-            process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
+          origin: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
           previewMode: {
             enable: '/api/draft',
           },
@@ -72,9 +69,7 @@ function createConfig(stable: boolean) {
       presentationTool({
         name: 'pages-router',
         previewUrl: {
-          origin:
-            process.env.SANITY_STUDIO_PAGES_ROUTER_URL ||
-            'http://localhost:3000',
+          origin: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3000',
           previewMode: {
             enable: '/api/draft',
           },
@@ -83,8 +78,7 @@ function createConfig(stable: boolean) {
       presentationTool({
         name: 'app-router',
         previewUrl: {
-          origin:
-            process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
+          origin: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
           previewMode: {
             enable: '/api/draft',
           },
