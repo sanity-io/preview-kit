@@ -1,11 +1,11 @@
 import type {QueryParams as ClientQueryParams} from '@sanity/client'
-import type {PropsWithChildren} from 'react'
 import {Children, cloneElement, isValidElement, memo} from 'react'
 
 import {useLiveQuery} from './useLiveQuery'
 
 /** @public */
-export type LiveQueryClientComponentProps<QueryResult, QueryParams> = PropsWithChildren<{
+export interface LiveQueryClientComponentProps<QueryResult, QueryParams> {
+  children?: React.ReactNode | undefined
   /**
    * If a parent <LiveQueryProvider> is missing, then an error is thrown.
    * If you want to disable this behavior, set this prop to false.
@@ -15,7 +15,7 @@ export type LiveQueryClientComponentProps<QueryResult, QueryParams> = PropsWithC
   initialData: QueryResult
   query: string
   params?: QueryParams | undefined
-}>
+}
 
 /**
  * Browser-only preview component, overwrites the data prop with live data on-demand

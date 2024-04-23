@@ -1,6 +1,6 @@
 {
   "name": "@sanity/preview-kit",
-  "version": "5.0.46",
+  "version": "5.0.47-canary.0",
   "description": "General purpose utils for live content and visual editing",
   "keywords": [
     "groq",
@@ -35,21 +35,21 @@
     },
     "./client": {
       "source": "./src/client/index.ts",
-      "import": "./dist/client/index.js",
-      "require": "./dist/client/index.cjs",
-      "default": "./dist/client/index.js"
+      "import": "./dist/client.js",
+      "require": "./dist/client.cjs",
+      "default": "./dist/client.js"
     },
     "./live-query": {
       "source": "./src/live-query/index.ts",
-      "import": "./dist/live-query/index.js",
-      "require": "./dist/live-query/index.cjs",
-      "default": "./dist/live-query/index.js"
+      "import": "./dist/live-query.js",
+      "require": "./dist/live-query.cjs",
+      "default": "./dist/live-query.js"
     },
     "./live-query/client-component": {
       "source": "./src/live-query/client-component/index.ts",
-      "import": "./dist/live-query/client-component/index.js",
-      "require": "./dist/live-query/client-component/index.cjs",
-      "default": "./dist/live-query/client-component/index.js"
+      "import": "./dist/live-query/client-component.js",
+      "require": "./dist/live-query/client-component.cjs",
+      "default": "./dist/live-query/client-component.js"
     },
     "./package.json": "./package.json"
   },
@@ -59,13 +59,13 @@
   "typesVersions": {
     "*": {
       "client": [
-        "./dist/client/index.d.ts"
+        "./dist/client.d.ts"
       ],
       "live-query": [
-        "./dist/live-query/index.d.ts"
+        "./dist/live-query.d.ts"
       ],
       "live-query/client-component": [
-        "./dist/live-query/client-component/index.d.ts"
+        "./dist/live-query/client-component.d.ts"
       ]
     }
   },
