@@ -153,7 +153,7 @@ importers:
         version: 0.15.11
       isbot:
         specifier: latest
-        version: 5.1.4
+        version: 5.1.5
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -265,8 +265,8 @@ importers:
         specifier: ^6.15.20
         version: 6.15.20(debug@3.2.7)
       '@sanity/pkg-utils':
-        specifier: 6.8.4
-        version: 6.8.4(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)
+        specifier: 6.8.6
+        version: 6.8.6(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)
       '@sanity/prettier-config':
         specifier: ^1.0.2
         version: 1.0.2(prettier@3.2.5)
@@ -2293,15 +2293,15 @@ packages:
   '@sanity/mutator@3.39.0':
     resolution: {integrity: sha512-7T2mRoRpicmoEY5QhKUUp75zOLG5b+tpjPTBENVXry5PgXw7AqwMkJVM7oF1fC11S4R8e0yssnXVTcRwHRmKqw==}
 
-  '@sanity/pkg-utils@6.8.3':
-    resolution: {integrity: sha512-waniawbUZ6V1xke94f1yGpA+wVlqlU4OTrFUcRy5xR3UE1aW6+VRjp3xGhuTCLeewLQsTX6vr9ruvkGgEDQyxg==}
+  '@sanity/pkg-utils@6.8.4':
+    resolution: {integrity: sha512-NkioyI2t5wEBBJ+bafmFfsHEG8YYE0cewwkrSTBLPXB0I1F5xqL9SxXabBmc7NO8tLSVRgMY4YPz+aT3IDqW9Q==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
       typescript: 5.4.x
 
-  '@sanity/pkg-utils@6.8.4':
-    resolution: {integrity: sha512-NkioyI2t5wEBBJ+bafmFfsHEG8YYE0cewwkrSTBLPXB0I1F5xqL9SxXabBmc7NO8tLSVRgMY4YPz+aT3IDqW9Q==}
+  '@sanity/pkg-utils@6.8.6':
+    resolution: {integrity: sha512-9rj5lWvYQ8pptcsb5186Mlw/MZ7jdQAO1ntLS4llXh1S7zVPOp8k9Z0pTBdbWcFdQlP8DW0KlsHYrNNjWwAjng==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -5021,8 +5021,8 @@ packages:
     resolution: {integrity: sha512-vne1mzQUTR+qsMLeCBL9+/tgnDXRyc2pygLGl/WsgA+EZKIiB5Ehu0CiVTHIIk30zhJ24uGz4M5Ppse37aR0Hg==}
     engines: {node: '>=12'}
 
-  isbot@5.1.4:
-    resolution: {integrity: sha512-KuqD/TAG/qtgCDnO8Ab1v5rGRK3jl9hb+2KfJt+roIPE7R4Hiq99VinR0qrLGFptdUNIkClYjuXEpVTGkD9V/A==}
+  isbot@5.1.5:
+    resolution: {integrity: sha512-l7o5pR7MAkbQl+JGgmeIFtni1F3RLsXDjDybR3t7VIVnsmYuz+Bd6PSgeXBswC7haWzGGNlw2wRdmh9Q0a2RWQ==}
     engines: {node: '>=18'}
 
   isexe@2.0.0:
@@ -7992,12 +7992,6 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
-  zod-validation-error@3.1.0:
-    resolution: {integrity: sha512-zujS6HqJjMZCsvjfbnRs7WI3PXN39ovTcY1n8a+KTm4kOH0ZXYsNiJkH1odZf4xZKMkBDL7M2rmQ913FCS1p9w==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      zod: ^3.18.0
-
   zod-validation-error@3.2.0:
     resolution: {integrity: sha512-cYlPR6zuyrgmu2wRTdumEAJGuwI7eHVHGT+VyneAQxmRAKtGRL1/7pjz4wfLhz4J05f5qoSZc3rGacswgyTjjw==}
     engines: {node: '>=18.0.0'}
@@ -10096,7 +10090,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sanity/pkg-utils@6.8.3(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)':
+  '@sanity/pkg-utils@6.8.4(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/types': 7.24.0
@@ -10138,14 +10132,14 @@ snapshots:
       typescript: 5.4.5
       uuid: 9.0.1
       zod: 3.23.3
-      zod-validation-error: 3.1.0(zod@3.23.3)
+      zod-validation-error: 3.2.0(zod@3.23.3)
     transitivePeerDependencies:
       - '@types/babel__core'
       - '@types/node'
       - debug
       - supports-color
 
-  '@sanity/pkg-utils@6.8.4(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)':
+  '@sanity/pkg-utils@6.8.6(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/types': 7.24.0
@@ -13707,7 +13701,7 @@ snapshots:
 
   isbot@3.8.0: {}
 
-  isbot@5.1.4: {}
+  isbot@5.1.5: {}
 
   isexe@2.0.0: {}
 
@@ -17015,10 +17009,6 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.5.2
-
-  zod-validation-error@3.1.0(zod@3.23.3):
-    dependencies:
-      zod: 3.23.3
 
   zod-validation-error@3.2.0(zod@3.23.3):
     dependencies:
