@@ -277,10 +277,10 @@ importers:
         specifier: ^18.18.6
         version: 18.19.29
       '@types/react':
-        specifier: ^18.2.79
+        specifier: ^18.3.0
         version: 18.3.0
       '@types/react-dom':
-        specifier: ^18.2.25
+        specifier: ^18.3.0
         version: 18.3.0
       '@types/use-sync-external-store':
         specifier: ^0.0.6
@@ -322,10 +322,10 @@ importers:
         specifier: 10.2.1
         version: 10.2.1
       react:
-        specifier: ^18.2.0
+        specifier: ^18.3.0
         version: 18.3.0
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18.3.0
         version: 18.3.0(react@18.3.0)
       react-fast-compare:
         specifier: 3.2.2
@@ -340,8 +340,8 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
       use-sync-external-store:
-        specifier: 1.2.0
-        version: 1.2.0(react@18.3.0)
+        specifier: 1.2.1
+        version: 1.2.1(react@18.3.0)
       vitest:
         specifier: ^1.5.2
         version: 1.5.2(@types/node@18.19.29)(jsdom@23.2.0)(terser@5.30.3)
@@ -7644,8 +7644,8 @@ packages:
       '@types/react':
         optional: true
 
-  use-sync-external-store@1.2.0:
-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+  use-sync-external-store@1.2.1:
+    resolution: {integrity: sha512-6MCBDr76UJmRpbF8pzP27uIoTocf3tITaMJ52mccgAhMJycuh5A/RL6mDZCTwTisj0Qfeq69FtjMCUX27U78oA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
@@ -15232,7 +15232,7 @@ snapshots:
       observable-callback: 1.0.3(rxjs@7.8.1)
       react: 18.3.0
       rxjs: 7.8.1
-      use-sync-external-store: 1.2.0(react@18.3.0)
+      use-sync-external-store: 1.2.1(react@18.3.0)
 
   react-style-proptype@3.2.2:
     dependencies:
@@ -15687,7 +15687,7 @@ snapshots:
       tar-stream: 3.1.7
       use-device-pixel-ratio: 1.1.2(react@18.3.0)
       use-hot-module-reload: 2.0.0(react@18.3.0)
-      use-sync-external-store: 1.2.0(react@18.3.0)
+      use-sync-external-store: 1.2.1(react@18.3.0)
       vite: 4.5.3(@types/node@18.19.29)(terser@5.30.3)
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -16156,7 +16156,7 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 18.3.0
-      use-sync-external-store: 1.2.0(react@18.3.0)
+      use-sync-external-store: 1.2.1(react@18.3.0)
 
   symbol-tree@3.2.4: {}
 
@@ -16613,7 +16613,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.0
 
-  use-sync-external-store@1.2.0(react@18.3.0):
+  use-sync-external-store@1.2.1(react@18.3.0):
     dependencies:
       react: 18.3.0
 
