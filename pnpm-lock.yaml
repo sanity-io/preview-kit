@@ -265,8 +265,8 @@ importers:
         specifier: ^6.15.20
         version: 6.15.20(debug@3.2.7)
       '@sanity/pkg-utils':
-        specifier: 6.8.8
-        version: 6.8.8(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)
+        specifier: 6.8.9
+        version: 6.8.9(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)
       '@sanity/prettier-config':
         specifier: ^1.0.2
         version: 1.0.2(prettier@3.2.5)
@@ -2292,13 +2292,6 @@ packages:
 
   '@sanity/mutator@3.39.1':
     resolution: {integrity: sha512-tCpdxZQXTSjSlnpXTG4IukZP5PsJS91td+Mr9jDpwmjkY1OwjtOI3ge7F5sZI/DwPSwP2aQlTQ3v+JIP6qTSHg==}
-
-  '@sanity/pkg-utils@6.8.8':
-    resolution: {integrity: sha512-YddjWvJuUIPyMF0L40hgonMantzPTqCN5P3wRwvPKVg5s2KzrxFUvbmBuPBqHn43AoCkM4SmPR2shTcRFBwrqA==}
-    engines: {node: '>=18.17.0'}
-    hasBin: true
-    peerDependencies:
-      typescript: 5.4.x
 
   '@sanity/pkg-utils@6.8.9':
     resolution: {integrity: sha512-s61X1mqGvr46f8jqpatemGeO06cMLcFVAClLevK0wpFeOK5FSTIihOXJE+ejsKUxFSHY438sEK6IxYRKN4jnlg==}
@@ -8006,9 +7999,6 @@ packages:
   zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
 
-  zod@3.23.4:
-    resolution: {integrity: sha512-/AtWOKbBgjzEYYQRNfoGKHObgfAZag6qUJX1VbHo2PRBgS+wfWagEY2mizjfyAPcGesrJOcx/wcl0L9WnVrHFw==}
-
   zod@3.23.5:
     resolution: {integrity: sha512-fkwiq0VIQTksNNA131rDOsVJcns0pfVUjHzLrNBiF/O/Xxb5lQyEXkhZWcJ7npWsYlvs+h0jFWXXy4X46Em1JA==}
 
@@ -10096,55 +10086,6 @@ snapshots:
       debug: 4.3.4
       lodash: 4.17.21
     transitivePeerDependencies:
-      - supports-color
-
-  '@sanity/pkg-utils@6.8.8(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)':
-    dependencies:
-      '@babel/core': 7.24.5
-      '@babel/types': 7.24.5
-      '@microsoft/api-extractor': 7.43.1(@types/node@18.19.29)
-      '@microsoft/tsdoc-config': 0.16.2
-      '@optimize-lodash/rollup-plugin': 4.0.4(rollup@4.17.2)
-      '@rollup/plugin-alias': 5.1.0(rollup@4.17.2)
-      '@rollup/plugin-babel': 6.0.4(@babel/core@7.24.5)(@types/babel__core@7.20.5)(rollup@4.17.2)
-      '@rollup/plugin-commonjs': 25.0.7(rollup@4.17.2)
-      '@rollup/plugin-json': 6.1.0(rollup@4.17.2)
-      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.17.2)
-      '@rollup/plugin-replace': 5.0.5(rollup@4.17.2)
-      '@rollup/plugin-terser': 0.4.4(rollup@4.17.2)
-      '@sanity/browserslist-config': 1.0.3
-      browserslist: 4.23.0
-      cac: 6.7.14
-      chalk: 4.1.2
-      chokidar: 3.6.0
-      esbuild: 0.20.2
-      esbuild-register: 3.5.0(esbuild@0.20.2)
-      find-config: 1.0.0
-      get-latest-version: 5.1.0
-      git-url-parse: 14.0.0
-      globby: 11.1.0
-      jsonc-parser: 3.2.1
-      mkdirp: 3.0.1
-      outdent: 0.8.0
-      parse-git-config: 3.0.0
-      pkg-up: 3.1.0
-      prettier: 3.2.5
-      pretty-bytes: 5.6.0
-      prompts: 2.4.2
-      recast: 0.23.6
-      rimraf: 4.4.1
-      rollup: 4.17.2
-      rollup-plugin-esbuild: 6.1.1(esbuild@0.20.2)(rollup@4.17.2)
-      rxjs: 7.8.1
-      treeify: 1.1.0
-      typescript: 5.4.5
-      uuid: 9.0.1
-      zod: 3.23.4
-      zod-validation-error: 3.2.0(zod@3.23.4)
-    transitivePeerDependencies:
-      - '@types/babel__core'
-      - '@types/node'
-      - debug
       - supports-color
 
   '@sanity/pkg-utils@6.8.9(@types/babel__core@7.20.5)(@types/node@18.19.29)(typescript@5.4.5)':
@@ -17018,17 +16959,11 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.5.2
 
-  zod-validation-error@3.2.0(zod@3.23.4):
-    dependencies:
-      zod: 3.23.4
-
   zod-validation-error@3.2.0(zod@3.23.5):
     dependencies:
       zod: 3.23.5
 
   zod@3.22.4: {}
-
-  zod@3.23.4: {}
 
   zod@3.23.5: {}
 
