@@ -292,8 +292,8 @@ importers:
         specifier: ^7.8.0
         version: 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       '@vercel/stega':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: 0.1.1
+        version: 0.1.1
       '@vitest/coverage-v8':
         specifier: ^1.5.3
         version: 1.5.3(vitest@1.5.3(@types/node@18.19.29)(jsdom@23.2.0)(terser@5.30.3))
@@ -2824,6 +2824,9 @@ packages:
 
   '@vercel/stega@0.1.0':
     resolution: {integrity: sha512-5b0PkOJsFBX5alChuIO3qpkt5vIZBevzLPhUQ1UP8UzVjL3F1VllnZxp/thfD8R5ol7D7WHkgZHIjdUBX4tDpQ==}
+
+  '@vercel/stega@0.1.1':
+    resolution: {integrity: sha512-YdlhbgFdUAKYPlLaAhCUL10U/DdeNwp2fSJR0Wdi2c0DYdYQZbamdxizr4Lj9mxv2+/FxMWaMK7eW6BskKEZLw==}
 
   '@vitejs/plugin-react@4.2.1':
     resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
@@ -10991,6 +10994,8 @@ snapshots:
       ts-morph: 12.0.0
 
   '@vercel/stega@0.1.0': {}
+
+  '@vercel/stega@0.1.1': {}
 
   '@vitejs/plugin-react@4.2.1(vite@4.5.3(@types/node@18.19.29)(terser@5.30.3))':
     dependencies:
