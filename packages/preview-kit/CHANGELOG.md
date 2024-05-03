@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.51](https://github.com/sanity-io/preview-kit/compare/v5.0.50...v5.0.51) (2024-05-03)
+
+### Bug Fixes
+
+- **deps:** update dependency @vercel/stega to v0.1.2 ([#1205](https://github.com/sanity-io/preview-kit/issues/1205)) ([4e7a33c](https://github.com/sanity-io/preview-kit/commit/4e7a33c6a2771571b49ae98fd2e2c44f44fec683))
+
 ## [5.0.50](https://github.com/sanity-io/preview-kit/compare/v5.0.49...v5.0.50) (2024-05-03)
 
 ### Bug Fixes
