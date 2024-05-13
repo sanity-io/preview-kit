@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.55](https://github.com/sanity-io/preview-kit/compare/v5.0.54...v5.0.55) (2024-05-13)
+
+### Bug Fixes
+
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.4.22 ([#1232](https://github.com/sanity-io/preview-kit/issues/1232)) ([39054b8](https://github.com/sanity-io/preview-kit/commit/39054b8636fa70e0aa406c189f6e3d166b3aaf95))
+
 ## [5.0.54](https://github.com/sanity-io/preview-kit/compare/v5.0.53...v5.0.54) (2024-05-07)
 
 ### Bug Fixes
