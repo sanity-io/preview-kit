@@ -255,8 +255,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.4.23
-        version: 1.4.23(@sanity/client@6.18.3)(react@18.3.1)
+        specifier: 1.4.24
+        version: 1.4.24(@sanity/client@6.18.3)(react@18.3.1)
       mendoza:
         specifier: 3.0.7
         version: 3.0.7
@@ -2464,6 +2464,13 @@ packages:
       '@sanity/client': ^6.18.2
       react: ^18.2.0
 
+  '@sanity/preview-kit-compat@1.4.24':
+    resolution: {integrity: sha512-S7Ug90Nz+O4E+vahoznEAn9kYoDKf6EXZsYEndXtzKXUZXEBGxnXnjgIdpD+WTlDEyIIKlQcwAxwgK3QI8Avkg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@sanity/client': ^6.18.3
+      react: ^18.2.0
+
   '@sanity/preview-kit@5.0.58':
     resolution: {integrity: sha512-8JYVkn06ARWiTwL+im02UAm1foquYtomBqJXHAgEe/jSTmZ3O3WNppQ61M4fOVMSAfBoZnoMd/+WmDCyi7vfIA==}
     engines: {node: '>=18'}
@@ -4644,10 +4651,12 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
@@ -6891,6 +6900,7 @@ packages:
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@4.4.1:
@@ -10458,6 +10468,11 @@ snapshots:
       prettier-plugin-packagejson: 2.5.0(prettier@3.2.5)
 
   '@sanity/preview-kit-compat@1.4.23(@sanity/client@6.18.3)(react@18.3.1)':
+    dependencies:
+      '@sanity/client': 6.18.3(debug@3.2.7)
+      react: 18.3.1
+
+  '@sanity/preview-kit-compat@1.4.24(@sanity/client@6.18.3)(react@18.3.1)':
     dependencies:
       '@sanity/client': 6.18.3(debug@3.2.7)
       react: 18.3.1
