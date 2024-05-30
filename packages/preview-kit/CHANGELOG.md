@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.0](https://github.com/sanity-io/preview-kit/compare/v5.0.62...v5.1.0) (2024-05-30)
+
+### Features
+
+- add react 19 support ([#1279](https://github.com/sanity-io/preview-kit/issues/1279)) ([cce619c](https://github.com/sanity-io/preview-kit/commit/cce619c376872c1ce19fed405bf04511a2eda423))
+
+### Bug Fixes
+
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.5.1 ([#1278](https://github.com/sanity-io/preview-kit/issues/1278)) ([dcefa50](https://github.com/sanity-io/preview-kit/commit/dcefa50b51ddb6057d820abd4ceb267cbf8e8aa4))
+
 ## [5.0.62](https://github.com/sanity-io/preview-kit/compare/v5.0.61...v5.0.62) (2024-05-30)
 
 ### Bug Fixes
