@@ -1,6 +1,6 @@
 {
   "name": "@sanity/preview-kit",
-  "version": "5.0.62",
+  "version": "5.0.63-canary.0",
   "description": "General purpose utils for live content and visual editing",
   "keywords": [
     "groq",
@@ -121,7 +121,7 @@
   },
   "peerDependencies": {
     "@sanity/client": "^6.19.1",
-    "react": "^18.0.0"
+    "react": "^18.0.0 || >=19.0.0-rc"
   },
   "peerDependenciesMeta": {
     "react": {
