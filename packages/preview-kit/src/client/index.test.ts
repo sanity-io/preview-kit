@@ -145,6 +145,7 @@ test('encodeSourceMapAtPath', async () => {
     encodeSourceMap: true,
     projectId: 'pv8y60vp',
     dataset: 'production',
+    apiVersion: '2023-05-03',
     encodeSourceMapAtPath: ({path}) => path.at(-1) !== 'title',
   })
 
