@@ -153,7 +153,7 @@ importers:
         version: 0.15.11
       isbot:
         specifier: latest
-        version: 5.1.14
+        version: 5.1.17
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -319,8 +319,8 @@ importers:
         specifier: ^12.1.1
         version: 12.1.1(eslint@8.57.0)
       lru-cache:
-        specifier: 10.4.3
-        version: 10.4.3
+        specifier: 11.0.1
+        version: 11.0.1
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -5481,8 +5481,8 @@ packages:
     resolution: {integrity: sha512-vne1mzQUTR+qsMLeCBL9+/tgnDXRyc2pygLGl/WsgA+EZKIiB5Ehu0CiVTHIIk30zhJ24uGz4M5Ppse37aR0Hg==}
     engines: {node: '>=12'}
 
-  isbot@5.1.14:
-    resolution: {integrity: sha512-4X8KZHyaIqXOqEv1qfZOqshMX3r7Q/VtMEMzuGPZljDMEIGpX7bcGODR9gZztXdcPBEJpNioQXXBJun+xi2G5g==}
+  isbot@5.1.17:
+    resolution: {integrity: sha512-/wch8pRKZE+aoVhRX/hYPY1C7dMCeeMyhkQLNLNlYAbGQn9bkvMB8fOUXNnk5I0m4vDYbBJ9ciVtkr9zfBJ7qA==}
     engines: {node: '>=18'}
 
   isexe@2.0.0:
@@ -5750,6 +5750,10 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
+
+  lru-cache@11.0.1:
+    resolution: {integrity: sha512-CgeuL5uom6j/ZVrg7G/+1IXqRY8JXX4Hghfy5YE0EhoYQWvndP1kufu58cmZLNIDKnRhZrXfdS9urVWx98AipQ==}
+    engines: {node: 20 || >=22}
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
@@ -14872,7 +14876,7 @@ snapshots:
 
   isbot@3.8.0: {}
 
-  isbot@5.1.14: {}
+  isbot@5.1.17: {}
 
   isexe@2.0.0: {}
 
@@ -15137,6 +15141,8 @@ snapshots:
       get-func-name: 2.0.2
 
   lru-cache@10.4.3: {}
+
+  lru-cache@11.0.1: {}
 
   lru-cache@5.1.1:
     dependencies:
