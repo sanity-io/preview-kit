@@ -153,7 +153,7 @@ importers:
         version: 0.15.11
       isbot:
         specifier: latest
-        version: 5.1.14
+        version: 5.1.17
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -255,8 +255,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.5.5
-        version: 1.5.5(@sanity/client@6.19.1)(react@18.3.1)
+        specifier: 1.5.7
+        version: 1.5.7(@sanity/client@6.19.1)(react@18.3.1)
       mendoza:
         specifier: 3.0.7
         version: 3.0.7
@@ -2676,11 +2676,11 @@ packages:
       '@sanity/client': ^6.19.1
       react: ^18.3 || >=19.0.0-rc
 
-  '@sanity/preview-kit-compat@1.5.5':
-    resolution: {integrity: sha512-RtFkmgvjF7KAqmGzK968qref2NJ5LOfqPiuiB5LTRB84yilKFV1gboV/FKwMMEWUYOxwrL1JHphGco9LQqy8cg==}
+  '@sanity/preview-kit-compat@1.5.7':
+    resolution: {integrity: sha512-hOyt66yLD6RHcZfzFlqOdeU779OLXqWD31qQSeouwWLit0IhQhLKI7OMlnFKC238c/cG8GsWHI/sHbnGiaR5DQ==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@sanity/client': ^6.21.1
+      '@sanity/client': ^6.21.3
       react: ^18.3 || >=19.0.0-rc
 
   '@sanity/preview-kit@5.1.0':
@@ -5481,8 +5481,8 @@ packages:
     resolution: {integrity: sha512-vne1mzQUTR+qsMLeCBL9+/tgnDXRyc2pygLGl/WsgA+EZKIiB5Ehu0CiVTHIIk30zhJ24uGz4M5Ppse37aR0Hg==}
     engines: {node: '>=12'}
 
-  isbot@5.1.14:
-    resolution: {integrity: sha512-4X8KZHyaIqXOqEv1qfZOqshMX3r7Q/VtMEMzuGPZljDMEIGpX7bcGODR9gZztXdcPBEJpNioQXXBJun+xi2G5g==}
+  isbot@5.1.17:
+    resolution: {integrity: sha512-/wch8pRKZE+aoVhRX/hYPY1C7dMCeeMyhkQLNLNlYAbGQn9bkvMB8fOUXNnk5I0m4vDYbBJ9ciVtkr9zfBJ7qA==}
     engines: {node: '>=18'}
 
   isexe@2.0.0:
@@ -11183,7 +11183,7 @@ snapshots:
       '@sanity/client': 6.19.1
       react: 19.0.0-rc-f994737d14-20240522
 
-  '@sanity/preview-kit-compat@1.5.5(@sanity/client@6.19.1)(react@18.3.1)':
+  '@sanity/preview-kit-compat@1.5.7(@sanity/client@6.19.1)(react@18.3.1)':
     dependencies:
       '@sanity/client': 6.19.1
       react: 18.3.1
@@ -14872,7 +14872,7 @@ snapshots:
 
   isbot@3.8.0: {}
 
-  isbot@5.1.14: {}
+  isbot@5.1.17: {}
 
   isexe@2.0.0: {}
 
