@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/sanity-io/preview-kit/compare/v5.1.0...v5.1.1) (2024-09-19)
+
+### Bug Fixes
+
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.5.2 ([#1298](https://github.com/sanity-io/preview-kit/issues/1298)) ([aca4c09](https://github.com/sanity-io/preview-kit/commit/aca4c09402d40fa827a1deed719623f1e0f746c9))
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.5.4 ([#1301](https://github.com/sanity-io/preview-kit/issues/1301)) ([222215d](https://github.com/sanity-io/preview-kit/commit/222215de966f8d37c20a207cef30f66128f9fced))
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.5.5 ([#1304](https://github.com/sanity-io/preview-kit/issues/1304)) ([d50892f](https://github.com/sanity-io/preview-kit/commit/d50892fb8d8df03f1caa243b807b2027a3404d4b))
+- **deps:** Update dependency @sanity/preview-kit-compat to v1.5.7 ([#1312](https://github.com/sanity-io/preview-kit/issues/1312)) ([31564c4](https://github.com/sanity-io/preview-kit/commit/31564c4d0aa2d6810065207b0da46923ac833be0))
+- **deps:** update dependency lru-cache to v10.4.3 ([#1308](https://github.com/sanity-io/preview-kit/issues/1308)) ([8d1a850](https://github.com/sanity-io/preview-kit/commit/8d1a8501222627990d655553621201216345c686))
+
 ## [5.1.0](https://github.com/sanity-io/preview-kit/compare/v5.0.62...v5.1.0) (2024-05-30)
 
 ### Features
