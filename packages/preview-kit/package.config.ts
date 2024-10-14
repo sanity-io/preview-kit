@@ -8,7 +8,6 @@ const MODULE_PATHES_WHICH_USE_CLIENT_DIRECTIVE_SHOULD_BE_ADDED = [
 
 export default defineConfig({
   tsconfig: 'tsconfig.build.json',
-  minify: true,
   rollup: {
     output: {
       banner: (chunkInfo) => {
