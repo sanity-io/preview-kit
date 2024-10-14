@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/sanity-io/preview-kit/compare/v5.1.1...v5.1.2) (2024-10-14)
+
+### Bug Fixes
+
+- stop minifying ([a1f8aea](https://github.com/sanity-io/preview-kit/commit/a1f8aeaabe9390c0baca91fa817b4ecf574f163e))
+
 ## [5.1.1](https://github.com/sanity-io/preview-kit/compare/v5.1.0...v5.1.1) (2024-09-19)
 
 ### Bug Fixes
