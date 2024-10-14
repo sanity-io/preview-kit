@@ -29,5 +29,6 @@ jobs:
           branch: actions/update-browserslist-database-if-needed
           commit-message: 'chore: update browserslist db'
           labels: 🤖 bot
+          sign-commits: true
           title: 'chore: update browserslist db'
           token: ${{ steps.generate-token.outputs.token }}
