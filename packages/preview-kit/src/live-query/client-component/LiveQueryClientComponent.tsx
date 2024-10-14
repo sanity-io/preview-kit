@@ -1,5 +1,5 @@
 import type {QueryParams as ClientQueryParams} from '@sanity/client'
-import {Children, cloneElement, isValidElement, memo} from 'react'
+import {Children, cloneElement, isValidElement} from 'react'
 
 import {useLiveQuery} from './useLiveQuery'
 
@@ -21,7 +21,7 @@ export interface LiveQueryClientComponentProps<QueryResult, QueryParams> {
  * Browser-only preview component, overwrites the data prop with live data on-demand
  * @public
  */
-function LiveQueryClientComponent<
+export default function LiveQueryClientComponent<
   QueryResult,
   QueryParams extends ClientQueryParams = ClientQueryParams,
 >(props: LiveQueryClientComponentProps<QueryResult, QueryParams>): React.ReactNode {
@@ -62,7 +62,3 @@ LiveQueryClientComponent.displayName = 'LiveQueryClientComponent'
 
 /** @public */
 export type {LiveQueryClientComponent}
-
-/** @public */
-const LiveQueryClientComponentMemo = memo(LiveQueryClientComponent)
-export default LiveQueryClientComponentMemo

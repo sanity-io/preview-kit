@@ -11,7 +11,7 @@ import {useDocumentsInUse, useRevalidate} from '@sanity/preview-kit-compat'
 import {vercelStegaSplit} from '@vercel/stega'
 import {LRUCache} from 'lru-cache'
 import {applyPatch} from 'mendoza'
-import {memo, startTransition, useCallback, useEffect, useMemo, useState} from 'react'
+import {startTransition, useCallback, useEffect, useMemo, useState} from 'react'
 
 import {defineStoreContext as Context} from '../context'
 import type {
@@ -32,7 +32,7 @@ const documentsCache = new LRUCache<ReturnType<typeof getTurboCacheKey>, SanityD
 /**
  * @internal
  */
-const LiveStoreProvider = memo(function LiveStoreProvider(props: LiveQueryProviderProps) {
+export default function LiveStoreProvider(props: LiveQueryProviderProps): React.JSX.Element {
   const {children, refreshInterval = 10000, token} = props
 
   if (!props.client) {
@@ -150,9 +150,8 @@ const LiveStoreProvider = memo(function LiveStoreProvider(props: LiveQueryProvid
       })}
     </Context.Provider>
   )
-})
+}
 LiveStoreProvider.displayName = 'LiveStoreProvider'
-export default LiveStoreProvider
 
 interface QuerySubscriptionProps
   extends Required<Pick<LiveQueryProviderProps, 'client' | 'refreshInterval'>> {
@@ -162,7 +161,7 @@ interface QuerySubscriptionProps
   turboIdsFromSourceMap: (contentSourceMap: ContentSourceMap) => void
   snapshots: QuerySnapshotsCache
 }
-const QuerySubscription = memo(function QuerySubscription(props: QuerySubscriptionProps) {
+function QuerySubscription(props: QuerySubscriptionProps) {
   const {client, refreshInterval, query, params, listeners, snapshots, turboIdsFromSourceMap} =
     props
   const {projectId, dataset} = useMemo(() => {
@@ -235,7 +234,7 @@ const QuerySubscription = memo(function QuerySubscription(props: QuerySubscripti
   ])
 
   return null
-})
+}
 QuerySubscription.displayName = 'QuerySubscription'
 
 type QuerySnapshotsCache = Map<QueryCacheKey, {result: unknown; resultSourceMap: ContentSourceMap}>
@@ -319,7 +318,7 @@ interface TurboProps extends Pick<LiveQueryProviderProps, 'client'> {
 /**
  * A turbo-charged mutation observer that uses Content Source Maps to apply mendoza patches on your queries
  */
-const Turbo = memo(function Turbo(props: TurboProps) {
+function Turbo(props: TurboProps) {
   const {client, snapshots, cache, turboIds, setTurboIds, docsInUse} = props
   const {projectId, dataset} = useMemo(() => {
     const {projectId, dataset} = client.config()
@@ -440,7 +439,7 @@ const Turbo = memo(function Turbo(props: TurboProps) {
       ))}
     </>
   )
-})
+}
 Turbo.displayName = 'Turbo'
 
 interface GetDocumentsProps extends Pick<LiveQueryProviderProps, 'client'> {
@@ -448,7 +447,7 @@ interface GetDocumentsProps extends Pick<LiveQueryProviderProps, 'client'> {
   dataset: string
   ids: string[]
 }
-const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
+function GetDocuments(props: GetDocumentsProps) {
   const {client, projectId, dataset, ids} = props
 
   useEffect(() => {
@@ -467,7 +466,7 @@ const GetDocuments = memo(function GetDocuments(props: GetDocumentsProps) {
   }, [client, dataset, ids, projectId])
 
   return null
-})
+}
 GetDocuments.displayName = 'GetDocuments'
 
 let warnedAboutCrossDatasetReference = false
