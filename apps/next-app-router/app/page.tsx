@@ -23,6 +23,7 @@ export default async function Page() {
     query: footerQuery,
     tags: ['pages'],
   })
+  const {isEnabled} = await draftMode()
 
   return (
     <LiveStoreVariant>
@@ -30,7 +31,7 @@ export default async function Page() {
         <ServerTable />
       </Suspense>
       <LiveQuery
-        enabled={draftMode().isEnabled}
+        enabled={isEnabled}
         initialData={footer}
         query={footerQuery}
         as={PreviewFooter}
@@ -49,10 +50,11 @@ async function ServerTable() {
     query: tableQuery,
     tags: ['pages'],
   })
+  const {isEnabled} = await draftMode()
 
   return (
     <LiveQuery
-      enabled={draftMode().isEnabled}
+      enabled={isEnabled}
       initialData={data}
       query={tableQuery}
       as={PreviewTable}

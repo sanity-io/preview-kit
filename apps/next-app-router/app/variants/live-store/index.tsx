@@ -6,9 +6,10 @@ import {token} from '../../sanity.fetch'
 const PreviewProvider = dynamic(() => import('./PreviewProvider'))
 
 export default async function LiveStoreVariant({children}: React.PropsWithChildren) {
+  const {isEnabled} = await draftMode()
   return (
     <>
-      {draftMode().isEnabled ? (
+      {isEnabled ? (
         <>
           <PreviewProvider token={token}>{children}</PreviewProvider>
           <VisualEditing />
