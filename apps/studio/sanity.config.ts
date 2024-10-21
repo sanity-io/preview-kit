@@ -24,7 +24,7 @@ const iframes: [string, string][] = [
   'next-app-router-live-store',
   'next-pages-router-live-store',
   'remix-live-store',
-].map((title) => [`https://preview-kit-${title}.sanity.build`, title])
+].map((title) => [`https://preview-kit-${title}.sanity.dev`, title])
 
 function createConfig(stable: boolean) {
   const name = stable ? 'stable' : 'experimental'

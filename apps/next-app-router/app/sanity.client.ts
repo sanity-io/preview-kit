@@ -8,7 +8,7 @@ export const client = createClient({
   perspective: 'published',
   stega: {
     enabled: true,
-    studioUrl: 'https://preview-kit-test-studio.sanity.build/',
+    studioUrl: 'https://preview-kit-test-studio.sanity.dev',
     logger: console,
   },
 })

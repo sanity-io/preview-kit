@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('user-agent', 'New User Agent overriden by middleware!')
   requestHeaders.set('Access-Control-Allow-Credentials', 'true')
-  requestHeaders.set('Access-Control-Allow-Origin', 'preview-kit-test-studio.sanity.build')
+  requestHeaders.set('Access-Control-Allow-Origin', 'preview-kit-test-studio.sanity.dev')
   requestHeaders.set('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
   requestHeaders.set(
     'Access-Control-Allow-Headers',
