@@ -39,8 +39,8 @@ importers:
         specifier: 15.0.1
         version: 15.0.1(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
       next-sanity:
-        specifier: 9.8.0
-        version: 9.8.0(yrc3jcnrqvaktmmiby4qp5ofna)
+        specifier: 9.8.1
+        version: 9.8.1(yrc3jcnrqvaktmmiby4qp5ofna)
       react:
         specifier: 19.0.0-rc-fb9a90fa48-20240614
         version: 19.0.0-rc-fb9a90fa48-20240614
@@ -2727,8 +2727,8 @@ packages:
   '@sanity/mutator@3.62.0':
     resolution: {integrity: sha512-SM2Lm1ViqUElcxEIu1NoasyqufNXiKYo12kLPuYvpJcx1+TqZHaE7kclbwr7j/4qATxsuxihEYwJR/kgbTRQBw==}
 
-  '@sanity/next-loader@1.0.5':
-    resolution: {integrity: sha512-pIhPbtrRGS1oiyIbnA67VFo81uGfbjQ5iRxPq1nUc+WmbBoY+qtM5BkNz1UDRjsuHyQJqYp2i8rW1VgLA+BeKg==}
+  '@sanity/next-loader@1.0.6':
+    resolution: {integrity: sha512-VcLs/GSqcxQ9MCVtr5/QP9KJg/fuv8NqCp9jqRHvxRhhKlB67zvJzBiDGQ5U0+Sh0Q6HqHtbMNwnG7ohHCecrQ==}
     engines: {node: '>=18.18'}
     peerDependencies:
       '@sanity/client': ^6.22.2
@@ -6293,8 +6293,8 @@ packages:
   nerf-dart@1.0.0:
     resolution: {integrity: sha512-EZSPZB70jiVsivaBLYDCyntd5eH8NTSMOn3rB+HxwdmKThGELLdYv8qVIMWvZEFy9w8ZZpW9h9OB32l1rGtj7g==}
 
-  next-sanity@9.8.0:
-    resolution: {integrity: sha512-SQNTeVNN8/dC2XV+w96GpZaDPa0ZP46H2f7E368+blmca22FuM7H31Heomyu/glNH7MldLeNUfuZ6/R4hhELUw==}
+  next-sanity@9.8.1:
+    resolution: {integrity: sha512-mGtEFQytBGtYM+NQK/BGnpqhhb4oZeGYHAvHJZTo+ujFruJBOg5rV2OBLw5KdxFQaQ3mR/1tXbZPojRrhTqA+g==}
     engines: {node: '>=18.18'}
     peerDependencies:
       '@sanity/client': ^6.22.2
@@ -11192,7 +11192,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sanity/next-loader@1.0.5(@sanity/client@6.22.2)(next@15.0.1(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)':
+  '@sanity/next-loader@1.0.6(@sanity/client@6.22.2)(next@15.0.1(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)':
     dependencies:
       '@sanity/client': 6.22.2(debug@4.3.6)
       '@sanity/comlink': 1.0.0
@@ -15814,12 +15814,12 @@ snapshots:
 
   nerf-dart@1.0.0: {}
 
-  next-sanity@9.8.0(yrc3jcnrqvaktmmiby4qp5ofna):
+  next-sanity@9.8.1(yrc3jcnrqvaktmmiby4qp5ofna):
     dependencies:
       '@portabletext/react': 3.1.0(react@19.0.0-rc-fb9a90fa48-20240614)
       '@sanity/client': 6.22.2(debug@4.3.6)
       '@sanity/icons': 3.4.0(react@19.0.0-rc-fb9a90fa48-20240614)
-      '@sanity/next-loader': 1.0.5(@sanity/client@6.22.2)(next@15.0.1(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
+      '@sanity/next-loader': 1.0.6(@sanity/client@6.22.2)(next@15.0.1(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
       '@sanity/preview-kit': 5.1.7(@sanity/client@6.22.2)(react@19.0.0-rc-fb9a90fa48-20240614)
       '@sanity/preview-url-secret': 2.0.0(@sanity/client@6.22.2)
       '@sanity/types': 3.62.0(debug@4.3.6)
