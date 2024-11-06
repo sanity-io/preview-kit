@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.13](https://github.com/sanity-io/preview-kit/compare/v5.1.12...v5.1.13) (2024-11-06)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/client to ^6.22.3 ([#1367](https://github.com/sanity-io/preview-kit/issues/1367)) ([e5d69f5](https://github.com/sanity-io/preview-kit/commit/e5d69f587e3a202aca82605ad771ebea4d3f38a2))
+
 ## [5.1.12](https://github.com/sanity-io/preview-kit/compare/v5.1.11...v5.1.12) (2024-11-06)
 
 ### Bug Fixes
