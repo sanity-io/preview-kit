@@ -255,8 +255,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.5.17
-        version: 1.5.17(@sanity/client@6.22.3)(react@18.3.1)
+        specifier: 1.5.18
+        version: 1.5.18(@sanity/client@6.22.3)(react@18.3.1)
       mendoza:
         specifier: 3.0.7
         version: 3.0.7
@@ -2787,6 +2787,13 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       '@sanity/client': ^6.22.3
+      react: ^18.3 || >=19.0.0-rc
+
+  '@sanity/preview-kit-compat@1.5.18':
+    resolution: {integrity: sha512-NJv4YtT2Aoks+5HM/tWqGv90XbF3hEw8E38tpM4UoEGhOmYjYhL/AMt1i5rhh2j4Ze3iw1m0znmEKrAd0NAhOQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@sanity/client': ^6.22.4
       react: ^18.3 || >=19.0.0-rc
 
   '@sanity/preview-kit@5.1.14':
@@ -11432,17 +11439,17 @@ snapshots:
       prettier: 3.3.3
       prettier-plugin-packagejson: 2.5.3(prettier@3.3.3)
 
-  '@sanity/preview-kit-compat@1.5.17(@sanity/client@6.22.3)(react@18.3.1)':
-    dependencies:
-      '@sanity/client': 6.22.3(debug@4.3.7)
-      '@sanity/comlink': 1.1.1
-      react: 18.3.1
-
   '@sanity/preview-kit-compat@1.5.17(@sanity/client@6.22.3)(react@19.0.0-rc-fb9a90fa48-20240614)':
     dependencies:
       '@sanity/client': 6.22.3(debug@4.3.7)
       '@sanity/comlink': 1.1.1
       react: 19.0.0-rc-fb9a90fa48-20240614
+
+  '@sanity/preview-kit-compat@1.5.18(@sanity/client@6.22.3)(react@18.3.1)':
+    dependencies:
+      '@sanity/client': 6.22.3(debug@4.3.7)
+      '@sanity/comlink': 1.1.1
+      react: 18.3.1
 
   '@sanity/preview-kit@5.1.14(@sanity/client@6.22.3)(react@19.0.0-rc-fb9a90fa48-20240614)':
     dependencies:
