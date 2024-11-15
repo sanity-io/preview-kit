@@ -255,8 +255,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.5.19
-        version: 1.5.19(@sanity/client@6.22.4)(react@18.3.1)
+        specifier: 1.5.20
+        version: 1.5.20(@sanity/client@6.22.4)(react@18.3.1)
       mendoza:
         specifier: 3.0.7
         version: 3.0.7
@@ -2412,6 +2412,10 @@ packages:
     resolution: {integrity: sha512-NFdoNub1P2VLQo7S/LpvY5spTfmIZpHRB2IBlIobkE+L/MbFM2Ur2PBUoNr4d+hnFKEB/8thySUZXYfUIcytmw==}
     engines: {node: '>=18'}
 
+  '@sanity/comlink@1.1.3':
+    resolution: {integrity: sha512-Lx1YwziLLqzPUFuJDqmtS0zF2LbYZjDdJ6n6P9toUCrizw1F+/dqnJL2a2YZPKmBlW7+gfnJKxwMlK4DmbThTg==}
+    engines: {node: '>=18'}
+
   '@sanity/diff-match-patch@3.1.1':
     resolution: {integrity: sha512-dSZqGeYjHKGIkqAzGqLcG92LZyJGX+nYbs/FWawhBbTBDWi21kvQ0hsL3DJThuFVWtZMWTQijN3z6Cnd44Pf2g==}
     engines: {node: '>=14.18'}
@@ -2530,6 +2534,13 @@ packages:
 
   '@sanity/preview-kit-compat@1.5.19':
     resolution: {integrity: sha512-zoj4HjNRSjYQKDNO99N9D4C745cnFEC5O8DE4/mWzHvjX2oAhAMwTx2l51qlvnl5XyANlrSIwLPOzxi7MIBHbw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@sanity/client': ^6.22.4
+      react: ^18.3 || >=19.0.0-rc
+
+  '@sanity/preview-kit-compat@1.5.20':
+    resolution: {integrity: sha512-/ugwZfVBdAyhBChNKG15/8lhPfCh4BVwc8NXtHNK4DlpYr8dQnp6i/BG4MSrVSX41KZcPYOGwGP7I04035ztIA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@sanity/client': ^6.22.4
@@ -10663,6 +10674,12 @@ snapshots:
       uuid: 10.0.0
       xstate: 5.19.0
 
+  '@sanity/comlink@1.1.3':
+    dependencies:
+      rxjs: 7.8.1
+      uuid: 10.0.0
+      xstate: 5.19.0
+
   '@sanity/diff-match-patch@3.1.1': {}
 
   '@sanity/diff@3.64.1':
@@ -10946,17 +10963,17 @@ snapshots:
       prettier: 3.3.3
       prettier-plugin-packagejson: 2.5.3(prettier@3.3.3)
 
-  '@sanity/preview-kit-compat@1.5.19(@sanity/client@6.22.4)(react@18.3.1)':
-    dependencies:
-      '@sanity/client': 6.22.4(debug@4.3.7)
-      '@sanity/comlink': 1.1.2
-      react: 18.3.1
-
   '@sanity/preview-kit-compat@1.5.19(@sanity/client@6.22.4)(react@19.0.0-rc-fb9a90fa48-20240614)':
     dependencies:
       '@sanity/client': 6.22.4(debug@4.3.7)
       '@sanity/comlink': 1.1.2
       react: 19.0.0-rc-fb9a90fa48-20240614
+
+  '@sanity/preview-kit-compat@1.5.20(@sanity/client@6.22.4)(react@18.3.1)':
+    dependencies:
+      '@sanity/client': 6.22.4(debug@4.3.7)
+      '@sanity/comlink': 1.1.3
+      react: 18.3.1
 
   '@sanity/preview-kit@5.1.16(@sanity/client@6.22.4)(react@19.0.0-rc-fb9a90fa48-20240614)':
     dependencies:
