@@ -265,8 +265,8 @@ importers:
         specifier: ^6.22.4
         version: 6.22.5(debug@4.3.7)
       '@sanity/pkg-utils':
-        specifier: 6.11.11
-        version: 6.11.11(@types/babel__core@7.20.5)(@types/node@18.19.64)(typescript@5.6.3)
+        specifier: 6.11.12
+        version: 6.11.12(@types/babel__core@7.20.5)(@types/node@18.19.64)(typescript@5.6.3)
       '@sanity/prettier-config':
         specifier: ^1.0.3
         version: 1.0.3(prettier@3.3.3)
@@ -2509,17 +2509,6 @@ packages:
       '@sanity/client': ^6.22.4
       next: ^14.1 || ^15.0.0-0
       react: ^18.3 || ^19.0.0-0
-
-  '@sanity/pkg-utils@6.11.11':
-    resolution: {integrity: sha512-5l7KGYxUvXgCm65a7hqeA58OIxIELNA+bWRxwKBXrGhUmTtq+qtoqZm5I7D/BAfBZZ3jm3XWVoAaSJMVWMDdwQ==}
-    engines: {node: '>=18.17.0'}
-    hasBin: true
-    peerDependencies:
-      babel-plugin-react-compiler: '*'
-      typescript: 5.4.x || 5.5.x || 5.6.x
-    peerDependenciesMeta:
-      babel-plugin-react-compiler:
-        optional: true
 
   '@sanity/pkg-utils@6.11.12':
     resolution: {integrity: sha512-VEPPd9LJjriXnXkt0iFdw2bZdjviemG4dn1+jC4vfS+ppcDUVIMZvL16/tCHRfm03dkYeqnUFu9SCZEIAHbhHg==}
@@ -10877,56 +10866,6 @@ snapshots:
       next: 15.0.3(react-dom@19.0.0-rc-fb9a90fa48-20240614(react@19.0.0-rc-fb9a90fa48-20240614))(react@19.0.0-rc-fb9a90fa48-20240614)
       react: 19.0.0-rc-fb9a90fa48-20240614
       use-effect-event: 1.0.2(react@19.0.0-rc-fb9a90fa48-20240614)
-
-  '@sanity/pkg-utils@6.11.11(@types/babel__core@7.20.5)(@types/node@18.19.64)(typescript@5.6.3)':
-    dependencies:
-      '@babel/core': 7.26.0
-      '@babel/preset-typescript': 7.26.0(@babel/core@7.26.0)
-      '@babel/types': 7.26.0
-      '@microsoft/api-extractor': 7.47.11(@types/node@18.19.64)
-      '@microsoft/tsdoc-config': 0.17.0
-      '@optimize-lodash/rollup-plugin': 5.0.0(rollup@4.27.3)
-      '@rollup/plugin-alias': 5.1.1(rollup@4.27.3)
-      '@rollup/plugin-babel': 6.0.4(@babel/core@7.26.0)(@types/babel__core@7.20.5)(rollup@4.27.3)
-      '@rollup/plugin-commonjs': 28.0.1(rollup@4.27.3)
-      '@rollup/plugin-json': 6.1.0(rollup@4.27.3)
-      '@rollup/plugin-node-resolve': 15.3.0(rollup@4.27.3)
-      '@rollup/plugin-replace': 6.0.1(rollup@4.27.3)
-      '@rollup/plugin-terser': 0.4.4(rollup@4.27.3)
-      '@sanity/browserslist-config': 1.0.3
-      browserslist: 4.24.2
-      cac: 6.7.14
-      chalk: 4.1.2
-      chokidar: 4.0.1
-      esbuild: 0.24.0
-      esbuild-register: 3.6.0(esbuild@0.24.0)
-      find-config: 1.0.0
-      get-latest-version: 5.1.0
-      git-url-parse: 15.0.0
-      globby: 11.1.0
-      jsonc-parser: 3.3.1
-      mkdirp: 3.0.1
-      outdent: 0.8.0
-      parse-git-config: 3.0.0
-      pkg-up: 3.1.0
-      prettier: 3.3.3
-      pretty-bytes: 5.6.0
-      prompts: 2.4.2
-      recast: 0.23.9
-      rimraf: 4.4.1
-      rollup: 4.27.3
-      rollup-plugin-esbuild: 6.1.1(esbuild@0.24.0)(rollup@4.27.3)
-      rxjs: 7.8.1
-      treeify: 1.1.0
-      typescript: 5.6.3
-      uuid: 10.0.0
-      zod: 3.23.8
-      zod-validation-error: 3.4.0(zod@3.23.8)
-    transitivePeerDependencies:
-      - '@types/babel__core'
-      - '@types/node'
-      - debug
-      - supports-color
 
   '@sanity/pkg-utils@6.11.12(@types/babel__core@7.20.5)(@types/node@18.19.64)(typescript@5.6.3)':
     dependencies:
