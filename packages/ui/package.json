@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@sanity/pkg-utils": "6.11.14",
-    "@types/react": "^18.3.13",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.1",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
     "eslint": "^8.57.1",
@@ -65,12 +65,12 @@
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "react": "18.3.1",
+    "react": "19.0.0",
     "rimraf": "5.0.1",
     "typescript": "5.7.2"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "react": "^18.0.0 || ^19.0.0"
   },
   "engines": {
     "node": ">=14"
