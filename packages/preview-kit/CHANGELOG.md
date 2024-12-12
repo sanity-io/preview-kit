@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.24](https://github.com/sanity-io/preview-kit/compare/v5.1.23...v5.1.24) (2024-12-12)
+
+### Bug Fixes
+
+- **deps:** update react monorepo ([#1419](https://github.com/sanity-io/preview-kit/issues/1419)) ([dbf58d5](https://github.com/sanity-io/preview-kit/commit/dbf58d5ad51930fd2bbbd8dcab9dbf8cc781ed2b))
+
+### Reverts
+
+- Revert "chore(deps): update app dependencies to v19 (major)" ([#1426](https://github.com/sanity-io/preview-kit/issues/1426)) ([37b3555](https://github.com/sanity-io/preview-kit/commit/37b35552f5c7e02467cb838c13da2c2c9eeb67b2)), closes [#1421](https://github.com/sanity-io/preview-kit/issues/1421)
+
 ## [5.1.23](https://github.com/sanity-io/preview-kit/compare/v5.1.22...v5.1.23) (2024-12-05)
 
 ### Bug Fixes
