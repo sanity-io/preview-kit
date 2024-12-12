@@ -122,7 +122,7 @@ export function Button({
   children?: React.ReactNode
   disabled?: boolean
   isLoading?: boolean
-  formAction?: JSX.IntrinsicElements['button']['formAction']
+  formAction?: React.JSX.IntrinsicElements['button']['formAction']
 }) {
   return (
     <button
@@ -140,7 +140,7 @@ export function PreviewDraftsButton({
   formAction,
 }: {
   isLoading?: boolean
-  formAction?: JSX.IntrinsicElements['button']['formAction']
+  formAction?: React.JSX.IntrinsicElements['button']['formAction']
 }) {
   return (
     <section className="section">
@@ -156,7 +156,7 @@ export function ViewPublishedButton({
   formAction,
 }: {
   isLoading?: boolean
-  formAction?: JSX.IntrinsicElements['button']['formAction']
+  formAction?: React.JSX.IntrinsicElements['button']['formAction']
 }) {
   return (
     <section className="section">
