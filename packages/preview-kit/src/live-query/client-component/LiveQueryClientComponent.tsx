@@ -47,6 +47,8 @@ export default function LiveQueryClientComponent<
    */
   if (isValidElement(children)) {
     return cloneElement(children, {
+      // eslint-disable-next-line no-warning-comments
+      // @ts-expect-error -- @todo fix the typings
       ...children.props,
       // all child props should override, except for `data`
       data,

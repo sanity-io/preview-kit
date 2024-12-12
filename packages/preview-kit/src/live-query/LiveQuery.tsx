@@ -50,7 +50,13 @@ export function LiveQuery<QueryResult, QueryParams extends ClientQueryParams = C
         params={params as any}
         throwOnMissingProvider={props.throwOnMissingProvider}
       >
-        <LiveComponent {...props.children.props} />
+        <LiveComponent
+          {
+            // eslint-disable-next-line no-warning-comments
+            // @ts-expect-error -- @todo fix the typings
+            ...props.children.props
+          }
+        />
       </ClientComponent>
     )
   }
