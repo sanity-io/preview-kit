@@ -259,8 +259,8 @@ importers:
   packages/preview-kit:
     dependencies:
       '@sanity/preview-kit-compat':
-        specifier: 1.5.30
-        version: 1.5.30(@sanity/client@6.24.3)(react@19.0.0)
+        specifier: 1.5.31
+        version: 1.5.31(@sanity/client@6.24.3)(react@19.0.0)
       mendoza:
         specifier: 3.0.8
         version: 3.0.8
@@ -2494,8 +2494,8 @@ packages:
       '@sanity/client': ^6.24.1
       react: ^18.3 || >=19.0.0-rc
 
-  '@sanity/preview-kit-compat@1.5.30':
-    resolution: {integrity: sha512-4VFTq7zAxXYo1nBsnrC9gwuga7oSN7JCKI2HgDQV3pO6lucHte8CSwIuklLw1D4xBAF5Z/Ql+XICDxS0rUTWwQ==}
+  '@sanity/preview-kit-compat@1.5.31':
+    resolution: {integrity: sha512-hkRtoYhfQHkJqQkTM5/LWzMl8CQf2V2xYcOJG7eRLwe9FMgvk9Si9cvXsOFtDc3oczYAl+9BTLmS+tJQ+ydH8Q==}
     engines: {node: '>=18'}
     peerDependencies:
       '@sanity/client': ^6.24.1
@@ -10946,10 +10946,10 @@ snapshots:
       '@sanity/comlink': 2.0.4
       react: 19.0.0
 
-  '@sanity/preview-kit-compat@1.5.30(@sanity/client@6.24.3)(react@19.0.0)':
+  '@sanity/preview-kit-compat@1.5.31(@sanity/client@6.24.3)(react@19.0.0)':
     dependencies:
       '@sanity/client': 6.24.3(debug@4.4.0)
-      '@sanity/comlink': 2.0.5
+      '@sanity/comlink': 3.0.0
       react: 19.0.0
 
   '@sanity/preview-kit@5.1.27(@sanity/client@6.24.3)(react@19.0.0)':
