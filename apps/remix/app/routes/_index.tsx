@@ -15,8 +15,7 @@ import {
 import {unstable__adapter as adapter, unstable__environment as environment} from '@sanity/client'
 import {getSession} from '~/sessions'
 import {lazy, useEffect} from 'react'
-import {useIsEnabled} from '@sanity/preview-kit'
-import {LiveQuery} from '@sanity/preview-kit/live-query'
+import {useIsEnabled, useLiveQuery} from '@sanity/preview-kit'
 import {sanityFetch, token} from '~/sanity'
 
 const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
@@ -50,6 +49,16 @@ function Variant(props: SerializeFrom<typeof loader> & {children: React.ReactNod
   return <>{props.children}</>
 }
 
+function PreviewTable(props: {initialData: unknown}) {
+  const [table] = useLiveQuery(props.initialData, tableQuery)
+  return <Table data={table} />
+}
+
+function PreviewFooter(props: {initialData: number}) {
+  const [footer] = useLiveQuery(props.initialData, footerQuery)
+  return <Footer data={footer} />
+}
+
 export default function Index() {
   const props = useLoaderData<typeof loader>()
   const {previewDrafts, timestamp, server__adapter, server__environment} = props
@@ -71,22 +80,8 @@ export default function Index() {
         {button}
       </form>
       <Variant {...props}>
-        <LiveQuery
-          enabled={previewDrafts}
-          initialData={table}
-          query={tableQuery}
-          throwOnMissingProvider={false}
-        >
-          <Table data={table} />
-        </LiveQuery>
-        <LiveQuery
-          enabled={previewDrafts}
-          initialData={footer}
-          query={footerQuery}
-          throwOnMissingProvider={false}
-        >
-          <Footer data={footer} />
-        </LiveQuery>
+        <PreviewTable initialData={table} />
+        <PreviewFooter initialData={footer} />
         <Timestamp date={timestamp} />
         <RefreshButton />
       </Variant>

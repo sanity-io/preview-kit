@@ -27,6 +27,10 @@ const iframes: [string, string][] = [
 ].map((title) => [`https://preview-kit-${title}.sanity.dev`, title])
 
 export default defineConfig({
+  announcements: {enabled: false},
+  comments: {enabled: false},
+  scheduledPublishing: {enabled: false},
+  tasks: {enabled: false},
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
   dataset: process.env.SANITY_STUDIO_DATASET!,
   plugins: [
@@ -55,7 +59,7 @@ export default defineConfig({
     presentationTool({
       name: 'remix',
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3002',
+        origin: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3000',
         previewMode: {
           enable: '/api/draft',
         },
@@ -64,7 +68,7 @@ export default defineConfig({
     presentationTool({
       name: 'pages-router',
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3000',
+        origin: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3003',
         previewMode: {
           enable: '/api/draft',
         },
@@ -73,7 +77,7 @@ export default defineConfig({
     presentationTool({
       name: 'app-router',
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3001',
+        origin: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3002',
         previewMode: {
           enable: '/api/draft',
         },

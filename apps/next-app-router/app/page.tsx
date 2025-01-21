@@ -9,7 +9,6 @@ import {
   TableFallback,
 } from 'ui/react'
 import {draftMode} from 'next/headers'
-import {LiveQuery} from '@sanity/preview-kit/live-query'
 import {sanityFetch} from './sanity.fetch'
 import RefreshButton from './RefreshButton'
 import {PreviewTable, PreviewFooter} from './previews'
@@ -28,15 +27,7 @@ export default async function Page() {
       <Suspense fallback={<TableFallback rows={Math.min(10, footer)} />}>
         <ServerTable />
       </Suspense>
-      <LiveQuery
-        enabled={isEnabled}
-        initialData={footer}
-        query={footerQuery}
-        as={PreviewFooter}
-        throwOnMissingProvider={false}
-      >
-        <Footer data={footer} />
-      </LiveQuery>
+      {isEnabled ? <PreviewFooter initialData={footer} /> : <Footer data={footer} />}
       <Timestamp date={new Date()} />
       <RefreshButton />
     </LiveStoreVariant>
@@ -50,15 +41,9 @@ async function ServerTable() {
   })
   const {isEnabled} = await draftMode()
 
-  return (
-    <LiveQuery
-      enabled={isEnabled}
-      initialData={data}
-      query={tableQuery}
-      as={PreviewTable}
-      throwOnMissingProvider={false}
-    >
-      <Table data={data} />
-    </LiveQuery>
-  )
+  if (isEnabled) {
+    return <PreviewTable initialData={data} />
+  }
+
+  return <Table data={data} />
 }

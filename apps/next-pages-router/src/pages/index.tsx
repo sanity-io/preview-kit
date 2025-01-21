@@ -15,7 +15,7 @@ import {
   tableQuery,
 } from 'ui/react'
 import dynamic from 'next/dynamic'
-import {useLiveQuery} from '@sanity/preview-kit'
+import {useLiveQuery, useIsEnabled} from '@sanity/preview-kit'
 import {sanityFetch, token} from '../sanity.fetch'
 
 const LiveStoreVariant = dynamic(() => import('../variants/live-store'))
@@ -50,6 +50,16 @@ export const getStaticProps: GetStaticProps<{
   }
 }
 
+function PreviewTable(props: {initialData: unknown}) {
+  const [table] = useLiveQuery(props.initialData, tableQuery)
+  return <Table data={table} />
+}
+
+function PreviewFooter(props: {initialData: number}) {
+  const [footer] = useLiveQuery(props.initialData, footerQuery)
+  return <Footer data={footer} />
+}
+
 export default function Page(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const {draftMode, timestamp, server__adapter, server__environment} = props
   useEffect(() => {
@@ -58,8 +68,6 @@ export default function Page(props: InferGetStaticPropsType<typeof getStaticProp
       client__environment: environment,
     })
   }, [])
-  const [table, , isLive] = useLiveQuery(props.table, tableQuery)
-  const [footer] = useLiveQuery(props.footer, footerQuery)
 
   return (
     <Container>
@@ -71,10 +79,10 @@ export default function Page(props: InferGetStaticPropsType<typeof getStaticProp
         )}
       </form>
       <LiveStoreVariant {...props}>
-        <Table data={table} />
-        <Footer data={footer} />
+        <PreviewTable initialData={props.table} />
+        <PreviewFooter initialData={props.footer} />
         {timestamp && <Timestamp date={timestamp} />}
-        <RefreshButton isLive={isLive} />
+        <RefreshButton />
       </LiveStoreVariant>
       <script
         type="application/json"
@@ -86,7 +94,8 @@ export default function Page(props: InferGetStaticPropsType<typeof getStaticProp
   )
 }
 
-function RefreshButton({isLive}: {isLive: boolean}) {
+function RefreshButton() {
+  const isLive = useIsEnabled()
   return (
     <form
       action="/api/revalidate"

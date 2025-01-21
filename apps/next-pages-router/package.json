@@ -6,7 +6,7 @@
   "scripts": {
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
-    "dev": "next",
+    "dev": "next -p 3003",
     "init": "sanity init --project pv8y60vp --dataset production --env .env.local",
     "lint": "next lint",
     "start": "next start"
