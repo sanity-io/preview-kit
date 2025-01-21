@@ -16,8 +16,6 @@ import {PreviewTable, PreviewFooter} from './previews'
 import {Suspense} from 'react'
 import LiveStoreVariant from './variants/live-store'
 
-export const runtime = 'edge'
-
 export default async function Page() {
   const footer = await sanityFetch<FooterProps['data']>({
     query: footerQuery,

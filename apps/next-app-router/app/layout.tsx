@@ -4,8 +4,6 @@ import {unstable__adapter, unstable__environment} from '@sanity/client'
 import DraftModeButton from './DraftModeButton'
 import type {Metadata} from 'next'
 
-export const runtime = 'edge'
-
 export const metadata: Metadata = {
   title: `next-app-router-${process.env.VARIANT || 'default'}`,
 }
