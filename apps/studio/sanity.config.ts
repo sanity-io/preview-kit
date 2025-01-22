@@ -14,9 +14,22 @@ const iframeOptions = {
   },
 } satisfies Omit<IframeOptions, 'url'>
 
-const iframes: [string, string][] = ['next-app-router', 'next-pages-router', 'remix'].map(
-  (title) => [`https://preview-kit-${title}.sanity.dev`, title],
-)
+const iframes: [IframeOptions['url'], string][] = [
+  'next-app-router',
+  'next-pages-router',
+  'remix',
+].map((title) => [
+  (document, {perspectiveStack, selectedPerspectiveName}) => {
+    const url = new URL(`https://preview-kit-${title}.sanity.dev`)
+    if (perspectiveStack.length > 0) {
+      url.searchParams.set('sanity-preview-perspective', perspectiveStack.join(','))
+    } else if (typeof selectedPerspectiveName === 'string') {
+      url.searchParams.set('sanity-preview-perspective', selectedPerspectiveName)
+    }
+    return url.toString()
+  },
+  title,
+])
 
 export default defineConfig({
   announcements: {enabled: false},
