@@ -361,6 +361,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@sanity/client':
+        specifier: ^6.27.1
+        version: 6.27.1(debug@4.4.0)
       '@vercel/stega':
         specifier: 0.1.2
         version: 0.1.2

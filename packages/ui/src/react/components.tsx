@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { getVersionFromId } from '@sanity/client/csm'
 import { vercelStegaSplit } from '@vercel/stega'
 import groq from 'groq'
 import { q } from 'groqd'
@@ -189,10 +190,15 @@ const { query: tableQuery, schema: tableSchema } = q('*')
   .filter("_type == 'page'")
   .grab({
     _id: q.string(),
+    _originalId: q.string().optional(),
     _createdAt: q.string().optional(),
     _updatedAt: q.string().optional(),
     title: q.string().optional(),
     status: q.select({
+      '_originalId in path("versions.**")': [
+        '"in release"',
+        q.literal('in release'),
+      ],
       '_originalId in path("drafts.**")': ['"draft"', q.literal('draft')],
       default: ['"published"', q.literal('published')],
     }),
@@ -227,12 +233,17 @@ export function _Table(props: TableProps) {
             const { cleaned, encoded } = vercelStegaSplit(type._updatedAt!)
             const date = new Date(cleaned)
             return (
-              <tr key={type._id} data-created-at={type._createdAt}>
+              <tr
+                key={type._id}
+                data-created-at={type._createdAt}
+                data-original-id={type._originalId}
+                data-id={type._id}
+              >
+                <td width={300}>{type.title}</td>
                 <td style={{ whiteSpace: 'nowrap' }} width={300}>
-                  {type.title}
-                </td>
-                <td style={{ whiteSpace: 'nowrap' }} width={300}>
-                  {type.status}
+                  {type.status === 'in release' && type._originalId
+                    ? getVersionFromId(type._originalId)
+                    : type.status}
                 </td>
                 <td style={{ whiteSpace: 'nowrap' }} width={300}>
                   <time dateTime={type._updatedAt}>
