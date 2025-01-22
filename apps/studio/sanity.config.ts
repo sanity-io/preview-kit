@@ -14,17 +14,9 @@ const iframeOptions = {
   },
 } satisfies Omit<IframeOptions, 'url'>
 
-const iframes: [string, string][] = [
-  'next-app-router',
-  'next-pages-router',
-  'remix',
-  'next-app-router-groq-store',
-  'next-pages-router-groq-store',
-  'remix-groq-store',
-  'next-app-router-live-store',
-  'next-pages-router-live-store',
-  'remix-live-store',
-].map((title) => [`https://preview-kit-${title}.sanity.dev`, title])
+const iframes: [string, string][] = ['next-app-router', 'next-pages-router', 'remix'].map(
+  (title) => [`https://preview-kit-${title}.sanity.dev`, title],
+)
 
 export default defineConfig({
   announcements: {enabled: false},

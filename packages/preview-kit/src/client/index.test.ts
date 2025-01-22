@@ -22,7 +22,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultArray[0].title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=https%3A%2F%2Fpreview-kit-test-studio.sanity.build&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=https%3A%2F%2Fpreview-kit-test-studio.sanity.build&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title&perspective=published",
       "origin": "sanity.io",
     }
   `,
@@ -32,7 +32,7 @@ test('it returns stega encoded source maps', async () => {
   expect(vercelStegaDecode(resultObject.title)).toMatchInlineSnapshot(
     `
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=https%3A%2F%2Fpreview-kit-test-studio.sanity.build&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=https%3A%2F%2Fpreview-kit-test-studio.sanity.build&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title&perspective=published",
       "origin": "sanity.io",
     }
   `,
@@ -41,7 +41,7 @@ test('it returns stega encoded source maps', async () => {
   const resultString = await client.fetch(`*[_type == "page" && title == $title][0].title`, {title})
   expect(vercelStegaDecode(resultString)).toMatchInlineSnapshot(`
     {
-      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=https%3A%2F%2Fpreview-kit-test-studio.sanity.build&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title",
+      "href": "https://preview-kit-test-studio.sanity.build/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=https%3A%2F%2Fpreview-kit-test-studio.sanity.build&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title&perspective=published",
       "origin": "sanity.io",
     }
   `)
@@ -65,7 +65,7 @@ test('it can access the original source map', async () => {
   )
   expect(vercelStegaDecode(result)).toMatchInlineSnapshot(`
     {
-      "href": "/studio/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=%2Fstudio&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title",
+      "href": "/studio/intent/edit/mode=presentation;id=0074e292-efcf-45c2-aeb8-f680da2277ff;type=page;path=title?baseUrl=%2Fstudio&id=0074e292-efcf-45c2-aeb8-f680da2277ff&type=page&path=title&perspective=published",
       "origin": "sanity.io",
     }
   `)
