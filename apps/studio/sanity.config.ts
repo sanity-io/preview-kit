@@ -20,7 +20,15 @@ const iframes: [IframeOptions['url'], string][] = [
   'remix',
 ].map((title) => [
   (document, {perspectiveStack, selectedPerspectiveName}) => {
-    const url = new URL(`https://preview-kit-${title}.sanity.dev`)
+    const url = new URL(
+      title === 'remix'
+        ? process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3000'
+        : title === 'next-pages-router'
+          ? process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3003'
+          : title === 'next-app-router'
+            ? process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3002'
+            : 'https://example.com',
+    )
     if (perspectiveStack.length > 0) {
       url.searchParams.set('sanity-preview-perspective', perspectiveStack.join(','))
     } else if (typeof selectedPerspectiveName === 'string') {
