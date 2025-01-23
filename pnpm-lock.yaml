@@ -5,10 +5,10 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@sanity/vision': 3.59.2-corel-fix-presentation-perspective-switching.536
+  '@sanity/vision': corel
   '@types/react': latest
   '@types/react-dom': latest
-  sanity: 3.59.2-corel-fix-presentation-perspective-switching.536
+  sanity: corel
   sanity-plugin-iframe-pane: corel
 
 importers:
@@ -47,7 +47,7 @@ importers:
         version: 15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next-sanity:
         specifier: 9.8.41
-        version: 9.8.41(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/icons@3.5.7(react@19.0.0))(@sanity/types@3.71.1(@types/react@19.0.8))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(next@15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        version: 9.8.41(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/icons@3.5.7(react@19.0.0))(@sanity/types@3.71.1(@types/react@19.0.8))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -105,7 +105,7 @@ importers:
         version: 15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next-sanity:
         specifier: 9.8.41
-        version: 9.8.41(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/icons@3.5.7(react@19.0.0))(@sanity/types@3.71.1(@types/react@19.0.8))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(next@15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        version: 9.8.41(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/icons@3.5.7(react@19.0.0))(@sanity/types@3.71.1(@types/react@19.0.8))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -218,10 +218,10 @@ importers:
         version: 2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@sanity/vercel-protection-bypass':
         specifier: 1.0.5
-        version: 1.0.5(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        version: 1.0.5(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@sanity/vision':
-        specifier: 3.59.2-corel-fix-presentation-perspective-switching.536
-        version: 3.59.2-corel-fix-presentation-perspective-switching.536(@babel/runtime@7.26.0)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        specifier: corel
+        version: 3.71.1-corel.541(@babel/runtime@7.26.0)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@types/react':
         specifier: latest
         version: 19.0.8
@@ -242,7 +242,7 @@ importers:
         version: 3.71.1
       groqd-playground:
         specifier: 0.0.20
-        version: 0.0.20(@sanity/icons@3.5.7(react@19.0.0))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        version: 0.0.20(@sanity/icons@3.5.7(react@19.0.0))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -250,11 +250,11 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       sanity:
-        specifier: 3.59.2-corel-fix-presentation-perspective-switching.536
-        version: 3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)
+        specifier: corel
+        version: 3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0)
       sanity-plugin-iframe-pane:
         specifier: corel
-        version: 3.1.6-corel.1(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        version: 3.1.6-corel.1(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       styled-components:
         specifier: 6.1.14
         version: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -2383,11 +2383,6 @@ packages:
   '@sanity/browserslist-config@1.0.5':
     resolution: {integrity: sha512-so+/UtCge8t1jq509hH0otbbptRz0zM/Aa0dh5MhMD7HGT6n2igWIL2VWH/9QR9e77Jn3dJsjz23mW1WCxT+sg==}
 
-  '@sanity/cli@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-FFTvtdpr9tSV1HjHU1eRYYIxzCUjjCXJ5aC23syfmEJCBBUS0iQkpBQHRsn/3i3vJwEO9alC30rVWM5n/e+Nww==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   '@sanity/cli@3.71.1-corel.541':
     resolution: {integrity: sha512-L4ZnSugh5LeXIg6l2YpLGll30shyUXiPjnFaAZdcXVSCIMzWx4sHXcXTCSSpvxeGwVbGREdRv3gXm9BUJsSIqg==}
     engines: {node: '>=18'}
@@ -2396,10 +2391,6 @@ packages:
   '@sanity/client@6.27.1':
     resolution: {integrity: sha512-cXRvXa6Sp/O2Bto0pCKhSfKxiF1ItO+PXwIKfKtMuUa35rgPWRzax9ddXNG0vR9k1Qggh4hn9yPZ8mstu4J2BA==}
     engines: {node: '>=14.18'}
-
-  '@sanity/codegen@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-MOYMqxNndHBIK+yZTVwRmI4JekVzlUZc17pGZOamb1BYF9Zp+03Cn4TXZnSW6vt2ndEbHD8IWpW101dEq8WBkA==}
-    engines: {node: '>=18'}
 
   '@sanity/codegen@3.71.1-corel.541':
     resolution: {integrity: sha512-RvzpcNaJjPkhsNzSJAtORcPBMIXY01QdVCiMyY/XeviLvcZ+2hvUsiZTU4J6NDZyO92pfLLf8V3cTvHcZjZ1jA==}
@@ -2416,10 +2407,6 @@ packages:
   '@sanity/diff-match-patch@3.2.0':
     resolution: {integrity: sha512-4hPADs0qUThFZkBK/crnfKKHg71qkRowfktBljH2UIxGHHTxIzt8g8fBiXItyCjxkuNy+zpYOdRMifQNv8+Yww==}
     engines: {node: '>=18.18'}
-
-  '@sanity/diff@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-OVIWgP7LNXZfCPb7T3yE3des1N3mkTRyoixsqEf1ndr0S84tQcK9AlqArWyKH5czvn4GJhWNRygofulxO6oXuA==}
-    engines: {node: '>=18'}
 
   '@sanity/diff@3.71.1-corel.541':
     resolution: {integrity: sha512-WgGd0Hf4kw0/+QsVJsulTY1yBCW3DpDV7wFu/lep+fo524HwLawwY/GJOz5pjvDbkBsvoF52RwGwhZGJx0ZbRg==}
@@ -2472,10 +2459,6 @@ packages:
       '@sanity/color': ^2.0 || ^3.0 || ^3.0.0-beta
       react: ^18.3 || >=19.0.0-rc
 
-  '@sanity/migrate@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-8oCILIv8F8rT6OwSUnQaEWSVcHWeGdCaO7uQtqHR5kKU9IWj/yuYLxcrCWTc8dSDj8hMCWFkM3GE7AIBLa6O3w==}
-    engines: {node: '>=18'}
-
   '@sanity/migrate@3.71.1-corel.541':
     resolution: {integrity: sha512-+D0DlVhcJawQyEaFhBNidaynPMoMyRdJqeND+AjpuPj7d+UagUzgjSgZe77X8AuNeqflTNfMLBaf1S+BtM9TKg==}
     engines: {node: '>=18'}
@@ -2492,9 +2475,6 @@ packages:
   '@sanity/mutate@0.12.1':
     resolution: {integrity: sha512-SuOpMOEwcTcE5fFHpy44qVuGs8NeBAOF8wwN5DYz0Jl4MJZWGsUS81YUeFwQl0XqBZpfiLVzwutp1KYCZPuqUQ==}
     engines: {node: '>=18'}
-
-  '@sanity/mutator@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-LeD+RakYC0bFEkOBVuKsn3Ba9a0xGGmnkC61JN8l2DPiV0glFuls5+gcJxrS/3zTSZFG7zL4V1f6TtzipV7dmA==}
 
   '@sanity/mutator@3.71.1':
     resolution: {integrity: sha512-Xw3W29/q+ToESvli0Rs6Po+PIhs89yXfReoI4RoXc8UBRdvPTNDu3Z6eao9OfC0qFjpyaMv6Cwnz/idssMlWJg==}
@@ -2577,9 +2557,6 @@ packages:
     peerDependencies:
       '@sanity/client': ^6.27.1
 
-  '@sanity/schema@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-h1O/d9wnngzzMzXJI3zW0m6dah6CfVDTuSR3nRBCEAyWdhua9tT5+siuXMTt92h2AA1BsBa6YjPlBYrFy0nxeQ==}
-
   '@sanity/schema@3.71.1-corel.541':
     resolution: {integrity: sha512-3saE5ZnYqZ+LyW5cUPixU9jSxiFh3FPhzmI1npVmopl8tWHUooOnp9ckaclXAsfzkkVjgY9j0i01Gwz7zbmAeg==}
 
@@ -2599,11 +2576,6 @@ packages:
     resolution: {integrity: sha512-eGWNXVBZbDcCOvmco4kE6gW6BwZUT9necgt8esdUHo5rFUBphAPl26rCzCNHUjjCGWWLs1ExMwtMkRIAxOT2Ow==}
     engines: {node: '>=18.0.0'}
     hasBin: true
-
-  '@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-5sU9Y27Mx1wBgHfOPt4A4jXGWyxk0OTteK4xvBCRCyuRJCdZrR/kWe7WUjfuRHQhwxfJ961Qj2rqPjJIBtrWdA==}
-    peerDependencies:
-      '@types/react': latest
 
   '@sanity/types@3.68.3':
     resolution: {integrity: sha512-JemibQXC08rHIXgjUH/p2TCiiD9wq6+dDkCvVHOooCvaYZNhAe2S9FAEkaA6qwWtPzyY2r6/tj1eDgNeLgXN1Q==}
@@ -2629,10 +2601,6 @@ packages:
       react-is: ^18 || >=19.0.0-0
       styled-components: ^5.2 || ^6
 
-  '@sanity/util@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-7VWVW0o4/EbLDX1FnL5ZB65sxCRCFpKrqoIq5v5Koz4hw3n8mPJqIR/P0AOOpt7CA+sGK9Gs7hF6v24J4q3qew==}
-    engines: {node: '>=18'}
-
   '@sanity/util@3.68.3':
     resolution: {integrity: sha512-J4Ov75oUvMqx221VEJkKNSibzF0D8VyCzejtwftW+jP80XguYFqBz7bAcTmwJ5vnxNUoAUCeAdZBoOYVpgew4g==}
     engines: {node: '>=18'}
@@ -2649,10 +2617,10 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18.3 || ^19
-      sanity: 3.59.2-corel-fix-presentation-perspective-switching.536
+      sanity: corel
 
-  '@sanity/vision@3.59.2-corel-fix-presentation-perspective-switching.536':
-    resolution: {integrity: sha512-aKSHyzxLgGrt3hZrQep/uz2QoNsMDlJlQET9So8t298D/ac/TeulqcbFPjx3OA/p6rN3t0DlzY72XlcBVreLvQ==}
+  '@sanity/vision@3.71.1-corel.541':
+    resolution: {integrity: sha512-PqLVjGZ6Nkfoy7iRRzNl0tbG6UlsJnvRt8Mlb3rYD9JzQ0HYyjgL+w6jcOchzbKTC6AZcffCqAIjsiTFuh/fgw==}
     peerDependencies:
       react: ^18 || ^19.0.0
       styled-components: ^6.1
@@ -4969,10 +4937,6 @@ packages:
     resolution: {integrity: sha512-1CtOqgATOhmB6jRKL6zvojb2Vt8aP2y6m/7ZN4JlpFhyB/d8WRW3/kZgapIUHys6/Vrkk1oTbjjDbxNL8QxHSQ==}
     engines: {node: '>= 14'}
 
-  groq@3.59.2-corel-fix-presentation-perspective-switching.536:
-    resolution: {integrity: sha512-ZFTJ/zTctW0svXb1Qq3RSLaMSeiT4B4k9+tFpSJeOSFnY3Qt8mpoqHv5MLo9BpDzlY78goL8Sj+DoGj/+porBg==}
-    engines: {node: '>=18'}
-
   groq@3.71.1:
     resolution: {integrity: sha512-756GxrNoG/OCmoXATnVjDCxB3xNN4QHariFuoUOtoJ/kQEJ6qhOyW2hn2OgOXM23GZZ2VKM+99KkkQ084XRuag==}
     engines: {node: '>=18'}
@@ -4989,7 +4953,7 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
       react-is: ^18.2.0
-      sanity: 3.59.2-corel-fix-presentation-perspective-switching.536
+      sanity: corel
       styled-components: ^5.2 || ^6
 
   groqd@0.15.12:
@@ -6201,7 +6165,7 @@ packages:
       '@sanity/ui': ^2.11.4
       next: ^14.2 || ^15.0.0-0
       react: ^18.3 || ^19.0.0-0
-      sanity: 3.59.2-corel-fix-presentation-perspective-switching.536
+      sanity: corel
       styled-components: ^6.1
 
   next@15.1.6:
@@ -7308,17 +7272,8 @@ packages:
     engines: {node: '>=14'}
     peerDependencies:
       react: ^18.2.0
-      sanity: 3.59.2-corel-fix-presentation-perspective-switching.536
+      sanity: corel
       styled-components: ^5.2 || ^6.0.0
-
-  sanity@3.59.2-corel-fix-presentation-perspective-switching.536:
-    resolution: {integrity: sha512-qalaePlgnqH6Min1Vi9TtAbpTZ5TRpxxGwhvG8TMA89fTXGN/jdDL5fUfi+HOG1GEFSkHZCBpJ+ao2eVZmAGPQ==}
-    engines: {node: '>=18'}
-    hasBin: true
-    peerDependencies:
-      react: ^18 || ^19.0.0
-      react-dom: ^18 || ^19.0.0
-      styled-components: ^6.1
 
   sanity@3.71.1-corel.541:
     resolution: {integrity: sha512-mOlSYghJcYq+PIYg0wJSy3dbNX2mRgoIh+eGVal/tn6K6F7eH3bApoggIvyC5tW+KCGnSkvd0wesCIW+9wFMkQ==}
@@ -10289,44 +10244,12 @@ snapshots:
 
   '@polka/url@1.0.0-next.28': {}
 
-  '@portabletext/block-tools@1.1.2(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)':
-    dependencies:
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@types/react': 19.0.8
-      get-random-values-esm: 1.0.2
-      lodash: 4.17.21
-
   '@portabletext/block-tools@1.1.2(@sanity/types@3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)':
     dependencies:
       '@sanity/types': 3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0)
       '@types/react': 19.0.8
       get-random-values-esm: 1.0.2
       lodash: 4.17.21
-
-  '@portabletext/editor@1.25.0(@sanity/schema@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)':
-    dependencies:
-      '@portabletext/block-tools': 1.1.2(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)
-      '@portabletext/patches': 1.1.2
-      '@portabletext/to-html': 2.0.13
-      '@sanity/schema': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@xstate/react': 5.0.2(@types/react@19.0.8)(react@19.0.0)(xstate@5.19.2)
-      debug: 4.4.0
-      get-random-values-esm: 1.0.2
-      lodash: 4.17.21
-      lodash.startcase: 4.4.0
-      react: 19.0.0
-      react-compiler-runtime: 19.0.0-beta-decd7b8-20250118(react@19.0.0)
-      rxjs: 7.8.1
-      slate: 0.112.0
-      slate-dom: 0.111.0(slate@0.112.0)
-      slate-react: 0.112.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(slate-dom@0.111.0(slate@0.112.0))(slate@0.112.0)
-      use-effect-event: 1.0.2(react@19.0.0)
-      xstate: 5.19.2
-    transitivePeerDependencies:
-      - '@types/react'
-      - react-dom
-      - supports-color
 
   '@portabletext/editor@1.25.0(@sanity/schema@3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0))(@sanity/types@3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)':
     dependencies:
@@ -10778,34 +10701,6 @@ snapshots:
 
   '@sanity/browserslist-config@1.0.5': {}
 
-  '@sanity/cli@3.59.2-corel-fix-presentation-perspective-switching.536(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react@19.0.0)(typescript@5.7.3)':
-    dependencies:
-      '@babel/traverse': 7.26.5
-      '@sanity/client': 6.27.1(debug@4.4.0)
-      '@sanity/codegen': 3.59.2-corel-fix-presentation-perspective-switching.536
-      '@sanity/telemetry': 0.7.9(react@19.0.0)
-      '@sanity/template-validator': 2.3.2(@types/babel__core@7.20.5)(@types/node@18.19.71)(debug@4.4.0)(typescript@5.7.3)
-      '@sanity/util': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      chalk: 4.1.2
-      debug: 4.4.0
-      decompress: 4.2.1
-      esbuild: 0.21.5
-      esbuild-register: 3.6.0(esbuild@0.21.5)
-      get-it: 8.6.6(debug@4.4.0)
-      groq-js: 1.14.2
-      pkg-dir: 5.0.0
-      prettier: 3.4.2
-      semver: 7.6.3
-      validate-npm-package-name: 3.0.0
-    transitivePeerDependencies:
-      - '@types/babel__core'
-      - '@types/node'
-      - '@types/react'
-      - babel-plugin-react-compiler
-      - react
-      - supports-color
-      - typescript
-
   '@sanity/cli@3.71.1-corel.541(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react@19.0.0)(typescript@5.7.3)':
     dependencies:
       '@babel/traverse': 7.26.5
@@ -10842,26 +10737,6 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@sanity/codegen@3.59.2-corel-fix-presentation-perspective-switching.536':
-    dependencies:
-      '@babel/core': 7.26.0
-      '@babel/generator': 7.26.5
-      '@babel/preset-env': 7.26.0(@babel/core@7.26.0)
-      '@babel/preset-react': 7.26.3(@babel/core@7.26.0)
-      '@babel/preset-typescript': 7.26.0(@babel/core@7.26.0)
-      '@babel/register': 7.25.9(@babel/core@7.26.0)
-      '@babel/traverse': 7.26.5
-      '@babel/types': 7.26.5
-      debug: 4.4.0
-      globby: 11.1.0
-      groq: 3.59.2-corel-fix-presentation-perspective-switching.536
-      groq-js: 1.14.2
-      json5: 2.2.3
-      tsconfig-paths: 4.2.0
-      zod: 3.24.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@sanity/codegen@3.71.1-corel.541':
     dependencies:
       '@babel/core': 7.26.0
@@ -10891,10 +10766,6 @@ snapshots:
       xstate: 5.19.2
 
   '@sanity/diff-match-patch@3.2.0': {}
-
-  '@sanity/diff@3.59.2-corel-fix-presentation-perspective-switching.536':
-    dependencies:
-      '@sanity/diff-match-patch': 3.2.0
 
   '@sanity/diff@3.71.1-corel.541':
     dependencies:
@@ -10966,19 +10837,6 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@sanity/insert-menu@1.0.19(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
-    dependencies:
-      '@sanity/icons': 3.5.7(react@19.0.0)
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@sanity/ui': 2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
-      lodash: 4.17.21
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-is: 18.3.1
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - styled-components
-
   '@sanity/insert-menu@1.0.19(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@sanity/icons': 3.5.7(react@19.0.0)
@@ -10996,21 +10854,6 @@ snapshots:
     dependencies:
       '@sanity/color': 3.0.6
       react: 19.0.0
-
-  '@sanity/migrate@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)':
-    dependencies:
-      '@sanity/client': 6.27.1(debug@4.4.0)
-      '@sanity/mutate': 0.12.1(debug@4.4.0)
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@sanity/util': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      arrify: 2.0.1
-      debug: 4.4.0
-      fast-fifo: 1.3.2
-      groq-js: 1.14.2
-      p-map: 7.0.3
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
 
   '@sanity/migrate@3.71.1-corel.541(@types/react@19.0.8)':
     dependencies:
@@ -11054,17 +10897,6 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@sanity/mutator@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)':
-    dependencies:
-      '@sanity/diff-match-patch': 3.2.0
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@sanity/uuid': 3.0.2
-      debug: 4.4.0
-      lodash: 4.17.21
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
-
   '@sanity/mutator@3.71.1(@types/react@19.0.8)':
     dependencies:
       '@sanity/diff-match-patch': 3.2.0
@@ -11087,7 +10919,7 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@sanity/next-loader@1.2.19(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
+  '@sanity/next-loader@1.2.19(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@sanity/client': 6.27.1(debug@4.4.0)
       '@sanity/comlink': 3.0.1
@@ -11199,14 +11031,6 @@ snapshots:
       - debug
       - supports-color
 
-  '@sanity/presentation-comlink@1.0.3(@sanity/client@6.27.1)(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))':
-    dependencies:
-      '@sanity/client': 6.27.1(debug@4.4.0)
-      '@sanity/comlink': 3.0.1
-      '@sanity/visual-editing-types': 1.0.3(@sanity/client@6.27.1)(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))
-    transitivePeerDependencies:
-      - '@sanity/types'
-
   '@sanity/presentation-comlink@1.0.3(@sanity/client@6.27.1)(@sanity/types@3.71.1(@types/react@19.0.8))':
     dependencies:
       '@sanity/client': 6.27.1(debug@4.4.0)
@@ -11262,21 +11086,6 @@ snapshots:
       '@sanity/client': 6.27.1(debug@4.4.0)
       '@sanity/uuid': 3.0.2
 
-  '@sanity/schema@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)':
-    dependencies:
-      '@sanity/generate-help-url': 3.0.0
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      arrify: 2.0.1
-      groq-js: 1.14.2
-      humanize-list: 1.0.1
-      leven: 3.1.0
-      lodash: 4.17.21
-      object-inspect: 1.13.3
-    transitivePeerDependencies:
-      - '@types/react'
-      - debug
-      - supports-color
-
   '@sanity/schema@3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0)':
     dependencies:
       '@sanity/generate-help-url': 3.0.0
@@ -11324,13 +11133,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)':
-    dependencies:
-      '@sanity/client': 6.27.1(debug@4.4.0)
-      '@types/react': 19.0.8
-    transitivePeerDependencies:
-      - debug
-
   '@sanity/types@3.68.3(@types/react@19.0.8)(debug@4.4.0)':
     dependencies:
       '@sanity/client': 6.27.1(debug@4.4.0)
@@ -11369,17 +11171,6 @@ snapshots:
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
 
-  '@sanity/util@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)':
-    dependencies:
-      '@sanity/client': 6.27.1(debug@4.4.0)
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      get-random-values-esm: 1.0.2
-      moment: 2.30.1
-      rxjs: 7.8.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - debug
-
   '@sanity/util@3.68.3(@types/react@19.0.8)(debug@4.4.0)':
     dependencies:
       '@sanity/client': 6.27.1(debug@4.4.0)
@@ -11407,14 +11198,14 @@ snapshots:
       '@types/uuid': 8.3.4
       uuid: 8.3.2
 
-  '@sanity/vercel-protection-bypass@1.0.5(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+  '@sanity/vercel-protection-bypass@1.0.5(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@sanity/icons': 3.5.7(react@19.0.0)
       '@sanity/preview-url-secret': 2.1.2(@sanity/client@6.27.1)
       '@sanity/ui': 2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       react: 19.0.0
       react-compiler-runtime: 19.0.0-beta-decd7b8-20250118(react@19.0.0)
-      sanity: 3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)
+      sanity: 3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
       - '@sanity/client'
@@ -11422,7 +11213,7 @@ snapshots:
       - react-is
       - styled-components
 
-  '@sanity/vision@3.59.2-corel-fix-presentation-perspective-switching.536(@babel/runtime@7.26.0)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+  '@sanity/vision@3.71.1-corel.541(@babel/runtime@7.26.0)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@codemirror/autocomplete': 6.18.4
       '@codemirror/commands': 6.8.0
@@ -11465,12 +11256,6 @@ snapshots:
     transitivePeerDependencies:
       - '@sanity/types'
 
-  '@sanity/visual-editing-types@1.0.3(@sanity/client@6.27.1)(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))':
-    dependencies:
-      '@sanity/client': 6.27.1(debug@4.4.0)
-    optionalDependencies:
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-
   '@sanity/visual-editing-types@1.0.3(@sanity/client@6.27.1)(@sanity/types@3.71.1(@types/react@19.0.8))':
     dependencies:
       '@sanity/client': 6.27.1(debug@4.4.0)
@@ -11507,7 +11292,7 @@ snapshots:
       - '@sanity/types'
       - debug
 
-  '@sanity/visual-editing@2.12.8(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@sanity/visual-editing@2.12.8(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@sanity/comlink': 3.0.1
       '@sanity/mutate': 0.11.0-canary.4(xstate@5.19.2)
@@ -12117,17 +11902,6 @@ snapshots:
       ts-morph: 12.0.0
 
   '@vercel/stega@0.1.2': {}
-
-  '@vitejs/plugin-react@4.3.4(vite@5.4.14(@types/node@18.19.71)(terser@5.37.0))':
-    dependencies:
-      '@babel/core': 7.26.0
-      '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.0)
-      '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.0)
-      '@types/babel__core': 7.20.5
-      react-refresh: 0.14.2
-      vite: 5.4.14(@types/node@18.19.71)(terser@5.37.0)
-    transitivePeerDependencies:
-      - supports-color
 
   '@vitejs/plugin-react@4.3.4(vite@6.0.11(@types/node@18.19.71)(terser@5.37.0)(yaml@2.7.0))':
     dependencies:
@@ -14412,13 +14186,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  groq@3.59.2-corel-fix-presentation-perspective-switching.536: {}
-
   groq@3.71.1: {}
 
   groq@3.71.1-corel.541: {}
 
-  groqd-playground@0.0.20(@sanity/icons@3.5.7(react@19.0.0))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)):
+  groqd-playground@0.0.20(@sanity/icons@3.5.7(react@19.0.0))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)):
     dependencies:
       '@sanity/icons': 3.5.7(react@19.0.0)
       '@sanity/ui': 2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
@@ -14428,7 +14200,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       react-is: 18.3.1
-      sanity: 3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)
+      sanity: 3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0)
       styled-components: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       zod: 3.24.1
 
@@ -15781,22 +15553,21 @@ snapshots:
 
   nerf-dart@1.0.0: {}
 
-  next-sanity@9.8.41(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/icons@3.5.7(react@19.0.0))(@sanity/types@3.71.1(@types/react@19.0.8))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(next@15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)):
+  next-sanity@9.8.41(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/icons@3.5.7(react@19.0.0))(@sanity/types@3.71.1(@types/react@19.0.8))(@sanity/ui@2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)):
     dependencies:
       '@portabletext/react': 3.2.0(react@19.0.0)
       '@sanity/client': 6.27.1(debug@4.4.0)
       '@sanity/icons': 3.5.7(react@19.0.0)
-      '@sanity/next-loader': 1.2.19(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+      '@sanity/next-loader': 1.2.19(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@sanity/preview-kit': 5.1.32(@sanity/client@6.27.1)(@sanity/types@3.71.1(@types/react@19.0.8))(react@19.0.0)
       '@sanity/preview-url-secret': 2.1.3(@sanity/client@6.27.1)
       '@sanity/types': 3.71.1(@types/react@19.0.8)(debug@4.4.0)
       '@sanity/ui': 2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
-      '@sanity/visual-editing': 2.12.8(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@sanity/visual-editing': 2.12.8(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.1)(@sanity/types@3.71.1(@types/react@19.0.8))(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       groq: 3.71.1
       history: 5.3.0
       next: 15.1.6(@babel/core@7.26.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
-      sanity: 3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0)
       styled-components: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     transitivePeerDependencies:
       - '@remix-run/react'
@@ -16893,7 +16664,7 @@ snapshots:
     dependencies:
       '@sanity/diff-match-patch': 3.2.0
 
-  sanity-plugin-iframe-pane@3.1.6-corel.1(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)):
+  sanity-plugin-iframe-pane@3.1.6-corel.1(@emotion/is-prop-valid@1.2.2)(@sanity/client@6.27.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)):
     dependencies:
       '@sanity/icons': 3.5.7(react@19.0.0)
       '@sanity/incompatible-plugin': 1.0.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -16901,7 +16672,7 @@ snapshots:
       '@sanity/ui': 2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       framer-motion: 11.0.8(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
-      sanity: 3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)
+      sanity: 3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0)
       styled-components: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       suspend-react: 0.1.3(react@19.0.0)
       usehooks-ts: 3.0.1(react@19.0.0)
@@ -16910,156 +16681,6 @@ snapshots:
       - '@sanity/client'
       - react-dom
       - react-is
-
-  sanity@3.59.2-corel-fix-presentation-perspective-switching.536(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3):
-    dependencies:
-      '@dnd-kit/core': 6.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@dnd-kit/modifiers': 6.0.1(@dnd-kit/core@6.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
-      '@dnd-kit/sortable': 7.0.2(@dnd-kit/core@6.3.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
-      '@dnd-kit/utilities': 3.2.2(react@19.0.0)
-      '@juggle/resize-observer': 3.4.0
-      '@portabletext/block-tools': 1.1.2(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)
-      '@portabletext/editor': 1.25.0(@sanity/schema@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rxjs@7.8.1)
-      '@portabletext/react': 3.2.0(react@19.0.0)
-      '@rexxars/react-json-inspector': 9.0.1(react@19.0.0)
-      '@sanity/asset-utils': 2.2.1
-      '@sanity/bifur-client': 0.4.1
-      '@sanity/cli': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react@19.0.0)(typescript@5.7.3)
-      '@sanity/client': 6.27.1(debug@4.4.0)
-      '@sanity/color': 3.0.6
-      '@sanity/comlink': 3.0.1
-      '@sanity/diff': 3.59.2-corel-fix-presentation-perspective-switching.536
-      '@sanity/diff-match-patch': 3.2.0
-      '@sanity/eventsource': 5.0.2
-      '@sanity/export': 3.42.2(@types/react@19.0.8)
-      '@sanity/icons': 3.5.7(react@19.0.0)
-      '@sanity/image-url': 1.1.0
-      '@sanity/import': 3.37.9(@types/react@19.0.8)
-      '@sanity/insert-menu': 1.0.19(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
-      '@sanity/logos': 2.1.13(@sanity/color@3.0.6)(react@19.0.0)
-      '@sanity/migrate': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)
-      '@sanity/mutator': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)
-      '@sanity/presentation-comlink': 1.0.3(@sanity/client@6.27.1)(@sanity/types@3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0))
-      '@sanity/preview-url-secret': 2.1.2(@sanity/client@6.27.1)
-      '@sanity/schema': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@sanity/telemetry': 0.7.9(react@19.0.0)
-      '@sanity/types': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@sanity/ui': 2.11.4(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
-      '@sanity/util': 3.59.2-corel-fix-presentation-perspective-switching.536(@types/react@19.0.8)(debug@4.4.0)
-      '@sanity/uuid': 3.0.2
-      '@sentry/react': 8.51.0(react@19.0.0)
-      '@tanstack/react-table': 8.20.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@tanstack/react-virtual': 3.11.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@types/react-is': 19.0.0
-      '@types/shallow-equals': 1.0.3
-      '@types/speakingurl': 13.0.6
-      '@types/tar-stream': 3.1.3
-      '@types/use-sync-external-store': 0.0.6
-      '@vitejs/plugin-react': 4.3.4(vite@5.4.14(@types/node@18.19.71)(terser@5.37.0))
-      archiver: 7.0.1
-      arrify: 2.0.1
-      async-mutex: 0.4.1
-      chalk: 4.1.2
-      chokidar: 3.6.0
-      classnames: 2.5.1
-      color2k: 2.0.3
-      configstore: 5.0.1
-      console-table-printer: 2.12.1
-      dataloader: 2.2.3
-      date-fns: 2.30.0
-      debug: 4.4.0
-      esbuild: 0.21.5
-      esbuild-register: 3.6.0(esbuild@0.21.5)
-      execa: 2.1.0
-      exif-component: 1.0.1
-      fast-deep-equal: 3.1.3
-      form-data: 4.0.1
-      framer-motion: 11.18.2(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      get-it: 8.6.6(debug@4.4.0)
-      get-random-values-esm: 1.0.2
-      groq-js: 1.14.2
-      history: 5.3.0
-      i18next: 23.16.8
-      import-fresh: 3.3.0
-      is-hotkey-esm: 1.0.0
-      isomorphic-dompurify: 2.20.0
-      jsdom: 23.2.0
-      jsdom-global: 3.0.2(jsdom@23.2.0)
-      json-lexer: 1.2.0
-      json-reduce: 3.0.0
-      json5: 2.2.3
-      lodash: 4.17.21
-      log-symbols: 2.2.0
-      mendoza: 3.0.8
-      mnemonist: 0.39.8
-      module-alias: 2.2.3
-      nano-pubsub: 3.0.0
-      nanoid: 3.3.8
-      node-html-parser: 6.1.13
-      observable-callback: 1.0.3(rxjs@7.8.1)
-      oneline: 1.0.3
-      open: 8.4.2
-      p-map: 7.0.3
-      path-to-regexp: 6.3.0
-      pirates: 4.0.6
-      pluralize-esm: 9.0.5
-      polished: 4.3.1
-      pretty-ms: 7.0.1
-      quick-lru: 5.1.1
-      raf: 3.4.1
-      react: 19.0.0
-      react-compiler-runtime: 19.0.0-beta-decd7b8-20250118(react@19.0.0)
-      react-dom: 19.0.0(react@19.0.0)
-      react-fast-compare: 3.2.2
-      react-focus-lock: 2.13.5(@types/react@19.0.8)(react@19.0.0)
-      react-i18next: 14.0.2(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react-is: 18.3.1
-      react-refractor: 2.2.0(react@19.0.0)
-      react-rx: 4.1.16(react@19.0.0)(rxjs@7.8.1)
-      read-pkg-up: 7.0.1
-      refractor: 3.6.0
-      resolve-from: 5.0.0
-      resolve.exports: 2.0.3
-      rimraf: 5.0.10
-      rxjs: 7.8.1
-      rxjs-exhaustmap-with-trailing: 2.1.1(rxjs@7.8.1)
-      rxjs-mergemap-array: 0.1.0(rxjs@7.8.1)
-      sanity-diff-patch: 4.0.0
-      scroll-into-view-if-needed: 3.1.0
-      semver: 7.6.3
-      shallow-equals: 1.0.0
-      speakingurl: 14.0.1
-      styled-components: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      suspend-react: 0.1.3(react@19.0.0)
-      tar-fs: 2.1.2
-      tar-stream: 3.1.7
-      use-device-pixel-ratio: 1.1.2(react@19.0.0)
-      use-effect-event: 1.0.2(react@19.0.0)
-      use-hot-module-reload: 2.0.0(react@19.0.0)
-      use-sync-external-store: 1.4.0(react@19.0.0)
-      uuid: 11.0.5
-      valibot: 0.31.1
-      vite: 5.4.14(@types/node@18.19.71)(terser@5.37.0)
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@emotion/is-prop-valid'
-      - '@types/babel__core'
-      - '@types/node'
-      - '@types/react'
-      - babel-plugin-react-compiler
-      - bufferutil
-      - canvas
-      - less
-      - lightningcss
-      - react-native
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - typescript
-      - utf-8-validate
 
   sanity@3.71.1-corel.541(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.71)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3)(yaml@2.7.0):
     dependencies:
@@ -17090,7 +16711,7 @@ snapshots:
       '@sanity/migrate': 3.71.1-corel.541(@types/react@19.0.8)
       '@sanity/mutator': 3.71.1-corel.541(@types/react@19.0.8)
       '@sanity/presentation-comlink': 1.0.3(@sanity/client@6.27.1)(@sanity/types@3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0))
-      '@sanity/preview-url-secret': 2.1.2(@sanity/client@6.27.1)
+      '@sanity/preview-url-secret': 2.1.3(@sanity/client@6.27.1)
       '@sanity/schema': 3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0)
       '@sanity/telemetry': 0.7.9(react@19.0.0)
       '@sanity/types': 3.71.1-corel.541(@types/react@19.0.8)(debug@4.4.0)
