@@ -1,4 +1,4 @@
-import type {QueryParams, SanityClient} from '@sanity/client'
+import type {ClientPerspective, QueryParams, SanityClient} from '@sanity/client'
 import type {SanityStegaClient} from '@sanity/client/stega'
 
 /**
@@ -78,6 +78,10 @@ export interface LiveQueryProviderProps {
    */
   refreshInterval?: number
   logger?: Logger
+  /**
+   * @defaultValue 'previewDrafts'
+   */
+  perspective?: Exclude<ClientPerspective, 'raw'>
 }
 
 /** @public */

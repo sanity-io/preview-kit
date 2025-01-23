@@ -11,10 +11,11 @@ export default function LiveStoreVariant({
   children,
   token,
   studioUrl,
+  perspective,
 }: SerializeFrom<typeof loader> & React.PropsWithChildren) {
   return previewDrafts ? (
     <StrictMode>
-      <PreviewProvider token={token!} studioUrl={studioUrl}>
+      <PreviewProvider token={token!} studioUrl={studioUrl} perspective={perspective}>
         {children}
       </PreviewProvider>
       <VisualEditing />

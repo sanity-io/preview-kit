@@ -1,3 +1,4 @@
+import type {ClientPerspective} from '@sanity/client/csm'
 import {createClient, type QueryParams} from '@sanity/preview-kit/client'
 
 const projectId = 'pv8y60vp'
@@ -23,10 +24,12 @@ export async function sanityFetch<QueryResponse>({
   previewDrafts,
   query,
   params = DEFAULT_PARAMS,
+  perspective,
 }: {
   previewDrafts?: boolean
   query: string
   params?: QueryParams
+  perspective?: ClientPerspective
 }): Promise<QueryResponse> {
   if (previewDrafts && !token) {
     throw new Error('The `SANITY_API_READ_TOKEN` environment variable is required.')
@@ -37,7 +40,7 @@ export async function sanityFetch<QueryResponse>({
     previewDrafts
       ? {
           token,
-          perspective: 'previewDrafts',
+          perspective,
         }
       : {},
   )

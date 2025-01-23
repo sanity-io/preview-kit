@@ -3,6 +3,7 @@ import 'server-only'
 import type {QueryParams} from '@sanity/client'
 import {client} from './sanity.client'
 import {draftMode} from 'next/headers'
+import {getPerspective} from './sanity.perspective'
 
 export const token = process.env.SANITY_API_READ_TOKEN || ''
 
@@ -26,7 +27,7 @@ export async function sanityFetch<QueryResponse>({
   return client.fetch<QueryResponse>(query, params, {
     ...(isDraftMode && {
       token,
-      perspective: 'previewDrafts',
+      perspective: await getPerspective(),
     }),
     next: {
       revalidate: isDraftMode ? 0 : false,
