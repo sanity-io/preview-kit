@@ -3,10 +3,10 @@
 
 import type {QueryParams as ClientQueryParams} from '@sanity/client'
 import type {QueryEnabled} from '@sanity/preview-kit'
-import {useQueryParams} from '@sanity/preview-kit-compat'
 import {useCallback, useContext, useMemo, useState, useSyncExternalStore} from 'react'
 
 import {defineStoreContext} from '../../context'
+import {useQueryParams} from '../../hooks'
 
 /** @internal */
 export function useLiveQuery<

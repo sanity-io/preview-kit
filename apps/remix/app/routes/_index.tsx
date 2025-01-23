@@ -12,7 +12,11 @@ import {
   Table,
   Footer,
 } from 'ui/react'
-import {unstable__adapter as adapter, unstable__environment as environment} from '@sanity/client'
+import {
+  unstable__adapter as adapter,
+  unstable__environment as environment,
+  type ClientPerspective,
+} from '@sanity/client'
 import {getSession} from '~/sessions'
 import {lazy, useEffect} from 'react'
 import {useIsEnabled, useLiveQuery} from '@sanity/preview-kit'
@@ -23,10 +27,22 @@ const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
 export async function loader({request}: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get('Cookie'))
   const previewDrafts = session.get('view') === 'previewDrafts'
+  const url = new URL(request.url)
+  let perspective: Exclude<ClientPerspective, 'raw'> = 'published'
+  if (previewDrafts) {
+    perspective = url.searchParams.has('sanity-preview-perspective')
+      ? ((url.searchParams.get('sanity-preview-perspective')?.includes(',')
+          ? url.searchParams.get('sanity-preview-perspective')?.split(',')
+          : url.searchParams.get('sanity-preview-perspective')) as Exclude<
+          ClientPerspective,
+          'raw'
+        >)
+      : 'drafts'
+  }
 
   const [table, footer] = await Promise.all([
-    sanityFetch<TableProps['data']>({previewDrafts, query: tableQuery}),
-    sanityFetch<FooterProps['data']>({previewDrafts, query: footerQuery}),
+    sanityFetch<TableProps['data']>({previewDrafts, query: tableQuery, perspective}),
+    sanityFetch<FooterProps['data']>({previewDrafts, query: footerQuery, perspective}),
   ])
   const timestamp = new Date().toJSON()
 
@@ -37,6 +53,7 @@ export async function loader({request}: LoaderFunctionArgs) {
     table,
     footer,
     timestamp,
+    perspective,
     server__adapter: adapter,
     server__environment: environment,
   }
@@ -61,14 +78,15 @@ function PreviewFooter(props: {initialData: number}) {
 
 export default function Index() {
   const props = useLoaderData<typeof loader>()
-  const {previewDrafts, timestamp, server__adapter, server__environment} = props
+  const {previewDrafts, timestamp, server__adapter, server__environment, perspective} = props
 
   useEffect(() => {
     console.log({
       client__adapter: adapter,
       client__environment: environment,
+      perspective,
     })
-  }, [])
+  }, [perspective])
 
   const button = previewDrafts ? <ViewPublishedButton /> : <PreviewDraftsButton />
   const action = previewDrafts ? '/api/disable-draft' : '/api/draft'

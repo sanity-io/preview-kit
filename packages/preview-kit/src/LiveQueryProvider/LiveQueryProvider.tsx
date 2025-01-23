@@ -1,5 +1,6 @@
 import type {
   ClientConfig,
+  ClientPerspective,
   ContentSourceMap,
   ContentSourceMapDocuments,
   QueryParams,
@@ -7,19 +8,20 @@ import type {
   SanityDocument,
 } from '@sanity/client'
 import {applySourceDocuments} from '@sanity/client/csm'
-import {useDocumentsInUse, useRevalidate} from '@sanity/preview-kit-compat'
 import {vercelStegaSplit} from '@vercel/stega'
 import {LRUCache} from 'lru-cache'
 import {applyPatch} from 'mendoza'
 import {startTransition, useCallback, useEffect, useMemo, useState} from 'react'
 
 import {defineStoreContext as Context} from '../context'
+import {useRevalidate} from '../hooks'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
   ListenerSubscribe,
   LiveQueryProviderProps,
 } from '../types'
+import {usePerspective} from './usePerspective'
 
 const DEFAULT_TAG = 'sanity.preview-kit'
 
@@ -38,6 +40,8 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
   if (!props.client) {
     throw new Error('Missing a `client` prop with a configured Sanity client instance')
   }
+
+  const perspective = usePerspective(props.perspective || 'previewDrafts')
 
   // Ensure these values are stable even if userland isn't memoizing properly
   const [client] = useState(() => {
@@ -130,6 +134,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
         snapshots={snapshots}
         turboIds={turboIds}
         docsInUse={docsInUse}
+        perspective={perspective}
       />
       {subscriptions.map((key) => {
         if (!hooks.cache.has(key)) return null
@@ -145,6 +150,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
             refreshInterval={refreshInterval}
             snapshots={snapshots}
             turboIdsFromSourceMap={turboIdsFromSourceMap}
+            perspective={perspective}
           />
         )
       })}
@@ -160,10 +166,19 @@ interface QuerySubscriptionProps
   listeners: Set<() => void>
   turboIdsFromSourceMap: (contentSourceMap: ContentSourceMap) => void
   snapshots: QuerySnapshotsCache
+  perspective: Exclude<ClientPerspective, 'raw'>
 }
 function QuerySubscription(props: QuerySubscriptionProps) {
-  const {client, refreshInterval, query, params, listeners, snapshots, turboIdsFromSourceMap} =
-    props
+  const {
+    client,
+    refreshInterval,
+    query,
+    params,
+    listeners,
+    snapshots,
+    turboIdsFromSourceMap,
+    perspective,
+  } = props
   const {projectId, dataset} = useMemo(() => {
     const {projectId, dataset} = client.config()
     return {projectId, dataset} as Required<Pick<ClientConfig, 'projectId' | 'dataset'>>
@@ -188,11 +203,18 @@ function QuerySubscription(props: QuerySubscriptionProps) {
       const {result, resultSourceMap} = await (client as SanityClient).fetch(query, params, {
         signal,
         filterResponse: false,
+        perspective,
       })
 
       if (!signal.aborted) {
         snapshots.set(getQueryCacheKey(query, params), {
-          result: turboChargeResultIfSourceMap(projectId, dataset, result, resultSourceMap),
+          result: turboChargeResultIfSourceMap(
+            projectId,
+            dataset,
+            result,
+            perspective,
+            resultSourceMap,
+          ),
           resultSourceMap: resultSourceMap ?? ({} as ContentSourceMap),
         })
 
@@ -225,6 +247,7 @@ function QuerySubscription(props: QuerySubscriptionProps) {
     dataset,
     listeners,
     params,
+    perspective,
     projectId,
     query,
     shouldRefetch,
@@ -314,12 +337,13 @@ interface TurboProps extends Pick<LiveQueryProviderProps, 'client'> {
   setTurboIds: React.Dispatch<React.SetStateAction<string[]>>
   cache: LiveStoreQueryCacheMap
   snapshots: QuerySnapshotsCache
+  perspective: Exclude<ClientPerspective, 'raw'>
 }
 /**
  * A turbo-charged mutation observer that uses Content Source Maps to apply mendoza patches on your queries
  */
 function Turbo(props: TurboProps) {
-  const {client, snapshots, cache, turboIds, setTurboIds, docsInUse} = props
+  const {client, snapshots, cache, turboIds, setTurboIds, docsInUse, perspective} = props
   const {projectId, dataset} = useMemo(() => {
     const {projectId, dataset} = client.config()
     return {projectId, dataset} as Required<Pick<ClientConfig, 'projectId' | 'dataset'>>
@@ -343,9 +367,7 @@ function Turbo(props: TurboProps) {
     if (JSON.stringify(turboIds) !== JSON.stringify(nextTurboIdsSnapshot)) {
       startTransition(() => setTurboIds(nextTurboIdsSnapshot))
     }
-  }, [cache, setTurboIds, snapshots, turboIds, docsInUse])
-  // Sync with Presentation Tool if present
-  useDocumentsInUse(docsInUse, projectId, dataset)
+  }, [cache, docsInUse, setTurboIds, snapshots, turboIds])
 
   // Figure out which documents are misssing from the cache
   const [batch, setBatch] = useState<string[][]>([])
@@ -410,6 +432,7 @@ function Turbo(props: TurboProps) {
           projectId,
           dataset,
           snapshot.result,
+          perspective,
           snapshot.resultSourceMap,
         )
         updatedKeys.push(key)
@@ -424,7 +447,7 @@ function Turbo(props: TurboProps) {
       }
     }
     startTransition(() => setLastMutatedDocumentId(undefined))
-  }, [cache, dataset, lastMutatedDocumentId, projectId, snapshots, turboIds])
+  }, [cache, dataset, lastMutatedDocumentId, perspective, projectId, snapshots, turboIds])
 
   return (
     <>
@@ -474,6 +497,7 @@ function turboChargeResultIfSourceMap(
   projectId: string,
   dataset: string,
   result: unknown,
+  perspective: Exclude<ClientPerspective, 'raw'>,
   resultSourceMap?: ContentSourceMap,
 ) {
   if (!resultSourceMap) return result
@@ -507,7 +531,7 @@ function turboChargeResultIfSourceMap(
       }
       return changedValue
     },
-    'previewDrafts',
+    perspective,
   )
 }
 
