@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.0](https://github.com/sanity-io/preview-kit/compare/v5.1.32...v5.2.0) (2025-01-23)
+
+### Features
+
+- support client perspectives ([#1513](https://github.com/sanity-io/preview-kit/issues/1513)) ([ca11f81](https://github.com/sanity-io/preview-kit/commit/ca11f816705c0541b5fa407581a49712b8892dd2))
+
 ## [5.1.32](https://github.com/sanity-io/preview-kit/compare/v5.1.31...v5.1.32) (2025-01-22)
 
 ### Bug Fixes
