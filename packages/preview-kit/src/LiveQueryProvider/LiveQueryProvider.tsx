@@ -142,7 +142,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
         const {query, params, listeners} = hooks.cache.get(key)!
         return (
           <QuerySubscription
-            key={key}
+            key={`${key}-${perspective}`}
             client={client}
             listeners={listeners}
             params={params}
