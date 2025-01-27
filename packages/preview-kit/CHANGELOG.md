@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/sanity-io/preview-kit/compare/v5.2.0...v5.2.1) (2025-01-27)
+
+### Bug Fixes
+
+- improve how quickly perspectives switch ([1ba6316](https://github.com/sanity-io/preview-kit/commit/1ba6316628a9a8ac21ed443dc80a37cd3d536c6f))
+
 ## [5.2.0](https://github.com/sanity-io/preview-kit/compare/v5.1.32...v5.2.0) (2025-01-23)
 
 ### Features
