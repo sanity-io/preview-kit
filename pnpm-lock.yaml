@@ -278,8 +278,8 @@ importers:
         specifier: ^6.27.1
         version: 6.27.1(debug@4.4.0)
       '@sanity/pkg-utils':
-        specifier: 7.0.2
-        version: 7.0.2(@types/babel__core@7.20.5)(@types/node@18.19.71)(typescript@5.7.3)
+        specifier: 7.0.3
+        version: 7.0.3(@types/babel__core@7.20.5)(@types/node@18.19.71)(typescript@5.7.3)
       '@sanity/prettier-config':
         specifier: ^1.0.3
         version: 1.0.3(prettier@3.4.2)
@@ -2488,17 +2488,6 @@ packages:
 
   '@sanity/pkg-utils@6.13.4':
     resolution: {integrity: sha512-m4x0qyu2wiUHKuVxy/B2kcQRh20RvsyvUlUjPbiM5ENt4hwpJPLFfxtPe53GOCf3NJfcSK/te4yQkMOyL8RzAA==}
-    engines: {node: '>=18.17.0'}
-    hasBin: true
-    peerDependencies:
-      babel-plugin-react-compiler: '*'
-      typescript: 5.4.x || 5.5.x || 5.6.x || 5.7.x
-    peerDependenciesMeta:
-      babel-plugin-react-compiler:
-        optional: true
-
-  '@sanity/pkg-utils@7.0.2':
-    resolution: {integrity: sha512-ByRmRsk6YHlnV1YEAdi3nvBlVZsARc+UAUAZMXRR5E1cNRHex/703Fvaw0RYawlyuV59+N07Lx8YTwF7lOfmwQ==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -10934,56 +10923,6 @@ snapshots:
       '@babel/preset-typescript': 7.26.0(@babel/core@7.26.7)
       '@babel/types': 7.26.7
       '@microsoft/api-extractor': 7.48.1(@types/node@18.19.71)
-      '@microsoft/tsdoc-config': 0.17.1
-      '@optimize-lodash/rollup-plugin': 5.0.0(rollup@4.32.0)
-      '@rollup/plugin-alias': 5.1.1(rollup@4.32.0)
-      '@rollup/plugin-babel': 6.0.4(@babel/core@7.26.7)(@types/babel__core@7.20.5)(rollup@4.32.0)
-      '@rollup/plugin-commonjs': 28.0.2(rollup@4.32.0)
-      '@rollup/plugin-json': 6.1.0(rollup@4.32.0)
-      '@rollup/plugin-node-resolve': 16.0.0(rollup@4.32.0)
-      '@rollup/plugin-replace': 6.0.2(rollup@4.32.0)
-      '@rollup/plugin-terser': 0.4.4(rollup@4.32.0)
-      '@sanity/browserslist-config': 1.0.5
-      browserslist: 4.24.4
-      cac: 6.7.14
-      chalk: 4.1.2
-      chokidar: 4.0.3
-      esbuild: 0.24.2
-      esbuild-register: 3.6.0(esbuild@0.24.2)
-      find-config: 1.0.0
-      get-latest-version: 5.1.0(debug@4.4.0)
-      git-url-parse: 16.0.0
-      globby: 11.1.0
-      jsonc-parser: 3.3.1
-      mkdirp: 3.0.1
-      outdent: 0.8.0
-      parse-git-config: 3.0.0
-      pkg-up: 3.1.0
-      prettier: 3.4.2
-      pretty-bytes: 5.6.0
-      prompts: 2.4.2
-      recast: 0.23.9
-      rimraf: 4.4.1
-      rollup: 4.32.0
-      rollup-plugin-esbuild: 6.1.1(esbuild@0.24.2)(rollup@4.32.0)
-      rxjs: 7.8.1
-      treeify: 1.1.0
-      typescript: 5.7.3
-      uuid: 11.0.5
-      zod: 3.24.1
-      zod-validation-error: 3.4.0(zod@3.24.1)
-    transitivePeerDependencies:
-      - '@types/babel__core'
-      - '@types/node'
-      - debug
-      - supports-color
-
-  '@sanity/pkg-utils@7.0.2(@types/babel__core@7.20.5)(@types/node@18.19.71)(typescript@5.7.3)':
-    dependencies:
-      '@babel/core': 7.26.7
-      '@babel/preset-typescript': 7.26.0(@babel/core@7.26.7)
-      '@babel/types': 7.26.7
-      '@microsoft/api-extractor': 7.49.1(@types/node@18.19.71)
       '@microsoft/tsdoc-config': 0.17.1
       '@optimize-lodash/rollup-plugin': 5.0.0(rollup@4.32.0)
       '@rollup/plugin-alias': 5.1.1(rollup@4.32.0)
