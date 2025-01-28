@@ -37,8 +37,8 @@ importers:
         specifier: 0.9.4
         version: 0.9.4
       groq:
-        specifier: 3.71.2
-        version: 3.71.2
+        specifier: 3.72.0
+        version: 3.72.0
       groqd:
         specifier: 0.15.12
         version: 0.15.12
@@ -95,8 +95,8 @@ importers:
         specifier: 0.9.4
         version: 0.9.4
       groq:
-        specifier: 3.71.2
-        version: 3.71.2
+        specifier: 3.72.0
+        version: 3.72.0
       groqd:
         specifier: 0.15.12
         version: 0.15.12
@@ -156,8 +156,8 @@ importers:
         specifier: 2.15.2
         version: 2.15.2(@remix-run/dev@2.15.2(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@remix-run/serve@2.15.2(typescript@5.7.3))(@types/node@18.19.74)(terser@5.37.0)(typescript@5.7.3)(vite@5.4.14(@types/node@18.19.74)(terser@5.37.0)))(@remix-run/node@2.15.2(typescript@5.7.3))(@remix-run/server-runtime@2.15.2(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       groq:
-        specifier: 3.71.2
-        version: 3.71.2
+        specifier: 3.72.0
+        version: 3.72.0
       groqd:
         specifier: 0.15.12
         version: 0.15.12
@@ -238,8 +238,8 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
       groq:
-        specifier: 3.71.2
-        version: 3.71.2
+        specifier: 3.72.0
+        version: 3.72.0
       groqd-playground:
         specifier: 0.0.20
         version: 0.0.20(@sanity/icons@3.5.7(react@19.0.0))(@sanity/ui@2.11.6(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.3-corel.592(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.74)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
@@ -374,8 +374,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       groq:
-        specifier: 3.71.2
-        version: 3.71.2
+        specifier: 3.72.0
+        version: 3.72.0
       groqd:
         specifier: 0.15.12
         version: 0.15.12
@@ -4900,12 +4900,12 @@ packages:
     resolution: {integrity: sha512-1CtOqgATOhmB6jRKL6zvojb2Vt8aP2y6m/7ZN4JlpFhyB/d8WRW3/kZgapIUHys6/Vrkk1oTbjjDbxNL8QxHSQ==}
     engines: {node: '>= 14'}
 
-  groq@3.71.2:
-    resolution: {integrity: sha512-bQWS8jVYOyYvaYze35T7Jy25iY36Hx5L460F/bly4OVSyuZWu+AWuQPicRe7so9PX1tip0Kby2nX2tPELz3anw==}
-    engines: {node: '>=18'}
-
   groq@3.71.3-corel.592:
     resolution: {integrity: sha512-cCdlgtzRduzR5WGdS11wJrCoeJ4uN1PPgVE9VNW/v8p8bnG9S0fSgnW0FrxZ5ATc2+J20FsD7rz96p7IskQMXA==}
+    engines: {node: '>=18'}
+
+  groq@3.72.0:
+    resolution: {integrity: sha512-JhzdRHJls4Z3WVka9DnRzMXJyrjfgwtaUxzQKRam+YGGF9xkv61Jf2WhuQFTxr5yVAt8Q4LlcQwtN4yl4uH8cQ==}
     engines: {node: '>=18'}
 
   groqd-playground@0.0.20:
@@ -14132,9 +14132,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  groq@3.71.2: {}
-
   groq@3.71.3-corel.592: {}
+
+  groq@3.72.0: {}
 
   groqd-playground@0.0.20(@sanity/icons@3.5.7(react@19.0.0))(@sanity/ui@2.11.6(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(sanity@3.71.3-corel.592(@emotion/is-prop-valid@1.2.2)(@types/babel__core@7.20.5)(@types/node@18.19.74)(@types/react@19.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.37.0)(typescript@5.7.3))(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)):
     dependencies:
@@ -15511,7 +15511,7 @@ snapshots:
       '@sanity/types': 3.72.0(@types/react@19.0.8)(debug@4.4.0)
       '@sanity/ui': 2.11.6(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@sanity/visual-editing': 2.12.10(@remix-run/react@2.15.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(@sanity/client@6.27.2)(@sanity/types@3.72.0(@types/react@19.0.8))(next@15.1.6(@babel/core@7.26.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      groq: 3.71.2
+      groq: 3.72.0
       history: 5.3.0
       next: 15.1.6(@babel/core@7.26.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
