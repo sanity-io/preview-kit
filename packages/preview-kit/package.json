@@ -1,6 +1,6 @@
 {
   "name": "@sanity/preview-kit",
-  "version": "5.2.2",
+  "version": "5.2.3-canary.0",
   "description": "General purpose utils for live content and visual editing",
   "keywords": [
     "groq",
@@ -86,8 +86,7 @@
   "prettier": "@sanity/prettier-config",
   "dependencies": {
     "@sanity/comlink": "^3.0.1",
-    "@sanity/presentation-comlink": "^1.0.4",
-    "mendoza": "3.0.8"
+    "@sanity/presentation-comlink": "^1.0.4"
   },
   "devDependencies": {
     "@sanity/client": "^6.27.2",
@@ -109,7 +108,6 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "lru-cache": "10.4.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-fast-compare": "3.2.2",
