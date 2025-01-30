@@ -2,7 +2,7 @@ import {createClient} from '@sanity/client'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'pv8y60vp'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
-const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || 'X'
+const apiVersion = '2025-03-04'
 const useCdn = false
 const studioUrl = 'https://preview-kit-test-studio.sanity.dev/'
 export const client = createClient({

@@ -18,7 +18,7 @@ export default function PreviewProvider({
   const [client] = useState(() => {
     const projectId = 'pv8y60vp'
     const dataset = 'production'
-    const apiVersion = 'X'
+    const apiVersion = '2025-03-04'
     const useCdn = false
     return createClient({
       projectId,
