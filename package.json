@@ -15,7 +15,7 @@
     "prettier": "^3.4.2",
     "turbo": "1.13.4"
   },
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "pnpm@9.15.4",
   "pnpm": {
     "peerDependencyRules": {
       "allowAny": [
@@ -25,10 +25,10 @@
       ]
     },
     "overrides": {
-      "@sanity/vision": "corel",
+      "@sanity/vision": "next",
       "@types/react": "latest",
       "@types/react-dom": "latest",
-      "sanity": "corel",
+      "sanity": "next",
       "sanity-plugin-iframe-pane": "corel"
     }
   }
