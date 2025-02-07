@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.3](https://github.com/sanity-io/preview-kit/compare/v5.2.2...v5.2.3) (2025-02-07)
+
+### Bug Fixes
+
+- **deps:** update dependency `@sanity/presentation-comlink` to v1.0.5 ([6bd3f05](https://github.com/sanity-io/preview-kit/commit/6bd3f0599c91dacbaeec31faa5f0db2b0ebb5296))
+
 ## [5.2.2](https://github.com/sanity-io/preview-kit/compare/v5.2.1...v5.2.2) (2025-01-28)
 
 ### Bug Fixes
