@@ -190,7 +190,7 @@ const { query: tableQuery, schema: tableSchema } = q('*')
   .filter("_type == 'page'")
   .grab({
     _id: q.string(),
-    _originalId: q.string().optional(),
+    _originalId: q.string().nullish(),
     _createdAt: q.string().optional(),
     _updatedAt: q.string().optional(),
     title: q.string().optional(),
