@@ -26,7 +26,7 @@ const LiveStoreVariant = lazy(() => import('~/variants/live-store'))
 
 export async function loader({request}: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get('Cookie'))
-  const previewDrafts = session.get('view') === 'previewDrafts'
+  const previewDrafts = session.get('view') === 'drafts'
   const url = new URL(request.url)
   let perspective: Exclude<ClientPerspective, 'raw'> = 'published'
   if (previewDrafts) {

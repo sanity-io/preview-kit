@@ -41,7 +41,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
     throw new Error('Missing a `client` prop with a configured Sanity client instance')
   }
 
-  const perspective = usePerspective(props.perspective || 'previewDrafts')
+  const perspective = usePerspective(props.perspective || 'drafts')
 
   // Ensure these values are stable even if userland isn't memoizing properly
   const [client] = useState(() => {
@@ -53,7 +53,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       ...(token && {
         token,
         useCdn: false,
-        perspective: 'previewDrafts',
+        perspective: 'drafts',
         ignoreBrowserTokenWarning: true,
       }),
     })

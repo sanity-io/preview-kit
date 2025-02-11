@@ -117,7 +117,7 @@ export async function sanityFetch<QueryResponse>({
     previewDrafts
       ? {
           token,
-          perspective: 'previewDrafts',
+          perspective: 'drafts',
         }
       : {},
   )
@@ -592,7 +592,7 @@ export default async function UsersPage(params) {
   const data = await client.fetch(
     usersQuery,
     {lastId},
-    {perspective: draftMode().isEnabled ? 'previewDrafts' : 'published'},
+    {perspective: draftMode().isEnabled ? 'drafts' : 'published'},
   )
 
   return (
@@ -824,7 +824,7 @@ console.log(resultSourceMap) // `resultSourceMap` is now available, even if `enc
 
 ## Using Perspectives
 
-The `perspective` option can be used to specify special filtering behavior for queries. The default value is `raw`, which means no special filtering is applied, while [`published`](#published) and [`previewDrafts`](#previewdrafts) can be used to optimize for specific use cases. Read more about this option:
+The `perspective` option can be used to specify special filtering behavior for queries. The default value is `raw`, which means no special filtering is applied, while [`published`](#published) and [`drafts`](#drafts) can be used to optimize for specific use cases. Read more about this option:
 
 - [Perspectives in Sanity docs][perspectives-docs]
 - [Perspectives in @sanity/client README][perspectives-readme]

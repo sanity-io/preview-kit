@@ -116,7 +116,7 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
-      perspective: 'previewDrafts',
+      perspective: 'drafts',
     })
   }
   return client
@@ -193,7 +193,7 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
-      perspective: 'previewDrafts',
+      perspective: 'drafts',
     })
   }
   return client
@@ -267,7 +267,7 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
-      perspective: 'previewDrafts',
+      perspective: 'drafts',
     })
   }
   return client
@@ -343,7 +343,7 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
-      perspective: 'previewDrafts',
+      perspective: 'drafts',
     })
   }
   return client

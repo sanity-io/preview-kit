@@ -60,7 +60,7 @@ export interface LiveQueryProviderProps {
   client: SanityClient | SanityStegaClient
   /**
    * Reconfigures `client` with the provided `token`, as well as changing its configuration to
-   * have `perspective: 'previewDrafts'`, `useCdn: false` and `ignoreBrowserTokenWarning: true`.
+   * have `perspective: 'drafts'`, `useCdn: false` and `ignoreBrowserTokenWarning: true`.
    * If you want to use a different configuration, then use just the `client` prop and set the token yourself,
    * for example by: `client={client.withConfig({token})}`
    */
@@ -79,7 +79,7 @@ export interface LiveQueryProviderProps {
   refreshInterval?: number
   logger?: Logger
   /**
-   * @defaultValue 'previewDrafts'
+   * @defaultValue 'drafts'
    */
   perspective?: Exclude<ClientPerspective, 'raw'>
 }
