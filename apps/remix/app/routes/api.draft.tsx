@@ -8,7 +8,7 @@ export async function loader({request}: LoaderFunctionArgs) {
   if (!token) {
     throw new TypeError(`Missing SANITY_API_READ_TOKEN`)
   }
-  session.set('view', 'previewDrafts')
+  session.set('view', 'drafts')
   const url = new URL(request.url)
   url.searchParams.delete('sanity-preview-secret')
   url.searchParams.delete('sanity-preview-pathname')

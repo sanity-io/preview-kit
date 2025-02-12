@@ -3,7 +3,7 @@ import {cookies, draftMode} from 'next/headers'
 
 export async function getPerspective() {
   const {isEnabled} = await draftMode()
-  let perspective: Exclude<ClientPerspective, 'raw'> = 'previewDrafts'
+  let perspective: Exclude<ClientPerspective, 'raw'> = 'drafts'
   if (isEnabled) {
     const cookieStore = await cookies()
     if (cookieStore.has('sanity-preview-perspective')) {

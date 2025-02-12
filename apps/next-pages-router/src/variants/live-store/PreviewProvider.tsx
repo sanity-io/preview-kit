@@ -15,7 +15,7 @@ export default function PreviewProvider({
 
   const router = useRouter()
 
-  const [perspective, setPerspective] = useState<Exclude<ClientPerspective, 'raw'>>('previewDrafts')
+  const [perspective, setPerspective] = useState<Exclude<ClientPerspective, 'raw'>>('drafts')
   useEffect(() => {
     const maybePerspective = router.query['sanity-preview-perspective'] as any
     if (router.isReady && maybePerspective) {
