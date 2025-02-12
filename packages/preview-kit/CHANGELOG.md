@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.6](https://github.com/sanity-io/preview-kit/compare/v5.2.5...v5.2.6) (2025-02-12)
+
+### Bug Fixes
+
+- replace `previewDrafts` with `drafts` ([#1575](https://github.com/sanity-io/preview-kit/issues/1575)) ([7892128](https://github.com/sanity-io/preview-kit/commit/7892128b7f5e2ca4b53676fab3880f4d80b8570f))
+
 ## [5.2.5](https://github.com/sanity-io/preview-kit/compare/v5.2.4...v5.2.5) (2025-02-11)
 
 ### Bug Fixes
