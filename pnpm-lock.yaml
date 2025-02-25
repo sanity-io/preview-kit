@@ -296,10 +296,10 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.24.1
+        specifier: ^8.25.0
         version: 8.25.0(@typescript-eslint/parser@8.25.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
       '@typescript-eslint/parser':
-        specifier: ^8.24.1
+        specifier: ^8.25.0
         version: 8.25.0(eslint@8.57.1)(typescript@5.7.3)
       '@vercel/stega':
         specifier: 0.1.2
@@ -7399,7 +7399,6 @@ packages:
   sanity@3.77.1:
     resolution: {integrity: sha512-ZTaW1fDV3aish8LZTj9vEhyAstbMUjV9BkYaoMAR1L7xuq2/GgEVr6rCmFuc5NE0po+FJ90uaPmUTxTDfGYEqw==}
     engines: {node: '>=18'}
-    deprecated: This version is using an experimental version of the Sanity HTTP API and we strongly recommend upgrading to latest
     hasBin: true
     peerDependencies:
       react: ^18 || ^19.0.0
