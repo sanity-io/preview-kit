@@ -10,7 +10,7 @@ const token = process.env.SANITY_API_WRITE_TOKEN
 const client = createClient({
   projectId: 'pv8y60vp',
   dataset: 'production',
-  apiVersion: 'X',
+  apiVersion: '2025-03-04',
   useCdn: false,
   token,
 })

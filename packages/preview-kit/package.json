@@ -33,12 +33,6 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
-    "./client": {
-      "source": "./src/client/index.ts",
-      "import": "./dist/client.js",
-      "require": "./dist/client.cjs",
-      "default": "./dist/client.js"
-    },
     "./live-query": {
       "source": "./src/live-query/index.ts",
       "import": "./dist/live-query.js",
@@ -58,9 +52,6 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
-      "client": [
-        "./dist/client.d.ts"
-      ],
       "live-query": [
         "./dist/live-query.d.ts"
       ],
@@ -86,8 +77,7 @@
   "prettier": "@sanity/prettier-config",
   "dependencies": {
     "@sanity/comlink": "^3.0.1",
-    "@sanity/presentation-comlink": "^1.0.9",
-    "mendoza": "3.0.8"
+    "@sanity/presentation-comlink": "^1.0.9"
   },
   "devDependencies": {
     "@sanity/client": "^6.28.2",
@@ -109,7 +99,6 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "lru-cache": "10.4.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-fast-compare": "3.2.2",

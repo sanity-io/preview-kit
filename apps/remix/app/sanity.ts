@@ -1,9 +1,9 @@
 import type {ClientPerspective} from '@sanity/client/csm'
-import {createClient, type QueryParams} from '@sanity/preview-kit/client'
+import {createClient, type QueryParams} from '@sanity/client'
 
 const projectId = 'pv8y60vp'
 const dataset = 'production'
-const apiVersion = 'X'
+const apiVersion = '2025-03-04'
 const useCdn = false
 const studioUrl = process.env.STUDIO_URL || 'http://localhost:3333'
 export const client = createClient({

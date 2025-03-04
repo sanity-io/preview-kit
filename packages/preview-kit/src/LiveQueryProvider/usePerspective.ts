@@ -6,6 +6,7 @@ import {
   type LoaderNodeMsg,
 } from '@sanity/presentation-comlink'
 import {useEffect, useState} from 'react'
+import isEqual from 'react-fast-compare'
 
 export function usePerspective(
   initialPerspective: Exclude<ClientPerspective, 'raw'>,
@@ -26,9 +27,9 @@ export function usePerspective(
       }),
     )
 
-    comlink.on('loader/perspective', (data) => {
-      if (data.perspective !== 'raw') {
-        setPresentationPerspective(data.perspective)
+    comlink.on('loader/perspective', ({perspective}) => {
+      if (perspective !== 'raw') {
+        setPresentationPerspective((prev) => (isEqual(prev, perspective) ? prev : perspective))
       }
     })
 

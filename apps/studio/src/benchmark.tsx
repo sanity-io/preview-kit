@@ -33,7 +33,7 @@ const Container = styled(Box)`
 `
 
 function Benchmark() {
-  const client = useClient({apiVersion: '2023-05-05'})
+  const client = useClient({apiVersion: '2025-03-04'})
   const [creating, setCreating] = useState(false)
   const [editing, setEditing] = useState(false)
   const [deleting, setDeleting] = useState(false)

@@ -44,7 +44,6 @@ export default defineConfig({
   comments: {enabled: false},
   scheduledPublishing: {enabled: false},
   tasks: {enabled: false},
-  releases: {enabled: true},
   projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
   dataset: process.env.SANITY_STUDIO_DATASET!,
   plugins: [

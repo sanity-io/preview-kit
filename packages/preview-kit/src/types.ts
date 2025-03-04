@@ -72,11 +72,9 @@ export interface LiveQueryProviderProps {
    */
   turboSourceMap?: boolean
   /**
-   * How frequently queries should be refetched in the background to refresh the parts of queries that can't be source mapped.
-   * Setting it to `0` will disable background refresh.
-   * @defaultValue 10000
+   * @deprecated no longer used
    */
-  refreshInterval?: number
+  refreshInterval?: never
   logger?: Logger
   /**
    * @defaultValue 'drafts'
