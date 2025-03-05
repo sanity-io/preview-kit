@@ -1,9 +1,10 @@
+> [!IMPORTANT]  
+> This toolkit is no longer actively developed. For Next.js users on React Server Components we recommend `next-sanity`'s [`defineLive` API](https://github.com/sanity-io/next-sanity#live-content-api). Next.js pages router, Remix, React Router, TanStack Start, should use our [React Loader](https://www.sanity.io/docs/react-loader).
+
 # @sanity/preview-kit<!-- omit in toc -->
 
-> [!IMPORTANT]  
-> You're looking at the README for v5, the README for [v4 is available here.](https://github.com/sanity-io/preview-kit/tree/v4?tab=readme-ov-file#sanitypreview-kit)
-
-[Sanity.io](https://www.sanity.io/?utm_source=github&utm_medium=readme&utm_campaign=preview-kit) toolkit for building live-as-you-type content preview experiences and visual editing.
+> [!NOTE]  
+> You're looking at the README for v6, the README for [v5 is available here.](https://github.com/sanity-io/preview-kit/tree/v5?tab=readme-ov-file#sanitypreview-kit)
 
 - [Installation](#installation)
 - [`@sanity/preview-kit`](#sanitypreview-kit-1)
@@ -17,19 +18,6 @@
     - [Advanced usage](#advanced-usage)
       - [Using the `LiveQuery` wrapper component instead of the `useLiveQuery` hook](#using-the-livequery-wrapper-component-instead-of-the-uselivequery-hook)
       - [Trouble-shooting and debugging](#trouble-shooting-and-debugging)
-      - [Content Source Map features](#content-source-map-features)
-- [`@sanity/preview-kit/client`](#sanitypreview-kitclient)
-  - [Visual Editing with Content Source Maps](#visual-editing-with-content-source-maps)
-    - [Enhanced Sanity client with `createClient`](#enhanced-sanity-client-with-createclient)
-      - [`studioUrl`](#studiourl)
-      - [`encodeSourceMap`](#encodesourcemap)
-      - [`encodeSourceMapAtPath`](#encodesourcemapatpath)
-      - [`logger`](#logger)
-      - [`resultSourceMap`](#resultsourcemap)
-  - [Using the Content Source Map with custom logic](#using-the-content-source-map-with-custom-logic)
-  - [Using Perspectives](#using-perspectives)
-- [`@sanity/preview-kit/csm`](#sanitypreview-kitcsm)
-  - [Transcoding](#transcoding)
 - [Release new version](#release-new-version)
 - [License](#license)
 
@@ -51,7 +39,7 @@ yarn add @sanity/preview-kit @sanity/client
 
 > **Note**
 >
-> This is the new docs for `@sanity/preview-kit` v2. If you're looking for docs for v1 APIs, like `definePreview` and `usePreview`, they're available [on the v1 branch.](https://github.com/sanity-io/preview-kit/tree/v1#readme).
+> This is the new docs for `@sanity/preview-kit` v6. If you're looking for docs for v1 APIs, like `definePreview` and `usePreview`, they're available [on the v1 branch.](https://github.com/sanity-io/preview-kit/tree/v1#readme).
 >
 > There's a full migration guide available [here.][migration]
 >
@@ -63,9 +51,7 @@ yarn add @sanity/preview-kit @sanity/client
 >
 > The examples in this README use Remix, you can find Next.js specific examples in the [`next-sanity` README][next-sanity-readme]. Including information on how to build live previews in React Server Components with the new app-router.
 
-Write GROQ queries like [@sanity/client](https://github.com/sanity-io/client) and have them resolve in-memory, locally. Updates from Content Lake are streamed in real-time with sub-second latency.
-
-Requires React 18, support for other libraries like Solid, Svelte, Vue etc are planned. For now you can use [@sanity/groq-store](https://github.com/sanity-io/groq-store) [directly](https://github.com/sanity-io/groq-store/blob/main/example/example.ts).
+Write GROQ queries like [@sanity/client](https://github.com/sanity-io/client) and have them automatically refetch when content changes. [The Live Content API is used to notify on changes.](https://www.sanity.io/live)
 
 Get started in 3 steps:
 
@@ -88,9 +74,8 @@ import type {QueryParams} from '@sanity/client'
 export const client = createClient({
   projectId: 'your-project-id',
   dataset: 'production',
-  apiVersion: '2023-06-20',
-  useCdn: false,
-  perspective: 'published',
+  apiVersion: '2025-03-04',
+  useCdn: true,
 })
 
 // Only defined on the server, passed to the browser via a `loader`
@@ -651,184 +636,6 @@ If it's always `false` it's an indicator that you may need to lift your `LiveQue
 - Next App Router: `src/app/layout.tsx`
 - Next Pages Router: `src/pages/_app.tsx`
 
-#### Content Source Map features
-
-For data that can't be traced with Content Source Maps there's a background refresh interval. Depending on your queries you might want to tweak this interval to get the best performance.
-
-```tsx
-import {LiveQueryProvider} from '@sanity/preview-kit'
-
-return (
-  <LiveQueryProvider
-    client={client}
-    token={token}
-    // Refetch all queries every minute instead of the default 10 seconds
-    refreshInterval={1000 * 60}
-    // Passing a logger gives you more information on what to expect based on your configuration
-    logger={console}
-  >
-    {children}
-  </LiveQueryProvider>
-)
-```
-
-# `@sanity/preview-kit/client`
-
-## Visual Editing with Content Source Maps
-
-> **Note**
->
-> [Content Source Maps][content-source-maps-intro] are available [as an API][content-source-maps] for select [Sanity enterprise customers][enterprise-cta]. [Contact our sales team for more information.][sales-cta]
-
-You can use [Visual Editing][visual-editing-intro] with any framework, not just React. [Read our guide for how to get started.][visual-editing]
-
-### Enhanced Sanity client with `createClient`
-
-Preview Kit's enhanced Sanity client is built on top of `@sanity/client` and is designed to be a drop-in replacement. It extends the client configuration with options for returning encoded metadata from Content Source Maps.
-
-```ts
-// Remove your vanilla `@sanity/client` import
-// import {createClient, type ClientConfig} from '@sanity/client'
-
-// Use the enhanced client instead
-import {createClient, type ClientConfig} from '@sanity/preview-kit/client'
-
-const config: ClientConfig = {
-  // ...base config options
-
-  // Required: when "encodeSourceMap" is enabled
-  // Set it to relative or absolute URL of your Sanity Studio
-  studioUrl: '/studio', // or 'https://your-project-name.sanity.studio'
-
-  // Required: for encoded metadata from Content Source Maps
-  // 'auto' is the default, you can also use `true` or `false`
-  encodeSourceMap: 'auto',
-}
-
-const client = createClient(config)
-```
-
-#### `studioUrl`
-
-**Required** when `encodeSourceMap` is active, and can either be an absolute URL:
-
-```ts
-import {createClient} from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  studioUrl: 'https://your-company.com/studio',
-})
-```
-
-Or a relative path if the Studio is hosted on the same deployment, or embedded in the same app:
-
-```ts
-import {createClient} from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  studioUrl: '/studio',
-})
-```
-
-#### `encodeSourceMap`
-
-Accepts `"auto"`, the default, or a `boolean`. Controls when to encode the content source map into strings using `@vercel/stega` encoding. When `"auto"` is used a best-effort environment detection is used to see if the environment is a Vercel Preview deployment. On a different hosting provider, or in local development, configure this option to make sure it is only enabled in non-production deployments.
-
-```tsx
-import {createClient} from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  encodeSourceMap: process.env.VERCEL_ENV === 'preview',
-})
-```
-
-#### `encodeSourceMapAtPath`
-
-By default source maps are encoded into all strings that can be traced back to a document field, except for URLs and ISO dates. We also make some exceptions for fields like, `document._type`, `document._id` and `document.slug.current`, that we've seen leading to breakage if the string is altered as well as for Portable Text.
-
-You can customize this behavior using `encodeSourceMapAtPath`:
-
-```tsx
-import {createClient} from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  encodeSourceMapAtPath: (props) => {
-    if (props.path[0] === 'externalUrl') {
-      return false
-    }
-    // The default behavior is packaged into `filterDefault`, allowing you enable encoding fields that are skipped by default
-    return props.filterDefault(props)
-  },
-})
-```
-
-#### `logger`
-
-Pass a `console` into `logger` to get detailed debug info and reports on which fields are encoded and which are skipped:
-
-```tsx
-import {createClient} from '@sanity/preview-kit/client'
-
-const client = createClient({
-  ...config,
-  logger: console,
-})
-```
-
-An example report:
-
-```bash
-[@sanity/preview-kit/client]: Creating source map enabled client
-[@sanity/client/stega]: Stega encoding source map into result
-  [@sanity/client/stega]: Paths encoded: 3, skipped: 17
-  [@sanity/client/stega]: Table of encoded paths
-  ┌─────────┬──────────────────────────────┬───────────────────────────┬────────┐
-  │ (index) │              path            │           value           │ length │
-  ├─────────┼──────────────────────────────┼───────────────────────────┼────────┤
-  │    0    │ "footer[0].children[0].text" │ '"The future is alrea...' │   67   │
-  │    1    │ "footer[1].children[0].text" │     'Robin Williams'      │   14   │
-  │    2    │            "title"           │     'Visual Editing'      │   14   │
-  └─────────┴──────────────────────────────┴───────────────────────────┴────────┘
-  [@sanity/client/stega]: List of skipped paths [
-    'footer[]._key',
-    'footer[].children[]._key',
-    'footer[].children[]._type',
-    'footer[]._type',
-    'footer[].style',
-    '_type',
-    'slug.current',
-  ]
-```
-
-#### `resultSourceMap`
-
-This option is always enabled if `encodeSourceMap`. It's exposed here to be [compatible with `@sanity/client`](https://github.com/sanity-io/client/#get-started-with-content-source-maps) and custom use cases where you want content source maps, but not the encoding.
-
-```ts
-const client = createClient({
-  ...config,
-  // This option can only enable content source maps, not disable it when `encodeSourceMap` resolves to `true`
-  resultSourceMap: true,
-})
-
-const {result, resultSourceMap} = await client.fetch(query, params, {
-  filterResponse: false,
-})
-
-console.log(resultSourceMap) // `resultSourceMap` is now available, even if `encodeSourceMap` is `false`
-```
-
-## Using Perspectives
-
-The `perspective` option can be used to specify special filtering behavior for queries. The default value is `raw`, which means no special filtering is applied, while [`published`](#published) and [`drafts`](#drafts) can be used to optimize for specific use cases. Read more about this option:
-
-- [Perspectives in Sanity docs][perspectives-docs]
-- [Perspectives in @sanity/client README][perspectives-readme]
-
 # Release new version
 
 Run ["CI & Release" workflow](https://github.com/sanity-io/preview-kit/actions/workflows/main.yml).
@@ -840,13 +647,5 @@ Semantic release will only release on configured branches, so it is safe to run 
 
 MIT-licensed. See [LICENSE](LICENSE).
 
-[visual-editing]: https://www.sanity.io/docs/vercel-visual-editing?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
-[visual-editing-intro]: https://www.sanity.io/blog/visual-editing-sanity-vercel?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
-[content-source-maps]: https://www.sanity.io/docs/content-source-maps?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
-[content-source-maps-intro]: https://www.sanity.io/blog/content-source-maps-announce?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
-[sales-cta]: https://www.sanity.io/contact/sales?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
-[enterprise-cta]: https://www.sanity.io/enterprise?utm_source=github.com&utm_medium=referral&utm_campaign=may-vercel-launch
 [next-sanity-readme]: https://github.com/sanity-io/next-sanity#readme
 [migration]: https://github.com/sanity-io/preview-kit/blob/main/MIGRATION.md
-[perspectives-docs]: https://www.sanity.io/docs/perspectives
-[perspectives-readme]: https://github.com/sanity-io/client/#performing-queries

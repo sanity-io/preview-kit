@@ -1,3 +1,92 @@
+- [Upgrading from v5 to v6](#upgrading-from-v5-to-v6)
+- [Upgrading from v1 to v2](#upgrading-from-v1-to-v2)
+
+# Upgrading from v5 to v6
+
+## `refreshInterval` is now removed
+
+This is a side-effect from v6 adopting the [Live Content API](https://www.sanity.io/live) under the hood. On any change the API notifies which queries to refetch, thus there's zero need to do any polling. With no polling, the `refreshInterval` option no longer has any effect.
+
+## `@sanity/preview-kit/client` is removed
+
+You can use `@sanity/client` instead, with minor changes for most use cases:
+
+```diff
+-import {createClient} from '@sanity/preview-kit/client'
++import {createClient} from '@sanity/client'
+
+const client = createClient({
+  // ...base config options
+- encodeSourceMap: process.env.VERCEL_ENV === 'preview',
++ stega: {
++   enabled: process.env.VERCEL_ENV === 'preview',
+    studioUrl: '/studio',
++ }
+})
+```
+
+The `stega.enabled` option doesn't have any magic equivalent to `encodeSourceMap: "auto"`, which is the default behavior in `@sanity/preview-kit/client`. You'll have to implement the environment variable checks yourself:
+
+```diff
+-import {createClient} from '@sanity/preview-kit/client'
++import {createClient} from '@sanity/client'
+
+const client = createClient({
+  // ...base config options
+- encodeSourceMap: 'auto', // 'auto' is the default option
++ stega: {
++   enabled: process.env.SANITY_SOURCE_MAP === 'true' || process.env.VERCEL_ENV === 'preview',
++   studioUrl: process.env.SANITY_STUDIO_URL,
++ }
+})
+```
+
+The `logger` option is moved to the `stega` group:
+
+```diff
+const client = createClient({
+  // ...base config options
++ stega: {
+    logger: console,
++ }
+})
+```
+
+The `encodeSourceMapAtPath` is also moved, and has a new signature. You can re-use the same logic as before by adding a small wrapper:
+
+```diff
+-import {createClient} from '@sanity/preview-kit/client'
++import {createClient} from '@sanity/client'
+
+function customFilterLogic({path, filterDefault}) {
+  // ...
+}
+
+const client = createClient({
+  // ...base config options
+- encodeSourceMapAtPath: customFilterLogic,
++ stega: {
++   filter: (props) =>
++     customFilterLogic({
++       path: props.sourcePath,
++       filterDefault: () => props.filterDefault(props),
++     })
++ }
+})
+```
+
+The `resultSourceMap` option is the same as before, you just need to change the import:
+
+```diff
+-import {createClient} from '@sanity/preview-kit/client'
++import {createClient} from '@sanity/client'
+
+const client = createClient({
+  // ...base config options
+  resultSourceMap: true,
+})
+```
+
 # Upgrading from v1 to v2
 
 ## `usePreview` is now `useLiveQuery`
@@ -104,9 +193,8 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
   const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-06-20',
+    apiVersion: '2025-03-04',
     useCdn: true,
-    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -181,9 +269,8 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
   const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-06-20',
+    apiVersion: '2025-03-04',
     useCdn: true,
-    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -255,9 +342,8 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
   const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-06-20',
+    apiVersion: '2025-03-04',
     useCdn: true,
-    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
@@ -331,9 +417,8 @@ export function getClient({preview}: {preview?: {token: string}}): SanityClient 
   const client = createClient({
     projectId,
     dataset,
-    apiVersion: '2023-06-20',
+    apiVersion: '2025-03-04',
     useCdn: true,
-    perspective: 'published',
   })
   if (preview) {
     if (!preview.token) {
