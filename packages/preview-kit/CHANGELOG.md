@@ -5,6 +5,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.0](https://github.com/sanity-io/preview-kit/compare/v5.2.9...v6.0.0) (2025-03-05)
+
+### ⚠ BREAKING CHANGES
+
+- This removes the need to specify a `refreshInterval`, and changes how the live preview behaves. For some changes, it's slightly slower, since we're no longer keeping documents in memory, synced with mendoza patches in real-time, using Content Source Maps to optimistically update queries.
+  While other changes, like changing a reference, updating a live query that uses sorting and filters, creating or deleting a document, these are now much faster.
+  Now we're using the Live Content API to tell us exactly which queries to refetch and when.
+  It also solves scale issues when you reach a certain amount of documents, or query complexity and nesting.
+
+The deprecated `@sanity/preview-kit/client` export is now removed, check the `MIGRATION.md` for instructions.
+
+### Features
+
+- use live content api ([#1541](https://github.com/sanity-io/preview-kit/issues/1541)) ([c32ded6](https://github.com/sanity-io/preview-kit/commit/c32ded6bf4f4910ae8c0f9dc043e6d10823ac12f))
+
 ## [5.2.9](https://github.com/sanity-io/preview-kit/compare/v5.2.8...v5.2.9) (2025-03-03)
 
 ### Bug Fixes
