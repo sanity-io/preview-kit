@@ -11,10 +11,12 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn,
-  studioUrl,
-  logger: console,
-  encodeSourceMap: true,
   perspective: 'published',
+  stega: {
+    enabled: true,
+    studioUrl,
+    logger: console,
+  },
 })
 
 export const token = typeof process === 'undefined' ? '' : process.env.SANITY_API_READ_TOKEN!
