@@ -86,8 +86,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 2.13.10
-        version: 2.13.10(@emotion/is-prop-valid@1.2.2)(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))(next@15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react-router@6.30.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        specifier: 2.13.11
+        version: 2.13.11(@emotion/is-prop-valid@1.2.2)(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))(next@15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react-router@6.30.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       bulma:
         specifier: 0.9.4
         version: 0.9.4
@@ -147,8 +147,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/preview-kit
       '@sanity/visual-editing':
-        specifier: 2.13.10
-        version: 2.13.10(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))(next@15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react-router@6.30.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+        specifier: 2.13.11
+        version: 2.13.11(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))(next@15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react-router@6.30.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@vercel/remix':
         specifier: 2.15.3
         version: 2.15.3(@remix-run/dev@2.16.0(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@remix-run/serve@2.16.0(typescript@5.8.2))(@types/node@18.19.80)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.2(@types/node@18.19.80)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0))(@remix-run/node@2.16.0(typescript@5.8.2))(@remix-run/server-runtime@2.16.0(typescript@5.8.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -2779,6 +2779,34 @@ packages:
 
   '@sanity/visual-editing@2.13.10':
     resolution: {integrity: sha512-bJf7D8jXs1Q8LYZke8nvJnY0bO3Gn6qinqIh2HDUL2s22tzfByNDxKA87Ui4bL9xTqKsVvkWRAWhaDjbnJrTIQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@remix-run/react': '>= 2'
+      '@sanity/client': ^6.28.3
+      '@sveltejs/kit': '>= 2'
+      next: '>= 13 || >=14.3.0-canary.0 <14.3.0 || >=15.0.0-rc'
+      react: ^18.3 || >=19.0.0-rc
+      react-dom: ^18.3 || >=19.0.0-rc
+      react-is: ^18.3 || >=19.0.0-rc
+      react-router: '>= 6 || >= 7'
+      styled-components: ^6.1.15
+      svelte: '>= 4'
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sanity/client':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react-router:
+        optional: true
+      svelte:
+        optional: true
+
+  '@sanity/visual-editing@2.13.11':
+    resolution: {integrity: sha512-mcCncLToC10Qa3gaPm2AWxa3tYK57MAWVkblaGktSYyKKi7Jl71ZgD7P6EzvngimTtsFC2raZv8IIWUM+cCysg==}
     engines: {node: '>=18'}
     peerDependencies:
       '@remix-run/react': '>= 2'
@@ -11616,7 +11644,39 @@ snapshots:
       - '@sanity/types'
       - debug
 
-  '@sanity/visual-editing@2.13.10(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))(next@15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react-router@6.30.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+  '@sanity/visual-editing@2.13.11(@emotion/is-prop-valid@1.2.2)(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))(next@15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react-router@6.30.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+    dependencies:
+      '@sanity/comlink': 3.0.1
+      '@sanity/icons': 3.7.0(react@19.0.0)
+      '@sanity/insert-menu': 1.1.5(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.79.0(@types/react@19.0.10)(debug@4.4.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@sanity/mutate': 0.11.0-canary.4(xstate@5.19.2)
+      '@sanity/presentation-comlink': 1.0.11(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10)(debug@4.4.0))
+      '@sanity/preview-url-secret': 2.1.6(@sanity/client@6.28.3)
+      '@sanity/ui': 2.15.6(@emotion/is-prop-valid@1.2.2)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@sanity/visual-editing-csm': 2.0.8(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))
+      '@vercel/stega': 0.1.2
+      get-random-values-esm: 1.0.2
+      react: 19.0.0
+      react-compiler-runtime: 19.0.0-beta-e1e972c-20250221(react@19.0.0)
+      react-dom: 19.0.0(react@19.0.0)
+      react-is: 18.3.1
+      rxjs: 7.8.2
+      scroll-into-view-if-needed: 3.1.0
+      styled-components: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      use-effect-event: 1.0.2(react@19.0.0)
+      valibot: 0.31.1
+      xstate: 5.19.2
+    optionalDependencies:
+      '@remix-run/react': 2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)
+      '@sanity/client': 6.28.3(debug@4.4.0)
+      next: 15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-router: 6.30.0(react@19.0.0)
+    transitivePeerDependencies:
+      - '@emotion/is-prop-valid'
+      - '@sanity/types'
+      - debug
+
+  '@sanity/visual-editing@2.13.11(@remix-run/react@2.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2))(@sanity/client@6.28.3)(@sanity/types@3.79.0(@types/react@19.0.10))(next@15.2.2(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react-router@6.30.0(react@19.0.0))(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@sanity/comlink': 3.0.1
       '@sanity/icons': 3.7.0(react@19.0.0)
