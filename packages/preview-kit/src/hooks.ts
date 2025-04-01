@@ -1,7 +1,7 @@
 import type {QueryParams as ClientQueryParams, QueryParams} from '@sanity/client'
 import {useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore} from 'react'
 import isFastEqual from 'react-fast-compare'
-import {useSyncExternalStoreWithSelector} from 'use-sync-external-store/with-selector.js'
+import {useSyncExternalStoreWithSelector} from 'use-sync-external-store/with-selector'
 
 import {defineStoreContext} from './context'
 import type {ListenerGetSnapshot, ListenerSubscribe, QueryEnabled, QueryLoading} from './types'
