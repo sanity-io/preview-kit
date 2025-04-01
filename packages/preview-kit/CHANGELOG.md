@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.5](https://github.com/sanity-io/preview-kit/compare/v6.0.4...v6.0.5) (2025-04-01)
+
+### Bug Fixes
+
+- **deps:** update dependency @sanity/client to ^6.28.4 ([#1658](https://github.com/sanity-io/preview-kit/issues/1658)) ([c39d895](https://github.com/sanity-io/preview-kit/commit/c39d895732be1410997e25c8a36663125a1d277f))
+- **deps:** upgrade `use-sync-external-store` to v1.5.0 ([7e2c5ab](https://github.com/sanity-io/preview-kit/commit/7e2c5abe299d8ff8bcbca1a2f7abecb5748748d1))
+
 ## [6.0.4](https://github.com/sanity-io/preview-kit/compare/v6.0.3...v6.0.4) (2025-03-26)
 
 ### Bug Fixes
