@@ -82,6 +82,7 @@ export default function Page(props: InferGetStaticPropsType<typeof getStaticProp
         <PreviewTable initialData={props.table} />
         <PreviewFooter initialData={props.footer} />
         {timestamp && <Timestamp date={timestamp} />}
+        <a href="https://preview-kit-remix.sanity.dev/">Remix</a>
         <RefreshButton />
       </LiveStoreVariant>
       <script

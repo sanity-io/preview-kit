@@ -101,6 +101,7 @@ export default function Index() {
         <PreviewTable initialData={table} />
         <PreviewFooter initialData={footer} />
         <Timestamp date={timestamp} />
+        <a href="https://preview-kit-next-app-router.sanity.dev/">Next.js App Router</a>
         <RefreshButton />
       </Variant>
       <script
