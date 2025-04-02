@@ -29,6 +29,7 @@ export default async function Page() {
       </Suspense>
       {isEnabled ? <PreviewFooter initialData={footer} /> : <Footer data={footer} />}
       <Timestamp date={new Date()} />
+      <a href="https://preview-kit-next-pages-router.sanity.dev/">Next.js Pages Router</a>
       <RefreshButton />
     </LiveStoreVariant>
   )
