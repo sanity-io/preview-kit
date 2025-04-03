@@ -5,7 +5,7 @@ import {defineConfig, defineField, defineType} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {benchmarkTool} from './src/benchmark'
 import {IframeOptions, Iframe} from 'sanity-plugin-iframe-pane'
-import {presentationTool} from 'sanity/presentation'
+import {defineLocations, presentationTool} from 'sanity/presentation'
 import {vercelProtectionBypassTool} from '@sanity/vercel-protection-bypass'
 
 const iframeOptions = {
@@ -77,6 +77,18 @@ export default defineConfig({
           enable: '/api/draft',
         },
       },
+      resolve: {
+        locations: {
+          page: defineLocations({
+            locations: [
+              {
+                title: 'Remix',
+                href: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3000',
+              },
+            ],
+          }),
+        },
+      },
     }),
     presentationTool({
       name: 'pages-router',
@@ -86,6 +98,18 @@ export default defineConfig({
           enable: '/api/draft',
         },
       },
+      resolve: {
+        locations: {
+          page: defineLocations({
+            locations: [
+              {
+                title: 'Pages Router',
+                href: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3003',
+              },
+            ],
+          }),
+        },
+      },
     }),
     presentationTool({
       name: 'app-router',
@@ -93,6 +117,18 @@ export default defineConfig({
         origin: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3002',
         previewMode: {
           enable: '/api/draft',
+        },
+      },
+      resolve: {
+        locations: {
+          page: defineLocations({
+            locations: [
+              {
+                title: 'App Router',
+                href: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3002',
+              },
+            ],
+          }),
         },
       },
     }),
