@@ -70,63 +70,24 @@ export default defineConfig({
       },
     }),
     presentationTool({
-      name: 'remix',
+      allowOrigins: [
+        process.env.SANITY_STUDIO_REMIX_URL!,
+        process.env.SANITY_STUDIO_PAGES_ROUTER_URL!,
+        process.env.SANITY_STUDIO_APP_ROUTER_URL!,
+        'https://preview-kit-*.sanity.dev',
+        'http://localhost:*',
+      ].filter(Boolean),
       previewUrl: {
-        origin: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3000',
-        previewMode: {
-          enable: '/api/draft',
-        },
+        initial: process.env.SANITY_STUDIO_REMIX_URL || 'https://preview-kit-remix.sanity.dev/',
+        previewMode: {enable: '/api/draft'},
       },
       resolve: {
         locations: {
           page: defineLocations({
             locations: [
-              {
-                title: 'Remix',
-                href: process.env.SANITY_STUDIO_REMIX_URL || 'http://localhost:3000',
-              },
-            ],
-          }),
-        },
-      },
-    }),
-    presentationTool({
-      name: 'pages-router',
-      previewUrl: {
-        origin: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3003',
-        previewMode: {
-          enable: '/api/draft',
-        },
-      },
-      resolve: {
-        locations: {
-          page: defineLocations({
-            locations: [
-              {
-                title: 'Pages Router',
-                href: process.env.SANITY_STUDIO_PAGES_ROUTER_URL || 'http://localhost:3003',
-              },
-            ],
-          }),
-        },
-      },
-    }),
-    presentationTool({
-      name: 'app-router',
-      previewUrl: {
-        origin: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3002',
-        previewMode: {
-          enable: '/api/draft',
-        },
-      },
-      resolve: {
-        locations: {
-          page: defineLocations({
-            locations: [
-              {
-                title: 'App Router',
-                href: process.env.SANITY_STUDIO_APP_ROUTER_URL || 'http://localhost:3002',
-              },
+              {title: 'App Router', href: 'https://preview-kit-next-app-router.sanity.dev/'},
+              {title: 'Pages Router', href: 'https://preview-kit-next-pages-router.sanity.dev/'},
+              {title: 'Remix', href: 'https://preview-kit-remix.sanity.dev/'},
             ],
           }),
         },
