@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.8](https://github.com/sanity-io/preview-kit/compare/v6.0.7...v6.0.8) (2025-04-11)
+
+### Bug Fixes
+
+- **deps:** bump @sanity/presentation-comlink ([2eff594](https://github.com/sanity-io/preview-kit/commit/2eff594d2855cc20c058c64de033ec8c7451bab1))
+- **deps:** update dependency @sanity/client to ^6.29.0 ([#1685](https://github.com/sanity-io/preview-kit/issues/1685)) ([426915f](https://github.com/sanity-io/preview-kit/commit/426915fc4addc1abf374292a5100924c6394808b))
+
 ## [6.0.7](https://github.com/sanity-io/preview-kit/compare/v6.0.6...v6.0.7) (2025-04-10)
 
 ### Bug Fixes
