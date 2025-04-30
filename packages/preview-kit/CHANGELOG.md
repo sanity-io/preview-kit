@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.10](https://github.com/sanity-io/preview-kit/compare/v6.0.9...v6.0.10) (2025-04-30)
+
+### Bug Fixes
+
+- **deps:** update @sanity/client peer dependency to v7 ([c341284](https://github.com/sanity-io/preview-kit/commit/c341284c65f93524bb6c875d60d4d7c6b73843f6))
+
 ## [6.0.9](https://github.com/sanity-io/preview-kit/compare/v6.0.8...v6.0.9) (2025-04-30)
 
 ### Bug Fixes
