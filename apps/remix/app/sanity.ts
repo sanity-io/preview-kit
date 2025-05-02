@@ -1,5 +1,4 @@
-import type {ClientPerspective} from '@sanity/client/csm'
-import {createClient, type QueryParams} from '@sanity/client'
+import {createClient, type QueryParams, type ClientPerspective} from '@sanity/preview-kit/client'
 
 const projectId = 'pv8y60vp'
 const dataset = 'production'

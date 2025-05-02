@@ -1,6 +1,6 @@
 import 'server-only'
 
-import type {QueryParams} from '@sanity/client'
+import type {QueryParams} from '@sanity/preview-kit/client'
 import {client} from './sanity.client'
 import {draftMode} from 'next/headers'
 import {getPerspective} from './sanity.perspective'

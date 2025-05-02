@@ -33,6 +33,12 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
+    "./client": {
+      "source": "./src/client.ts",
+      "import": "./dist/client.js",
+      "require": "./dist/client.cjs",
+      "default": "./dist/client.js"
+    },
     "./live-query": {
       "source": "./src/live-query/index.ts",
       "import": "./dist/live-query.js",
@@ -52,6 +58,9 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
+      "client": [
+        "./dist/client.d.ts"
+      ],
       "live-query": [
         "./dist/live-query.d.ts"
       ],
@@ -76,12 +85,12 @@
   "browserslist": "extends @sanity/browserslist-config",
   "prettier": "@sanity/prettier-config",
   "dependencies": {
+    "@sanity/client": "^7.0.0",
     "@sanity/comlink": "^3.0.2",
     "@sanity/presentation-comlink": "^1.0.18",
     "use-sync-external-store": "^1.5.0"
   },
   "devDependencies": {
-    "@sanity/client": "^7.0.0",
     "@sanity/pkg-utils": "7.2.2",
     "@sanity/prettier-config": "^1.0.3",
     "@sanity/semantic-release-preset": "^5.0.0",
@@ -109,7 +118,6 @@
     "vitest": "^3.1.2"
   },
   "peerDependencies": {
-    "@sanity/client": "^7.0.0",
     "react": "^18 || ^19"
   },
   "peerDependenciesMeta": {

@@ -1,4 +1,4 @@
-import type {QueryParams} from '@sanity/client'
+import type {QueryParams} from '@sanity/preview-kit/client'
 import {client} from './sanity.client'
 
 export const token = process.env.SANITY_API_READ_TOKEN || ''

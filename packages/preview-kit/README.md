@@ -24,15 +24,15 @@
 # Installation
 
 ```bash
-npm i @sanity/preview-kit @sanity/client
+npm i @sanity/preview-kit
 ```
 
 ```bash
-pnpm i @sanity/preview-kit @sanity/client
+pnpm i @sanity/preview-kit
 ```
 
 ```bash
-yarn add @sanity/preview-kit @sanity/client
+yarn add @sanity/preview-kit
 ```
 
 # `@sanity/preview-kit`
@@ -67,8 +67,7 @@ As `<LiveQueryProvider />` is configured with a `@sanity/client` instance it mak
 `app/lib/sanity.ts`
 
 ```ts
-import {createClient} from '@sanity/client'
-import type {QueryParams} from '@sanity/client'
+import {createClient, type QueryParams} from '@sanity/preview-kit/client'
 
 // Shared on the server and the browser
 export const client = createClient({
@@ -562,7 +561,7 @@ export default dynamic(() => import('./UsersList'))
 `app/users/[lastId]/page.tsx`
 
 ```tsx
-import {createClient} from '@sanity/client'
+import {createClient} from '@sanity/preview-kit/client'
 import {LiveQuery} from '@sanity/preview-kit/live-query'
 import {draftMode} from 'next/headers'
 import UsersList from './UsersList'

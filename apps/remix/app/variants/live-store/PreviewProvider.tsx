@@ -1,4 +1,4 @@
-import {createClient, type ClientPerspective} from '@sanity/client'
+import {createClient, type ClientPerspective} from '@sanity/preview-kit/client'
 import {LiveQueryProvider} from '@sanity/preview-kit'
 import {useState} from 'react'
 

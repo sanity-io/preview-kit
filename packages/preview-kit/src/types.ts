@@ -1,5 +1,4 @@
 import type {ClientPerspective, QueryParams, SanityClient} from '@sanity/client'
-import type {SanityStegaClient} from '@sanity/client/stega'
 
 /**
  * @internal
@@ -57,7 +56,7 @@ export interface LiveQueryProviderProps {
   /**
    * The Sanity client to use for fetching data and listening to mutations.
    */
-  client: SanityClient | SanityStegaClient
+  client: SanityClient
   /**
    * Reconfigures `client` with the provided `token`, as well as changing its configuration to
    * have `perspective: 'drafts'`, `useCdn: false` and `ignoreBrowserTokenWarning: true`.

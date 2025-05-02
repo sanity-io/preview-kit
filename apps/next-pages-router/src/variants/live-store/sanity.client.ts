@@ -1,4 +1,4 @@
-import {createClient} from '@sanity/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'pv8y60vp'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
