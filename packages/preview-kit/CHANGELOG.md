@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.0](https://github.com/sanity-io/preview-kit/compare/v6.0.12...v6.1.0) (2025-05-05)
+
+### Features
+
+- add back `/client` export ([#1705](https://github.com/sanity-io/preview-kit/issues/1705)) ([3fd1534](https://github.com/sanity-io/preview-kit/commit/3fd1534d1699ecb648d735d8e3e8ab96e49ea2cc))
+
 ## [6.0.12](https://github.com/sanity-io/preview-kit/compare/v6.0.11...v6.0.12) (2025-04-30)
 
 ### Bug Fixes
