@@ -1,4 +1,7 @@
-import {unstable__adapter as adapter, unstable__environment as environment} from '@sanity/client'
+import {
+  unstable__adapter as adapter,
+  unstable__environment as environment,
+} from '@sanity/preview-kit/client'
 import type {GetStaticProps, InferGetStaticPropsType} from 'next'
 import {useEffect} from 'react'
 import {

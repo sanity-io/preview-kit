@@ -1,10 +1,4 @@
-import type {
-  ClientPerspective,
-  LiveEventMessage,
-  QueryParams,
-  SanityClient,
-  SyncTag,
-} from '@sanity/client'
+import type {ClientPerspective, LiveEventMessage, QueryParams, SyncTag} from '@sanity/client'
 import {useEffect, useMemo, useState} from 'react'
 
 import {defineStoreContext as Context} from '../context'
@@ -152,7 +146,7 @@ function QuerySubscription(props: QuerySubscriptionProps) {
     let fulfilled = false
     const controller = new AbortController()
 
-    ;(client as SanityClient)
+    client
       .fetch(query, params, {
         lastLiveEventId,
         perspective,

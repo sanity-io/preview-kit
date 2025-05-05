@@ -7,13 +7,12 @@
 
 This is a side-effect from v6 adopting the [Live Content API](https://www.sanity.io/live) under the hood. On any change the API notifies which queries to refetch, thus there's zero need to do any polling. With no polling, the `refreshInterval` option no longer has any effect.
 
-## `@sanity/preview-kit/client` is removed
+## `@sanity/preview-kit/client` is changed
 
-You can use `@sanity/client` instead, with minor changes for most use cases:
+It now re-exports `@sanity/client`, migrating has minor changes for most use cases:
 
 ```diff
--import {createClient} from '@sanity/preview-kit/client'
-+import {createClient} from '@sanity/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const client = createClient({
   // ...base config options
@@ -25,11 +24,10 @@ const client = createClient({
 })
 ```
 
-The `stega.enabled` option doesn't have any magic equivalent to `encodeSourceMap: "auto"`, which is the default behavior in `@sanity/preview-kit/client`. You'll have to implement the environment variable checks yourself:
+The `stega.enabled` option doesn't have any magic equivalent to `encodeSourceMap: "auto"`, which is the default behavior in `@sanity/preview-kit/client` in v5. You'll have to implement the environment variable checks yourself:
 
 ```diff
--import {createClient} from '@sanity/preview-kit/client'
-+import {createClient} from '@sanity/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 const client = createClient({
   // ...base config options
@@ -55,8 +53,7 @@ const client = createClient({
 The `encodeSourceMapAtPath` is also moved, and has a new signature. You can re-use the same logic as before by adding a small wrapper:
 
 ```diff
--import {createClient} from '@sanity/preview-kit/client'
-+import {createClient} from '@sanity/client'
+import {createClient} from '@sanity/preview-kit/client'
 
 function customFilterLogic({path, filterDefault}) {
   // ...
@@ -72,18 +69,6 @@ const client = createClient({
 +       filterDefault: () => props.filterDefault(props),
 +     })
 + }
-})
-```
-
-The `resultSourceMap` option is the same as before, you just need to change the import:
-
-```diff
--import {createClient} from '@sanity/preview-kit/client'
-+import {createClient} from '@sanity/client'
-
-const client = createClient({
-  // ...base config options
-  resultSourceMap: true,
 })
 ```
 

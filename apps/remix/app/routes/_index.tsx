@@ -16,7 +16,7 @@ import {
   unstable__adapter as adapter,
   unstable__environment as environment,
   type ClientPerspective,
-} from '@sanity/client'
+} from '@sanity/preview-kit/client'
 import {getSession} from '~/sessions'
 import {lazy, useEffect} from 'react'
 import {useIsEnabled, useLiveQuery} from '@sanity/preview-kit'

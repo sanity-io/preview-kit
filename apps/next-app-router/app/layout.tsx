@@ -1,6 +1,6 @@
 import 'bulma/css/bulma.min.css'
 import {Container} from 'ui/react'
-import {unstable__adapter, unstable__environment} from '@sanity/client'
+import {unstable__adapter, unstable__environment} from '@sanity/preview-kit/client'
 import DraftModeButton from './DraftModeButton'
 import type {Metadata} from 'next'
 

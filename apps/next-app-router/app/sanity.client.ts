@@ -1,4 +1,4 @@
-import {createClient} from 'next-sanity'
+import {createClient} from '@sanity/preview-kit/client'
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'pv8y60vp',
