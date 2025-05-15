@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "sanity build",
+    "build": "sanity build && sanity manifest extract",
     "dev": "sanity dev"
   },
   "dependencies": {
