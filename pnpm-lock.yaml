@@ -256,8 +256,8 @@ importers:
         specifier: ^7.2.1
         version: 7.3.0(debug@4.4.1)
       '@sanity/comlink':
-        specifier: ^3.0.3
-        version: 3.0.4
+        specifier: ^3.0.5
+        version: 3.0.5
       '@sanity/presentation-comlink':
         specifier: ^1.0.19
         version: 1.0.20(@sanity/client@7.3.0)(@sanity/types@3.90.0(@types/react@19.1.6)(debug@4.4.1))
@@ -2685,8 +2685,8 @@ packages:
     resolution: {integrity: sha512-6Rbg71hkeoGInk/9hBsCUBCZ33IHSs2fZynAR85ANkXDM+WYiwRDlker7OngBkfbK8TF9+G797VjNMQQgJINiQ==}
     engines: {node: '>=18'}
 
-  '@sanity/comlink@3.0.4':
-    resolution: {integrity: sha512-2yXb7xKOkR0xW1/5/oEuPFPlitmHbdOxskDI7g/MgiezfcWaotAmAqmv9S4vugd1Z8URjWN1FAh0vL67iZowKA==}
+  '@sanity/comlink@3.0.5':
+    resolution: {integrity: sha512-aYdqV8pJ6UT/3WucER5PBMGIlAt26wKiVYcmFSA7k3dmcEaPOd8tib93bwHfQsVXzGGnUaf0e8IacKYoyTwzCw==}
     engines: {node: '>=18'}
 
   '@sanity/diff-match-patch@3.2.0':
@@ -11639,7 +11639,7 @@ snapshots:
       uuid: 11.1.0
       xstate: 5.19.3
 
-  '@sanity/comlink@3.0.4':
+  '@sanity/comlink@3.0.5':
     dependencies:
       rxjs: 7.8.2
       uuid: 11.1.0
@@ -11820,7 +11820,7 @@ snapshots:
   '@sanity/next-loader@1.6.1(@sanity/types@3.90.0(@types/react@19.1.6))(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@sanity/client': 7.3.0(debug@4.4.1)
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.5
       '@sanity/presentation-comlink': 1.0.20(@sanity/client@7.3.0)(@sanity/types@3.90.0(@types/react@19.1.6)(debug@4.4.1))
       dequal: 2.0.3
       next: 15.3.2(@babel/core@7.27.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -11931,7 +11931,7 @@ snapshots:
   '@sanity/presentation-comlink@1.0.20(@sanity/client@7.3.0)(@sanity/types@3.90.0(@types/react@19.1.6)(debug@4.4.1))':
     dependencies:
       '@sanity/client': 7.3.0(debug@4.4.1)
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.5
       '@sanity/visual-editing-types': 1.0.18(@sanity/client@7.3.0)(@sanity/types@3.90.0(@types/react@19.1.6)(debug@4.4.1))
     transitivePeerDependencies:
       - '@sanity/types'
@@ -11944,7 +11944,7 @@ snapshots:
   '@sanity/preview-kit@6.1.0(@sanity/types@3.90.0(@types/react@19.1.6))(react@19.1.0)':
     dependencies:
       '@sanity/client': 7.3.0(debug@4.4.1)
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.5
       '@sanity/presentation-comlink': 1.0.20(@sanity/client@7.3.0)(@sanity/types@3.90.0(@types/react@19.1.6)(debug@4.4.1))
       use-sync-external-store: 1.5.0(react@19.1.0)
     optionalDependencies:
@@ -12011,7 +12011,7 @@ snapshots:
   '@sanity/sdk@0.0.0-alpha.25(@types/react@19.1.6)(debug@4.4.1)(immer@10.1.1)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))':
     dependencies:
       '@sanity/client': 6.29.1(debug@4.4.1)
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.5
       '@sanity/diff-match-patch': 3.2.0
       '@sanity/mutate': 0.12.4(debug@4.4.1)
       '@sanity/types': 3.90.0(@types/react@19.1.6)(debug@4.4.1)
@@ -12180,7 +12180,7 @@ snapshots:
 
   '@sanity/visual-editing@2.14.0(@emotion/is-prop-valid@1.2.2)(@remix-run/react@2.16.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(@sanity/client@7.3.0)(@sanity/types@3.90.0(@types/react@19.1.6))(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react-router@6.30.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)':
     dependencies:
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.5
       '@sanity/icons': 3.7.0(react@19.1.0)
       '@sanity/insert-menu': 1.1.11(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.90.0(@types/react@19.1.6)(debug@4.4.1))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@sanity/mutate': 0.11.0-canary.4(xstate@5.19.3)
@@ -12212,7 +12212,7 @@ snapshots:
 
   '@sanity/visual-editing@2.14.0(@remix-run/react@2.16.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(@sanity/client@7.3.0)(@sanity/types@3.90.0(@types/react@19.1.6))(next@15.3.2(@babel/core@7.27.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react-router@6.30.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)':
     dependencies:
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.5
       '@sanity/icons': 3.7.0(react@19.1.0)
       '@sanity/insert-menu': 1.1.11(@sanity/types@3.90.0(@types/react@19.1.6))(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@sanity/mutate': 0.11.0-canary.4(xstate@5.19.3)
@@ -17890,7 +17890,7 @@ snapshots:
       '@sanity/cli': 3.90.0(@types/node@18.19.100)(@types/react@19.1.6)(react@19.1.0)(terser@5.39.0)(typescript@5.8.3)(yaml@2.7.1)
       '@sanity/client': 7.3.0(debug@4.4.1)
       '@sanity/color': 3.0.6
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.5
       '@sanity/diff': 3.90.0
       '@sanity/diff-match-patch': 3.2.0
       '@sanity/diff-patch': 5.0.0
