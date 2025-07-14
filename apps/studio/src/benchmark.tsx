@@ -65,28 +65,26 @@ function Benchmark() {
               <Button
                 tone="positive"
                 loading={creating}
-                onClick={(event) => {
+                onClick={() => {
                   setCreating(true)
                   createDocuments(client, 10000)
                     .catch(setError)
                     .finally(() => setEditing(false))
                 }}
-              >
-                Create 10k pages
-              </Button>
+                text="Create 10k pages"
+              />
               <span style={{display: 'inline-block', width: '1rem'}} />
               <Button
                 tone="positive"
                 loading={creating}
-                onClick={(event) => {
+                onClick={() => {
                   setCreating(true)
                   createDocuments(client, 100000)
                     .catch(setError)
                     .finally(() => setEditing(false))
                 }}
-              >
-                Create 100k pages
-              </Button>
+                text="Create 100k pages"
+              />
             </Box>
           </Stack>
         </Box>
@@ -100,15 +98,14 @@ function Benchmark() {
               <Button
                 tone="caution"
                 loading={editing}
-                onClick={(event) => {
+                onClick={() => {
                   setEditing(true)
                   updateDocuments(client, 15, 10)
                     .catch(setError)
                     .finally(() => setEditing(false))
                 }}
-              >
-                Edit pages for 15 minutes
-              </Button>
+                text="Edit pages for 15 minutes"
+              />
             </Box>
           </Stack>
         </Box>
@@ -119,15 +116,14 @@ function Benchmark() {
               <Button
                 tone="critical"
                 loading={deleting}
-                onClick={(event) => {
+                onClick={() => {
                   setDeleting(true)
                   deleteDocuments(client)
                     .catch(setError)
                     .finally(() => setDeleting(false))
                 }}
-              >
-                Delete all published pages
-              </Button>
+                text="Delete all published pages"
+              />
             </Box>
           </Stack>
         </Box>
