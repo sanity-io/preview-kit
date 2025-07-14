@@ -95,9 +95,6 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: pnpm install --loglevel=error
       - run: pnpm test
-        env:
-          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
-          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
 
   release:
     permissions:
