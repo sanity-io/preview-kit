@@ -44,8 +44,8 @@ export default defineConfig({
   comments: {enabled: false},
   scheduledPublishing: {enabled: false},
   tasks: {enabled: false},
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID!,
-  dataset: process.env.SANITY_STUDIO_DATASET!,
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'pv8y60vp',
+  dataset: process.env.SANITY_STUDIO_DATASET || 'production',
   plugins: [
     structureTool({
       defaultDocumentNode: (S, {schemaType}) => {
