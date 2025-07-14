@@ -53,15 +53,14 @@ function Benchmark() {
               <Button
                 tone="positive"
                 loading={creating}
-                onClick={(event) => {
+                onClick={() => {
                   setCreating(true)
                   createDocuments(client, 1000)
                     .catch(setError)
                     .finally(() => setCreating(false))
                 }}
-              >
-                Create 1k pages
-              </Button>
+                text="Create 1k pagesCreate 1k pages"
+              />
               <span style={{display: 'inline-block', width: '1rem'}} />
               <Button
                 tone="positive"
