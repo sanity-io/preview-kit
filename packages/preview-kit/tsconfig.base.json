@@ -9,6 +9,8 @@
       ],
       "@sanity/preview-kit/live-query": ["./src/live-query/index.ts"],
       "@sanity/preview-kit": ["./src/"]
-    }
+    },
+    "exactOptionalPropertyTypes": false,
+    "noUncheckedIndexedAccess": false
   }
 }
