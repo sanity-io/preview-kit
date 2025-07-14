@@ -1,6 +1,6 @@
-import {draftMode, cookies} from 'next/headers'
+import {draftMode} from 'next/headers'
 import dynamic from 'next/dynamic'
-import {VisualEditing, type ClientPerspective} from 'next-sanity'
+import {VisualEditing} from 'next-sanity'
 import {token} from '../../sanity.fetch'
 import {getPerspective} from '../../sanity.perspective'
 
