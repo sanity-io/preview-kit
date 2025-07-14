@@ -59,7 +59,7 @@ function Benchmark() {
                     .catch(setError)
                     .finally(() => setCreating(false))
                 }}
-                text="Create 1k pagesCreate 1k pages"
+                text="Create 1k pages"
               />
               <span style={{display: 'inline-block', width: '1rem'}} />
               <Button
