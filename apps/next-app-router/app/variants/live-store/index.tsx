@@ -1,6 +1,6 @@
 import {draftMode} from 'next/headers'
 import dynamic from 'next/dynamic'
-import {VisualEditing} from 'next-sanity'
+import {VisualEditing} from 'next-sanity/visual-editing'
 import {token} from '../../sanity.fetch'
 import {getPerspective} from '../../sanity.perspective'
 
