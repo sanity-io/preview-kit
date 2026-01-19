@@ -17,6 +17,7 @@ export type DefineListenerContext = <QueryResult>(
   initialSnapshot: QueryResult,
   query: string,
   params: QueryParams,
+  perspective?: Exclude<ClientPerspective, 'raw'>,
 ) => {
   subscribe: ListenerSubscribe
   getSnapshot: ListenerGetSnapshot<QueryResult>

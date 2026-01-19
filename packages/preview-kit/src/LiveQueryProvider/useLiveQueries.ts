@@ -16,6 +16,7 @@ type LiveQueriesState = Map<
   {
     query: string
     params: QueryParams
+    perspective: Exclude<ClientPerspective, 'raw'> | undefined
     listeners: Set<OnStoreChange>
   }
 >
@@ -34,6 +35,7 @@ type SubscribeAction = {
   payload: {
     query: string
     params: QueryParams
+    perspective: Exclude<ClientPerspective, 'raw'> | undefined
     onStoreChange: OnStoreChange
   }
 }
@@ -42,6 +44,7 @@ type UnsubscribeAction = {
   payload: {
     query: string
     params: QueryParams
+    perspective: Exclude<ClientPerspective, 'raw'> | undefined
     onStoreChange: OnStoreChange
   }
 }
@@ -59,13 +62,14 @@ export type SnapshotAction = {
 type Action = SubscribeAction | UnsubscribeAction | SnapshotAction
 
 function subscribe(queries: LiveQueriesState, {payload}: SubscribeAction): LiveQueriesState {
-  const key = getQueryCacheKey(payload.query, payload.params)
+  const key = getQueryCacheKey(payload.query, payload.params, payload.perspective)
 
   if (!queries.get(key)?.listeners.has(payload.onStoreChange)) {
     const nextQueries = new Map(queries)
     const value = nextQueries.get(key) || {
       query: payload.query,
       params: payload.params,
+      perspective: payload.perspective,
       listeners: new Set(),
     }
     const listeners = new Set(value.listeners)
@@ -78,7 +82,7 @@ function subscribe(queries: LiveQueriesState, {payload}: SubscribeAction): LiveQ
 }
 
 function unsubscribe(queries: LiveQueriesState, {payload}: UnsubscribeAction): LiveQueriesState {
-  const key = getQueryCacheKey(payload.query, payload.params)
+  const key = getQueryCacheKey(payload.query, payload.params, payload.perspective)
 
   const value = queries.get(key)
   if (!value) {

@@ -17,6 +17,7 @@ export type isEqualFn<QueryResult> = (a: QueryResult, b: QueryResult) => boolean
 /** @public */
 export interface LiveQueryHookOptions<QueryResult> {
   isEqual?: isEqualFn<QueryResult>
+  perspective?: import('@sanity/client').ClientPerspective
 }
 
 /** @public */
@@ -29,7 +30,7 @@ export function useLiveQuery<
   queryParams?: QueryParams,
   options?: LiveQueryHookOptions<QueryResult>,
 ): [QueryResult, QueryLoading, QueryEnabled] {
-  const {isEqual = isFastEqual} = options || {}
+  const {isEqual = isFastEqual, perspective} = options || {}
 
   const defineStore = useContext(defineStoreContext)
   const params = useQueryParams(queryParams)
@@ -48,11 +49,11 @@ export function useLiveQuery<
     | undefined
   >(
     () =>
-      defineStore?.<QueryResult>(initialData, query, params) || {
+      defineStore?.<QueryResult>(initialData, query, params, perspective as Exclude<import('@sanity/client').ClientPerspective, 'raw'> | undefined) || {
         subscribe: (() => () => {}) satisfies ListenerSubscribe,
         getSnapshot: () => initialData,
       },
-    [defineStore, initialData, params, query],
+    [defineStore, initialData, params, query, perspective],
   )
   // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call
   // helps ensure that we don't get a mismatch between the server and client snapshots

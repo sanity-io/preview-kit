@@ -58,10 +58,11 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       initialSnapshot: QueryResult,
       query: string,
       params: QueryParams,
+      hookPerspective?: Exclude<ClientPerspective, 'raw'>,
     ) {
-      const snapshotsKey = getQueryCacheKey(query, params)
+      const snapshotsKey = getQueryCacheKey(query, params, hookPerspective)
       const contextSubscribe: ListenerSubscribe = (onStoreChange) => {
-        const unsubscribe = subscribe({query, params, onStoreChange})
+        const unsubscribe = subscribe({query, params, perspective: hookPerspective, onStoreChange})
 
         return () => unsubscribe()
       }
@@ -79,15 +80,15 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
   return (
     <Context.Provider value={context}>
       {children}
-      {[...queries.entries()].map(([key, {query, params, listeners}]) => {
+      {[...queries.entries()].map(([key, {query, params, perspective: queryPerspective, listeners}]) => {
         return (
           <QuerySubscription
-            key={`${liveEvents.resets}:${perspective}:${key}`}
+            key={`${liveEvents.resets}:${queryPerspective || perspective}:${key}`}
             client={client}
             listeners={listeners}
             params={params}
             query={query}
-            perspective={perspective}
+            perspective={queryPerspective || perspective}
             liveEventsMessages={liveEvents.messages}
             snapshotKey={key}
             syncTags={snapshots.get(key)?.syncTags}
