@@ -1,4 +1,3 @@
-import type {ClientPerspective} from '@sanity/client'
 import {createNode, createNodeMachine} from '@sanity/comlink'
 import {
   createCompatibilityActors,
@@ -8,13 +7,12 @@ import {
 import {useEffect, useState} from 'react'
 import isEqual from 'react-fast-compare'
 
-export function usePerspective(
-  initialPerspective: Exclude<ClientPerspective, 'raw'>,
-): Exclude<ClientPerspective, 'raw'> {
-  const [presentationPerspective, setPresentationPerspective] = useState<Exclude<
-    ClientPerspective,
-    'raw'
-  > | null>(null)
+import type {ValidPerspective} from '../types'
+
+export function usePerspective(initialPerspective: ValidPerspective): ValidPerspective {
+  const [presentationPerspective, setPresentationPerspective] = useState<ValidPerspective | null>(
+    null,
+  )
 
   useEffect(() => {
     const comlink = createNode<LoaderNodeMsg, LoaderControllerMsg>(

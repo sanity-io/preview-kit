@@ -4,7 +4,13 @@ import isFastEqual from 'react-fast-compare'
 import {useSyncExternalStoreWithSelector} from 'use-sync-external-store/with-selector'
 
 import {defineStoreContext} from './context'
-import type {ListenerGetSnapshot, ListenerSubscribe, QueryEnabled, QueryLoading} from './types'
+import type {
+  ListenerGetSnapshot,
+  ListenerSubscribe,
+  QueryEnabled,
+  QueryLoading,
+  ValidPerspective,
+} from './types'
 
 /**
  * By default 'react-fast-compare' is used to check if the query result has changed.
@@ -17,7 +23,7 @@ export type isEqualFn<QueryResult> = (a: QueryResult, b: QueryResult) => boolean
 /** @public */
 export interface LiveQueryHookOptions<QueryResult> {
   isEqual?: isEqualFn<QueryResult>
-  perspective?: import('@sanity/client').ClientPerspective
+  perspective?: ValidPerspective
 }
 
 /** @public */

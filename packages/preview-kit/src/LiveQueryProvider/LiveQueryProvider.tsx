@@ -1,4 +1,4 @@
-import type {ClientPerspective, LiveEventMessage, QueryParams, SyncTag} from '@sanity/client'
+import type {LiveEventMessage, QueryParams, SyncTag} from '@sanity/client'
 import {useEffect, useMemo, useState} from 'react'
 
 import {defineStoreContext as Context} from '../context'
@@ -8,6 +8,7 @@ import type {
   ListenerGetSnapshot,
   ListenerSubscribe,
   LiveQueryProviderProps,
+  ValidPerspective,
 } from '../types'
 import {DEFAULT_TAG} from './constants'
 import {useLiveEvents} from './useLiveEvents'
@@ -58,7 +59,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       initialSnapshot: QueryResult,
       query: string,
       params: QueryParams,
-      hookPerspective?: Exclude<ClientPerspective, 'raw'>,
+      hookPerspective?: ValidPerspective,
     ) {
       const snapshotsKey = getQueryCacheKey(query, params, hookPerspective)
       const contextSubscribe: ListenerSubscribe = (onStoreChange) => {
@@ -106,7 +107,7 @@ LiveStoreProvider.displayName = 'LiveStoreProvider'
 interface QuerySubscriptionProps extends Required<Pick<LiveQueryProviderProps, 'client'>> {
   query: string
   params: QueryParams
-  perspective: Exclude<ClientPerspective, 'raw'>
+  perspective: ValidPerspective
   update: LiveQueriesUpdate
   snapshotKey: QueryCacheKey
   liveEventsMessages: LiveEventMessage[]
