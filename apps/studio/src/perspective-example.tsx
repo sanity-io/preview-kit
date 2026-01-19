@@ -1,8 +1,7 @@
 import {EyeOpenIcon} from '@sanity/icons'
 import {Box, Button, Card, Flex, Stack, Text, Code, Heading} from '@sanity/ui'
 import {useState, useMemo} from 'react'
-import {definePlugin, useClient} from 'sanity'
-import {useGlobalPerspective} from 'sanity'
+import {definePlugin, useClient, usePerspective} from 'sanity'
 import {route} from 'sanity/router'
 import {LiveQueryProvider, useLiveQuery} from '@sanity/preview-kit'
 import groq from 'groq'
@@ -10,7 +9,7 @@ import type {ClientPerspective} from '@sanity/client'
 
 /**
  * Example tool that demonstrates using useLiveQuery with different perspectives,
- * including integration with Sanity's useGlobalPerspective hook
+ * including integration with Sanity's usePerspective hook
  */
 export const perspectiveExampleTool = definePlugin<void>(() => {
   return {
@@ -36,7 +35,7 @@ function PerspectiveExample() {
   })
 
   // Get the global perspective from Sanity Studio
-  const {value: globalPerspective, loading: perspectiveLoading} = useGlobalPerspective()
+  const {value: globalPerspective} = usePerspective()
 
   return (
     <LiveQueryProvider client={client} token={token} perspective="drafts">
@@ -51,8 +50,7 @@ function PerspectiveExample() {
                 <Code>LiveQueryProvider</Code>.
               </Text>
               <Text size={1} muted>
-                Global Studio Perspective:{' '}
-                <Code>{perspectiveLoading ? 'loading...' : globalPerspective}</Code>
+                Global Studio Perspective: <Code>{globalPerspective}</Code>
               </Text>
             </Stack>
           </Card>
@@ -67,9 +65,9 @@ function PerspectiveExample() {
 
             <Heading size={1}>Dynamic Global Perspective</Heading>
             <Text size={1}>
-              This query uses the global Studio perspective from <Code>useGlobalPerspective</Code>:
+              This query uses the global Studio perspective from <Code>usePerspective</Code>:
             </Text>
-            {!perspectiveLoading && globalPerspective !== 'raw' && (
+            {globalPerspective !== 'raw' && (
               <PerspectiveQuery
                 perspective={globalPerspective as Exclude<ClientPerspective, 'raw'>}
                 title={`Global (${globalPerspective})`}
