@@ -2,6 +2,10 @@ import {type QueryParams} from '@sanity/client'
 
 import type {ValidPerspective} from '../types'
 
+/**
+ * Cache key format: `query:perspective:params`
+ * @internal
+ */
 export type QueryCacheKey = `${string}:${string}:${string}`
 
 const DEFAULT_PERSPECTIVE = 'default'
