@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {defineConfig, defineField, defineType} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {benchmarkTool} from './src/benchmark'
+import {perspectiveExampleTool} from './src/perspective-example'
 import {IframeOptions, Iframe} from 'sanity-plugin-iframe-pane'
 import {defineLocations, presentationTool} from 'sanity/presentation'
 import {vercelProtectionBypassTool} from '@sanity/vercel-protection-bypass'
@@ -94,6 +95,7 @@ export default defineConfig({
       },
     }),
     benchmarkTool(),
+    perspectiveExampleTool(),
     visionTool(),
     groqdPlaygroundTool(),
     vercelProtectionBypassTool(),

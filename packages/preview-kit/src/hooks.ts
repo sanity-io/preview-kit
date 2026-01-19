@@ -49,7 +49,12 @@ export function useLiveQuery<
     | undefined
   >(
     () =>
-      defineStore?.<QueryResult>(initialData, query, params, perspective as Exclude<import('@sanity/client').ClientPerspective, 'raw'> | undefined) || {
+      defineStore?.<QueryResult>(
+        initialData,
+        query,
+        params,
+        perspective as Exclude<import('@sanity/client').ClientPerspective, 'raw'> | undefined,
+      ) || {
         subscribe: (() => () => {}) satisfies ListenerSubscribe,
         getSnapshot: () => initialData,
       },
