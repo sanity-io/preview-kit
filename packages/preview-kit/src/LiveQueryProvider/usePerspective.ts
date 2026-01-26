@@ -1,4 +1,4 @@
-import {type ClientPerspective} from '@sanity/client'
+import type {ClientPerspective} from '@sanity/client'
 import {createNode, createNodeMachine} from '@sanity/comlink'
 import {
   createCompatibilityActors,

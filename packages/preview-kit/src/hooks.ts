@@ -17,7 +17,7 @@ export type isEqualFn<QueryResult> = (a: QueryResult, b: QueryResult) => boolean
 /** @public */
 export interface LiveQueryHookOptions<QueryResult> {
   isEqual?: isEqualFn<QueryResult>
-  perspective?: Exclude<ClientPerspective, 'raw'>
+  perspective?: Exclude<ClientPerspective, 'raw'> | null
 }
 
 /** @public */
@@ -30,7 +30,7 @@ export function useLiveQuery<
   queryParams?: QueryParams,
   options?: LiveQueryHookOptions<QueryResult>,
 ): [QueryResult, QueryLoading, QueryEnabled] {
-  const {isEqual = isFastEqual, perspective: perspectiveOption} = options || {}
+  const {isEqual = isFastEqual, perspective: perspectiveOption = null} = options || {}
 
   const defineStore = useContext(defineStoreContext)
   const params = useQueryParams(queryParams)
@@ -117,14 +117,11 @@ export function useQueryParams(params?: undefined | null | QueryParams): QueryPa
  * @internal
  */
 export function useQueryPerspective(
-  perspective?: undefined | null | Exclude<ClientPerspective, 'raw'>,
-): Exclude<ClientPerspective, 'raw'> | undefined {
+  perspective: null | Exclude<ClientPerspective, 'raw'>,
+): Exclude<ClientPerspective, 'raw'> | null {
   const stringifiedPerspective = useMemo(() => JSON.stringify(perspective), [perspective])
   return useMemo(
-    () =>
-      stringifiedPerspective === 'null' || stringifiedPerspective === 'undefined'
-        ? undefined
-        : (JSON.parse(stringifiedPerspective) as Exclude<ClientPerspective, 'raw'>),
+    () => JSON.parse(stringifiedPerspective) as Exclude<ClientPerspective, 'raw'>,
     [stringifiedPerspective],
   )
 }
