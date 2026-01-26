@@ -58,9 +58,9 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       initialSnapshot: QueryResult,
       query: string,
       params: QueryParams,
-      hookPerspective?: Exclude<ClientPerspective, 'raw'>,
+      hookPerspective: Exclude<ClientPerspective, 'raw'> | null,
     ) {
-      const effectivePerspective = hookPerspective || perspective
+      const effectivePerspective = hookPerspective === null ? perspective : hookPerspective
       const snapshotsKey = getQueryCacheKey(query, params, effectivePerspective)
       const contextSubscribe: ListenerSubscribe = (onStoreChange) => {
         const unsubscribe = subscribe({

@@ -20,7 +20,7 @@ export function useLiveQuery<
   const defineStore = useContext(defineStoreContext)
   const queryParams = useQueryParams(queryParams2)
   const store = useMemo(
-    () => defineStore?.<QueryResult>(initialData, query, queryParams),
+    () => defineStore?.<QueryResult>(initialData, query, queryParams, null),
     [defineStore, initialData, queryParams, query],
   )
   // initialSnapshot might change before hydration is done, so deep cloning it on the first hook call

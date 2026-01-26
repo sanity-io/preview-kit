@@ -10,12 +10,10 @@ import type {ClientPerspective} from '@sanity/client'
  */
 export function PerspectiveExample() {
   const client = useClient({apiVersion: '2025-03-04'})
-  // Get the global perspective from Sanity Studio
   const {perspectiveStack} = usePerspective()
-  const globalPerspective = perspectiveStack[0] || 'published'
 
   return (
-    <LiveQueryProvider client={client} perspective={globalPerspective}>
+    <LiveQueryProvider client={client} perspective={perspectiveStack}>
       <Box padding={4} height="fill">
         <Stack space={5}>
           <Card padding={4} shadow={1} radius={2}>
@@ -27,7 +25,7 @@ export function PerspectiveExample() {
                 <Code>LiveQueryProvider</Code>.
               </Text>
               <Text size={1} muted>
-                Global Studio Perspective: <Code>{globalPerspective}</Code>
+                Global Studio Perspective: <Code>{JSON.stringify(perspectiveStack)}</Code>
               </Text>
             </Stack>
           </Card>
@@ -44,13 +42,10 @@ export function PerspectiveExample() {
             <Text size={1}>
               This query uses the global Studio perspective from <Code>usePerspective</Code>:
             </Text>
-            {globalPerspective !== 'raw' && (
-              <PerspectiveQuery
-                perspective={globalPerspective as Exclude<ClientPerspective, 'raw'>}
-                title={`Global (${globalPerspective})`}
-              />
-            )}
-
+            <PerspectiveQuery
+              perspective={perspectiveStack}
+              title={`Global (${perspectiveStack})`}
+            />
             <Heading size={1}>Provider Default Perspective</Heading>
             <Text size={1}>
               This query doesn't specify a perspective, so it uses the provider's default:
