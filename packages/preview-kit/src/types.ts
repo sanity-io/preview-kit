@@ -3,11 +3,6 @@ import type {ClientPerspective, QueryParams, SanityClient} from '@sanity/client'
 /**
  * @internal
  */
-export type ValidPerspective = Exclude<ClientPerspective, 'raw'>
-
-/**
- * @internal
- */
 export type ListenerSubscribe = (onStoreChange: () => void) => () => void
 
 /**
@@ -22,7 +17,7 @@ export type DefineListenerContext = <QueryResult>(
   initialSnapshot: QueryResult,
   query: string,
   params: QueryParams,
-  perspective?: ValidPerspective,
+  perspective?: Exclude<ClientPerspective, 'raw'>,
 ) => {
   subscribe: ListenerSubscribe
   getSnapshot: ListenerGetSnapshot<QueryResult>
@@ -84,7 +79,7 @@ export interface LiveQueryProviderProps {
   /**
    * @defaultValue 'drafts'
    */
-  perspective?: ValidPerspective
+  perspective?: Exclude<ClientPerspective, 'raw'>
 }
 
 /** @public */

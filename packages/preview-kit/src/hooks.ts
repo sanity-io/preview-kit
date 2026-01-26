@@ -1,16 +1,10 @@
-import type {QueryParams as ClientQueryParams, QueryParams} from '@sanity/client'
+import type {ClientPerspective, QueryParams as ClientQueryParams, QueryParams} from '@sanity/client'
 import {useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore} from 'react'
 import isFastEqual from 'react-fast-compare'
 import {useSyncExternalStoreWithSelector} from 'use-sync-external-store/with-selector'
 
 import {defineStoreContext} from './context'
-import type {
-  ListenerGetSnapshot,
-  ListenerSubscribe,
-  QueryEnabled,
-  QueryLoading,
-  ValidPerspective,
-} from './types'
+import type {ListenerGetSnapshot, ListenerSubscribe, QueryEnabled, QueryLoading} from './types'
 
 /**
  * By default 'react-fast-compare' is used to check if the query result has changed.
@@ -23,7 +17,7 @@ export type isEqualFn<QueryResult> = (a: QueryResult, b: QueryResult) => boolean
 /** @public */
 export interface LiveQueryHookOptions<QueryResult> {
   isEqual?: isEqualFn<QueryResult>
-  perspective?: ValidPerspective
+  perspective?: Exclude<ClientPerspective, 'raw'>
 }
 
 /** @public */
@@ -36,10 +30,11 @@ export function useLiveQuery<
   queryParams?: QueryParams,
   options?: LiveQueryHookOptions<QueryResult>,
 ): [QueryResult, QueryLoading, QueryEnabled] {
-  const {isEqual = isFastEqual, perspective} = options || {}
+  const {isEqual = isFastEqual, perspective: perspectiveOption} = options || {}
 
   const defineStore = useContext(defineStoreContext)
   const params = useQueryParams(queryParams)
+  const perspective = useQueryPerspective(perspectiveOption)
   const noStore = useMemo(
     () => ({
       subscribe: (() => () => {}) satisfies ListenerSubscribe,
@@ -115,6 +110,23 @@ export function useIsEnabled(): boolean {
 export function useQueryParams(params?: undefined | null | QueryParams): QueryParams {
   const stringifiedParams = useMemo(() => JSON.stringify(params || {}), [params])
   return useMemo(() => JSON.parse(stringifiedParams) as QueryParams, [stringifiedParams])
+}
+
+/**
+ * Return perspective that is stable with deep equal
+ * @internal
+ */
+export function useQueryPerspective(
+  perspective?: undefined | null | Exclude<ClientPerspective, 'raw'>,
+): Exclude<ClientPerspective, 'raw'> | undefined {
+  const stringifiedPerspective = useMemo(() => JSON.stringify(perspective), [perspective])
+  return useMemo(
+    () =>
+      stringifiedPerspective === 'null' || stringifiedPerspective === 'undefined'
+        ? undefined
+        : (JSON.parse(stringifiedPerspective) as Exclude<ClientPerspective, 'raw'>),
+    [stringifiedPerspective],
+  )
 }
 
 /**

@@ -1,4 +1,4 @@
-import type {LiveEventMessage, QueryParams, SyncTag} from '@sanity/client'
+import type {ClientPerspective, LiveEventMessage, QueryParams, SyncTag} from '@sanity/client'
 import {useEffect, useMemo, useState} from 'react'
 
 import {defineStoreContext as Context} from '../context'
@@ -8,7 +8,6 @@ import type {
   ListenerGetSnapshot,
   ListenerSubscribe,
   LiveQueryProviderProps,
-  ValidPerspective,
 } from '../types'
 import {DEFAULT_TAG} from './constants'
 import {useLiveEvents} from './useLiveEvents'
@@ -59,11 +58,17 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       initialSnapshot: QueryResult,
       query: string,
       params: QueryParams,
-      hookPerspective?: ValidPerspective,
+      hookPerspective?: Exclude<ClientPerspective, 'raw'>,
     ) {
-      const snapshotsKey = getQueryCacheKey(query, params, hookPerspective)
+      const effectivePerspective = hookPerspective || perspective
+      const snapshotsKey = getQueryCacheKey(query, params, effectivePerspective)
       const contextSubscribe: ListenerSubscribe = (onStoreChange) => {
-        const unsubscribe = subscribe({query, params, perspective: hookPerspective, onStoreChange})
+        const unsubscribe = subscribe({
+          query,
+          params,
+          perspective: effectivePerspective,
+          onStoreChange,
+        })
 
         return () => unsubscribe()
       }
@@ -74,31 +79,29 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
 
       return {subscribe: contextSubscribe, getSnapshot}
     } satisfies DefineListenerContext
-  }, [snapshots, subscribe])
+  }, [perspective, snapshots, subscribe])
 
   const liveEvents = useLiveEvents(client)
 
   return (
     <Context.Provider value={context}>
       {children}
-      {[...queries.entries()].map(
-        ([key, {query, params, perspective: queryPerspective, listeners}]) => {
-          return (
-            <QuerySubscription
-              key={`${liveEvents.resets}:${queryPerspective || perspective}:${key}`}
-              client={client}
-              listeners={listeners}
-              params={params}
-              query={query}
-              perspective={queryPerspective || perspective}
-              liveEventsMessages={liveEvents.messages}
-              snapshotKey={key}
-              syncTags={snapshots.get(key)?.syncTags}
-              update={update}
-            />
-          )
-        },
-      )}
+      {[...queries.entries()].map(([key, {query, params, perspective, listeners}]) => {
+        return (
+          <QuerySubscription
+            key={`${liveEvents.resets}:${key}`}
+            client={client}
+            listeners={listeners}
+            params={params}
+            query={query}
+            perspective={perspective}
+            liveEventsMessages={liveEvents.messages}
+            snapshotKey={key}
+            syncTags={snapshots.get(key)?.syncTags}
+            update={update}
+          />
+        )
+      })}
     </Context.Provider>
   )
 }
@@ -107,7 +110,7 @@ LiveStoreProvider.displayName = 'LiveStoreProvider'
 interface QuerySubscriptionProps extends Required<Pick<LiveQueryProviderProps, 'client'>> {
   query: string
   params: QueryParams
-  perspective: ValidPerspective
+  perspective: Exclude<ClientPerspective, 'raw'>
   update: LiveQueriesUpdate
   snapshotKey: QueryCacheKey
   liveEventsMessages: LiveEventMessage[]

@@ -1,44 +1,21 @@
-import {EyeOpenIcon} from '@sanity/icons'
-import {Box, Button, Card, Flex, Stack, Text, Code, Heading} from '@sanity/ui'
-import {useState, useMemo} from 'react'
-import {definePlugin, useClient, usePerspective} from 'sanity'
-import {route} from 'sanity/router'
+import {Box, Card, Flex, Stack, Text, Code, Heading} from '@sanity/ui'
+import {useClient, usePerspective} from 'sanity'
 import {LiveQueryProvider, useLiveQuery} from '@sanity/preview-kit'
 import groq from 'groq'
 import type {ClientPerspective} from '@sanity/client'
 
 /**
- * Example tool that demonstrates using useLiveQuery with different perspectives,
+ * Example view that demonstrates using useLiveQuery with different perspectives,
  * including integration with Sanity's usePerspective hook
  */
-export const perspectiveExampleTool = definePlugin<void>(() => {
-  return {
-    name: '@sanity/preview-kit/perspective-example',
-    tools: [
-      {
-        name: 'perspective-example',
-        title: 'Perspective Example',
-        icon: EyeOpenIcon,
-        component: PerspectiveExample,
-        router: route.create('/*'),
-      },
-    ],
-  }
-})
-
-function PerspectiveExample() {
+export function PerspectiveExample() {
   const client = useClient({apiVersion: '2025-03-04'})
-  const [token] = useState(() => {
-    // In a real app, you'd get this from your environment or auth flow
-    // For this example, we'll use an empty token (will work with public datasets)
-    return ''
-  })
-
   // Get the global perspective from Sanity Studio
-  const {value: globalPerspective} = usePerspective()
+  const {perspectiveStack} = usePerspective()
+  const globalPerspective = perspectiveStack[0] || 'published'
 
   return (
-    <LiveQueryProvider client={client} token={token} perspective="drafts">
+    <LiveQueryProvider client={client} perspective={globalPerspective}>
       <Box padding={4} height="fill">
         <Stack space={5}>
           <Card padding={4} shadow={1} radius={2}>
@@ -73,6 +50,12 @@ function PerspectiveExample() {
                 title={`Global (${globalPerspective})`}
               />
             )}
+
+            <Heading size={1}>Provider Default Perspective</Heading>
+            <Text size={1}>
+              This query doesn't specify a perspective, so it uses the provider's default:
+            </Text>
+            <PerspectiveQueryNoOption title="Provider Default" />
           </Stack>
         </Stack>
       </Box>
@@ -86,12 +69,9 @@ interface PerspectiveQueryProps {
 }
 
 function PerspectiveQuery({perspective, title}: PerspectiveQueryProps) {
-  const query = groq`count(*[_type == "page"])`
+  const query = groq`*[_type == "page"][0..20]`
 
-  // Fetch initial data for SSR/hydration
-  const [initialData] = useState<number | null>(null)
-
-  const [data, loading, enabled] = useLiveQuery(initialData, query, {}, {perspective})
+  const [data, loading, enabled] = useLiveQuery(null, query, {}, {perspective})
 
   return (
     <Card
@@ -138,7 +118,64 @@ function PerspectiveQuery({perspective, title}: PerspectiveQueryProps) {
             <Text size={1} weight="semibold">
               Result:
             </Text>
-            <Text size={2}>{data !== null ? `${data} pages` : 'No data yet'}</Text>
+            <Code size={1}>{JSON.stringify(data, null, 2)}</Code>
+          </Stack>
+        </Card>
+      </Stack>
+    </Card>
+  )
+}
+
+interface PerspectiveQueryNoOptionProps {
+  title: string
+}
+
+function PerspectiveQueryNoOption({title}: PerspectiveQueryNoOptionProps) {
+  const query = groq`*[_type == "page"][0..20]`
+
+  const [data, loading, enabled] = useLiveQuery(null, query, {})
+
+  return (
+    <Card padding={4} shadow={1} radius={2} tone="default">
+      <Stack space={3}>
+        <Flex align="center" justify="space-between">
+          <Heading size={1}>{title}</Heading>
+          <Box>
+            {loading && <Text size={1}>Loading...</Text>}
+            {enabled && !loading && (
+              <Text size={1} muted>
+                ✓ Live
+              </Text>
+            )}
+            {!enabled && (
+              <Text size={1} muted>
+                Not live
+              </Text>
+            )}
+          </Box>
+        </Flex>
+        <Card padding={3} tone="transparent" border>
+          <Stack space={2}>
+            <Text size={1} weight="semibold">
+              Query:
+            </Text>
+            <Code size={1}>{query}</Code>
+          </Stack>
+        </Card>
+        <Card padding={3} tone="transparent" border>
+          <Stack space={2}>
+            <Text size={1} weight="semibold">
+              Perspective:
+            </Text>
+            <Code size={1}>(uses provider default)</Code>
+          </Stack>
+        </Card>
+        <Card padding={3} tone="primary" border>
+          <Stack space={2}>
+            <Text size={1} weight="semibold">
+              Result:
+            </Text>
+            <Code size={1}>{JSON.stringify(data, null, 2)}</Code>
           </Stack>
         </Card>
       </Stack>

@@ -1,8 +1,12 @@
-import {type ContentSourceMap, type QueryParams, type SyncTag} from '@sanity/client'
+import {
+  type ClientPerspective,
+  type ContentSourceMap,
+  type QueryParams,
+  type SyncTag,
+} from '@sanity/client'
 import {useCallback, useReducer, useState} from 'react'
 import isEqual from 'react-fast-compare'
 
-import type {ValidPerspective} from '../types'
 import {getQueryCacheKey, type QueryCacheKey} from './utils'
 
 export type OnStoreChange = () => void
@@ -12,7 +16,7 @@ type LiveQueriesState = Map<
   {
     query: string
     params: QueryParams
-    perspective: ValidPerspective | undefined
+    perspective: Exclude<ClientPerspective, 'raw'>
     listeners: Set<OnStoreChange>
   }
 >
@@ -31,7 +35,7 @@ type SubscribeAction = {
   payload: {
     query: string
     params: QueryParams
-    perspective: ValidPerspective | undefined
+    perspective: Exclude<ClientPerspective, 'raw'>
     onStoreChange: OnStoreChange
   }
 }
@@ -40,7 +44,7 @@ type UnsubscribeAction = {
   payload: {
     query: string
     params: QueryParams
-    perspective: ValidPerspective | undefined
+    perspective: Exclude<ClientPerspective, 'raw'>
     onStoreChange: OnStoreChange
   }
 }
@@ -51,7 +55,7 @@ export type SnapshotAction = {
     params: QueryParams
     result: unknown
     resultSourceMap: ContentSourceMap | undefined
-    perspective: ValidPerspective
+    perspective: Exclude<ClientPerspective, 'raw'>
     tags: `s1:${string}`[] | undefined
   }
 }

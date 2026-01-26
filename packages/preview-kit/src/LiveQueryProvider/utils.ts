@@ -1,19 +1,15 @@
-import {type QueryParams} from '@sanity/client'
-
-import type {ValidPerspective} from '../types'
+import {type ClientPerspective, type QueryParams} from '@sanity/client'
 
 /**
- * Cache key format: `query:perspective:params`
+ * Cache key format: `query:{"params":...,"perspective":...}`
  * @internal
  */
-export type QueryCacheKey = `${string}:${string}:${string}`
-
-const DEFAULT_PERSPECTIVE = 'default'
+export type QueryCacheKey = `${string}:${string}`
 
 export function getQueryCacheKey(
   query: string,
   params: QueryParams,
-  perspective?: ValidPerspective,
+  perspective: Exclude<ClientPerspective, 'raw'>,
 ): QueryCacheKey {
-  return `${query}:${perspective || DEFAULT_PERSPECTIVE}:${JSON.stringify(params)}`
+  return `${query}:${JSON.stringify({params, perspective})}`
 }
