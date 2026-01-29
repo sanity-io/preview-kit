@@ -25,8 +25,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
     throw new Error('Missing a `client` prop with a configured Sanity client instance')
   }
 
-  const propsPerspective = useQueryPerspective(props.perspective)
-  const perspective = usePerspective(propsPerspective || 'drafts')
+  const perspective = useQueryPerspective(usePerspective(props.perspective || 'drafts'))
 
   // Ensure these values are stable even if userland isn't memoizing properly
   const [client] = useState(() => {
@@ -59,7 +58,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       initialSnapshot: QueryResult,
       query: string,
       params: QueryParams,
-      hookPerspective?: Exclude<ClientPerspective, 'raw'>,
+      hookPerspective: Exclude<ClientPerspective, 'raw'> | null,
     ) {
       const effectivePerspective = hookPerspective || perspective
       const snapshotsKey = getQueryCacheKey(query, params, effectivePerspective)
