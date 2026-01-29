@@ -2,7 +2,7 @@ import type {ClientPerspective, LiveEventMessage, QueryParams, SyncTag} from '@s
 import {useEffect, useMemo, useState} from 'react'
 
 import {defineStoreContext as Context} from '../context'
-import {useShouldPause} from '../hooks'
+import {useQueryPerspective, useShouldPause} from '../hooks'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
@@ -25,7 +25,7 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
     throw new Error('Missing a `client` prop with a configured Sanity client instance')
   }
 
-  const perspective = usePerspective(props.perspective || 'drafts')
+  const perspective = useQueryPerspective(usePerspective(props.perspective || 'drafts'))
 
   // Ensure these values are stable even if userland isn't memoizing properly
   const [client] = useState(() => {
@@ -58,10 +58,17 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       initialSnapshot: QueryResult,
       query: string,
       params: QueryParams,
+      hookPerspective: Exclude<ClientPerspective, 'raw'> | null,
     ) {
-      const snapshotsKey = getQueryCacheKey(query, params)
+      const effectivePerspective = hookPerspective || perspective
+      const snapshotsKey = getQueryCacheKey(query, params, effectivePerspective)
       const contextSubscribe: ListenerSubscribe = (onStoreChange) => {
-        const unsubscribe = subscribe({query, params, onStoreChange})
+        const unsubscribe = subscribe({
+          query,
+          params,
+          perspective: effectivePerspective,
+          onStoreChange,
+        })
 
         return () => unsubscribe()
       }
@@ -72,17 +79,17 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
 
       return {subscribe: contextSubscribe, getSnapshot}
     } satisfies DefineListenerContext
-  }, [snapshots, subscribe])
+  }, [perspective, snapshots, subscribe])
 
   const liveEvents = useLiveEvents(client)
 
   return (
     <Context.Provider value={context}>
       {children}
-      {[...queries.entries()].map(([key, {query, params, listeners}]) => {
+      {[...queries.entries()].map(([key, {query, params, perspective, listeners}]) => {
         return (
           <QuerySubscription
-            key={`${liveEvents.resets}:${perspective}:${key}`}
+            key={`${liveEvents.resets}:${key}`}
             client={client}
             listeners={listeners}
             params={params}
