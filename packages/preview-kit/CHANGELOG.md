@@ -5,6 +5,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.0](https://github.com/sanity-io/preview-kit/compare/v6.1.3...v6.2.0) (2026-01-29)
+
+### Features
+
+- add `perspective` option to useLiveQuery ([#1773](https://github.com/sanity-io/preview-kit/issues/1773)) ([96b8846](https://github.com/sanity-io/preview-kit/commit/96b88460415d02f524d05311cc94b820e5d6409e))
+
+### Bug Fixes
+
+- **deps:** Update dependency @sanity/client to ^7.11.0 ([#1738](https://github.com/sanity-io/preview-kit/issues/1738)) ([0c64bc9](https://github.com/sanity-io/preview-kit/commit/0c64bc96a91d9cd271c200bc22ea81c63747dbb0))
+
 ## [6.1.3](https://github.com/sanity-io/preview-kit/compare/v6.1.2...v6.1.3) (2025-07-15)
 
 ### Bug Fixes
