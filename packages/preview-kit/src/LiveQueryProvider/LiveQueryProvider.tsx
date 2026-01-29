@@ -2,7 +2,7 @@ import type {ClientPerspective, LiveEventMessage, QueryParams, SyncTag} from '@s
 import {useEffect, useMemo, useState} from 'react'
 
 import {defineStoreContext as Context} from '../context'
-import {useShouldPause} from '../hooks'
+import {useQueryPerspective, useShouldPause} from '../hooks'
 import type {
   DefineListenerContext,
   ListenerGetSnapshot,
@@ -25,7 +25,8 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
     throw new Error('Missing a `client` prop with a configured Sanity client instance')
   }
 
-  const perspective = usePerspective(props.perspective || 'drafts')
+  const propsPerspective = useQueryPerspective(props.perspective)
+  const perspective = usePerspective(propsPerspective || 'drafts')
 
   // Ensure these values are stable even if userland isn't memoizing properly
   const [client] = useState(() => {
@@ -58,9 +59,9 @@ export default function LiveStoreProvider(props: LiveQueryProviderProps): React.
       initialSnapshot: QueryResult,
       query: string,
       params: QueryParams,
-      hookPerspective: Exclude<ClientPerspective, 'raw'> | null,
+      hookPerspective?: Exclude<ClientPerspective, 'raw'>,
     ) {
-      const effectivePerspective = hookPerspective === null ? perspective : hookPerspective
+      const effectivePerspective = hookPerspective || perspective
       const snapshotsKey = getQueryCacheKey(query, params, effectivePerspective)
       const contextSubscribe: ListenerSubscribe = (onStoreChange) => {
         const unsubscribe = subscribe({

@@ -30,7 +30,7 @@ export function useLiveQuery<
   queryParams?: QueryParams,
   options?: LiveQueryHookOptions<QueryResult>,
 ): [QueryResult, QueryLoading, QueryEnabled] {
-  const {isEqual = isFastEqual, perspective: perspectiveOption = null} = options || {}
+  const {isEqual = isFastEqual, perspective: perspectiveOption} = options || {}
 
   const defineStore = useContext(defineStoreContext)
   const params = useQueryParams(queryParams)
@@ -117,11 +117,14 @@ export function useQueryParams(params?: undefined | null | QueryParams): QueryPa
  * @internal
  */
 export function useQueryPerspective(
-  perspective: null | Exclude<ClientPerspective, 'raw'>,
-): Exclude<ClientPerspective, 'raw'> | null {
+  perspective?: undefined | null | Exclude<ClientPerspective, 'raw'>,
+): Exclude<ClientPerspective, 'raw'> | undefined {
   const stringifiedPerspective = useMemo(() => JSON.stringify(perspective), [perspective])
   return useMemo(
-    () => JSON.parse(stringifiedPerspective) as Exclude<ClientPerspective, 'raw'>,
+    () =>
+      stringifiedPerspective === 'null' || stringifiedPerspective === 'undefined'
+        ? undefined
+        : (JSON.parse(stringifiedPerspective) as Exclude<ClientPerspective, 'raw'>),
     [stringifiedPerspective],
   )
 }
